@@ -1,8 +1,9 @@
 use std::path::Path;
 use std::env;
-
-pub fn change_directory(directory: &str){
-    let dir = Path::new(directory);
+//as_slice() is considered unstable right now
+pub fn change_directory(directory: Vec<&str>){
+    let dir_vec = directory.as_slice();
+    let dir = Path::new("/");
     if dir.is_relative(){
         println!("dir is relative");
     } else {

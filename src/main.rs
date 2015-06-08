@@ -20,13 +20,19 @@ fn main() {
         
         //Determines what to do with user input
         //problem _ might need to be used to execute command
-        match command.trim(){
-            ""  => continue,
-            "exit" => break,
-            _ => print!(""),
+        let mut command_split: Vec<&str> = command.trim().split(' ').collect(); 
+        match command_split.get(0) {
+            Some(&"cd")=> {
+                command_split.remove(0); 
+                cd::change_directory(command_split);
+            }
+            Some(&"")  => continue,
+            Some(&"exit") => break,
+            _ => {
+                let output = execute::get_stdout(command_split);
+                println!("{}",output);
+            }
         }
-        let output = execute::get_stdout(command);
-        println!("{}",output);
     }
 
 }

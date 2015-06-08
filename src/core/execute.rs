@@ -8,12 +8,10 @@ use std::process::*;
 //Available to interatct with directly for testing purposes
 //Highly reccomended the wrapper commands like get_stdout are used
 
-pub fn execute(command: &str) -> Option<Output>{
+pub fn execute(command: Vec<&str>) -> Option<Output>{
     //Check for input before using execute as nothing but spaces crashes
     //trim() before input
-    let vec: Vec<&str> = command.split(" ").collect();
-    
-    let args = vec.as_slice();
+    let args = command.as_slice();
     
     let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ]).output().ok()
@@ -25,8 +23,8 @@ pub fn execute(command: &str) -> Option<Output>{
         output
  }
 
-pub fn get_stdout(command: String) -> String{
-    let output = execute(command.trim());
+pub fn get_stdout(command: Vec<&str>) -> String{
+    let output = execute(command);
     match output.is_some(){
         true => {
             let temp = output.unwrap();
@@ -37,7 +35,7 @@ pub fn get_stdout(command: String) -> String{
 }
 //pub fn pipe(){};
 
-
+//Tests WILL fail. Need to be rewritten
 #[cfg(test)]
 mod tests{
     use std::process::*;
