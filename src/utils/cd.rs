@@ -2,7 +2,7 @@ use std::path::Path;
 use std::env;
 
 pub fn change_directory(directory: &str){
-    let mut dir = Path::new(directory);
+    let dir = Path::new(directory);
     if dir.is_relative(){
         println!("dir is relative");
     } else {
