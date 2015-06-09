@@ -23,6 +23,8 @@ environment.
 -[ ] Output errors on stderr automagically
 -[ ] Auto Completion
 
+###Rust Version
+Currently using 1.2 Nightly due to need of unstable features.
 
 ###Testing and Execution
 You can run the inbuilt tests to determine if the functions are working as

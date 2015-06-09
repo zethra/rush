@@ -18,8 +18,10 @@ fn main() {
             .ok()
             .expect("Failure to read input");
         
-        //Determines what to do with user input
-        //problem _ might need to be used to execute command
+        //Super ugly if you think about what types are being passed around
+        //below here.It works but I will probably want to clean it up at 
+        //some point
+
         let mut command_split: Vec<&str> = command.trim().split(' ').collect(); 
         match command_split.get(0) {
             Some(&"cd")=> {

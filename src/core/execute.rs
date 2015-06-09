@@ -35,7 +35,6 @@ pub fn get_stdout(command: Vec<&str>) -> String{
 }
 //pub fn pipe(){};
 
-//Tests WILL fail. Need to be rewritten
 #[cfg(test)]
 mod tests{
     use std::process::*;
@@ -43,7 +42,8 @@ mod tests{
 
     #[test]
     fn test_execute(){
-        let test = execute("echo hello there").unwrap();
+        let vec = vec!["echo","hello","there"];
+        let test = execute(vec).unwrap();
         let output = Command::new("echo")
                 .arg("hello there")
                 .output()
@@ -61,7 +61,8 @@ mod tests{
     #[test]
     #[should_panic]
     fn test_execute_fail(){
-        let test = execute("echo hello").unwrap();
+        let vec = vec!["echo","hello","there"];
+        let test = execute(vec).unwrap();
         let output = Command::new("/bin/ls")
                 .arg("-al")
                 .output()
