@@ -22,6 +22,7 @@ environment.
 -[ ] Change Directory
 -[ ] Output errors on stderr automagically
 -[ ] Auto Completion
+-[ ] Better output formatting for completed commands
 
 ###Rust Version
 Currently using 1.2 Nightly due to need of unstable features.

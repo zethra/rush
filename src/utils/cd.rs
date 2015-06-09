@@ -3,6 +3,7 @@ use std::path::{Path,PathBuf};
 use std::env;
 
 //as_str() is considered unstable right now
+//Need to work on what happens when mispelled directory is input
 pub fn change_directory(input: Vec<&str>){
     if input.is_empty(){
         env::set_current_dir(Path::new(env::var("HOME").unwrap().as_str()));
