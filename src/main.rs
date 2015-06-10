@@ -18,7 +18,7 @@ fn main() {
             .ok()
             .expect("Failure to read input");
         
-        //Super ugly if you think about what types are being passed around
+        //Super ugly if you know what types are being passed around
         //below here.It works but I will probably want to clean it up at 
         //some point
 
@@ -31,7 +31,7 @@ fn main() {
             Some(&"")  => continue,
             Some(&"exit") => break,
             _ => {
-                let output = execute::get_stdout(command_split);
+                let output = execute::interpret(command_split);
                 println!("{}",output);
             }
         }

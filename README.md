@@ -13,13 +13,13 @@ environment.
 ###The Current Version is 0.0.2 meaning Rusty can:
 
 -[x] Execute programs entered into the command line
+-[x] Change Directory
 
 ###Planned but not implemented:
 
 -[ ] Shell logic
 -[ ] Pipes
 -[ ] Prompts and customization
--[ ] Change Directory
 -[ ] Output errors on stderr automagically
 -[ ] Auto Completion
 -[ ] Better output formatting for completed commands

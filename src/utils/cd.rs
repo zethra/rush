@@ -28,13 +28,13 @@ pub fn change_directory(input: Vec<&str>){
             if path.exists(){
                 env::set_current_dir(temp.as_path()).unwrap();
             } else {
-                println!("Invalid path");
+                println!("Invalid path or input");
             }
         } else {
             if dir.exists(){
                 env::set_current_dir(dir).unwrap();
             } else {
-                println!("Invalid path");
+                println!("Invalid path or input");
             }
         }
     }
