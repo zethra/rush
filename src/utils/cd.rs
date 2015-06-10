@@ -1,26 +1,41 @@
 #![allow(unused_must_use)] //supresses warning from use of env::var("Home")
 use std::path::{Path,PathBuf};
 use std::env;
+use std::fs::PathExt; //Use of exists() is considered unstable. Might break in the future
 
-//as_str() is considered unstable right now
-//Need to work on what happens when mispelled directory is input
 pub fn change_directory(input: Vec<&str>){
     if input.is_empty(){
         env::set_current_dir(Path::new(env::var("HOME").unwrap().as_str()));
     } else{
         let mut buffer = PathBuf::new();
         for i in input {
-            buffer.push(Path::new(i));
+            if i.contains("~") {
+                let i_split = i.split("~").next();
+                buffer.push(Path::new(env::var("HOME").unwrap().as_str()));
+                if i_split.is_some(){
+                    buffer.push(Path::new(i_split.unwrap()));
+                }
+            } else {
+                buffer.push(Path::new(i));
+            }
         }
-    
         let dir = buffer.as_path();
         if dir.is_relative(){
             let mut temp = PathBuf::new();
             temp.push(dir.parent().unwrap());
             temp.push(dir);
-            env::set_current_dir(temp.as_path()).unwrap();
+            let path = temp.as_path();
+            if path.exists(){
+                env::set_current_dir(temp.as_path()).unwrap();
+            } else {
+                println!("Invalid path");
+            }
         } else {
-            env::set_current_dir(dir).unwrap();
+            if dir.exists(){
+                env::set_current_dir(dir).unwrap();
+            } else {
+                println!("Invalid path");
+            }
         }
     }
 }
