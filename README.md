@@ -23,6 +23,7 @@ environment.
 -[ ] Output errors on stderr automagically
 -[ ] Auto Completion
 -[ ] Better output formatting for completed commands
+-[ ] Scripting language and processor.
 
 ###Rust Version
 Currently using 1.2 Nightly due to need of unstable features.

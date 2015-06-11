@@ -1,12 +1,22 @@
 //vec.as_slice() is considered unstable and is subject to change in the future
-
+#![allow(unreachable_code)]
 use std::process::*;
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
 //Calls the wrapper functions on execute and pipes commands as needed
-    if command.contains(&"|") { //Pipe or no pipe
-        println!("Place Holder");
+    
+    let mut pipes = false;
+    for i in command.clone() {
+       if i.contains('|') {
+           pipes = true;
+           break;
+        }
+    }
+
+    if pipes { //Pipe or no pipe
+        let output = piped(command);
+        return output;
     } else { //execute normally
         let output = execute(command);
         let out = get_stdout(output.clone());
@@ -57,12 +67,37 @@ fn get_stderr(output: Option<Output>) -> String{
     }
 }
 
-#[allow(dead_code)]
-fn piped(){
+fn piped(input: Vec<&str>) -> String {
+    let mut vec_command: Vec<&str> = Vec::new();
+    let mut will_pipe: Vec<&str> = Vec::new();
+    let mut hit_pipe = false;
+
+    for i in input {
+        if !hit_pipe {
+           if i.contains('|') {
+
+               hit_pipe = true;
+           } else {
+               vec_command.push(i);
+           }
+        } else {
+           will_pipe.push(i) 
+        }
+    }
     
+    //If we still have more commands to process call the function again
+    //with the commands still needing processing
+    if hit_pipe {
+       let hold = piped(will_pipe);
+       return hold
+    } else {
+        return "Hello".to_string() 
+    }
+    
+    "Bottom".to_string();
 }
 
-
+//Tests are defunct for now.
 #[cfg(test)]
 mod tests{
     use std::process::*;
