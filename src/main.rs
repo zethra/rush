@@ -32,7 +32,9 @@ fn main() {
             Some(&"exit") => break,
             _ => {
                 let output = execute::interpret(command_split);
-                println!("{}",output.trim());
+                if output.len() != 0 {
+                    println!("{}",output.trim());
+                }
             }
         }
     }
