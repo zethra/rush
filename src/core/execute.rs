@@ -68,35 +68,50 @@ fn get_stderr(output: Option<Output>) -> String{
 }
 
 fn piped(input: Vec<&str>) -> String {
-    let mut vec_command: Vec<&str> = Vec::new();
-    let mut will_pipe: Vec<&str> = Vec::new();
-    let mut hit_pipe = false;
-
-    for i in input {
-        if !hit_pipe {
-           if i.contains('|') {
-
-               hit_pipe = true;
-           } else {
-               vec_command.push(i);
-           }
+    let input_slice = input.as_slice();
+    let mut now: Vec<&str> = Vec::new();
+    let mut later: Vec<&str> = Vec::new();
+    let mut piping = false;
+    for i in input_slice {
+        if i.contains('|') || piping == true{
+            piping = true;
+            let mut split:Vec<&str> = Vec::new();
+            let split_inputs = i.split("|");
+            for j in split_inputs {
+                split.push(j);
+            }
+            match split.len() {
+                0 => continue,
+                1 => {
+                    let temp = split.pop().unwrap();
+                    if temp != ""{ 
+                        later.push(temp);
+                    }
+                }
+                2 => {
+                    let later_push = split.pop().unwrap();
+                    let now_push = split.pop().unwrap();
+                    if later_push != ""{
+                        later.push(later_push);
+                    }
+                    if now_push != ""{
+                        now.push(now_push);
+                    }
+                },
+                _ => unreachable!("Splitting one command should not be more than 2 in it's length")
+            }
         } else {
-           will_pipe.push(i) 
+           now.push(i);
         }
-    }
-    
-    //If we still have more commands to process call the function again
-    //with the commands still needing processing
-    if hit_pipe {
-       let hold = piped(will_pipe);
-       return hold
-    } else {
-        return "Hello".to_string() 
-    }
-    
-    "Bottom".to_string();
-}
 
+    }
+    let output = get_stdout(execute(now));
+    if later.len() > 0 {
+        let output = piped(later);
+        return output;
+    }
+    output
+}
 //Tests are defunct for now.
 #[cfg(test)]
 mod tests{
