@@ -14,19 +14,23 @@ environment.
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
+- [x] Output errors on stderr automagically
+
+###In Progress
+
+- [ ] Pipes
+- [ ] Shell logic
 
 ###Planned but not implemented:
 
-- [ ] Shell logic
-- [ ] Pipes
 - [ ] Prompts and customization
-- [ ] Output errors on stderr automagically
 - [ ] Auto Completion
 - [ ] Better output formatting for completed commands
 - [ ] Scripting language and processor.
 
 ###Rust Version
-Currently using 1.2 Nightly due to need of unstable features.
+Currently using 1.2 Nightly due to need of unstable features. Has not been
+tested with any other version.
 
 ###Testing and Execution
 You can run the inbuilt tests to determine if the functions are working as
