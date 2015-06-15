@@ -1,6 +1,8 @@
 //vec.as_slice() is considered unstable and is subject to change in the future
 #![allow(unreachable_code)]
 use std::process::*;
+use std::os::unix::io::FromRawFd;//unsafe
+use std::os::unix::io::AsRawFd;//Unsafe
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
@@ -15,7 +17,7 @@ pub fn interpret(command: Vec<&str>) -> String {
     }
 
     if pipes { //Pipe or no pipe
-        let output = piped(command, true, Command::new("").output().ok());
+        let output = piped(command, true);
         return output;
     } else { //execute normally
         let output = execute(command);
@@ -28,7 +30,7 @@ pub fn interpret(command: Vec<&str>) -> String {
     unreachable!("I don't know how you did it but dear lord you made it this far".to_string())
 }
 
-fn execute(command: Vec<&str>) -> Option<Output>{
+pub fn execute(command: Vec<&str>) -> Option<Output>{
     let args = command.as_slice();
     let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ]).output().ok()
@@ -40,7 +42,7 @@ fn execute(command: Vec<&str>) -> Option<Output>{
         output
  }
 
-fn get_stdout(output: Option<Output>) -> String{
+pub fn get_stdout(output: Option<Output>) -> String{
     match output.is_some(){
         true => {
             let temp = output.unwrap();
@@ -53,7 +55,7 @@ fn get_stdout(output: Option<Output>) -> String{
     }
 }
 
-fn get_stderr(output: Option<Output>) -> String{
+pub fn get_stderr(output: Option<Output>) -> String{
     match output.is_some(){
         true => {
             let temp = output.unwrap();
@@ -63,7 +65,17 @@ fn get_stderr(output: Option<Output>) -> String{
     }
 }
 
-fn piped(input: Vec<&str>, first_pass: bool, previous: Option<Output>) -> String {
+pub fn get_status(output: Option<Output>) -> bool{
+    match output.is_some(){
+        true => {
+            let temp = output.unwrap();
+            return temp.status.success();
+        },
+        false => false,
+    }
+}
+
+fn piped(input: Vec<&str>, first_pass: bool) -> String {
     
     let input_slice = input.as_slice();
     let mut now: Vec<&str> = Vec::new();
@@ -107,18 +119,14 @@ fn piped(input: Vec<&str>, first_pass: bool, previous: Option<Output>) -> String
     //gets output for next pprogram until there are no more programs to execute
     //outputs final text
     //How do I get stdin for execute_pipe in the following block of code?
-    let executed = if first_pass {
-        execute(now)
-    } else {
-        execute_pipe(now, previous)
-    };
+    let executed = execute_pipe(now);
 
     if get_stdout(executed.clone()).len() == 0 {
         return get_stderr(executed.clone())
     }
 
     if later.len() > 0 {
-        return piped(later, false, executed)
+        return piped(later, false)
     }
 
     get_stdout(executed.clone())
@@ -128,22 +136,25 @@ fn piped(input: Vec<&str>, first_pass: bool, previous: Option<Output>) -> String
 //INCOMPLETED
 //I need to figure out how the Stdio module works in relation to the command module
 //Maybe I need to return a tuple the Option<Output> and Stdio
-fn execute_pipe(command: Vec<&str>, previous: Option<Output>) -> Option<Output>{
-    let args = command.as_slice();
-    let output = if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1.. ]).output().ok()
-        } else if args.len() == 1{
-            Command::new(&args[0]).output().ok()
-        } else {
-            Command::new("").output().ok()
-        };
-        output
- }
+//need to use spawn command not output command!
+fn execute_pipe(command: Vec<&str>) -> Option<Output>{
+   Command::new("").output().ok()
+}
 
 
 //Tests are defunct for now.
 #[cfg(test)]
 mod tests{
+    use std::os::unix::io::FromRawFd;//unsafe
+    use std::os::unix::io::AsRawFd;//Unsafe
     use std::process::*;
     use super::*;
+    #[test]
+    fn pipes(){
+        let first = Command::new("ls").arg("/").stdout(Stdio::piped()).spawn().ok();
+        unsafe {
+            let second = Command::new("grep").arg("etc").stdin(Stdio::inherit(first)).output().ok();
+            assert_eq!(get_stdout(second),"etc");
+        }
+    }
 }
