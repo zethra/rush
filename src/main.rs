@@ -8,7 +8,7 @@ use std::env;
 
 fn main() {
     //Initialization occurs here 
-   
+
     //Loop to recieve and execute commands
     loop{
         

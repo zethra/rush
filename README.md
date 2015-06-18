@@ -20,9 +20,10 @@ environment.
 
 - [ ] Pipes
 - [ ] Shell logic
+- [ ] Calculator utility for fun. Likely to be on back burner
 
 ###Planned but not implemented:
-
+- [ ] cd - functionality
 - [ ] Prompts and customization
 - [ ] Auto Completion
 - [ ] Better output formatting for completed commands
