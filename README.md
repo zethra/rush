@@ -10,7 +10,7 @@ itself (no guarantees about the programs you run with it.)
 At this point in time the program is far from being functional in an every day
 environment.
 
-###The Current Version is 0.0.2 meaning Rusty can:
+###The Current Version is 0.0.3 meaning Rusty can:
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory

@@ -11,7 +11,6 @@ fn main() {
 
     //Loop to recieve and execute commands
     loop{
-        
         let mut command = String::new();
         stdin().read_line(&mut command)
             .ok()
@@ -23,9 +22,12 @@ fn main() {
 
         let mut command_split: Vec<&str> = command.trim().split(' ').collect(); 
         match command_split.get(0) {
-            Some(&"cd")=> {
+            Some(&"cd") => {
                 command_split.remove(0); 
                 cd::change_directory(command_split);
+            }
+            Some(&"cat") => {
+                
             }
             Some(&"")  => continue,
             Some(&"exit") => break,
