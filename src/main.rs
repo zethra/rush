@@ -35,7 +35,7 @@ fn main() {
             Some(&"exit") => break,
             _ => {
                 let output = execute::interpret(command_split);
-                if output.len() != 0 {
+                if !output.is_empty() {
                     println!("{}",output.trim());
                 }
             }

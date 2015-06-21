@@ -1,8 +1,6 @@
 //vec.as_slice() is considered unstable and is subject to change in the future
 #![allow(unreachable_code)]
 use std::process::*;
-use std::os::unix::io::FromRawFd;//unsafe
-use std::os::unix::io::AsRawFd;//Unsafe
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
@@ -27,7 +25,7 @@ pub fn interpret(command: Vec<&str>) -> String {
         }
         return out;
     }
-    unreachable!("I don't know how you did it but dear lord you made it this far".to_string())
+    unreachable!("I don't know how you did it but dear lord you made it this far".to_owned())
 }
 
 pub fn execute(command: Vec<&str>) -> Option<Output>{
@@ -48,7 +46,7 @@ pub fn get_stdout(output: Option<Output>) -> String{
             let temp = output.unwrap();
             return String::from_utf8(temp.stdout).unwrap();
         },
-        false => "Please input a valid command".to_string()
+        false => "Please input a valid command".to_owned()
             //Used in order to work out for the Option input
             //However with process stderr is used for better
             //outputs of messages
@@ -61,7 +59,7 @@ pub fn get_stderr(output: Option<Output>) -> String{
             let temp = output.unwrap();
             return String::from_utf8(temp.stderr).unwrap();
         },
-        false => "Please input a valid command".to_string()
+        false => "Please input a valid command".to_owned()
     }
 }
 
@@ -121,11 +119,11 @@ fn piped(input: Vec<&str>, first_pass: bool) -> String {
     //How do I get stdin for execute_pipe in the following block of code?
     let executed = execute_pipe(now);
 
-    if get_stdout(executed.clone()).len() == 0 {
+    if !get_stdout(executed.clone()).is_empty() {
         return get_stderr(executed.clone())
     }
 
-    if later.len() > 0 {
+    if !later.is_empty() {
         return piped(later, false)
     }
 
