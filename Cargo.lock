@@ -1,4 +1,12 @@
 [root]
 name = "rusty"
-version = "0.0.2"
+version = "0.0.3"
+dependencies = [
+ "clippy 0.0.5 (git+https://github.com/Manishearth/rust-clippy)",
+]
+
+[[package]]
+name = "clippy"
+version = "0.0.5"
+source = "git+https://github.com/Manishearth/rust-clippy#a92b063727409108c148a3281ea0e4dc971277ce"
 

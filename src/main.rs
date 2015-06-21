@@ -1,3 +1,5 @@
+#![feature(plugin)]
+#![plugin(clippy)]
 #![allow(unused_imports)]
 extern crate rusty;
 use rusty::utils::*;
@@ -8,7 +10,7 @@ use std::env;
 
 fn main() {
     //Initialization occurs here 
-
+    
     //Loop to recieve and execute commands
     loop{
         let mut command = String::new();

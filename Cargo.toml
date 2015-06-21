@@ -2,3 +2,6 @@
 name = "rusty"
 version = "0.0.3"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
+
+[dependencies.clippy]
+git = "https://github.com/Manishearth/rust-clippy"
