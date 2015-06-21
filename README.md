@@ -29,6 +29,15 @@ environment.
 - [ ] Better output formatting for completed commands
 - [ ] Scripting language and processor.
 
+###Code Cleanup Ideas
+- [ ] Docs. So many Docs
+- [ ] Reduce need for clone() and work on proper ownership
+- [ ] Format code in a uniform way
+- [ ] Reduce let bindings
+- [ ] Reduce need of Vec<&str> as inputs
+
+Probably more. Will add as ideas come to mind.
+
 ###Rust Version
 Currently using 1.2 Nightly due to need of unstable features. Has not been
 tested with any other version.
