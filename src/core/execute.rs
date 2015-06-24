@@ -80,24 +80,22 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     for i in input_slice {
         if i.contains('|') {
             let mut splits = i.split('|');
-            &mut temp.push(splits.next().unwrap());
+            temp.push(splits.next().unwrap());
             if temp.last().unwrap() == &""{
                 temp.pop();
             }
-            &mut thing.push(temp.clone());
-            &mut temp.clear();
-            &mut temp.push(splits.next().unwrap());
+            thing.push(temp.clone());
+            temp.clear();
+            temp.push(splits.next().unwrap());
             if temp.last().unwrap() == &""{
                 temp.pop();
             }
         } else {
-            &mut temp.push(i);
-            if temp.last().unwrap() == &""{
-                temp.pop();
-            }
+            temp.push(i);
         }
     }
-    &mut thing.push(temp);
+    thing.push(temp);
+    println!("{:?}",thing);
     thing
 }
 
