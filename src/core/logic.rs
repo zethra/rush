@@ -1,4 +1,5 @@
 //Logic interpretation
+#![allow(unused_variables)]
 use core::execute::{execute, get_status, get_stdout, get_stderr};
 
 pub fn and(command1:Vec<&str>, command2:Vec<&str>){

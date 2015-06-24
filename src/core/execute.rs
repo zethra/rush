@@ -1,5 +1,6 @@
 //vec.as_slice() is considered unstable and is subject to change in the future
 #![allow(unreachable_code)]
+#![allow(unused_variables)] //temporary until piping is completed
 use std::process::*;
 
 pub fn interpret(command: Vec<&str>) -> String {
@@ -15,7 +16,7 @@ pub fn interpret(command: Vec<&str>) -> String {
     }
 
     if pipes { //Pipe or no pipe
-        let output = piped(command, true);
+        let output = piped(command);
         return output;
     } else { //execute normally
         let output = execute(command);
@@ -72,87 +73,61 @@ pub fn get_status(output: Option<Output>) -> bool{
         false => false,
     }
 }
-
-fn piped(input: Vec<&str>, first_pass: bool) -> String {
-    
+fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     let input_slice = input.as_slice();
-    let mut now: Vec<&str> = Vec::new();
-    let mut later: Vec<&str> = Vec::new();
-    let mut piping = false;
-    
+    let mut thing: Vec<Vec<&str>> = Vec::new();
+    let mut temp: Vec<&str> = Vec::new();
     for i in input_slice {
-        if i.contains('|') || piping == true{
-            piping = true;
-            let mut split:Vec<&str> = Vec::new();
-            let split_inputs = i.split("|");
-            for j in split_inputs {
-                split.push(j);
+        if i.contains('|') {
+            let mut splits = i.split('|');
+            &mut temp.push(splits.next().unwrap());
+            if temp.last().unwrap() == &""{
+                temp.pop();
             }
-            match split.len() {
-                0 => continue,
-                1 => {
-                    let temp = split.pop().unwrap();
-                    if temp != ""{ 
-                        later.push(temp);
-                    }
-                }
-                2 => {
-                    let later_push = split.pop().unwrap();
-                    let now_push = split.pop().unwrap();
-                    if later_push != ""{
-                        later.push(later_push);
-                    }
-                    if now_push != ""{
-                        now.push(now_push);
-                    }
-                },
-                _ => unreachable!("Splitting one command should not be more than 2 in it's length")
+            &mut thing.push(temp.clone());
+            &mut temp.clear();
+            &mut temp.push(splits.next().unwrap());
+            if temp.last().unwrap() == &""{
+                temp.pop();
             }
         } else {
-           now.push(i);
+            &mut temp.push(i);
+            if temp.last().unwrap() == &""{
+                temp.pop();
+            }
         }
-
     }
-
-    //gets output for next pprogram until there are no more programs to execute
-    //outputs final text
-    //How do I get stdin for execute_pipe in the following block of code?
-    let executed = execute_pipe(now);
-
-    if !get_stdout(executed.clone()).is_empty() {
-        return get_stderr(executed.clone())
-    }
-
-    if !later.is_empty() {
-        return piped(later, false)
-    }
-
-    get_stdout(executed.clone())
+    &mut thing.push(temp);
+    thing
 }
 
-//Given an input and stdin create the output for next pipe
-//INCOMPLETED
-//I need to figure out how the Stdio module works in relation to the command module
-//Maybe I need to return a tuple the Option<Output> and Stdio
-//need to use spawn command not output command!
+fn piped(input: Vec<&str>) -> String {
+    let split = split_pipes(input); 
+    "Blah".to_owned()
+}
+
+#[allow(dead_code)]
 fn execute_pipe(command: Vec<&str>) -> Option<Output>{
    Command::new("").output().ok()
 }
 
-
 //Tests are defunct for now.
 #[cfg(test)]
 mod tests{
-    use std::os::unix::io::FromRawFd;//unsafe
-    use std::os::unix::io::AsRawFd;//Unsafe
     use std::process::*;
     use super::*;
+    use std::os::unix::io::AsRawFd;
+    use std::os::unix::io::FromRawFd;
     #[test]
     fn pipes(){
-        let first = Command::new("ls").arg("/").stdout(Stdio::piped()).spawn().ok();
-        unsafe {
-            let second = Command::new("grep").arg("etc").stdin(Stdio::inherit(first)).output().ok();
-            assert_eq!(get_stdout(second),"etc");
-        }
+        let cmd = Command::new("ls").arg("/")
+                    .stdout(Stdio::piped())
+                    .spawn();
+    unsafe{ 
+        let cmd2 = Command::new("grep").arg("etc")
+                    .stdin(Stdio::from_raw_fd(cmd.ok().unwrap().stdout.unwrap().as_raw_fd()))
+                    .output().ok();
+        assert_eq!("etc", get_stdout(cmd2).trim());   
+     }
     }
 }
