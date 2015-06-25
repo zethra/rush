@@ -29,7 +29,7 @@ pub fn interpret(command: Vec<&str>) -> String {
     unreachable!("I don't know how you did it but dear lord you made it this far".to_owned())
 }
 
-pub fn execute(command: Vec<&str>) -> Option<Output>{
+fn execute(command: Vec<&str>) -> Option<Output>{
     let args = command.as_slice();
     let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ]).output().ok()
@@ -41,7 +41,7 @@ pub fn execute(command: Vec<&str>) -> Option<Output>{
         output
  }
 
-pub fn get_stdout(output: Option<Output>) -> String{
+fn get_stdout(output: Option<Output>) -> String{
     match output.is_some(){
         true => {
             let temp = output.unwrap();
@@ -54,7 +54,7 @@ pub fn get_stdout(output: Option<Output>) -> String{
     }
 }
 
-pub fn get_stderr(output: Option<Output>) -> String{
+fn get_stderr(output: Option<Output>) -> String{
     match output.is_some(){
         true => {
             let temp = output.unwrap();
@@ -64,7 +64,8 @@ pub fn get_stderr(output: Option<Output>) -> String{
     }
 }
 
-pub fn get_status(output: Option<Output>) -> bool{
+#[allow(dead_code)] //At least until I find a use for it
+fn get_status(output: Option<Output>) -> bool{
     match output.is_some(){
         true => {
             let temp = output.unwrap();
@@ -73,6 +74,7 @@ pub fn get_status(output: Option<Output>) -> bool{
         false => false,
     }
 }
+
 fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     let input_slice = input.as_slice();
     let mut thing: Vec<Vec<&str>> = Vec::new();
@@ -114,15 +116,15 @@ fn first_pipe(command: Vec<&str>) -> Child {
     let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped()).spawn()
-                .ok().expect("Program failed execution")
+                .ok().expect("Program failed execution 1")
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped()).spawn()
-                .ok().expect("Program failed execution")
+                .ok().expect("Program failed execution 1")
         } else {
             Command::new("")
                 .stdout(Stdio::piped()).spawn()
-                .ok().expect("Program failed execution")
+                .ok().expect("Program failed execution 1")
         };
         output
 }
@@ -135,19 +137,19 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Child {
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
                 .spawn()
-                .ok().expect("Program failed execution")
+                .ok().expect("Program failed execution 2")
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
                 .spawn()
-                .ok().expect("Program failed execution")
+                .ok().expect("Program failed execution 2j")
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
                 .spawn()
-                .ok().expect("Program failed execution")
+                .ok().expect("Program failed execution 2")
         };
         output
     }
@@ -185,20 +187,39 @@ fn final_pipe(command: Vec<&str>, child: Child) -> String {
 //Tests are defunct for now.
 #[cfg(test)]
 mod tests{
-    use std::process::*;
     use super::*;
-    use std::os::unix::io::AsRawFd;
-    use std::os::unix::io::FromRawFd;
+    
     #[test]
-    fn pipes(){
-        let cmd = Command::new("ls").arg("/")
-                    .stdout(Stdio::piped())
-                    .spawn();
-    unsafe{ 
-        let cmd2 = Command::new("grep").arg("etc")
-                    .stdin(Stdio::from_raw_fd(cmd.ok().unwrap().stdout.unwrap().as_raw_fd()))
-                    .output().ok();
-        assert_eq!("etc", get_stdout(cmd2).trim());   
+    fn pipes() {
+        let vec: Vec<&str> = "ls /|grep bin| sort -r"
+            .trim().split(' ').collect();
+        let result = interpret(vec);
+        assert_eq!("sbin\nbin\n",result);
      }
+    
+    #[test]
+    #[should_panic]
+    fn pipes_fail() {
+        let vec: Vec<&str> = "ls |grep bin| sort -r"
+            .trim().split(' ').collect();
+        let result = interpret(vec);
+        assert_eq!("Please input a valid command",result);
+    }
+    
+    #[test]
+    fn execute(){
+        let vec: Vec<&str> = "ls -al"
+            .trim().split(' ').collect();
+        let result = interpret(vec);
+        assert!(!result.is_empty());
+
+    }
+
+    #[test]
+    fn execute_fail(){
+        let vec: Vec<&str> = "blah"
+            .trim().split(' ').collect();
+        let result = interpret(vec);
+        assert_eq!("Please input a valid command",result);
     }
 }
