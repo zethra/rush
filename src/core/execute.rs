@@ -1,7 +1,7 @@
 //vec.as_slice() is considered unstable and is subject to change in the future
 #![allow(unreachable_code)]
-#![allow(unused_variables)] //temporary until piping is completed
 use std::process::*;
+use std::os::unix::io::{FromRawFd, AsRawFd};
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
@@ -95,19 +95,92 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
         }
     }
     thing.push(temp);
-    println!("{:?}",thing);
     thing
 }
 
 fn piped(input: Vec<&str>) -> String {
-    let split = split_pipes(input); 
-    "Blah".to_owned()
+    let mut split = split_pipes(input);
+    let mut child: Child = first_pipe(split.remove(0));
+
+    while split.len() > 1 {
+       child = execute_pipe(split.remove(0), child); 
+    }
+
+    final_pipe(split.remove(0), child)
 }
 
-#[allow(dead_code)]
-fn execute_pipe(command: Vec<&str>) -> Option<Output>{
-   Command::new("").output().ok()
+fn first_pipe(command: Vec<&str>) -> Child {
+    let args = command.as_slice();
+    let output = if args.len() > 1 {
+            Command::new(&args[0]).args(&args[1.. ])
+                .stdout(Stdio::piped()).spawn()
+                .ok().expect("Program failed execution")
+        } else if args.len() == 1{
+            Command::new(&args[0])
+                .stdout(Stdio::piped()).spawn()
+                .ok().expect("Program failed execution")
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped()).spawn()
+                .ok().expect("Program failed execution")
+        };
+        output
 }
+
+fn execute_pipe(command: Vec<&str>, child: Child) -> Child {
+    let args = command.as_slice();
+    unsafe{
+        let output = if args.len() > 1 {
+            Command::new(&args[0]).args(&args[1.. ])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .spawn()
+                .ok().expect("Program failed execution")
+        } else if args.len() == 1{
+            Command::new(&args[0])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .spawn()
+                .ok().expect("Program failed execution")
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .spawn()
+                .ok().expect("Program failed execution")
+        };
+        output
+    }
+
+}
+
+fn final_pipe(command: Vec<&str>, child: Child) -> String {
+    let args = command.as_slice();
+    unsafe{
+        let output = if args.len() > 1 {
+            Command::new(&args[0]).args(&args[1.. ])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .output().ok()
+        } else if args.len() == 1{
+            Command::new(&args[0])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .output().ok()
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .output().ok()
+        };
+        if output.is_some() {
+            get_stdout(output)
+        } else {
+            get_stderr(output)
+        }
+    }
+}
+
 
 //Tests are defunct for now.
 #[cfg(test)]

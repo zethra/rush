@@ -15,10 +15,10 @@ environment.
 - [x] Execute programs entered into the command line
 - [x] Change Directory
 - [x] Output errors on stderr automagically
+- [x] Pipes
 
 ###In Progress
 
-- [ ] Pipes
 - [ ] Shell logic
 - [ ] Calculator utility for fun. Likely to be on back burner
 
