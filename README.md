@@ -14,11 +14,11 @@ environment.
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
-- [x] Output errors on stderr automagically
 - [x] Pipes
 
 ###In Progress
 
+- [ ] Output errors on stderr automagically
 - [ ] Shell logic
 - [ ] Calculator utility for fun. Likely to be on back burner
 

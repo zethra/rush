@@ -2,6 +2,7 @@
 #![allow(unreachable_code)]
 use std::process::*;
 use std::os::unix::io::{FromRawFd, AsRawFd};
+use std::io::Result;
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
@@ -102,34 +103,48 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
 
 fn piped(input: Vec<&str>) -> String {
     let mut split = split_pipes(input);
-    let mut child: Child = first_pipe(split.remove(0));
+    let mut child_result = first_pipe(split.remove(0));
+    let mut child: Child;
 
+    //Error handling done in here rather than the functions they call
+    //Code is unwrapped seeing that if there is no error then it must
+    //be safe function wise
+
+    if child_result.is_ok() {
+       child = child_result.ok().unwrap();
+    } else {
+        return child_result.err().unwrap().to_string();
+    } 
     while split.len() > 1 {
-       child = execute_pipe(split.remove(0), child); 
+        child_result = execute_pipe(split.remove(0), child);
+        if child_result.is_ok() {
+            child = child_result.ok().unwrap();
+        } else {
+            return child_result.err().unwrap().to_string();
+        }
     }
 
     final_pipe(split.remove(0), child)
 }
 
-fn first_pipe(command: Vec<&str>) -> Child {
+fn first_pipe(command: Vec<&str>) -> Result<Child> {
     let args = command.as_slice();
+
     let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped()).spawn()
-                .ok().expect("Program failed execution 1")
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped()).spawn()
-                .ok().expect("Program failed execution 1")
         } else {
             Command::new("")
                 .stdout(Stdio::piped()).spawn()
-                .ok().expect("Program failed execution 1")
         };
-        output
+
+    output
 }
 
-fn execute_pipe(command: Vec<&str>, child: Child) -> Child {
+fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
     let args = command.as_slice();
     unsafe{
         let output = if args.len() > 1 {
@@ -137,19 +152,16 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Child {
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
                 .spawn()
-                .ok().expect("Program failed execution 2")
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
                 .spawn()
-                .ok().expect("Program failed execution 2j")
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
                 .spawn()
-                .ok().expect("Program failed execution 2")
         };
         output
     }
@@ -163,22 +175,23 @@ fn final_pipe(command: Vec<&str>, child: Child) -> String {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
-                .output().ok()
+                .output()
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
-                .output().ok()
+                .output()
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
-                .output().ok()
+                .output()
         };
-        if output.is_some() {
-            get_stdout(output)
+    //Get rid of ok() and do error handling here
+        if output.is_ok() {
+            get_stdout(output.ok())
         } else {
-            get_stderr(output)
+            output.err().unwrap().to_string()
         }
     }
 }
