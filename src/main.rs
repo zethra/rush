@@ -13,6 +13,7 @@ fn main() {
     
     //Loop to recieve and execute commands
     loop{
+
         let mut command = String::new();
         stdin().read_line(&mut command)
             .ok()

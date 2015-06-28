@@ -5,3 +5,6 @@ authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 
 [dependencies.clippy]
 git = "https://github.com/Manishearth/rust-clippy"
+
+[dependencies]
+toml = "*"

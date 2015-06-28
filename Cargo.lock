@@ -3,10 +3,24 @@ name = "rusty"
 version = "0.0.3"
 dependencies = [
  "clippy 0.0.5 (git+https://github.com/Manishearth/rust-clippy)",
+ "toml 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "clippy"
 version = "0.0.5"
 source = "git+https://github.com/Manishearth/rust-clippy#a92b063727409108c148a3281ea0e4dc971277ce"
+
+[[package]]
+name = "rustc-serialize"
+version = "0.3.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "toml"
+version = "0.1.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "rustc-serialize 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 

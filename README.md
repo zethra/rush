@@ -17,17 +17,16 @@ environment.
 - [x] Pipes
 
 ###In Progress
-
-- [ ] Output errors on stderr automagically
-- [ ] Shell logic
-- [ ] Calculator utility for fun. Likely to be on back burner
+- [ ] Prompts and customization
 
 ###Planned but not implemented:
 - [ ] cd - functionality
-- [ ] Prompts and customization
 - [ ] Auto Completion
 - [ ] Better output formatting for completed commands
 - [ ] Scripting language and processor.
+- [ ] Output errors on stderr automagically
+- [ ] Shell logic
+- [ ] Calculator utility for fun. Likely to be on back burner
 
 ###Code Cleanup Ideas
 - [ ] Docs. So many Docs
