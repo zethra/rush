@@ -10,11 +10,24 @@ itself (no guarantees about the programs you run with it.)
 At this point in time the program is far from being functional in an every day
 environment.
 
-###The Current Version is 0.0.3 meaning Rusty can:
+###Requirements for Rusty
+
+'''
+Rust Nightly
+Cargo
+ctags
+[rusty-tags](https://github.com/dan-t/rusty-tags)
+'''
+
+I use vim and have not generated any emacs tags. In the future I will so that
+other devs may use it.
+
+###The Current Version is 0.0.4 meaning Rusty can and has support for:
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
 - [x] Pipes
+- [x] ctags (with the use of [rusty-tags](https://github.com/dan-t/rusty-tags))
 
 ###In Progress
 - [ ] Prompts and customization
