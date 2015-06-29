@@ -1,19 +1,20 @@
-#![feature(plugin)]
-#![plugin(clippy)]
-#![allow(unused_imports)]
+//#![feature(plugin)]
+//#![plugin(clippy)]
 extern crate rusty;
 use rusty::utils::*;
 use rusty::core::*;
-use std::path::Path;
-use std::io::stdin;
-use std::env;
+use rusty::core::prompt::Prompt;
+use std::io::{stdin,Write,stdout};
 
 fn main() {
-    //Initialization occurs here 
+    //Initialization occurs here
+    let prompt = Prompt::new();    
+    
+    print!("{} ", prompt.get_user_p());
+    stdout().flush().ok().expect("Failed to put prompt on line");
     
     //Loop to recieve and execute commands
     loop{
-
         let mut command = String::new();
         stdin().read_line(&mut command)
             .ok()
@@ -41,6 +42,9 @@ fn main() {
                 }
             }
         }
+        
+        print!("{} ", prompt.get_user_p());
+        stdout().flush().ok().expect("Failed to put prompt on line");
     }
 
 }

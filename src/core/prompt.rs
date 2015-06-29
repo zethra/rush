@@ -6,23 +6,27 @@ extern crate toml;
 //need to keep getting the prompt
 pub struct Prompt {
     
-    user_p: String;
-    cwd: String;
+    user_p: String,
+    cwd: String,
     
     
 }
 
 impl Prompt {
     
-    pub fn new(&self) -> Prompt {
-        
+    pub fn new() -> Prompt {
+        Prompt {
+            user_p: "michael@flame %".to_string(),
+            cwd: "meh".to_string(),
+        }
     }
 
     pub fn get_user_p(&self) -> String {
-        self.user_p = "michael@flame %".to_owned()
+        self.user_p.to_owned()
     }
 
-    pub fn update_cwd(&self) -> String {
+    //pub fn update_cwd(&self) -> String {
+    //
+    //}
 
-    }
 }

@@ -1,18 +1,12 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-ApproxConstant	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^pub struct ApproxConstant;$/;"	s
 Array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^pub type Array = Vec<Value>;$/;"	T
-AttrPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^pub struct AttrPass;$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^        enum Bar {$/;"	g
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar { a: String }$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar { a: isize }$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar {$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar;$/;"	s
 Baz	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^        struct Baz {$/;"	s
-BitMask	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^pub struct BitMask;$/;"	s
-CmpNan	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct CmpNan;$/;"	s
-CmpOwned	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct CmpOwned;$/;"	s
-CollapsibleIf	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^pub struct CollapsibleIf;$/;"	s
 Decodable for Range10	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        impl Decodable for Range10 {$/;"	i
 DecodeError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub struct DecodeError {$/;"	s
 DecodeErrorKind	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub enum DecodeErrorKind {$/;"	g
@@ -21,14 +15,11 @@ Decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.2
 E	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        enum E {$/;"	g
 Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^impl Encoder {$/;"	i
 Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^pub struct Encoder {$/;"	s
-EqOp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^pub struct EqOp;$/;"	s
 Err	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    type Err = Vec<ParserError>;$/;"	T
 Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    type Error = DecodeError;$/;"	T
 Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^pub enum Error {$/;"	g
 Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    type Error = Error;$/;"	T
 Error for ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl Error for ParserError {$/;"	i
-EtaPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eta_reduction.rs	/^pub struct EtaPass;$/;"	s
-FloatCmp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct FloatCmp;$/;"	s
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^        struct Foo {$/;"	s
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo { a: (isize, isize, isize, isize) }$/;"	s
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo { a: BTreeMap<String, String> }$/;"	s
@@ -48,68 +39,25 @@ Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/sr
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo(isize, String, f64);$/;"	s
 Foo2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo2 {$/;"	s
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
-HasIsEmpty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^impl HasIsEmpty {$/;"	i
-HasIsEmpty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^struct HasIsEmpty;$/;"	s
-HasWrongIsEmpty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^impl HasWrongIsEmpty {$/;"	i
-HasWrongIsEmpty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^struct HasWrongIsEmpty;$/;"	s
-IdentityOp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/identity_op.rs	/^pub struct IdentityOp;$/;"	s
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
-LenZero	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^pub struct LenZero;$/;"	s
-LintPass for ApproxConstant	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^impl LintPass for ApproxConstant {$/;"	i
-LintPass for AttrPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^impl LintPass for AttrPass {$/;"	i
-LintPass for BitMask	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^impl LintPass for BitMask {$/;"	i
-LintPass for CmpNan	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for CmpNan {$/;"	i
-LintPass for CmpOwned	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for CmpOwned {$/;"	i
-LintPass for CollapsibleIf	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^impl LintPass for CollapsibleIf {$/;"	i
-LintPass for EqOp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^impl LintPass for EqOp {$/;"	i
-LintPass for EtaPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eta_reduction.rs	/^impl LintPass for EtaPass {$/;"	i
-LintPass for FloatCmp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for FloatCmp {$/;"	i
-LintPass for IdentityOp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/identity_op.rs	/^impl LintPass for IdentityOp {$/;"	i
-LintPass for LenZero	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^impl LintPass for LenZero {$/;"	i
-LintPass for MiscPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for MiscPass {$/;"	i
-LintPass for MutMut	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^impl LintPass for MutMut {$/;"	i
-LintPass for NeedlessBool	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/needless_bool.rs	/^impl LintPass for NeedlessBool {$/;"	i
-LintPass for Precedence	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for Precedence {$/;"	i
-LintPass for PtrArg	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^impl LintPass for PtrArg {$/;"	i
-LintPass for StrToStringPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for StrToStringPass {$/;"	i
-LintPass for TopLevelRefPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^impl LintPass for TopLevelRefPass {$/;"	i
-LintPass for TypePass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^impl LintPass for TypePass {$/;"	i
-LintPass for Unicode	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^impl LintPass for Unicode {$/;"	i
-MiscPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct MiscPass;$/;"	s
-MutMut	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^pub struct MutMut;$/;"	s
-NeedlessBool	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/needless_bool.rs	/^pub struct NeedlessBool;$/;"	s
-One	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^impl One {$/;"	i
-One	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^struct One;$/;"	s
 Parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl<'a> Parser<'a> {$/;"	i
 Parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^pub struct Parser<'a> {$/;"	s
 ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^pub struct ParserError {$/;"	s
-Precedence	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct Precedence;$/;"	s
 Printer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl<'a, 'b> Printer<'a, 'b> {$/;"	i
 Printer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Printer<'a, 'b:'a> {$/;"	s
 Prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^impl Prompt {$/;"	i
 Prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^pub struct Prompt {$/;"	s
-PtrArg	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^pub struct PtrArg;$/;"	s
 Range10	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Range10(usize);$/;"	s
 State	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^enum State {$/;"	g
-StrToStringPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct StrToStringPass;$/;"	s
 Table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^pub type Table = BTreeMap<string::String, Value>;$/;"	T
 TomlTable	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl TomlTable {$/;"	i
 TomlTable	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^struct TomlTable {$/;"	s
-TopLevelRefPass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct TopLevelRefPass;$/;"	s
-TraitsToo	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^trait TraitsToo {$/;"	t
-TraitsToo for One	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^impl TraitsToo for One {$/;"	i
-TypePass	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^pub struct TypePass;$/;"	s
-Unicode	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^pub struct Unicode;$/;"	s
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl Value {$/;"	i
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^pub enum Value {$/;"	g
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^enum Value {$/;"	g
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl Value {$/;"	i
-WithIsEmpty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^trait WithIsEmpty {$/;"	t
-WithIsEmpty for Wither	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^impl WithIsEmpty for Wither {$/;"	i
-Wither	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^struct Wither;$/;"	s
 add	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn add(num1: i64, num2: i64) -> i64 {$/;"	f
 application_decode_error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn application_decode_error() {$/;"	f
-approx_const	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod approx_const;$/;"	m
 array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn array() {$/;"	f
 array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn array(&mut self, _start: usize) -> Option<Value> {$/;"	f
 as_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_bool(&self) -> Option<bool> {$/;"	f
@@ -119,7 +67,6 @@ as_integer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.
 as_slice	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_slice<'a>(&'a self) -> Option<&'a [Value]> {$/;"	f
 as_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_str<'a>(&'a self) -> Option<&'a str> {$/;"	f
 as_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_table<'a>(&'a self) -> Option<&'a Table> {$/;"	f
-attrs	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod attrs;$/;"	m
 autocomplete	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod autocomplete;$/;"	m
 bad	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    macro_rules! bad {$/;"	d
 bad_enum_chooses_longest_error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn bad_enum_chooses_longest_error() {$/;"	f
@@ -133,61 +80,15 @@ bad_table_redefine	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4
 bad_underscores	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bad_underscores() {$/;"	f
 bad_unicode_codepoint	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bad_unicode_codepoint() {$/;"	f
 bare_key_names	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bare_key_names() {$/;"	f
-bit_mask	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod bit_mask;$/;"	m
 blank_literal_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn blank_literal_string() {$/;"	f
 boolean	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn boolean(&mut self, start: usize) -> Option<Value> {$/;"	f
 booleans	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn booleans() {$/;"	f
-both	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn both<X, F>(l: &Option<X>, r: &Option<X>, mut eq_fn : F) -> bool $/;"	f
 calc	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod calc;$/;"	m
 calculate	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^pub fn calculate() {$/;"	f
-canon	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/unicode.rs	/^fn canon() {$/;"	f
 cat	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod cat;$/;"	m
 cd	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod cd;$/;"	m
 change_directory	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^pub fn change_directory(input: Vec<&str>){$/;"	f
-check	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/identity_op.rs	/^fn check(cx: &Context, e: &Expr, m: i8, span: Span, arg: Span) {$/;"	f
-check_attrs	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^fn check_attrs(cx: &Context, info: Option<&ExpnInfo>, ident: &Ident, $/;"	f
-check_bit_mask	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^fn check_bit_mask(cx: &Context, bit_op: BinOp_, cmp_op: BinOp_, $/;"	f
-check_cmp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn check_cmp(cx: &Context, span: Span, left: &Expr, right: &Expr, empty: &str) {$/;"	f
-check_compare	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^fn check_compare(cx: &Context, bit_op: &Expr, cmp_op: BinOp_, cmp_value: u64, span: &Span) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^    fn check_expr(&mut self, cx: &Context, e: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^    fn check_expr(&mut self, cx: &Context, e: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^	fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^    fn check_expr(&mut self, cx: &Context, e: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eta_reduction.rs	/^    fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/identity_op.rs	/^    fn check_expr(&mut self, cx: &Context, e: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^	fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^    fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^    fn check_expr(&mut self, cx: &Context, expr: &ast::Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^	fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/needless_bool.rs	/^    fn check_expr(&mut self, cx: &Context, e: &Expr) {$/;"	f
-check_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^    fn check_expr(&mut self, cx: &Context, expr: &Expr) {$/;"	f
-check_expr_expd	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^fn check_expr_expd(cx: &Context, e: &Expr, info: Option<&ExpnInfo>) {$/;"	f
-check_expr_expd	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^fn check_expr_expd(cx: &Context, expr: &Expr, info: Option<&ExpnInfo>) {$/;"	f
-check_fn	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^    fn check_fn(&mut self, cx: &Context, _: FnKind, decl: &FnDecl, _: &Block, _: Span, _: NodeId) {$/;"	f
-check_fn	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^fn check_fn(cx: &Context, decl: &FnDecl) {$/;"	f
-check_impl_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^    fn check_impl_item(&mut self, cx: &Context, item: &ImplItem) {$/;"	f
-check_impl_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^    fn check_impl_item(&mut self, cx: &Context, item: &ImplItem) { $/;"	f
-check_impl_items	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn check_impl_items(cx: &Context, item: &Item, impl_items: &[P<ImplItem>]) {$/;"	f
-check_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^    fn check_item(&mut self, cx: &Context, item: &Item) {$/;"	f
-check_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn check_item(&mut self, cx: &Context, item: &Item) {$/;"	f
-check_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^    fn check_item(&mut self, cx: &Context, item: &Item) {$/;"	f
-check_known_consts	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^fn check_known_consts(cx: &Context, span: Span, str: &str, module: &str) {$/;"	f
-check_len_zero	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn check_len_zero(cx: &Context, span: Span, method: &SpannedIdent, $/;"	f
-check_lit	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^fn check_lit(cx: &Context, lit: &Lit, span: Span) {$/;"	f
-check_nan	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn check_nan(cx: &Context, path: &Path, span: Span) {$/;"	f
-check_ptr_subtype	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^fn check_ptr_subtype(cx: &Context, span: Span, ty: &Ty) {$/;"	f
-check_str	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^fn check_str(cx: &Context, string: &str, span: Span) {$/;"	f
-check_to_owned	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn check_to_owned(cx: &Context, expr: &Expr, other_span: Span) {$/;"	f
-check_to_string	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^fn check_to_string(e: &Expr) -> String {$/;"	f
-check_trait_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^	fn check_trait_item(&mut self, cx: &Context, item: &TraitItem) {$/;"	f
-check_trait_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^	fn check_trait_item(&mut self, cx: &Context, item: &TraitItem) {$/;"	f
-check_trait_items	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn check_trait_items(cx: &Context, item: &Item, trait_items: &[P<TraitItem>]) {$/;"	f
-check_ty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^	fn check_ty(&mut self, cx: &Context, ty: &Ty) {$/;"	f
-check_ty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^    fn check_ty(&mut self, cx: &Context, ty: &ast::Ty) {$/;"	f
-collapsible_if	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod collapsible_if;$/;"	m
 comment	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn comment(&mut self) -> bool {$/;"	f
-compile_test	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-test.rs	/^fn compile_test() {$/;"	f
 concat	/home/michael/Code/Rust/rusty/src/utils/cat.rs	/^pub fn concat(){$/;"	f
 consume	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^        fn consume(me: &mut Parser) {$/;"	f
 convert	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/examples/toml2json.rs	/^fn convert(toml: Value) -> Json {$/;"	f
@@ -208,8 +109,6 @@ description	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0
 description	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn description(&self) -> &str { "TOML parse error" }$/;"	f
 display	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod display;$/;"	m
 div	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn div(num1: i64, num2: i64) -> i64 {$/;"	f
-do_str	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/ptr_arg.rs	/^fn do_str(x: &String) { \/\/~ERROR$/;"	f
-do_vec	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/ptr_arg.rs	/^fn do_vec(x: &Vec<i64>) { \/\/~ERROR: Writing '&Vec<_>' instead of '&[_]'$/;"	f
 doit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^    fn doit(s: &str, json: Json) -> Json {$/;"	f
 eat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn eat(&mut self, ch: char) -> bool {$/;"	f
 emit_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn emit_bool(&mut self, v: bool) -> Result<(), Error> {$/;"	f
@@ -249,7 +148,6 @@ emit_u64	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.
 emit_u8	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn emit_u8(&mut self, v: u8) -> Result<(), Error> {$/;"	f
 emit_usize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn emit_usize(&mut self, v: usize) -> Result<(), Error> {$/;"	f
 emit_value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn emit_value(&mut self, v: Value) -> Result<(), Error> {$/;"	f
-empty_and_false_positive_stmt	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/attrs.rs	/^fn empty_and_false_positive_stmt() {$/;"	f
 empty_arrays	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn empty_arrays() {$/;"	f
 empty_arrays2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn empty_arrays2() {$/;"	f
 empty_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn empty_string() {$/;"	f
@@ -260,24 +158,17 @@ encode	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21
 encode_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^pub fn encode_str<T: ::rustc_serialize::Encodable>(t: &T) -> String {$/;"	f
 encode_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^pub fn encode_str<T: ::serde::Serialize>(t: &T) -> String {$/;"	f
 encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod encoder;$/;"	m
-eq_op	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod eq_op;$/;"	m
 err	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn err(&self, kind: DecodeErrorKind) -> DecodeError {$/;"	f
 error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn error(&mut self, err: &str) -> DecodeError {$/;"	f
 error::Error for DecodeError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^impl error::Error for DecodeError {$/;"	i
 error::Error for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^impl error::Error for Error {$/;"	i
 escape	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^        fn escape(me: &mut Parser, pos: usize, multiline: bool) -> Option<char> {$/;"	f
-eta_reduction	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod eta_reduction;$/;"	m
 execute	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn execute(){$/;"	f
 execute	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn execute(command: Vec<&str>) -> Option<Output>{$/;"	f
 execute	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod execute;$/;"	m
 execute_fail	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn execute_fail(){$/;"	f
 execute_pipe	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {$/;"	f
 expect	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn expect(&mut self, ch: char) -> bool {$/;"	f
-false_positive_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/attrs.rs	/^fn false_positive_expr() {$/;"	f
-false_positive_stmt	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/attrs.rs	/^fn false_positive_stmt() {$/;"	f
-fetch_bool_block	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/needless_bool.rs	/^fn fetch_bool_block(block: &Block) -> Option<bool> {$/;"	f
-fetch_bool_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/needless_bool.rs	/^fn fetch_bool_expr(expr: &Expr) -> Option<bool> {$/;"	f
-fetch_int_literal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^fn fetch_int_literal(cx: &Context, lit : &Expr) -> Option<u64> {$/;"	f
 final_pipe	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn final_pipe(command: Vec<&str>, child: Child) -> String {$/;"	f
 finish_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn finish_string(&mut self,$/;"	f
 first_pipe	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn first_pipe(command: Vec<&str>) -> Result<Child> {$/;"	f
@@ -291,41 +182,15 @@ fmt::Display for Error	/home/michael/.cargo/registry/src/github.com-0a35038f7576
 fmt::Display for Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl<'a> fmt::Display for Key<'a> {$/;"	i
 fmt::Display for ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl fmt::Display for ParserError {$/;"	i
 fmt::Display for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl fmt::Display for Value {$/;"	i
-foo	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/eta.rs	/^fn foo(_: u8, _: u8) {$/;"	f
-foo2	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/eta.rs	/^fn foo2(_: u8, _: u8) -> u8 {$/;"	f
 from_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn from_str(s: &str) -> Result<Value, Vec<ParserError>> {$/;"	f
 fruit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fruit() {$/;"	f
-fun	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/mut_mut.rs	/^fn fun(x : &mut &mut u32) -> bool { \/\/~ERROR$/;"	f
 fun_with_strings	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fun_with_strings() {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eta_reduction.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/identity_op.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^	fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^	fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/needless_bool.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
-get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^	fn get_lints(&self) -> LintArray {$/;"	f
 get_status	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_status(output: Option<Output>) -> bool{$/;"	f
 get_stderr	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stderr(output: Option<Output>) -> String{$/;"	f
 get_stdout	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stdout(output: Option<Output>) -> String{$/;"	f
 get_user_p	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_user_p(&self) -> String {$/;"	f
-has_is_empty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn has_is_empty(cx: &Context, expr: &Expr) -> bool {$/;"	f
-has_is_empty_impl	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn has_is_empty_impl(cx: &Context, id: &DefId) -> bool {$/;"	f
 hashmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn hashmap() {$/;"	f
-have_lit	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/identity_op.rs	/^fn have_lit(cx: &Context, e : &Expr, m: i8) -> bool {$/;"	f
 humanize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^                fn humanize(s: &str) -> String {$/;"	f
-id	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/eq_op.rs	/^fn id<X>(x: X) -> X {$/;"	f
-identity_op	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod identity_op;$/;"	m
-in_external_macro	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/utils.rs	/^pub fn in_external_macro(cx: &Context, span: Span) -> bool {$/;"	f
-in_macro	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/utils.rs	/^pub fn in_macro(cx: &Context, opt_info: Option<&ExpnInfo>) -> bool {$/;"	f
-ineffective	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/bit_masks.rs	/^fn ineffective() {$/;"	f
 inline_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_table(&mut self, _start: usize) -> Option<Value> {$/;"	f
 inline_tables	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_tables() {$/;"	f
 inner_structs_with_options	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn inner_structs_with_options() {$/;"	f
@@ -335,113 +200,34 @@ insert_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-
 integer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn integer(&mut self, start: usize, allow_leading_zeros: bool,$/;"	f
 interpret	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^pub fn interpret(command: Vec<&str>) -> String {$/;"	f
 invalid_bare_numeral	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn invalid_bare_numeral() {$/;"	f
-invert_cmp	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/bit_mask.rs	/^fn invert_cmp(cmp : BinOp_) -> BinOp_ {$/;"	f
-is_arg_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_arg_equal(l: &Arg, r : &Arg) -> bool {$/;"	f
-is_args_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_args_equal(left : &[Arg], right : &[Arg]) -> bool {$/;"	f
-is_arith_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn is_arith_expr(expr : &Expr) -> bool {$/;"	f
-is_arith_op	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn is_arith_op(op : BinOp_) -> bool {$/;"	f
-is_bare_fn_ty_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_bare_fn_ty_equal(left : &BareFnTy, right : &BareFnTy) -> bool {$/;"	f
-is_bit_op	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn is_bit_op(op : BinOp_) -> bool {$/;"	f
-is_cmp_or_bit	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_cmp_or_bit(op : &BinOp) -> bool {$/;"	f
 is_digit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^fn is_digit(c: char) -> bool {$/;"	f
-is_empty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn is_empty(self: &Self) -> bool {$/;"	f
-is_empty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn is_empty(self: &Self) -> bool;$/;"	f
-is_empty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn is_empty(self: &Self, x : u32) -> bool {$/;"	f
-is_exp_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_exp_equal(left : &Expr, right : &Expr) -> bool {$/;"	f
-is_exps_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_exps_equal(left : &[P<Expr>], right : &[P<Expr>]) -> bool {$/;"	f
-is_fieldpat_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_fieldpat_equal(left : &FieldPat, right : &FieldPat) -> bool {$/;"	f
-is_float	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn is_float(cx: &Context, expr: &Expr) -> bool {$/;"	f
-is_fndecl_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_fndecl_equal(left : &P<FnDecl>, right : &P<FnDecl>) -> bool {$/;"	f
-is_fnret_ty_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_fnret_ty_equal(left : &FunctionRetTy, right : &FunctionRetTy) $/;"	f
-is_ident_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_ident_equal(left : &Ident, right : &Ident) -> bool {$/;"	f
-is_is_empty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn is_is_empty(cx: &Context, id: &ImplOrTraitItemId) -> bool {$/;"	f
-is_lifetime_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_lifetime_equal(left : &Lifetime, right : &Lifetime) -> bool {$/;"	f
-is_lifetimedef_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_lifetimedef_equal(left : &LifetimeDef, right : &LifetimeDef)$/;"	f
-is_lifetimedefs_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_lifetimedefs_equal(left : &[LifetimeDef], right : &[LifetimeDef]) $/;"	f
-is_mut_ty_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_mut_ty_equal(left : &MutTy, right : &MutTy) -> bool {$/;"	f
-is_named_self	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn is_named_self(item: &ImplItem, name: &str) -> bool {$/;"	f
-is_named_self	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn is_named_self(item: &TraitItem, name: &str) -> bool {$/;"	f
-is_param_bound_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_param_bound_equal(left : &TyParamBound, right : &TyParamBound) $/;"	f
-is_param_bounds_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_param_bounds_equal(left : &TyParamBounds, right : &TyParamBounds)$/;"	f
-is_pat_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_pat_equal(left : &Pat, right : &Pat) -> bool {$/;"	f
-is_path_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_path_equal(left : &Path, right : &Path) -> bool {$/;"	f
-is_pats_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_pats_equal(left : &[P<Pat>], right : &[P<Pat>]) -> bool {$/;"	f
-is_poly_traitref_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_poly_traitref_equal(left : &PolyTraitRef, right : &PolyTraitRef)$/;"	f
-is_qself_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_qself_equal(left : &QSelf, right : &QSelf) -> bool {$/;"	f
-is_relevant_block	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^fn is_relevant_block(block: &Block) -> bool {$/;"	f
-is_relevant_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^fn is_relevant_expr(expr: &Expr) -> bool {$/;"	f
-is_relevant_impl	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^fn is_relevant_impl(item: &ImplItem) -> bool {$/;"	f
-is_relevant_item	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^fn is_relevant_item(item: &Item) -> bool {$/;"	f
-is_relevant_trait	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/attrs.rs	/^fn is_relevant_trait(item: &TraitItem) -> bool {$/;"	f
-is_self_sig	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn is_self_sig(sig: &MethodSig) -> bool {$/;"	f
-is_spanned_fieldpats_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_spanned_fieldpats_equal(left : &[code::Spanned<FieldPat>], $/;"	f
-is_str	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^        fn is_str(cx: &Context, expr: &ast::Expr) -> bool {$/;"	f
-is_str_arg	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^fn is_str_arg(cx: &Context, args: &[P<Expr>]) -> bool {$/;"	f
-is_ty_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_ty_equal(left : &Ty, right : &Ty) -> bool {$/;"	f
-is_tys_equal	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn is_tys_equal(left : &[P<Ty>], right : &[P<Ty>]) -> bool {$/;"	f
 key_name	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn key_name(&mut self) -> Option<String> {$/;"	f
 keyval_sep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn keyval_sep(&mut self) -> bool {$/;"	f
-len	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn len(self: &Self) -> isize { \/\/~ERROR Item 'HasWrongIsEmpty' has a '.len(_: &Self)'$/;"	f
-len	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn len(self: &Self) -> isize { \/\/~ERROR Item 'One' has a '.len(_: &Self)'$/;"	f
-len	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn len(self: &Self) -> isize {$/;"	f
-len	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn len(self: &Self) -> isize; \/\/~ERROR Trait 'TraitsToo' has a '.len(_:$/;"	f
-len	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^	fn len(self: &Self) -> isize;$/;"	f
-len_zero	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod len_zero;$/;"	m
 linecol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn linecol() {$/;"	f
-lint_zero_width	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^fn lint_zero_width(cx: &Context, span: Span, start: Option<usize>) {$/;"	f
 literal_eats_crlf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn literal_eats_crlf() {$/;"	f
 literal_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn literal_string(&mut self, start: usize) -> Option<Value> {$/;"	f
 logic	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod logic;$/;"	m
 lookup	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn lookup<'a>(&'a self, path: &'a str) -> Option<&'a Value> {$/;"	f
 lookup_invalid_index	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn lookup_invalid_index() {$/;"	f
 lookup_valid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn lookup_valid() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/approx_const.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/attrs.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/bit_masks.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/box_vec.rs	/^fn main(){$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/cmp_nan.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/cmp_owned.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/collapsible_if.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/dlist.rs	/^fn main(){$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/eq_op.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/eta.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/float_cmp.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/identity_op.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/len_zero.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/match_if_let.rs	/^fn main(){$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/mut_mut.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/needless_bool.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/precedence.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/ptr_arg.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/toplevel_ref_arg.rs	/^fn main() {$/;"	f
-main	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/unicode.rs	/^fn main() {$/;"	f
 main	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/examples/toml2json.rs	/^fn main() {$/;"	f
 main	/home/michael/Code/Rust/rusty/src/main.rs	/^fn main() {$/;"	f
 many_blank	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn many_blank() {$/;"	f
 map	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    macro_rules! map( ($($k:expr => $v:expr),*) => ({$/;"	d
 map	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    macro_rules! map( ($($k:ident, $v:expr),*) => ({$/;"	d
-match_def_path	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/utils.rs	/^pub fn match_def_path(cx: &Context, def_id: DefId, path: &[&str]) -> bool {$/;"	f
-match_path	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/utils.rs	/^pub fn match_path(path: &Path, segments: &[&str]) -> bool {$/;"	f
-match_ty_unwrap	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^pub fn match_ty_unwrap<'a>(ty: &'a Ty, segments: &[&str]) -> Option<&'a [P<Ty>]> {$/;"	f
-misc	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod misc;$/;"	m
 mismatch	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn mismatch(&self, expected: &'static str,$/;"	f
 missing_errors	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn missing_errors() {$/;"	f
 modulo	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn modulo(num1: i64, num2: i64) -> i64 {$/;"	f
 mult	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn mult(num1: i64, num2: i64) -> i64 {$/;"	f
-mut_mut	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod mut_mut;$/;"	m
-mut_ptr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/mut_mut.rs	/^macro_rules! mut_ptr {$/;"	d
-needless_bool	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod needless_bool;$/;"	m
 nested	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn nested() {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    pub fn new(toml: Value) -> Decoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    pub fn new() -> Encoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn new(s: &'a str) -> Parser<'a> {$/;"	f
-new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new(&self) -> Prompt {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new() -> Prompt {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f
 next_pos	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn next_pos(&self) -> usize {$/;"	f
 number_or_datetime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn number_or_datetime(&mut self, start: usize) -> Option<Value> {$/;"	f
 number_underscores	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn number_underscores() {$/;"	f
-old_timey	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/cmp_owned.rs	/^	fn old_timey(x : &str) {$/;"	f
-over	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/eq_op.rs	/^fn over<X, F>(left: &[X], right: &[X], mut eq_fn: F) -> bool $/;"	f
 parse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn parse(&mut self) -> Option<super::Table> {$/;"	f
 parse_enum	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn parse_enum() {$/;"	f
 parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod parser;$/;"	m
@@ -449,10 +235,8 @@ peek	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/s
 piped	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn piped(input: Vec<&str>) -> String {$/;"	f
 pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes() {$/;"	f
 pipes_fail	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes_fail() {$/;"	f
-plugin_registrar	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub fn plugin_registrar(reg: &mut Registry) {$/;"	f
 print	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn print(&mut self, table: &'a TomlTable) -> fmt::Result {$/;"	f
 prompt	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod prompt;$/;"	m
-ptr_arg	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod ptr_arg;$/;"	m
 read_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_bool(&mut self) -> Result<bool, DecodeError> {$/;"	f
 read_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_char(&mut self) -> Result<char, DecodeError> {$/;"	f
 read_enum	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_enum<T, F>(&mut self, _name: &str, f: F)$/;"	f
@@ -487,13 +271,9 @@ read_u64	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.
 read_u8	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_u8(&mut self) -> Result<u8, DecodeError> {$/;"	f
 read_usize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_usize(&mut self) -> Result<usize, DecodeError> {$/;"	f
 recurse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn recurse<'b>(&mut self, mut cur: &'b mut TomlTable, keys: &'b [String],$/;"	f
-ref	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/mut_mut_macro.rs	/^		static ref MUT_COUNT : usize = MUT_MAP.len();$/;"	c
-ref	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/mut_mut_macro.rs	/^		static ref MUT_MAP : HashMap<usize, &'static str> = {$/;"	c
-requires_brackets	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^fn requires_brackets(e: &Expr) -> bool {$/;"	f
 round_trip	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn round_trip() {$/;"	f
 run	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/invalid.rs	/^fn run(toml: &str) {$/;"	f
 run	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^fn run(toml: &str, json: &str) {$/;"	f
-run_mode	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-test.rs	/^fn run_mode(mode: &'static str) {$/;"	f
 rustc_serialize::Decoder for Decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^impl rustc_serialize::Decoder for Decoder {$/;"	i
 rustc_serialize::Encodable for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^impl rustc_serialize::Encodable for Value {$/;"	i
 rustc_serialize::Encoder for Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^impl rustc_serialize::Encoder for Encoder {$/;"	i
@@ -502,11 +282,8 @@ same_type	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1
 script	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod script;$/;"	m
 seq	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn seq<F>(&mut self, f: F) -> Result<(), Error>$/;"	f
 simple_show	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn simple_show() {$/;"	f
-single_stmt_of_block	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^fn single_stmt_of_block(block: &Block) -> Option<&Expr> {$/;"	f
-single_stmt_of_expr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/collapsible_if.rs	/^fn single_stmt_of_expr(expr: &Expr) -> Option<&Expr> {$/;"	f
 smoke	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn smoke() {$/;"	f
 smoke_hyphen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn smoke_hyphen() {$/;"	f
-span_note_and_lint	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^pub fn span_note_and_lint(cx: &Context, lint: &'static Lint, span: Span, msg: &str, note: &str) {$/;"	f
 split_pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {$/;"	f
 stray_cr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn stray_cr() {$/;"	f
 string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn string(&mut self, start: usize) -> Option<Value> {$/;"	f
@@ -520,16 +297,10 @@ table_array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0
 table_key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn table_key<F>(&mut self, f: F) -> Result<(), Error>$/;"	f
 table_names	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn table_names() {$/;"	f
 tables_in_arrays	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn tables_in_arrays() {$/;"	f
-test	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/box_vec.rs	/^pub fn test(foo: Box<Vec<bool>>) { \/\/~ ERROR You seem to be trying to use Box<Vec<T>>$/;"	f
-test	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/dlist.rs	/^pub fn test(foo: LinkedList<u8>) {  \/\/~ ERROR I see you're using a LinkedList!$/;"	f
 test	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/invalid.rs	/^macro_rules! test( ($name:ident, $toml:expr) => ($/;"	d
 test	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^macro_rules! test( ($name:ident, $toml:expr, $json:expr) => ($/;"	d
-test2	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/box_vec.rs	/^pub fn test2(foo: Box<Fn(Vec<u32>)>) { \/\/ pass if #31 is fixed$/;"	f
-test_attr_lint	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/attrs.rs	/^fn test_attr_lint() {$/;"	f
 test_change_directory_fail	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^    fn test_change_directory_fail(){$/;"	f
 test_change_directory_ok	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^    fn test_change_directory_ok(){$/;"	f
-test_lazy_static	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/mut_mut_macro.rs	/^fn test_lazy_static() {$/;"	f
-test_regex	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/mut_mut_macro.rs	/^fn test_regex() {$/;"	f
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^mod tests {$/;"	m
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^mod tests {$/;"	m
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^mod tests {$/;"	m
@@ -537,19 +308,14 @@ tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^mod tests {$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^mod tests{$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^mod tests {$/;"	m
-the_answer	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/toplevel_ref_arg.rs	/^fn the_answer(ref mut x: u8) {  \/\/~ ERROR `ref` directly on a function argument is ignored$/;"	f
 to_json	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^fn to_json(toml: Value) -> Json {$/;"	f
 to_linecol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn to_linecol(&self, offset: usize) -> (usize, usize) {$/;"	f
 try	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^macro_rules! try {$/;"	d
 tuple	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn tuple() {$/;"	f
 tuple_struct	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn tuple_struct() {$/;"	f
-twice	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/float_cmp.rs	/^fn twice<T>(x : T) -> T where T : Add<T, Output = T>, T : Copy {$/;"	f
 type_errors	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn type_errors() {$/;"	f
 type_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn type_str(&self) -> &'static str {$/;"	f
 type_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn type_str(&self) -> &'static str {$/;"	f
-types	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod types;$/;"	m
-uni	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/unicode.rs	/^fn uni() {$/;"	f
-unicode	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod unicode;$/;"	m
 unused_fields	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields() {$/;"	f
 unused_fields2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields2() {$/;"	f
 unused_fields3	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields3() {$/;"	f
@@ -557,16 +323,8 @@ unused_fields4	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/tom
 unused_fields5	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields5() {$/;"	f
 unused_fields6	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields6() {$/;"	f
 unused_fields7	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields7() {$/;"	f
-unwrap_addr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^	fn unwrap_addr(expr : &Expr) -> Option<&Expr> {$/;"	f
-unwrap_mut	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^fn unwrap_mut(ty : &Ty) -> Option<&Ty> {$/;"	f
-update_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_cwd(&self) -> String {$/;"	f
-utils	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod utils;$/;"	m
 utils	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod utils;$/;"	m
 value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn value(&mut self) -> Option<Value> {$/;"	f
 values	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn values(&mut self, into: &mut TomlTable) -> bool {$/;"	f
-walk_ty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub fn walk_ty<'t>(ty: ty::Ty<'t>) -> ty::Ty<'t> {$/;"	f
-with_to_string	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/cmp_owned.rs	/^	fn with_to_string(x : &str) {$/;"	f
-within_epsilon	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/approx_const.rs	/^fn within_epsilon(target: f64, value: f64) -> bool {$/;"	f
 write_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^fn write_str(f: &mut fmt::Formatter, s: &str) -> fmt::Result {$/;"	f
 ws	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn ws(&mut self) -> bool {$/;"	f
-zero	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/tests/compile-fail/unicode.rs	/^fn zero() {$/;"	f
