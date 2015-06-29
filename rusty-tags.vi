@@ -86,6 +86,8 @@ ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0
 Precedence	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/misc.rs	/^pub struct Precedence;$/;"	s
 Printer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl<'a, 'b> Printer<'a, 'b> {$/;"	i
 Printer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Printer<'a, 'b:'a> {$/;"	s
+Prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^impl Prompt {$/;"	i
+Prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^pub struct Prompt {$/;"	s
 PtrArg	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^pub struct PtrArg;$/;"	s
 Range10	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Range10(usize);$/;"	s
 State	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^enum State {$/;"	g
@@ -310,10 +312,10 @@ get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master
 get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/ptr_arg.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
 get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/types.rs	/^    fn get_lints(&self) -> LintArray {$/;"	f
 get_lints	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/unicode.rs	/^	fn get_lints(&self) -> LintArray {$/;"	f
-get_prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^pub fn get_prompt() -> String {$/;"	f
 get_status	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_status(output: Option<Output>) -> bool{$/;"	f
 get_stderr	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stderr(output: Option<Output>) -> String{$/;"	f
 get_stdout	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stdout(output: Option<Output>) -> String{$/;"	f
+get_user_p	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_user_p(&self) -> String {$/;"	f
 has_is_empty	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^fn has_is_empty(cx: &Context, expr: &Expr) -> bool {$/;"	f
 has_is_empty_impl	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/len_zero.rs	/^	fn has_is_empty_impl(cx: &Context, id: &DefId) -> bool {$/;"	f
 hashmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn hashmap() {$/;"	f
@@ -433,6 +435,7 @@ nested	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    pub fn new(toml: Value) -> Decoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    pub fn new() -> Encoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn new(s: &'a str) -> Parser<'a> {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new(&self) -> Prompt {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f
 next_pos	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn next_pos(&self) -> usize {$/;"	f
 number_or_datetime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn number_or_datetime(&mut self, start: usize) -> Option<Value> {$/;"	f
@@ -556,6 +559,7 @@ unused_fields6	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/tom
 unused_fields7	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields7() {$/;"	f
 unwrap_addr	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^	fn unwrap_addr(expr : &Expr) -> Option<&Expr> {$/;"	f
 unwrap_mut	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/mut_mut.rs	/^fn unwrap_mut(ty : &Ty) -> Option<&Ty> {$/;"	f
+update_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_cwd(&self) -> String {$/;"	f
 utils	/home/michael/.cargo/git/checkouts/rust-clippy-297222992dcb0086/master/src/lib.rs	/^pub mod utils;$/;"	m
 utils	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod utils;$/;"	m
 value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn value(&mut self) -> Option<Value> {$/;"	f

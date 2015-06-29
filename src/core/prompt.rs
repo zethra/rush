@@ -4,7 +4,25 @@ extern crate toml;
 //Later give it the means to access it from ~/.rusty.toml
 //Activate this only when performing su or cd that way it reduces
 //need to keep getting the prompt
-pub fn get_prompt() -> String {
+pub struct Prompt {
     
-    "Placeholder".to_owned()        
+    user_p: String;
+    cwd: String;
+    
+    
+}
+
+impl Prompt {
+    
+    pub fn new(&self) -> Prompt {
+        
+    }
+
+    pub fn get_user_p(&self) -> String {
+        self.user_p = "michael@flame %".to_owned()
+    }
+
+    pub fn update_cwd(&self) -> String {
+
+    }
 }

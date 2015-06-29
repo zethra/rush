@@ -90,4 +90,5 @@ chsh user /path/to/rusty/executable
 
 ###Contact
 Email: mgattozzi@gmail.com
+
 Twitter:  [@mgattozzi](https://twitter.com/mgattozzi)
