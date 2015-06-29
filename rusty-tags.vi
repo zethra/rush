@@ -185,6 +185,7 @@ fmt::Display for Value	/home/michael/.cargo/registry/src/github.com-0a35038f7576
 from_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn from_str(s: &str) -> Result<Value, Vec<ParserError>> {$/;"	f
 fruit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fruit() {$/;"	f
 fun_with_strings	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fun_with_strings() {$/;"	f
+get_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_cwd(&self) -> String {$/;"	f
 get_status	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_status(output: Option<Output>) -> bool{$/;"	f
 get_stderr	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stderr(output: Option<Output>) -> String{$/;"	f
 get_stdout	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stdout(output: Option<Output>) -> String{$/;"	f
@@ -323,6 +324,7 @@ unused_fields4	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/tom
 unused_fields5	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields5() {$/;"	f
 unused_fields6	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields6() {$/;"	f
 unused_fields7	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields7() {$/;"	f
+update_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_cwd(&mut self){$/;"	f
 utils	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod utils;$/;"	m
 value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn value(&mut self) -> Option<Value> {$/;"	f
 values	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn values(&mut self, into: &mut TomlTable) -> bool {$/;"	f

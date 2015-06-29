@@ -8,11 +8,10 @@ use std::io::{stdin,Write,stdout};
 
 fn main() {
     //Initialization occurs here
-    let prompt = Prompt::new();    
+    let mut prompt = Prompt::new();    
     
     print!("{} ", prompt.get_user_p());
     stdout().flush().ok().expect("Failed to put prompt on line");
-    
     //Loop to recieve and execute commands
     loop{
         let mut command = String::new();
@@ -29,6 +28,7 @@ fn main() {
             Some(&"cd") => {
                 command_split.remove(0); 
                 cd::change_directory(command_split);
+                prompt.update_cwd();
             }
             Some(&"cat") => {
                 
