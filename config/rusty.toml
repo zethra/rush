@@ -1,5 +1,3 @@
-title = "Rusty Config"
-
 [prompt]
 #Translation of below mark up
 #User@hostname cwd Root/Not Root

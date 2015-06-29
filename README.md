@@ -1,5 +1,7 @@
 Rusty
 =====
+![Image of Travis CI Build Status]
+(https://travis-ci.org/mgattozzi/Rusty.svg?branch=master)
 
 What is Rusty?
 --------------
@@ -31,6 +33,11 @@ other devs may use it.
 
 ###In Progress
 - [ ] Prompts and customization
+	- [ ] Source config files
+	- [ ] Access config file in ~/.rusty.toml else default config file
+	- [x] Update cwd
+	- [x] Update prompt
+	- [x] Parse config files
 
 ###Planned but not implemented:
 - [ ] cd - functionality

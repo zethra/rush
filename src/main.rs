@@ -8,10 +8,14 @@ use std::io::{stdin,Write,stdout};
 
 fn main() {
     //Initialization occurs here
+    //Necessary to update as default prompt is not what we want
     let mut prompt = Prompt::new();    
+    prompt.update_cwd();
+    prompt.update_prompt();
     
     print!("{} ", prompt.get_user_p());
     stdout().flush().ok().expect("Failed to put prompt on line");
+    
     //Loop to recieve and execute commands
     loop{
         let mut command = String::new();
@@ -19,27 +23,30 @@ fn main() {
             .ok()
             .expect("Failure to read input");
         
-        //Super ugly if you know what types are being passed around
-        //below here.It works but I will probably want to clean it up at 
-        //some point
-
         let mut command_split: Vec<&str> = command.trim().split(' ').collect(); 
-        match command_split.get(0) {
-            Some(&"cd") => {
+        match command_split.get(0).unwrap() {
+            
+            &"cd" => {
                 command_split.remove(0); 
                 cd::change_directory(command_split);
                 prompt.update_cwd();
+                prompt.update_prompt();
             }
-            Some(&"cat") => {
+            
+            &"cat" => {
                 
             }
-            Some(&"")  => continue,
-            Some(&"exit") => break,
+            
+            &""  => continue,
+            
+            &"exit" => break,
+            
             _ => {
                 let output = execute::interpret(command_split);
                 if !output.is_empty() {
                     println!("{}",output.trim());
                 }
+            
             }
         }
         

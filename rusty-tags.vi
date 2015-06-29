@@ -240,6 +240,7 @@ print	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/
 prompt	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod prompt;$/;"	m
 read_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_bool(&mut self) -> Result<bool, DecodeError> {$/;"	f
 read_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_char(&mut self) -> Result<char, DecodeError> {$/;"	f
+read_config_prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^fn read_config_prompt(input: &Prompt) -> String {$/;"	f
 read_enum	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_enum<T, F>(&mut self, _name: &str, f: F)$/;"	f
 read_enum_struct_variant	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_enum_struct_variant<T, F>(&mut self, _names: &[&str], _f: F)$/;"	f
 read_enum_struct_variant_field	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_enum_struct_variant_field<T, F>(&mut self,$/;"	f
@@ -325,6 +326,7 @@ unused_fields5	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/tom
 unused_fields6	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields6() {$/;"	f
 unused_fields7	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields7() {$/;"	f
 update_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_cwd(&mut self){$/;"	f
+update_prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_prompt(&mut self) {$/;"	f
 utils	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod utils;$/;"	m
 value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn value(&mut self) -> Option<Value> {$/;"	f
 values	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn values(&mut self, into: &mut TomlTable) -> bool {$/;"	f
