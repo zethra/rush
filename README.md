@@ -12,12 +12,12 @@ environment.
 
 ###Requirements for Rusty
 
-'''
+```
 Rust Nightly
 Cargo
 ctags
 [rusty-tags](https://github.com/dan-t/rusty-tags)
-'''
+```
 
 I use vim and have not generated any emacs tags. In the future I will so that
 other devs may use it.
