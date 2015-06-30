@@ -3,6 +3,7 @@ use std::env::{var, current_dir, home_dir};
 use std::fs::File;
 use std::process::Command;
 use std::io::{Read, BufReader};
+
 //For now it will access the toml file in the config directory
 //Later give it the means to access it from ~/.rusty.toml
 //Activate this only when performing su or cd that way it reduces
@@ -84,13 +85,13 @@ impl Prompt {
         //Makes cwd ~/ if in home directory of user otherwise 
         //just the current directory
         if buff.starts_with(home_dir().unwrap().as_path()){
-            let mut home = "~/".to_string();
-           home.push_str(buff.as_path().relative_from(home_dir()
+        let mut home = "~/".to_string();
+            home.push_str(buff.as_path().relative_from(home_dir()
                                                    .unwrap()
                                                    .as_path()
                                                    )
-               .unwrap().to_str().unwrap());
-           self.cwd = home;
+                .unwrap().to_str().unwrap());
+            self.cwd = home;
         } else {
             self.cwd = buff.as_path().to_str().unwrap().to_string();
         }
