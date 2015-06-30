@@ -3,3 +3,5 @@
 #User@hostname cwd Root/Not Root
 left = "%U@%H %L %R"
 
+[alias]
+home = "cd"

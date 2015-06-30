@@ -20,10 +20,6 @@ environment.
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
 
-
-I use vim and have not generated any emacs tags. In the future I will so that
-other devs may use it.
-
 ###The Current Version is 0.0.4 meaning Rusty can and has support for:
 
 - [x] Execute programs entered into the command line
@@ -60,6 +56,27 @@ Probably more. Will add as ideas come to mind.
 ###Rust Version
 Currently using 1.2 Nightly due to need of unstable features. Has not been
 tested with any other version.
+
+###Config File
+Rusty uses [toml](https://github.com/toml-lang/toml) to customize it's use.
+Right now this is the only thing required in your config file that works:
+```
+[prompt]
+left = "%U@%H %L %R"
+```
+The characters following the % can all be used or not. Here is what they stand
+for:
+- %U = Current user
+- %H = Hostname
+- %L = Current Working Directory
+- %R = Whether you are root or not
+
+They can be arranged in any order you desire. Any extra characters in the field
+will just be put in the prompt.
+Following the above example for my computer the prompt would look like:
+```
+michael@flame ~/ %
+```
 
 ###Testing and Execution
 You can run the inbuilt tests to determine if the functions are working as
