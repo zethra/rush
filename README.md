@@ -35,7 +35,7 @@ environment.
 ###In Progress
 - [ ] Prompts and customization
 	- [ ] Source config files
-	- [ ] Access config file in ~/.rusty.toml else default config file
+	- [x] Access config file in ~/.rusty.toml else default config file
 	- [x] Update cwd
 	- [x] Update prompt
 	- [x] Parse config files
@@ -115,6 +115,7 @@ then run the following:
 cargo build --release
 cp target/release/rusty /destination/in/PATH
 chsh user /path/to/rusty/executable
+cp /path/to/rusty/config/rusty.toml ~/.rusty.toml
 ```
 
 ###Contact
