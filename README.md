@@ -14,11 +14,16 @@ environment.
 
 ###Requirements for Rusty
 
-
 - Rust Nightly
 - Cargo
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
+
+###Changelog
+- Changelogs are generated using [clog](https://github.com/thoughtram/clog)
+- Example of what it should [look](https://github.com/thoughtram/clog/blob/master/changelog.md) like
+- On 07/02/15 Rusty was rebased to attempt to look like that.
+- Future days and changelogs created will look better and more uniform
 
 ###The Current Version is 0.0.4 meaning Rusty can and has support for:
 

@@ -1,19 +1,20 @@
 extern crate toml;
 use std::io::{Read,BufReader};
 use std::fs::File;
-use std::fmt;
-use std::env::var;
+use std::env::{var,home_dir};
 use std::process::Command;
 use core::prompt::Prompt;
 
 fn read_in_config() -> String{
-    let config = match
-    File::open("/home/michael/Code/Rust/rusty/config/rusty.toml") {
-        Ok(config) => config,
-        Err(..) => panic!("Config non existent"),
-    };
-
-    //Read toml file and put into parser
+    //Find a way to read from default if this doesn't work. let a = if else?
+    let mut home_config = home_dir().unwrap();
+    home_config.push(".rusty.toml");
+    let default = File::open(home_config.as_path().to_str().unwrap());
+    let config = if default.is_err(){
+        File::open("/home/michael/Code/Rust/rusty/config/rusty.toml").ok().expect("No default file")
+        } else {
+            default.ok().expect("No files to open for config")
+        };
     let mut reader = BufReader::new(&config);
     let mut buffer_string = String::new();
     reader.read_to_string(&mut buffer_string)
