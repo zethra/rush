@@ -48,6 +48,7 @@ environment.
 - [ ] Output errors on stderr automagically
 - [ ] Shell logic
 - [ ] Calculator utility for fun. Likely to be on back burner
+- [ ] Makefile to compile and install automatically
 
 ###Code Cleanup Ideas
 - [ ] Docs. So many Docs
