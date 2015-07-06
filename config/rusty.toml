@@ -1,7 +1,15 @@
+#This is a basic config for rusty. The only things that are required are
+#[prompt]
+#left = ""
+#[alias]
+
+#You can put as many or as few things as you want in alias. Just the table field is required.
+
 [prompt]
 #Translation of below mark up
 #User@hostname cwd Root/Not Root
 left = "%U@%H %L %R"
 
 [alias]
-home = "cd"
+gc = "git commit"
+gpm = "git push master"
