@@ -33,12 +33,14 @@ environment.
 - [x] ctags (with the use of [rusty-tags](https://github.com/dan-t/rusty-tags))
 
 ###In Progress
-- [ ] Prompts and customization
-	- [ ] Source config files
-	- [x] Access config file in ~/.rusty.toml else default config file
-	- [x] Update cwd
-	- [x] Update prompt
-	- [x] Parse config files
+- [ ] Configuration
+	- [ ] Prompts and customization
+		- [ ] Source config files
+		- [x] Access config file in ~/.rusty.toml else default config file
+		- [x] Update cwd
+		- [x] Update prompt
+		- [x] Parse config files
+	- [x] Aliases
 
 ###Planned but not implemented:
 - [ ] cd - functionality
@@ -49,13 +51,13 @@ environment.
 - [ ] Shell logic
 - [ ] Calculator utility for fun. Likely to be on back burner
 - [ ] Makefile to compile and install automatically
+- [ ] Pluggable modules that others write
 
 ###Code Cleanup Ideas
 - [ ] Docs. So many Docs
 - [ ] Reduce need for clone() and work on proper ownership
 - [ ] Format code in a uniform way
 - [ ] Reduce let bindings
-- [ ] Reduce need of Vec<&str> as inputs
 
 Probably more. Will add as ideas come to mind.
 
