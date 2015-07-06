@@ -42,12 +42,25 @@ fn main() {
 
             &"exit" => break,
             _ => {
-                check_alias(command_split.clone());
-                let output = execute::interpret(command_split);
-                if !output.is_empty() {
-                    println!("{}",output.trim());
+                let alias = check_alias(command_split.clone());
+                if !alias.is_some() {
+                    let output = execute::interpret(command_split);
+                    if !output.is_empty() {
+                        println!("{}",output.trim());
+                    }
+                } else {
+                    //Removes alias from the non cloned version like check_alias() does
+                    command_split.remove(0);
+                    let alias_unwrapped = alias.unwrap().to_owned();
+                    let mut vec: Vec<&str> = alias_unwrapped.trim().split(' ').collect();
+                    for i in command_split {
+                        vec.push(i);
+                    }
+                    let output =  execute::interpret(vec);
+                    if !output.is_empty() {
+                        println!("{}",output.trim());
+                    }
                 }
-
             }
         }
 

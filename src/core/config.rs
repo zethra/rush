@@ -62,10 +62,31 @@ pub fn read_config_prompt(input: &Prompt) -> String {
     prompt
 }
 
-pub fn check_alias(input: Vec<&str>) {//-> Option<Vec<&str>> {
+pub fn check_alias(input: Vec<&str>) -> Option<String> {
     //Checks if alias is in config file and returns the altered
     //version as an Option of the input. If succesfully found
     //it can be unwraped for execution
 
+    //Makes sure there is something to execute
+    if input.is_empty() {
+        return None;
+    }
+
+    //Sets the alias to check for
+    let alias_key = input.get(0).unwrap();
+
+    //Check the config file for the key
+    let config = read_in_config();
+    let mut parsed = toml::Parser::new(&config).parse().unwrap();
+    let alias_table = parsed.remove("alias")
+        .expect("Add an [alias] field to your config");
+    let alias = alias_table.lookup(alias_key);
+
+    //Checks if alias is in config file
+    if !alias.is_some() {
+        return None;
+    }
+    let output: String = toml::decode(alias.unwrap().to_owned()).unwrap();
+    Some(output)
 }
 

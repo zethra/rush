@@ -88,7 +88,7 @@ calculate	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^pub fn calculate() {
 cat	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod cat;$/;"	m
 cd	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod cd;$/;"	m
 change_directory	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^pub fn change_directory(input: Vec<&str>){$/;"	f
-check_alias	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn check_alias(input: Vec<&str>) {\/\/-> Option<Vec<&str>> {$/;"	f
+check_alias	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn check_alias(input: Vec<&str>) -> Option<String> {$/;"	f
 comment	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn comment(&mut self) -> bool {$/;"	f
 concat	/home/michael/Code/Rust/rusty/src/utils/cat.rs	/^pub fn concat(){$/;"	f
 config	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod config;$/;"	m
