@@ -28,14 +28,16 @@ environment.
 
 ###In Progress
 - [ ] Configuration
-	- [ ] Prompts and customization
-		- [ ] Source config files
-		- [x] Access config file in ~/.rusty.toml else default config file
+	- [x] Access config file in ~/.rusty.toml else default config file
+	- [x] Prompt
 		- [x] Update cwd
 		- [x] Update prompt
 		- [x] Parse config files
 	- [x] Aliases
 	- [ ] Environment Variables
+		- [x] Set enviornment variables
+		- [ ] Be able to add to current variable e.g. PATH = "PATH:/home/user/.bin"
+	- [ ] Source config files
 
 ###Planned but not implemented:
 - [ ] cd - functionality
@@ -65,7 +67,9 @@ tested with any other version.
 
 ###Config File
 Rusty uses [toml](https://github.com/toml-lang/toml) to customize it's use.
-Right now this is the only thing required in your config file that works:
+Here are some of the configuration options:
+
+####Prompts
 ```
 [prompt]
 left = "%U@%H %L %R"
@@ -84,9 +88,31 @@ Following the above example for my computer the prompt would look like:
 michael@flame ~/ %
 ```
 
+####Aliases
+The [alias] is required in the config file but anything underneath is optional.
+Below is an example of how it would look in your file in order to use them:
+```
+[alias]
+gpm = "git push master"
+gc = "git commit"
+ls = "ls -al"
+```
+
+####Enivronment Variables
+The [env_var] is required in the config file but anything underneath is optional.
+Below is an example of how it would look in your file in order to use them:
+```
+[env_var]
+EDITOR = "vim"
+
+```
+Side note setting of the path variable with the current value plus whatever
+else is not currently supported but will be in the future.
+So PATH = "PATH:/home/user/.bin" won't work
+
 ###Testing and Execution
 You can run the inbuilt tests to determine if the functions are working as
-intended with the command 
+intended with the command
 
 ```
 cargo test
