@@ -35,9 +35,13 @@ environment.
 		- [x] Update prompt
 		- [x] Parse config files
 	- [x] Aliases
+	- [ ] Environment Variables
 
 ###Planned but not implemented:
 - [ ] cd - functionality
+- [ ] Directory stack e.g. dirs 2 moves to second directory on the stack
+- [ ] Command History
+- [ ] File redirection
 - [ ] Auto Completion
 - [ ] Better output formatting for completed commands
 - [ ] Scripting language and processor.

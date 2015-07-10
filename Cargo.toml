@@ -5,6 +5,7 @@ authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 
 [dependencies]
 toml = "*"
+term = "*"
 #clippy = "*"
 
 [profile.dev]

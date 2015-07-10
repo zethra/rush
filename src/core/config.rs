@@ -1,7 +1,7 @@
 extern crate toml;
 use std::io::{Read,BufReader};
 use std::fs::File;
-use std::env::{var,home_dir};
+use std::env::{set_var,var,home_dir};
 use std::process::Command;
 use core::prompt::Prompt;
 
@@ -18,7 +18,8 @@ fn read_in_config() -> String{
     let mut reader = BufReader::new(&config);
     let mut buffer_string = String::new();
     reader.read_to_string(&mut buffer_string)
-        .ok().expect("Failed to read in config"); buffer_string
+        .ok().expect("Failed to read in config");
+    buffer_string
 }
 
 pub fn read_config_prompt(input: &Prompt) -> String {
@@ -90,3 +91,17 @@ pub fn check_alias(input: Vec<&str>) -> Option<String> {
     Some(output)
 }
 
+pub fn set_env_var() {
+    let config = read_in_config();
+    let mut parsed = toml::Parser::new(&config).parse().expect("Config parse unsuccessful");
+    let env_table = parsed.remove("env_var")
+        .expect("Add an [env_var] field to your config");
+
+    //Grab all the keys, loop through, decode the value, and set the env variables
+    let keys: Vec<_> = env_table.as_table().unwrap().keys().cloned().collect();
+    for key in keys {
+        let value: String = toml::decode(env_table.lookup(&key).unwrap().to_owned()).unwrap();
+        set_var(key,value);
+    }
+
+}

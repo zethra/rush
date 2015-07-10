@@ -2,8 +2,10 @@
 #[prompt]
 #left = ""
 #[alias]
+#[env_var]
 
-#You can put as many or as few things as you want in alias. Just the table field is required.
+
+#You can put as many or as few things as you want in alias and env_var. Just the table field is required.
 
 [prompt]
 #Translation of below mark up
@@ -13,3 +15,6 @@ left = "%U@%H %L %R"
 [alias]
 gc = "git commit"
 gpm = "git push master"
+
+[env_var]
+EDITOR = "nano"
