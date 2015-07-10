@@ -62,7 +62,6 @@ pub fn read_config_prompt(input: &Prompt) -> String {
 
     prompt
 }
-
 pub fn check_alias(input: Vec<&str>) -> Option<String> {
     //Checks if alias is in config file and returns the altered
     //version as an Option of the input. If succesfully found
@@ -103,5 +102,4 @@ pub fn set_env_var() {
         let value: String = toml::decode(env_table.lookup(&key).unwrap().to_owned()).unwrap();
         set_var(key,value);
     }
-
 }
