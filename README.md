@@ -34,9 +34,9 @@ environment.
 		- [x] Update prompt
 		- [x] Parse config files
 	- [x] Aliases
-	- [ ] Environment Variables
+	- [x] Environment Variables
 		- [x] Set enviornment variables
-		- [ ] Be able to add to current variable e.g. PATH = "PATH:/home/user/.bin"
+		- [x] Be able to add to current variable e.g. PATH = "PATH:/home/user/.bin"
 	- [ ] Source config files
 
 ###Planned but not implemented:
@@ -106,9 +106,6 @@ Below is an example of how it would look in your file in order to use them:
 EDITOR = "vim"
 
 ```
-Side note setting of the path variable with the current value plus whatever
-else is not currently supported but will be in the future.
-So PATH = "PATH:/home/user/.bin" won't work
 
 ###Testing and Execution
 You can run the inbuilt tests to determine if the functions are working as
