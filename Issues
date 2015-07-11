@@ -1,6 +1,0 @@
-Issues to fix:
-- Doing:
-  cd
-  cd Code/Rust
-  Produces an error when it should not. Will need to look into this
-

@@ -97,9 +97,47 @@ pub fn set_env_var() {
         .expect("Add an [env_var] field to your config");
 
     //Grab all the keys, loop through, decode the value, and set the env variables
-    let keys: Vec<_> = env_table.as_table().unwrap().keys().cloned().collect();
+    let keys: Vec<_> = env_table.as_table().expect("Failed to convert to table").keys().cloned().collect();
     for key in keys {
-        let value: String = toml::decode(env_table.lookup(&key).unwrap().to_owned()).unwrap();
-        set_var(key,value);
+        let value_unparsed: String = toml::decode(env_table.lookup(&key).expect("Failed lookup")
+                                                  .to_owned()).unwrap();
+        set_var(key,env_parse(value_unparsed));
     }
+}
+
+fn env_parse(input: String) -> String {
+    //Take input string and add env variables to itself
+    //e.g. PATH:~/.bin concats ~/.bin to PATH and returns it as
+    //the new path variable
+    let split_input: Vec<&str> = input.trim().split(':').collect();
+    let mut output_vec: Vec<String> = Vec::new();
+
+    //If it's a env variable gets the current value otherwise
+    //pushes actual string to vector
+    for i in split_input {
+        let env_var = var(i.to_owned());
+        if env_var.is_err() {
+            output_vec.push(i.to_owned());
+        } else {
+            let env_var = env_var.unwrap();
+            output_vec.push(env_var);
+        }
+    }
+
+    //If it's just a single value it passes it back to set_var
+    //in set_env_var
+    if output_vec.len() == 1 {
+        return output_vec.pop().unwrap();
+    }
+
+    //Otherwise create a concatenated string of the values and returns that
+    let mut output: String = String::new();
+    for i in 0..output_vec.len() {
+        if i > 0 {
+            output.push_str(&format!(":{}",output_vec.get(i).unwrap()));
+            continue;
+        }
+        output.push_str(&output_vec.get(i).unwrap());
+    }
+    output
 }
