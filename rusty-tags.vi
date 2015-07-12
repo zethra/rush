@@ -47,6 +47,7 @@ FormatOp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.
 FormatOp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^impl FormatOp {$/;"	i
 FormatState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^enum FormatState {$/;"	g
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
+InterpretError	/home/michael/Code/Rust/rusty/src/error.rs	/^pub enum InterpretError {$/;"	g
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    type Output: Write;$/;"	T
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    type Output = T;$/;"	T
@@ -219,6 +220,7 @@ encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.2
 env_parse	/home/michael/Code/Rust/rusty/src/core/config.rs	/^fn env_parse(input: String) -> String {$/;"	f
 err	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn err(&self, kind: DecodeErrorKind) -> DecodeError {$/;"	f
 error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn error(&mut self, err: &str) -> DecodeError {$/;"	f
+error	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod error;$/;"	m
 error::Error for DecodeError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^impl error::Error for DecodeError {$/;"	i
 error::Error for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl error::Error for Error {$/;"	i
 error::Error for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^impl error::Error for Error {$/;"	i

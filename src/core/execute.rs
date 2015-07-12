@@ -1,13 +1,14 @@
-//vec.as_slice() is considered unstable and is subject to change in the future
 #![allow(unreachable_code)]
+
 use std::process::*;
 use std::os::unix::io::{FromRawFd, AsRawFd};
 use std::io::Result;
+use error::*;
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
 //Calls the wrapper functions on execute and pipes commands as needed
-    
+
     let mut pipes = false;
     for i in command.clone() {
        if i.contains('|') {

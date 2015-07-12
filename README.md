@@ -40,6 +40,7 @@ environment.
 	- [ ] Source config files
 
 ###Planned but not implemented:
+- [ ] Better error handling using try!()
 - [ ] cd - functionality
 - [ ] Directory stack e.g. dirs 2 moves to second directory on the stack
 - [ ] Command History
