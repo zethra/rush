@@ -1,5 +1,5 @@
 #![feature(plugin)]
-//#![plugin(clippy)]
+#![plugin(clippy)]
 extern crate rusty;
 use rusty::utils::*;
 use rusty::core::*;
