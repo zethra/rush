@@ -143,7 +143,14 @@ chsh user /path/to/rusty/executable
 cp /path/to/rusty/config/rusty.toml ~/.rusty.toml
 ```
 
-###Contact
+###Contact and verification
 Email: mgattozzi@gmail.com
 
 Twitter:  [@mgattozzi](https://twitter.com/mgattozzi)
+
+Keybase: [mgattozzi](https://keybase.io/mgattozzi)
+
+###Donations
+If you want to donate to the project you can use my bitcoin address:
+1HJm93qp2625SEuq2gFxjzV558c6F4gKCq
+
