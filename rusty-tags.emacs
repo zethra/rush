@@ -1,4 +1,6 @@
 
+/home/michael/Code/Rust/rusty/src/error.rs,0
+
 /home/michael/Code/Rust/rusty/src/lib.rs,52
 pub mod utils;utils7,138
 pub mod core;core8,153
@@ -25,15 +27,17 @@ pub mod cd;cd1,0
 pub mod calc;calc2,12
 pub mod cat;cat3,26
 
-/home/michael/Code/Rust/rusty/src/main.rs,24
-fn main() {main10,211
+/home/michael/Code/Rust/rusty/src/main.rs,23
+fn main() {main9,222
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
-/home/michael/Code/Rust/rusty/src/core/config.rs,216
-fn read_in_config() -> String{read_in_config8,142
-pub fn read_config_prompt(input: &Prompt) -> String {read_config_prompt23,603
-pub fn check_alias(input: Vec<&str>) { //-> Option<Vec<&str>> {check_alias58,1840
+/home/michael/Code/Rust/rusty/src/core/config.rs,311
+fn read_in_config() -> String{read_in_config8,161
+pub fn read_config_prompt(input: &Prompt) -> String {read_config_prompt25,860
+pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias65,2332
+pub fn set_env_var() {set_env_var93,3212
+fn env_parse(input: String) -> String {env_parse108,3907
 
 /home/michael/Code/Rust/rusty/src/core/script.rs,0
 
@@ -58,12 +62,12 @@ mod tests{tests202,6042
 
 /home/michael/Code/Rust/rusty/src/core/prompt.rs,324
 pub struct Prompt {Prompt8,317
-impl Prompt {Prompt15,387
-    pub fn new() -> Prompt {new17,406
-    pub fn update_prompt(&mut self) {update_prompt24,559
-    pub fn get_user_p(&self) -> String {get_user_p28,653
-    pub fn get_cwd(&self) -> String {get_cwd32,735
-    pub fn update_cwd(&mut self){update_cwd36,812
+impl Prompt {Prompt15,379
+    pub fn new() -> Prompt {new17,394
+    pub fn update_prompt(&mut self) {update_prompt24,543
+    pub fn get_user_p(&self) -> String {get_user_p28,637
+    pub fn get_cwd(&self) -> String {get_cwd32,716
+    pub fn update_cwd(&mut self){update_cwd36,789
 
 /home/michael/Code/Rust/rusty/src/core/mod.rs,179
 pub mod execute;execute1,0
@@ -72,4 +76,5 @@ pub mod autocomplete;autocomplete3,33
 pub mod logic;logic4,55
 pub mod prompt;prompt5,70
 pub mod config;config6,86
+/home/michael/.rusty-tags/cache/term-0.2.10.emacs,include
 /home/michael/.rusty-tags/cache/toml-0.1.21.emacs,include
