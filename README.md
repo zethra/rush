@@ -150,6 +150,7 @@ Email: mgattozzi@gmail.com
 Twitter:  [@mgattozzi](https://twitter.com/mgattozzi)
 
 Keybase: [mgattozzi](https://keybase.io/mgattozzi)
+Commits are now signed and the key can be verified at the above link
 
 ###Donations
 If you want to donate to the project you can use my bitcoin address:
