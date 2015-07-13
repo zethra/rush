@@ -9,6 +9,7 @@ addons:
             - libdw=dev
 rust:
     - nightly
+
 before_script:
     - |
         pip install 'travis-cargo<0.2' --user &&
@@ -20,7 +21,3 @@ script:
         travis-cargo bench
 after_success:
     - travis-cargo coveralls
-
-env:
-    global:
-        - TRAVIS_CARGO_NIGHTLY_FEATURE=nightly
