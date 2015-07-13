@@ -1,7 +1,8 @@
 Rusty
 =====
-![Image of Travis CI Build Status]
-(https://travis-ci.org/mgattozzi/Rusty.svg?branch=master)
+[![BuildStatus](https://travis-ci.org/mgattozzi/Rusty.svg?branch=master)](https://travis-ci.org/mgattozzi/Rusty)
+[![Coverage
+Status](https://coveralls.io/repos/mgattozzi/Rusty/badge.svg?branch=master&service=github)](https://coveralls.io/github/mgattozzi/Rusty?branch=master)
 
 What is Rusty?
 --------------
