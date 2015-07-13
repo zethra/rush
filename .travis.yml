@@ -1,4 +1,5 @@
 language: rust
+sudo: true
 
 addons:
     apt:
@@ -16,10 +17,8 @@ script:
     - |
         travis-cargo build &&
         travis-cargo test &&
-        travis-cargo bench &&
-        travis-cargo --only nightly doc
+        travis-cargo bench
 after_success:
-    - travis-cargo --only nightly doc-upload
     - travis-cargo coveralls
 
 env:
