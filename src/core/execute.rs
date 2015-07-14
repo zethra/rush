@@ -115,7 +115,7 @@ fn piped(input: Vec<&str>) -> String {
        child = child_result.ok().unwrap();
     } else {
         return child_result.err().unwrap().to_string();
-    } 
+    }
     while split.len() > 1 {
         child_result = execute_pipe(split.remove(0), child);
         if child_result.is_ok() {
@@ -198,11 +198,10 @@ fn final_pipe(command: Vec<&str>, child: Child) -> String {
 }
 
 
-//Tests are defunct for now.
 #[cfg(test)]
 mod tests{
     use super::*;
-    
+
     #[test]
     fn pipes() {
         let vec: Vec<&str> = "ls /|grep bin| sort -r"
@@ -210,7 +209,7 @@ mod tests{
         let result = interpret(vec);
         assert_eq!("sbin\nbin\n",result);
      }
-    
+
     #[test]
     #[should_panic]
     fn pipes_fail() {
@@ -219,7 +218,7 @@ mod tests{
         let result = interpret(vec);
         assert_eq!("Please input a valid command",result);
     }
-    
+
     #[test]
     fn execute(){
         let vec: Vec<&str> = "ls -al"

@@ -1,4 +1,3 @@
-extern crate toml;
 use std::env::{current_dir, home_dir};
 use core::config::read_config_prompt;
 //For now it will access the toml file in the config directory
@@ -52,4 +51,24 @@ impl Prompt {
 
     }
 
+}
+
+#[cfg(test)]
+mod tests{
+    use std::env::{current_dir,home_dir};
+    use super::*;
+
+    #[test]
+    fn prompt_init() {
+        let testp = Prompt::new();
+        assert_eq!(testp.get_user_p(),"michael@flame %".to_string());
+        assert_eq!(testp.get_cwd(),"~/".to_string());
+    }
+
+    #[test]
+    fn updated_cwd() {
+        let mut testp = Prompt::new();
+        testp.update_cwd();
+        assert_eq!(testp.get_cwd(),current_dir().ok().unwrap().as_path().to_str().unwrap().to_string());
+    }
 }

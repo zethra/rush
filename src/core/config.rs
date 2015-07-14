@@ -11,7 +11,8 @@ fn read_in_config() -> String{
     home_config.push(".rusty.toml");
     let default = File::open(home_config.as_path().to_str().unwrap());
     let config = if default.is_err(){
-        File::open("/home/michael/Code/Rust/rusty/config/rusty.toml").ok().expect("No default file")
+        //Should be changed to location of git repo if compiling on your own machine
+        File::open("./config/rusty.toml").ok().expect("No default file")
         } else {
             default.ok().expect("No files to open for config")
         };
@@ -141,3 +142,15 @@ fn env_parse(input: String) -> String {
     }
     output
 }
+
+/*//Stub for config file tests
+#[cfg(test)]
+mod tests{
+    use super::*;
+
+    #[test]
+    fn readconfig() {
+    }
+
+}
+*/

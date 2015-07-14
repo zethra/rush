@@ -34,12 +34,14 @@ fn main() {main9,222
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
-/home/michael/Code/Rust/rusty/src/core/config.rs,311
+/home/michael/Code/Rust/rusty/src/core/config.rs,379
 fn read_in_config() -> String{read_in_config8,161
-pub fn read_config_prompt(input: &Prompt) -> String {read_config_prompt25,860
-pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias65,2332
-pub fn set_env_var() {set_env_var93,3212
-fn env_parse(input: String) -> String {env_parse108,3907
+pub fn read_config_prompt(input: &Prompt) -> String {read_config_prompt26,917
+pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias66,2389
+pub fn set_env_var() {set_env_var94,3269
+fn env_parse(input: String) -> String {env_parse109,3964
+mod tests{tests148,5188
+    fn readconfig() {readconfig152,5230
 
 /home/michael/Code/Rust/rusty/src/core/script.rs,0
 
@@ -51,25 +53,28 @@ fn get_stderr(output: Option<Output>) -> String{get_stderr59,1677
 fn get_status(output: Option<Output>) -> bool{get_status70,2008
 fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes80,2227
 fn piped(input: Vec<&str>) -> String {piped105,2933
-fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe131,3720
-fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe148,4185
-fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe172,4976
-mod tests{tests203,5974
-    fn pipes() {pipes207,6020
-    fn pipes_fail() {pipes_fail216,6256
-    fn execute(){execute224,6492
-    fn execute_fail(){execute_fail233,6684
+fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe131,3719
+fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe148,4184
+fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe172,4975
+mod tests{tests202,5944
+    fn pipes() {pipes206,5986
+    fn pipes_fail() {pipes_fail215,6218
+    fn execute(){execute223,6450
+    fn execute_fail(){execute_fail232,6642
 
 /home/michael/Code/Rust/rusty/src/core/logic.rs,0
 
-/home/michael/Code/Rust/rusty/src/core/prompt.rs,324
-pub struct Prompt {Prompt8,317
-impl Prompt {Prompt15,379
-    pub fn new() -> Prompt {new17,394
-    pub fn update_prompt(&mut self) {update_prompt24,543
-    pub fn get_user_p(&self) -> String {get_user_p28,637
-    pub fn get_cwd(&self) -> String {get_cwd32,716
-    pub fn update_cwd(&mut self){update_cwd36,789
+/home/michael/Code/Rust/rusty/src/core/prompt.rs,435
+pub struct Prompt {Prompt7,298
+impl Prompt {Prompt14,360
+    pub fn new() -> Prompt {new16,375
+    pub fn update_prompt(&mut self) {update_prompt23,524
+    pub fn get_user_p(&self) -> String {get_user_p27,618
+    pub fn get_cwd(&self) -> String {get_cwd31,697
+    pub fn update_cwd(&mut self){update_cwd35,770
+mod tests{tests57,1490
+    fn prompt_init() {prompt_init62,1574
+    fn updated_cwd() {updated_cwd69,1775
 
 /home/michael/Code/Rust/rusty/src/core/mod.rs,179
 pub mod execute;execute1,0

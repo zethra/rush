@@ -335,6 +335,7 @@ pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes() {$/;"	f
 pipes_fail	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes_fail() {$/;"	f
 print	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn print(&mut self, table: &'a TomlTable) -> fmt::Result {$/;"	f
 prompt	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod prompt;$/;"	m
+prompt_init	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    fn prompt_init() {$/;"	f
 read_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_bool(&mut self) -> Result<bool, DecodeError> {$/;"	f
 read_byte	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^fn read_byte(r: &mut io::Read) -> io::Result<u8> {$/;"	f
 read_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_char(&mut self) -> Result<char, DecodeError> {$/;"	f
@@ -373,6 +374,7 @@ read_u32	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.
 read_u64	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_u64(&mut self) -> Result<u64, DecodeError> {$/;"	f
 read_u8	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_u8(&mut self) -> Result<u8, DecodeError> {$/;"	f
 read_usize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_usize(&mut self) -> Result<usize, DecodeError> {$/;"	f
+readconfig	/home/michael/Code/Rust/rusty/src/core/config.rs	/^    fn readconfig() {$/;"	f
 recurse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn recurse<'b>(&mut self, mut cur: &'b mut TomlTable, keys: &'b [String],$/;"	f
 reset	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn reset(&mut self) -> io::Result<bool>;$/;"	f
 reset	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn reset(&mut self) -> io::Result<bool> {$/;"	f
@@ -435,7 +437,9 @@ tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^mod tests {$/;"	m
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod tests {$/;"	m
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^mod tests {$/;"	m
+tests	/home/michael/Code/Rust/rusty/src/core/config.rs	/^mod tests{$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^mod tests{$/;"	m
+tests	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^mod tests{$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^mod tests {$/;"	m
 to_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn to_char(self) -> char {$/;"	f
 to_json	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^fn to_json(toml: Value) -> Json {$/;"	f
@@ -456,6 +460,7 @@ unused_fields6	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/tom
 unused_fields7	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields7() {$/;"	f
 update_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_cwd(&mut self){$/;"	f
 update_prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_prompt(&mut self) {$/;"	f
+updated_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    fn updated_cwd() {$/;"	f
 utils	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod utils;$/;"	m
 value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn value(&mut self) -> Option<Value> {$/;"	f
 values	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn values(&mut self, into: &mut TomlTable) -> bool {$/;"	f
