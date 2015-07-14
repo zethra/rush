@@ -3,6 +3,7 @@ Rusty
 [![BuildStatus](https://travis-ci.org/mgattozzi/Rusty.svg?branch=master)](https://travis-ci.org/mgattozzi/Rusty)
 [![Coverage
 Status](https://coveralls.io/repos/mgattozzi/Rusty/badge.svg?branch=master&service=github)](https://coveralls.io/github/mgattozzi/Rusty?branch=master)
+[![Join the chat at https://gitter.im/mgattozzi/Rusty](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mgattozzi/Rusty?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 What is Rusty?
 --------------
