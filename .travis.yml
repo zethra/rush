@@ -1,5 +1,5 @@
 language: rust
-sudo: true
+sudo: false
 
 addons:
     apt:
@@ -20,7 +20,7 @@ script:
         travis-cargo test &&
         travis-cargo bench
 after_success:
-    - travis-cargo coveralls
+    - travis-cargo coveralls --no-sudo
 env:
     global:
         - TRAVIS_CARGO_NIGHTLY_FEATURE=""
