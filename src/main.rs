@@ -1,15 +1,15 @@
 #![feature(plugin)]
 //#![plugin(clippy)]
-extern crate rusty;
+#[macro_use] extern crate rusty;
 use rusty::utils::*;
 use rusty::core::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
 use std::io::{stdin,Write,stdout};
+
 fn main() {
     //Sets environment variables written in config file
     set_env_var();
-
     //Necessary to update as default prompt is not what we want
     let mut prompt = Prompt::new();
     prompt.update_cwd();

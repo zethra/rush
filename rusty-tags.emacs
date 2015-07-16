@@ -2,10 +2,17 @@
 /home/michael/Code/Rust/rusty/src/error.rs,46
 pub enum InterpretError {InterpretError5,48
 
-/home/michael/Code/Rust/rusty/src/lib.rs,80
+/home/michael/Code/Rust/rusty/src/scripting/script_macros.rs,28
+macro_rules! run {run2,16
+
+/home/michael/Code/Rust/rusty/src/scripting/mod.rs,41
+pub mod script_macros;script_macros1,0
+
+/home/michael/Code/Rust/rusty/src/lib.rs,116
 pub mod utils;utils8,165
 pub mod core;core9,180
 pub mod error;error10,194
+pub mod scripting;scripting11,209
 
 /home/michael/Code/Rust/rusty/src/utils/cd.rs,232
 pub fn change_directory(input: Vec<&str>){change_directory6,212
@@ -29,10 +36,17 @@ pub mod cd;cd1,0
 pub mod calc;calc2,12
 pub mod cat;cat3,26
 
-/home/michael/Code/Rust/rusty/src/main.rs,23
-fn main() {main9,222
+/home/michael/Code/Rust/rusty/src/main.rs,24
+fn main() {main10,236
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
+
+/home/michael/Code/Rust/rusty/src/core/error.rs,338
+pub enum InterpretError {InterpretError5,48
+pub impl From<io::Error> for InterpretError {From for InterpretError10,127
+    fn from(err: io::Error) -> InterpretError {from11,173
+pub impl From<string::ParseError> for InterpretError {From for InterpretError16,262
+    fn from(err: string::ParseError) -> InterpretError {from17,317
 
 /home/michael/Code/Rust/rusty/src/core/config.rs,379
 fn read_in_config() -> String{read_in_config8,161
@@ -43,24 +57,22 @@ fn env_parse(input: String) -> String {env_parse109,3964
 mod tests{tests148,5188
     fn readconfig() {readconfig152,5230
 
-/home/michael/Code/Rust/rusty/src/core/script.rs,0
-
 /home/michael/Code/Rust/rusty/src/core/execute.rs,883
-pub fn interpret(command: Vec<&str>) -> String {interpret8,131
-fn execute(command: Vec<&str>) -> Option<Output>{execute34,884
-fn get_stdout(output: Option<Output>) -> String{get_stdout46,1247
-fn get_stderr(output: Option<Output>) -> String{get_stderr59,1677
-fn get_status(output: Option<Output>) -> bool{get_status70,2008
-fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes80,2227
-fn piped(input: Vec<&str>) -> String {piped105,2933
-fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe131,3719
-fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe148,4184
-fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe172,4975
-mod tests{tests202,5944
-    fn pipes() {pipes206,5986
-    fn pipes_fail() {pipes_fail215,6218
-    fn execute(){execute223,6450
-    fn execute_fail(){execute_fail232,6642
+pub fn interpret(command: Vec<&str>) -> String {interpret7,117
+fn execute(command: Vec<&str>) -> Option<Output>{execute33,870
+fn get_stdout(output: Option<Output>) -> String{get_stdout45,1233
+fn get_stderr(output: Option<Output>) -> String{get_stderr58,1663
+fn get_status(output: Option<Output>) -> bool{get_status69,1994
+fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes79,2213
+fn piped(input: Vec<&str>) -> String {piped104,2919
+fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe130,3705
+fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe147,4170
+fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe171,4961
+mod tests{tests201,5930
+    fn pipes() {pipes205,5972
+    fn pipes_fail() {pipes_fail214,6204
+    fn execute(){execute222,6436
+    fn execute_fail(){execute_fail231,6628
 
 /home/michael/Code/Rust/rusty/src/core/logic.rs,0
 
@@ -76,12 +88,11 @@ mod tests{tests57,1490
     fn prompt_init() {prompt_init62,1574
     fn updated_cwd() {updated_cwd69,1775
 
-/home/michael/Code/Rust/rusty/src/core/mod.rs,179
+/home/michael/Code/Rust/rusty/src/core/mod.rs,151
 pub mod execute;execute1,0
-pub mod script;script2,17
-pub mod autocomplete;autocomplete3,33
-pub mod logic;logic4,55
-pub mod prompt;prompt5,70
-pub mod config;config6,86
+pub mod autocomplete;autocomplete2,17
+pub mod logic;logic3,39
+pub mod prompt;prompt4,54
+pub mod config;config5,70
 /home/michael/.rusty-tags/cache/term-0.2.10.emacs,include
 /home/michael/.rusty-tags/cache/toml-0.1.21.emacs,include

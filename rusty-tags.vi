@@ -46,8 +46,10 @@ Foo2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/s
 FormatOp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^enum FormatOp {$/;"	g
 FormatOp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^impl FormatOp {$/;"	i
 FormatState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^enum FormatState {$/;"	g
+From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<io::Error> for InterpretError {$/;"	i
+From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<string::ParseError> for InterpretError {$/;"	i
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
-InterpretError	/home/michael/Code/Rust/rusty/src/error.rs	/^pub enum InterpretError {$/;"	g
+InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub enum InterpretError {$/;"	g
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    type Output: Write;$/;"	T
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    type Output = T;$/;"	T
@@ -253,6 +255,8 @@ fmt::Display for Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765a
 fmt::Display for ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl fmt::Display for ParserError {$/;"	i
 fmt::Display for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl fmt::Display for Value {$/;"	i
 format	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^fn format(val: Param, op: FormatOp, flags: Flags) -> Result<Vec<u8> ,String> {$/;"	f
+from	/home/michael/Code/Rust/rusty/src/core/error.rs	/^    fn from(err: io::Error) -> InterpretError {$/;"	f
+from	/home/michael/Code/Rust/rusty/src/core/error.rs	/^    fn from(err: string::ParseError) -> InterpretError {$/;"	f
 from_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn from_char(c: char) -> FormatOp {$/;"	f
 from_env	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn from_env() -> Result<TermInfo, Error> {$/;"	f
 from_name	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn from_name(name: &str) -> Result<TermInfo, Error> {$/;"	f
@@ -382,12 +386,14 @@ reset	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/
 round_trip	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn round_trip() {$/;"	f
 run	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/invalid.rs	/^fn run(toml: &str) {$/;"	f
 run	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^fn run(toml: &str, json: &str) {$/;"	f
+run	/home/michael/Code/Rust/rusty/src/scripting/script_macros.rs	/^macro_rules! run {$/;"	d
 rustc_serialize::Decoder for Decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^impl rustc_serialize::Decoder for Decoder {$/;"	i
 rustc_serialize::Encodable for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^impl rustc_serialize::Encodable for Value {$/;"	i
 rustc_serialize::Encoder for Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^impl rustc_serialize::Encoder for Encoder {$/;"	i
 same_type	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn same_type(&self, other: &Value) -> bool {$/;"	f
 same_type	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn same_type(&self, other: &Value) -> bool {$/;"	f
-script	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod script;$/;"	m
+script_macros	/home/michael/Code/Rust/rusty/src/scripting/mod.rs	/^pub mod script_macros;$/;"	m
+scripting	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod scripting;$/;"	m
 searcher	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub mod searcher;$/;"	m
 seq	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn seq<F>(&mut self, f: F) -> Result<(), Error>$/;"	f
 set_env_var	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn set_env_var() {$/;"	f

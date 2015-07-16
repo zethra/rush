@@ -3,7 +3,6 @@
 use std::process::*;
 use std::os::unix::io::{FromRawFd, AsRawFd};
 use std::io::Result;
-use error::*;
 
 pub fn interpret(command: Vec<&str>) -> String {
 //The function that takes a command and interprets what to do with it
