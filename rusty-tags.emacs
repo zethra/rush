@@ -1,18 +1,14 @@
 
-/home/michael/Code/Rust/rusty/src/error.rs,46
-pub enum InterpretError {InterpretError5,48
-
 /home/michael/Code/Rust/rusty/src/scripting/script_macros.rs,28
 macro_rules! run {run2,16
 
 /home/michael/Code/Rust/rusty/src/scripting/mod.rs,41
 pub mod script_macros;script_macros1,0
 
-/home/michael/Code/Rust/rusty/src/lib.rs,116
+/home/michael/Code/Rust/rusty/src/lib.rs,88
 pub mod utils;utils8,165
 pub mod core;core9,180
-pub mod error;error10,194
-pub mod scripting;scripting11,209
+pub mod scripting;scripting10,194
 
 /home/michael/Code/Rust/rusty/src/utils/cd.rs,232
 pub fn change_directory(input: Vec<&str>){change_directory6,212
