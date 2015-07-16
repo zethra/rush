@@ -82,7 +82,7 @@ impl Prompt {Prompt14,360
     pub fn update_cwd(&mut self){update_cwd35,770
 mod tests{tests57,1490
     fn prompt_init() {prompt_init62,1574
-    fn updated_cwd() {updated_cwd69,1775
+    fn updated_cwd() {updated_cwd69,1777
 
 /home/michael/Code/Rust/rusty/src/core/mod.rs,151
 pub mod execute;execute1,0
