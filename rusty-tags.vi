@@ -49,6 +49,10 @@ FormatState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<io::Error> for InterpretError {$/;"	i
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<string::ParseError> for InterpretError {$/;"	i
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
+History	/home/michael/Code/Rust/rusty/src/core/history.rs	/^impl History {$/;"	i
+History	/home/michael/Code/Rust/rusty/src/core/history.rs	/^pub struct History {$/;"	s
+Input_Buffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^pub struct Input_Buffer {$/;"	s
+Input_buffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^impl Input_buffer {$/;"	i
 InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub enum InterpretError {$/;"	g
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    type Output: Write;$/;"	T
@@ -125,9 +129,11 @@ boolean	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.2
 booleans	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn booleans() {$/;"	f
 boolfnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static boolfnames: &'static[&'static str] = &["auto_left_margin", "auto_right_margin",$/;"	c
 boolnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static boolnames: &'static[&'static str] = &["bw", "am", "xsb", "xhp", "xenl", "eo",$/;"	c
+buffer_in	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod buffer_in;$/;"	m
 calc	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod calc;$/;"	m
 calculate	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^pub fn calculate() {$/;"	f
 cap_for_attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^fn cap_for_attr(attr: Attr) -> &'static str {$/;"	f
+cap_it	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    fn cap_it(&mut self) {$/;"	f
 carriage_return	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn carriage_return(&mut self) -> io::Result<bool>;$/;"	f
 carriage_return	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn carriage_return(&mut self) -> io::Result<bool> {$/;"	f
 carriage_return	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn carriage_return(&mut self) -> io::Result<bool> {$/;"	f
@@ -265,9 +271,13 @@ fruit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/
 fun_with_strings	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fun_with_strings() {$/;"	f
 get_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_cwd(&self) -> String {$/;"	f
 get_dbpath_for_term	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/searcher.rs	/^pub fn get_dbpath_for_term(term: &str) -> Option<PathBuf> {$/;"	f
+get_hist	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_hist(&self) -> &History {$/;"	f
 get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut Self::Output;$/;"	f
 get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut T { &mut self.out }$/;"	f
 get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut T { &mut self.buf }$/;"	f
+get_mut_hist	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_mut_hist(&mut self) -> &mut History {$/;"	f
+get_mut_parsed	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_mut_parsed(&mut self) -> &mut Vec<&str> {$/;"	f
+get_parsed	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_parsed(&self) -> &Vec<&str> {$/;"	f
 get_ref	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn get_ref<'a>(&'a self) -> &'a Self::Output;$/;"	f
 get_ref	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn get_ref<'a>(&'a self) -> &'a T { &self.out }$/;"	f
 get_ref	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn get_ref<'a>(&'a self) -> &'a T { &self.buf }$/;"	f
@@ -277,6 +287,7 @@ get_stderr	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stderr(out
 get_stdout	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stdout(output: Option<Output>) -> String{$/;"	f
 get_user_p	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_user_p(&self) -> String {$/;"	f
 hashmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn hashmap() {$/;"	f
+history	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod history;$/;"	m
 humanize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^                fn humanize(s: &str) -> String {$/;"	f
 inline_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_table(&mut self, _start: usize) -> Option<Value> {$/;"	f
 inline_tables	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_tables() {$/;"	f
@@ -292,6 +303,7 @@ into_inner	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.
 invalid_bare_numeral	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn invalid_bare_numeral() {$/;"	f
 is_digit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^fn is_digit(c: char) -> bool {$/;"	f
 key_name	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn key_name(&mut self) -> Option<String> {$/;"	f
+keybinding	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod keybinding;$/;"	m
 keyval_sep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn keyval_sep(&mut self) -> bool {$/;"	f
 linecol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn linecol() {$/;"	f
 literal_eats_crlf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn literal_eats_crlf() {$/;"	f
@@ -318,6 +330,8 @@ new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/sr
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    pub fn new(toml: Value) -> Decoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    pub fn new() -> Encoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn new(s: &'a str) -> Parser<'a> {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn new() -> Input_Buffer {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn new() -> History {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new() -> Prompt {$/;"	f
 new_with_terminfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn new_with_terminfo(out: T, terminfo: TermInfo) -> TerminfoTerminal<T> {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f

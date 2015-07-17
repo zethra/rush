@@ -33,7 +33,7 @@ pub mod calc;calc2,12
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,24
-fn main() {main10,236
+fn main() {main11,268
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -52,6 +52,23 @@ pub fn set_env_var() {set_env_var94,3269
 fn env_parse(input: String) -> String {env_parse109,3964
 mod tests{tests148,5188
     fn readconfig() {readconfig152,5230
+
+/home/michael/Code/Rust/rusty/src/core/keybinding.rs,0
+
+/home/michael/Code/Rust/rusty/src/core/history.rs,142
+pub struct History {History1,0
+impl History {History7,87
+    pub fn new() -> History {new8,102
+    fn cap_it(&mut self) {cap_it13,276
+
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,402
+pub struct Input_Buffer {Input_Buffer5,66
+impl Input_buffer {Input_buffer13,327
+    pub fn new() -> Input_Buffer {new15,348
+    pub fn get_parsed(&self) -> &Vec<&str> {get_parsed22,489
+    pub fn get_mut_parsed(&mut self) -> &mut Vec<&str> {get_mut_parsed25,565
+    pub fn get_hist(&self) -> &History {get_hist28,653
+    pub fn get_mut_hist(&mut self) -> &mut History {get_mut_hist31,725
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,883
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117
@@ -84,11 +101,14 @@ mod tests{tests57,1490
     fn prompt_init() {prompt_init62,1574
     fn updated_cwd() {updated_cwd69,1777
 
-/home/michael/Code/Rust/rusty/src/core/mod.rs,151
+/home/michael/Code/Rust/rusty/src/core/mod.rs,253
 pub mod execute;execute1,0
 pub mod autocomplete;autocomplete2,17
 pub mod logic;logic3,39
 pub mod prompt;prompt4,54
 pub mod config;config5,70
+pub mod keybinding;keybinding6,86
+pub mod buffer_in;buffer_in7,106
+pub mod history;history8,125
 /home/michael/.rusty-tags/cache/term-0.2.10.emacs,include
 /home/michael/.rusty-tags/cache/toml-0.1.21.emacs,include

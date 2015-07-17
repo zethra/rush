@@ -5,7 +5,8 @@ use rusty::utils::*;
 use rusty::core::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
-use std::io::{stdin,Write,stdout};
+use std::io::{stdin,BufReader,Write,stdout};
+use std::io::BufRead;
 
 fn main() {
     //Sets environment variables written in config file
@@ -24,7 +25,10 @@ fn main() {
         stdin().read_line(&mut command)
             .ok()
             .expect("Failure to read input");
-
+        //Testing
+        //Use Buffer in file here. Autocomplete can be integrated into that
+        //keybindings will be needed there as well
+        //Finish testing here
         let mut command_split: Vec<&str> = command.trim().split(' ').collect();
         match command_split.get(0).unwrap() {
 
