@@ -5,8 +5,8 @@ pub struct History<'b> {
 }
 //We want this to last the whole time rusty is running so 'static is an appropriate lifetime
 //here. Also gets the compiler to shut the hell up
-impl History {
-    pub fn new<'b>() -> History<'b> {
+impl <'b> History <'b> {
+    pub fn new() -> History<'b> {
         //Read from file. If no file create it. Cap history length in config otherwise default on
         //size
         History{
@@ -15,7 +15,7 @@ impl History {
             size_cap: 200,
         }
     }
-    fn cap_it(&mut self) {
+    fn cap_it(&'b mut self) {
         //if size of history is above the size cap this function maintains the cap by removing
         //history over time
         loop {
@@ -26,13 +26,13 @@ impl History {
             }
         }
     }
-    pub fn push(&mut self, vec: Vec<&str>) {
+    pub fn push(&'b mut self, vec: Vec<&'b str>) {
         self.history.push(vec);
     }
-    pub fn get(&self, vec_point: usize) -> &Vec<&str> {
-        &self.history.get(vec_point)
+    pub fn get(&'b self, vec_point: usize) -> &Vec<&'b str> {
+        self.history.get(vec_point).expect("Unable to retrieve")
     }
-    pub fn get_mut(&mut self, vec_point: usize) -> &mut Vec<&str> {
-        self.history.get_mut(vec_point)
+    pub fn get_mut(&'b mut self, vec_point: usize) -> &mut Vec<&'b str> {
+        self.history.get_mut(vec_point).expect("Unable to retrieve")
     }
 }
