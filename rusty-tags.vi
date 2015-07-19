@@ -49,12 +49,14 @@ FormatState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<io::Error> for InterpretError {$/;"	i
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<string::ParseError> for InterpretError {$/;"	i
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
-History	/home/michael/Code/Rust/rusty/src/core/history.rs	/^impl History {$/;"	i
-History	/home/michael/Code/Rust/rusty/src/core/history.rs	/^pub struct History {$/;"	s
-Input_Buffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^pub struct Input_Buffer {$/;"	s
-Input_buffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^impl Input_buffer {$/;"	i
+History	/home/michael/Code/Rust/rusty/src/core/history.rs	/^impl History<'static> {$/;"	i
+History	/home/michael/Code/Rust/rusty/src/core/history.rs	/^pub struct History<'a> {$/;"	s
+Input_Buffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^impl Input_Buffer<'static> {$/;"	i
+Input_Buffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^pub struct Input_Buffer<'a> {$/;"	s
 InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub enum InterpretError {$/;"	g
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
+Key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^impl Key {$/;"	i
+Key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^pub enum Key {$/;"	g
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    type Output: Write;$/;"	T
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    type Output = T;$/;"	T
 Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    type Output = T;$/;"	T
@@ -269,12 +271,14 @@ from_path	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2
 from_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn from_str(s: &str) -> Result<Value, Vec<ParserError>> {$/;"	f
 fruit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fruit() {$/;"	f
 fun_with_strings	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fun_with_strings() {$/;"	f
+get	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn get(&self, vec_point: usize) {$/;"	f
 get_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_cwd(&self) -> String {$/;"	f
 get_dbpath_for_term	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/searcher.rs	/^pub fn get_dbpath_for_term(term: &str) -> Option<PathBuf> {$/;"	f
 get_hist	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_hist(&self) -> &History {$/;"	f
 get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut Self::Output;$/;"	f
 get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut T { &mut self.out }$/;"	f
 get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut T { &mut self.buf }$/;"	f
+get_mut	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn get_mut(&mut self, vec_point: usize) {$/;"	f
 get_mut_hist	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_mut_hist(&mut self) -> &mut History {$/;"	f
 get_mut_parsed	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_mut_parsed(&mut self) -> &mut Vec<&str> {$/;"	f
 get_parsed	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn get_parsed(&self) -> &Vec<&str> {$/;"	f
@@ -330,8 +334,8 @@ new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/sr
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    pub fn new(toml: Value) -> Decoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    pub fn new() -> Encoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn new(s: &'a str) -> Parser<'a> {$/;"	f
-new	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn new() -> Input_Buffer {$/;"	f
-new	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn new() -> History {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn new() -> Input_Buffer<'static> {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn new() -> History<'static> {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new() -> Prompt {$/;"	f
 new_with_terminfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn new_with_terminfo(out: T, terminfo: TermInfo) -> TerminfoTerminal<T> {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f
@@ -353,6 +357,7 @@ pipes_fail	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes_fail
 print	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn print(&mut self, table: &'a TomlTable) -> fmt::Result {$/;"	f
 prompt	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod prompt;$/;"	m
 prompt_init	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    fn prompt_init() {$/;"	f
+push	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn push(&mut self, vec: Vec<&'static str>) {$/;"	f
 read_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_bool(&mut self) -> Result<bool, DecodeError> {$/;"	f
 read_byte	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^fn read_byte(r: &mut io::Read) -> io::Result<u8> {$/;"	f
 read_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_char(&mut self) -> Result<char, DecodeError> {$/;"	f
