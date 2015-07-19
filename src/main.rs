@@ -2,8 +2,9 @@
 //#![plugin(clippy)]
 #[macro_use] extern crate rusty;
 use rusty::utils::*;
-use rusty::core::*;
+use rusty::core::execute::interpret;
 use rusty::core::buffer_in::*;
+use rusty::core::history::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
 use std::io::{stdin,Write,stdout};
@@ -21,7 +22,10 @@ fn main() {
     stdout().flush().ok().expect("Failed to put prompt on line");
 
     //Set up buffer to read inputs
-    let mut buffer = Input_Buffer::new();
+    let mut input_buffer = InputBuffer::new();
+
+    //Set up history to store lines
+    let mut history = History::new();
 
     //Loop to recieve and execute commands
     loop{
@@ -30,6 +34,7 @@ fn main() {
             .ok()
             .expect("Failure to read input");
         let mut command_split: Vec<&str> = command.trim().split(' ').collect();
+
         match command_split.get(0).unwrap() {
 
             &"cd" => {
@@ -49,7 +54,7 @@ fn main() {
             _ => {
                 let alias = check_alias(command_split.clone());
                 if !alias.is_some() {
-                    let output = execute::interpret(command_split);
+                    let output = interpret(command_split);
                     if !output.is_empty() {
                         println!("{}",output.trim());
                     }
@@ -61,14 +66,21 @@ fn main() {
                     for i in command_split {
                         vec.push(i);
                     }
-                    let output =  execute::interpret(vec);
+                    let output =  interpret(vec);
                     if !output.is_empty() {
                         println!("{}",output.trim());
                     }
                 }
             }
         }
+        //Things that must always run in order to work.
+        //Input Buffer Clean Up and Update
 
+        //History Clean Up and Update
+
+        //Totally unsure how to get history to update. Lots of not living long enough
+        history.cap_it();
+        //Prompt Printing
         print!("{} ", prompt.get_user_p());
         stdout().flush().ok().expect("Failed to put prompt on line");
     }
