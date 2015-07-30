@@ -49,6 +49,8 @@ FormatState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<io::Error> for InterpretError {$/;"	i
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<string::ParseError> for InterpretError {$/;"	i
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
+HistoryBuffer	/home/michael/Code/Rust/rusty/src/core/history.rs	/^impl HistoryBuffer {$/;"	i
+HistoryBuffer	/home/michael/Code/Rust/rusty/src/core/history.rs	/^pub struct HistoryBuffer {$/;"	s
 InputBuffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^impl InputBuffer {$/;"	i
 InputBuffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^pub struct InputBuffer {$/;"	s
 InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub enum InterpretError {$/;"	g
@@ -282,6 +284,7 @@ get_stderr	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stderr(out
 get_stdout	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stdout(output: Option<Output>) -> String{$/;"	f
 get_user_p	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_user_p(&self) -> String {$/;"	f
 hashmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn hashmap() {$/;"	f
+history	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod history;$/;"	m
 humanize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^                fn humanize(s: &str) -> String {$/;"	f
 inline_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_table(&mut self, _start: usize) -> Option<Value> {$/;"	f
 inline_tables	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_tables() {$/;"	f
@@ -325,6 +328,7 @@ new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/sr
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    pub fn new() -> Encoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn new(s: &'a str) -> Parser<'a> {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn new() -> Self {$/;"	f
+new	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn new() -> Self {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new() -> Prompt {$/;"	f
 new_with_terminfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn new_with_terminfo(out: T, terminfo: TermInfo) -> TerminfoTerminal<T> {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f
@@ -411,7 +415,8 @@ smoke_hyphen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-
 split_pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {$/;"	f
 stderr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub fn stderr() -> Option<Box<StderrTerminal>> {$/;"	f
 stdout	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub fn stdout() -> Option<Box<StdoutTerminal>> {$/;"	f
-store	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn store(&mut self) {$/;"	f
+store	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn store(&mut self, line: String) {$/;"	f
+store	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn store(&mut self, input: String) {$/;"	f
 stray_cr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn stray_cr() {$/;"	f
 string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn string(&mut self, start: usize) -> Option<Value> {$/;"	f
 string_no_newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn string_no_newline() {$/;"	f

@@ -24,15 +24,15 @@ impl InputBuffer {
     //activates various commands
     pub fn readline(&mut self) {
         let mut buffer = String::new();
-        loop {
-            let mut stdin = io::stdin();
-            let input = stdin.chars();
-            for i in input {
-                if i.is_ok() {
-                    buffer.push(i.unwrap());
+        let mut stdin = io::stdin().chars();
+        for c in stdin {
+            if c.is_ok() {
+                let unwrapped = c.unwrap();
+                if unwrapped == '\n' {
+                    break;
                 }
+                buffer.push(unwrapped);
             }
-            println!("{}",buffer);
         }
         self.line = buffer;
     }
@@ -43,8 +43,8 @@ impl InputBuffer {
         out_vec
     }
 
-    pub fn store(&mut self) {
-        self.hist.push(self.line.clone());
+    pub fn store(&mut self, line: String) {
+        self.hist.push(line);
         self.line = String::new();
     }
 

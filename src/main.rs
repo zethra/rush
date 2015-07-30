@@ -4,6 +4,7 @@
 use rusty::utils::*;
 use rusty::core::execute::interpret;
 use rusty::core::buffer_in::*;
+use rusty::core::history::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
 use std::io::{stdin,Write,stdout};
@@ -20,18 +21,14 @@ fn main() {
     print!("{} ", prompt.get_user_p());
     stdout().flush().ok().expect("Failed to put prompt on line");
 
-    //Set up buffer to read inputs
-    let mut input_buffer = InputBuffer::new(); //Make sure to get rid of _ later
-    input_buffer.output();
-    input_buffer.store();
-
+    //Set up buffer to read inputs and History Buffer
+    let mut input_buffer = InputBuffer::new();
+    let mut history = HistoryBuffer::new();
     //Loop to recieve and execute commands
     loop{
-        let mut command = String::new();
-        stdin().read_line(&mut command)
-            .ok()
-            .expect("Failure to read input");
-        let mut command_split: Vec<&str> = command.trim().split(' ').collect();
+        input_buffer.readline();
+        history.store(input_buffer.line.clone());
+        let mut command_split: Vec<&str> = input_buffer.line.trim().split(' ').collect();
 
         match command_split.get(0).unwrap() {
 
