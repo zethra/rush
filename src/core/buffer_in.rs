@@ -12,9 +12,11 @@ pub struct InputBuffer {
 impl InputBuffer {
 
     pub fn new() -> Self {
+        let mut buffer = String::new();
+        let mut vector: Vec<String> = Vec::new();
         InputBuffer {
-            line: String::new(),
-            hist: Vec::new(),
+            line: buffer,
+            hist: vector,
         }
     }
 
@@ -42,6 +44,8 @@ impl InputBuffer {
     }
 
     pub fn store(&mut self) {
+        self.hist.push(self.line.clone());
+        self.line = String::new();
     }
 
 }

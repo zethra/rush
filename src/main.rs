@@ -22,7 +22,9 @@ fn main() {
 
     //Set up buffer to read inputs
     let mut input_buffer = InputBuffer::new(); //Make sure to get rid of _ later
-    input_buffer.readline();
+    input_buffer.output();
+    input_buffer.store();
+
     //Loop to recieve and execute commands
     loop{
         let mut command = String::new();
