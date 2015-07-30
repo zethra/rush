@@ -1,22 +1,47 @@
-#![allow(unused_inports)]
-use core::autocomplete;
-use core::keybinding;
+//use core::autocomplete;
+//use core::keybinding;
+use std::io;
+use std::mem; //Better way to not use mem replace maybe?
+use std::io::Read;
 
-pub struct InputBuffer<'a> {
-    pub line: Vec<&'a str>,//Output vector to use in interpretation of whatever need be
+pub struct InputBuffer {
+    pub line: String,
+    pub hist: Vec<String>,
 }
 
-//Flush parsed buffer if need be if keyboard interupts are recieved
-//etc etc etc
+impl InputBuffer {
 
-//We want this to last the whole time rusty is running so 'static is an
-//appropriate lifetime here. Also gets the compiler to shut the hell up
-impl <'a> InputBuffer<'a> {
-
-    pub fn new() -> InputBuffer<'a> {
+    pub fn new() -> Self {
         InputBuffer {
-            line: Vec::new(),
+            line: String::new(),
+            hist: Vec::new(),
         }
+    }
+
+    //Rads key strokes into buffer. If a certain key is recieved
+    //activates various commands
+    pub fn readline(&mut self) {
+        let mut buffer = String::new();
+        loop {
+            let mut stdin = io::stdin();
+            let input = stdin.chars();
+            for i in input {
+                if i.is_ok() {
+                    buffer.push(i.unwrap());
+                }
+            }
+            println!("{}",buffer);
+        }
+        self.line = buffer;
+    }
+
+    //Outputs buffer for usage puts line into history
+    pub fn output(&mut self) -> Vec<&str> {
+        let out_vec: Vec<&str> = self.line.trim().split(' ').collect();
+        out_vec
+    }
+
+    pub fn store(&mut self) {
     }
 
 }

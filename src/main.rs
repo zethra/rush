@@ -1,10 +1,9 @@
-#![feature(plugin)]
+//#![feature(plugin)]
 //#![plugin(clippy)]
 #[macro_use] extern crate rusty;
 use rusty::utils::*;
 use rusty::core::execute::interpret;
 use rusty::core::buffer_in::*;
-use rusty::core::history::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
 use std::io::{stdin,Write,stdout};
@@ -22,11 +21,8 @@ fn main() {
     stdout().flush().ok().expect("Failed to put prompt on line");
 
     //Set up buffer to read inputs
-    let mut input_buffer = InputBuffer::new();
-
-    //Set up history to store lines
-    let mut history = History::new();
-
+    let mut input_buffer = InputBuffer::new(); //Make sure to get rid of _ later
+    input_buffer.readline();
     //Loop to recieve and execute commands
     loop{
         let mut command = String::new();
@@ -78,8 +74,6 @@ fn main() {
 
         //History Clean Up and Update
 
-        //Totally unsure how to get history to update. Lots of not living long enough
-        history.cap_it();
         //Prompt Printing
         print!("{} ", prompt.get_user_p());
         stdout().flush().ok().expect("Failed to put prompt on line");
