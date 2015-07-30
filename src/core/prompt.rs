@@ -55,6 +55,7 @@ impl Prompt {
 
 #[cfg(test)]
 mod tests{
+    #[allow(unused_imports)]
     use std::env::{current_dir,home_dir};
     use super::*;
 

@@ -1,5 +1,6 @@
 //#![feature(plugin)]
 //#![plugin(clippy)]
+#![cfg(not(test))]
 #[macro_use] extern crate rusty;
 use rusty::utils::*;
 use rusty::core::execute::interpret;
@@ -7,7 +8,7 @@ use rusty::core::buffer_in::*;
 use rusty::core::history::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
-use std::io::{stdin,Write,stdout};
+use std::io::{Write,stdout};
 
 fn main() {
     //Sets environment variables written in config file

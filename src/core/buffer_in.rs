@@ -1,7 +1,7 @@
+#![allow(unused_mut)]
 //use core::autocomplete;
 //use core::keybinding;
 use std::io;
-use std::mem; //Better way to not use mem replace maybe?
 use std::io::Read;
 
 pub struct InputBuffer {

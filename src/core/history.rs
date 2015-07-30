@@ -1,3 +1,4 @@
+#![allow(unused_mut)]
 pub struct HistoryBuffer {
     pub histvec: Vec<String>,
 }

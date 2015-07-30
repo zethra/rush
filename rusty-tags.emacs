@@ -52,8 +52,8 @@ pub mod cat;cat3,26
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,48
-fn main() {main11,286
-fn main() {main11,286
+fn main() {main12,309
+fn main() {main12,309
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -91,19 +91,29 @@ pub enum Key {Key1,0
 impl Key {Key18,166
 impl Key {Key18,166
 
-/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,540
-pub struct InputBuffer {InputBuffer7,140
-pub struct InputBuffer {InputBuffer7,140
-impl InputBuffer {InputBuffer12,217
-impl InputBuffer {InputBuffer12,217
-    pub fn new() -> Self {new14,237
-    pub fn new() -> Self {new14,237
-    pub fn readline(&mut self) {readline23,464
-    pub fn readline(&mut self) {readline23,464
-    pub fn output(&mut self) -> Vec<&str> {output39,903
-    pub fn output(&mut self) -> Vec<&str> {output39,903
-    pub fn store(&mut self) {store44,1042
-    pub fn store(&mut self) {store44,1042
+/home/michael/Code/Rust/rusty/src/core/history.rs,362
+pub struct HistoryBuffer {HistoryBuffer2,22
+pub struct HistoryBuffer {HistoryBuffer2,22
+impl HistoryBuffer {HistoryBuffer6,82
+impl HistoryBuffer {HistoryBuffer6,82
+    pub fn new() -> Self {new7,103
+    pub fn new() -> Self {new7,103
+    pub fn store(&mut self, input: String) {store14,244
+    pub fn store(&mut self, input: String) {store14,244
+
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,568
+pub struct InputBuffer {InputBuffer7,105
+pub struct InputBuffer {InputBuffer7,105
+impl InputBuffer {InputBuffer12,182
+impl InputBuffer {InputBuffer12,182
+    pub fn new() -> Self {new14,202
+    pub fn new() -> Self {new14,202
+    pub fn readline(&mut self) {readline25,508
+    pub fn readline(&mut self) {readline25,508
+    pub fn output(&mut self) -> Vec<&str> {output41,959
+    pub fn output(&mut self) -> Vec<&str> {output41,959
+    pub fn store(&mut self, line: String) {store46,1098
+    pub fn store(&mut self, line: String) {store46,1098
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,1766
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117
@@ -156,12 +166,12 @@ impl Prompt {Prompt14,360
     pub fn update_cwd(&mut self){update_cwd35,770
 mod tests{tests57,1490
 mod tests{tests57,1490
-    fn prompt_init() {prompt_init62,1574
-    fn prompt_init() {prompt_init62,1574
-    fn updated_cwd() {updated_cwd69,1777
-    fn updated_cwd() {updated_cwd69,1777
+    fn prompt_init() {prompt_init63,1603
+    fn prompt_init() {prompt_init63,1603
+    fn updated_cwd() {updated_cwd70,1806
+    fn updated_cwd() {updated_cwd70,1806
 
-/home/michael/Code/Rust/rusty/src/core/mod.rs,444
+/home/michael/Code/Rust/rusty/src/core/mod.rs,506
 pub mod execute;execute1,0
 pub mod execute;execute1,0
 pub mod autocomplete;autocomplete2,17
@@ -176,5 +186,7 @@ pub mod keybinding;keybinding6,86
 pub mod keybinding;keybinding6,86
 pub mod buffer_in;buffer_in7,106
 pub mod buffer_in;buffer_in7,106
+pub mod history;history8,125
+pub mod history;history8,125
 /home/michael/.rusty-tags/cache/term-0.2.10.emacs,include
 /home/michael/.rusty-tags/cache/toml-0.1.21.emacs,include
