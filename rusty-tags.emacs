@@ -52,8 +52,8 @@ pub mod cat;cat3,26
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,48
-fn main() {main12,309
-fn main() {main12,309
+fn main() {main13,328
+fn main() {main13,328
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -101,19 +101,17 @@ impl HistoryBuffer {HistoryBuffer6,82
     pub fn store(&mut self, input: String) {store14,244
     pub fn store(&mut self, input: String) {store14,244
 
-/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,568
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,452
 pub struct InputBuffer {InputBuffer7,105
 pub struct InputBuffer {InputBuffer7,105
-impl InputBuffer {InputBuffer12,182
-impl InputBuffer {InputBuffer12,182
-    pub fn new() -> Self {new14,202
-    pub fn new() -> Self {new14,202
-    pub fn readline(&mut self) {readline25,508
-    pub fn readline(&mut self) {readline25,508
-    pub fn output(&mut self) -> Vec<&str> {output41,959
-    pub fn output(&mut self) -> Vec<&str> {output41,959
-    pub fn store(&mut self, line: String) {store46,1098
-    pub fn store(&mut self, line: String) {store46,1098
+impl InputBuffer {InputBuffer11,155
+impl InputBuffer {InputBuffer11,155
+    pub fn new() -> Self {new13,175
+    pub fn new() -> Self {new13,175
+    pub fn readline(&mut self) {readline22,405
+    pub fn readline(&mut self) {readline22,405
+    pub fn output(&mut self) -> Vec<&str> {output38,871
+    pub fn output(&mut self) -> Vec<&str> {output38,871
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,1766
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117

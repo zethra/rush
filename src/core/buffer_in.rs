@@ -6,17 +6,14 @@ use std::io::Read;
 
 pub struct InputBuffer {
     pub line: String,
-    pub hist: Vec<String>,
 }
 
 impl InputBuffer {
 
     pub fn new() -> Self {
         let mut buffer = String::new();
-        let mut vector: Vec<String> = Vec::new();
         InputBuffer {
             line: buffer,
-            hist: vector,
         }
     }
 
@@ -28,10 +25,10 @@ impl InputBuffer {
         for c in stdin {
             if c.is_ok() {
                 let unwrapped = c.unwrap();
-                if unwrapped == '\n' {
-                    break;
+                match unwrapped {
+                    '\n' => break,
+                      _  => buffer.push(unwrapped),
                 }
-                buffer.push(unwrapped);
             }
         }
         self.line = buffer;
@@ -41,11 +38,6 @@ impl InputBuffer {
     pub fn output(&mut self) -> Vec<&str> {
         let out_vec: Vec<&str> = self.line.trim().split(' ').collect();
         out_vec
-    }
-
-    pub fn store(&mut self, line: String) {
-        self.hist.push(line);
-        self.line = String::new();
     }
 
 }

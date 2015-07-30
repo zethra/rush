@@ -415,7 +415,6 @@ smoke_hyphen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-
 split_pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {$/;"	f
 stderr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub fn stderr() -> Option<Box<StderrTerminal>> {$/;"	f
 stdout	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub fn stdout() -> Option<Box<StdoutTerminal>> {$/;"	f
-store	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn store(&mut self, line: String) {$/;"	f
 store	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn store(&mut self, input: String) {$/;"	f
 stray_cr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn stray_cr() {$/;"	f
 string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn string(&mut self, start: usize) -> Option<Value> {$/;"	f
