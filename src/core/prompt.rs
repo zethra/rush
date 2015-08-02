@@ -15,8 +15,8 @@ impl Prompt {
 
     pub fn new() -> Prompt {
         Prompt {
-            user_p: "michael@flame %".to_string(),
-            cwd: "~/".to_string(),
+            user_p: "michael@flame %".to_owned(),
+            cwd: "~/".to_owned(),
         }
     }
 
@@ -38,7 +38,7 @@ impl Prompt {
         //Makes cwd ~/ if in home directory of user otherwise
         //just the current directory
         if buff.starts_with(home_dir().unwrap().as_path()){
-        let mut home = "~/".to_string();
+        let mut home = "~/".to_owned();
             home.push_str(buff.as_path().relative_from(home_dir()
                                                    .unwrap()
                                                    .as_path()
@@ -46,7 +46,7 @@ impl Prompt {
                 .unwrap().to_str().unwrap());
             self.cwd = home;
         } else {
-            self.cwd = buff.as_path().to_str().unwrap().to_string();
+            self.cwd = buff.as_path().to_str().unwrap().to_owned();
         }
 
     }
@@ -62,15 +62,15 @@ mod tests{
     #[test]
     fn prompt_init() {
         let testp = Prompt::new();
-        assert_eq!(testp.get_user_p(),"michael@flame %".to_string());
-        assert_eq!(testp.get_cwd(),"~/".to_string());
+        assert_eq!(testp.get_user_p(),"michael@flame %".to_owned());
+        assert_eq!(testp.get_cwd(),"~/".to_owned());
     }
 
     /*#[test]
     fn updated_cwd() {
         let mut testp = Prompt::new();
         testp.update_cwd();
-        assert_eq!(testp.get_cwd(),current_dir().ok().unwrap().as_path().to_str().unwrap().to_string());
+        assert_eq!(testp.get_cwd(),current_dir().ok().unwrap().as_path().to_str().unwrap().to_owned());
     }
     */
 }

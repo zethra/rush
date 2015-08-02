@@ -5,7 +5,7 @@
 #![feature(path_relative_from)]
 #![feature(custom_derive)]
 #![feature(io)]
-//#![plugin(clippy)]
+#![plugin(clippy)]
 pub mod utils;
 pub mod core;
 pub mod scripting;

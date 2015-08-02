@@ -1,5 +1,5 @@
-//#![feature(plugin)]
-//#![plugin(clippy)]
+#![feature(plugin)]
+#![plugin(clippy)]
 #![cfg(not(test))]
 #[macro_use] extern crate rusty;
 use rusty::utils::*;

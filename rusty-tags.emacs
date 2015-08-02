@@ -8,12 +8,12 @@ pub mod script_macros;script_macros1,0
 pub mod script_macros;script_macros1,0
 
 /home/michael/Code/Rust/rusty/src/lib.rs,178
-pub mod utils;utils9,181
-pub mod utils;utils9,181
-pub mod core;core10,196
-pub mod core;core10,196
-pub mod scripting;scripting11,210
-pub mod scripting;scripting11,210
+pub mod utils;utils9,179
+pub mod utils;utils9,179
+pub mod core;core10,194
+pub mod core;core10,194
+pub mod scripting;scripting11,208
+pub mod scripting;scripting11,208
 
 /home/michael/Code/Rust/rusty/src/utils/cd.rs,464
 pub fn change_directory(input: Vec<&str>){change_directory6,212
@@ -52,8 +52,8 @@ pub mod cat;cat3,26
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,48
-fn main() {main12,309
-fn main() {main12,309
+fn main() {main13,324
+fn main() {main13,324
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -74,16 +74,16 @@ fn read_in_config() -> String{read_in_config8,161
 fn read_in_config() -> String{read_in_config8,161
 pub fn read_config_prompt(input: &Prompt) -> String {read_config_prompt26,917
 pub fn read_config_prompt(input: &Prompt) -> String {read_config_prompt26,917
-pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias66,2389
-pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias66,2389
-pub fn set_env_var() {set_env_var94,3269
-pub fn set_env_var() {set_env_var94,3269
-fn env_parse(input: String) -> String {env_parse109,3964
-fn env_parse(input: String) -> String {env_parse109,3964
-mod tests{tests148,5188
-mod tests{tests148,5188
-    fn readconfig() {readconfig152,5230
-    fn readconfig() {readconfig152,5230
+pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias66,2388
+pub fn check_alias(input: Vec<&str>) -> Option<String> {check_alias66,2388
+pub fn set_env_var() {set_env_var94,3268
+pub fn set_env_var() {set_env_var94,3268
+fn env_parse(input: String) -> String {env_parse109,3963
+fn env_parse(input: String) -> String {env_parse109,3963
+mod tests{tests148,5187
+mod tests{tests148,5187
+    fn readconfig() {readconfig152,5229
+    fn readconfig() {readconfig152,5229
 
 /home/michael/Code/Rust/rusty/src/core/keybinding.rs,90
 pub enum Key {Key1,0
@@ -156,20 +156,20 @@ impl Prompt {Prompt14,360
 impl Prompt {Prompt14,360
     pub fn new() -> Prompt {new16,375
     pub fn new() -> Prompt {new16,375
-    pub fn update_prompt(&mut self) {update_prompt23,524
-    pub fn update_prompt(&mut self) {update_prompt23,524
-    pub fn get_user_p(&self) -> String {get_user_p27,618
-    pub fn get_user_p(&self) -> String {get_user_p27,618
-    pub fn get_cwd(&self) -> String {get_cwd31,697
-    pub fn get_cwd(&self) -> String {get_cwd31,697
-    pub fn update_cwd(&mut self){update_cwd35,770
-    pub fn update_cwd(&mut self){update_cwd35,770
-mod tests{tests57,1490
-mod tests{tests57,1490
-    fn prompt_init() {prompt_init63,1603
-    fn prompt_init() {prompt_init63,1603
-    fn updated_cwd() {updated_cwd70,1806
-    fn updated_cwd() {updated_cwd70,1806
+    pub fn update_prompt(&mut self) {update_prompt23,522
+    pub fn update_prompt(&mut self) {update_prompt23,522
+    pub fn get_user_p(&self) -> String {get_user_p27,616
+    pub fn get_user_p(&self) -> String {get_user_p27,616
+    pub fn get_cwd(&self) -> String {get_cwd31,695
+    pub fn get_cwd(&self) -> String {get_cwd31,695
+    pub fn update_cwd(&mut self){update_cwd35,768
+    pub fn update_cwd(&mut self){update_cwd35,768
+mod tests{tests57,1486
+mod tests{tests57,1486
+    fn prompt_init() {prompt_init63,1599
+    fn prompt_init() {prompt_init63,1599
+    fn updated_cwd() {updated_cwd70,1800
+    fn updated_cwd() {updated_cwd70,1800
 
 /home/michael/Code/Rust/rusty/src/core/mod.rs,506
 pub mod execute;execute1,0

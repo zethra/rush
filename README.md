@@ -16,6 +16,10 @@ itself (no guarantees about the programs you run with it.)
 At this point in time the program is far from being functional in an every day
 environment.
 
+A lot of development has gone on since my last version bump and with it
+I can say the base level functionality is complete. Now I'm starting to
+add the features that actually make a shell worth while to use.
+
 ###Requirements for Rusty
 
 - Rust Nightly
@@ -23,7 +27,7 @@ environment.
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
 
-###The Current Version is 0.0.4 meaning Rusty can and has support for:
+###The Current Version is 0.1.0 meaning Rusty can and has support for:
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
@@ -42,12 +46,13 @@ environment.
 		- [x] Set enviornment variables
 		- [x] Be able to add to current variable e.g. PATH = "PATH:/home/user/.bin"
 	- [ ] Source config files
-
+- [ ] Command History
+- [ ] Buffered Input
+- [ ] Keyboard Interupts
 ###Planned but not implemented:
 - [ ] Better error handling using try!()
 - [ ] cd - functionality
 - [ ] Directory stack e.g. dirs 2 moves to second directory on the stack
-- [ ] Command History
 - [ ] File redirection
 - [ ] Auto Completion
 - [ ] Better output formatting for completed commands

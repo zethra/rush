@@ -29,7 +29,7 @@ pub fn read_config_prompt(input: &Prompt) -> String {
     let value: toml::Value = buffer_string.parse().unwrap();
     let left = value.lookup("prompt.left").unwrap().as_str()
         .unwrap().split("%");
-    let mut prompt = "".to_string();
+    let mut prompt = "".to_owned();
     for i in left {
         if i.len() > 0 {
             match i.char_at(0) {

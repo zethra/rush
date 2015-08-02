@@ -1,12 +1,14 @@
 [package]
 name = "rusty"
-version = "0.0.4"
+version = "0.1.0"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 
 [dependencies]
 toml = "*"
 term = "*"
-#clippy = "*"
+
+[dependencies.clippy]
+git = "https://github.com/manishearth/rust-clippy"
 
 [profile.dev]
 opt-level = 0

@@ -1,10 +1,16 @@
 [root]
 name = "rusty"
-version = "0.0.4"
+version = "0.1.0"
 dependencies = [
+ "clippy 0.0.7 (git+https://github.com/manishearth/rust-clippy)",
  "term 0.2.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "toml 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "clippy"
+version = "0.0.7"
+source = "git+https://github.com/manishearth/rust-clippy#de5ccdfab68a5e37689f3c950ed1532ba9d652a0"
 
 [[package]]
 name = "kernel32-sys"
