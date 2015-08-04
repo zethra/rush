@@ -10,7 +10,6 @@ use rusty::core::history::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
 use rusty::core::keybinding::*;
-use std::io::{Write,stdout};
 
 fn main() {
     //Sets environment variables written in config file
@@ -21,8 +20,7 @@ fn main() {
     let mut prompt = Prompt::new();
     prompt.update_cwd();
     prompt.update_prompt();
-    print!("{} ", prompt.get_user_p());
-    stdout().flush().ok().expect("Failed to put prompt on line");
+    prompt.print();
 
     //Set up buffer to read inputs and History Buffer
     let mut input_buffer = InputBuffer::new();
@@ -53,14 +51,12 @@ fn main() {
             &"clear" => {
                 let output = interpret(command_split.clone());
                 print!("{}", output);
-                print!("{} ", prompt.get_user_p());
-                stdout().flush().ok().expect("Failed to put prompt on line");
+                prompt.print();
                 continue;
             }
 
             &""  => {
-                print!("{} ", prompt.get_user_p());
-                stdout().flush().ok().expect("Failed to put prompt on line");
+                prompt.print();
                 continue;
             }
 
@@ -92,9 +88,7 @@ fn main() {
 
         //History Clean Up and Update
 
-        //Prompt Printing
-        print!("{} ", prompt.get_user_p());
-        stdout().flush().ok().expect("Failed to put prompt on line");
+        prompt.print();
     }
 
 }

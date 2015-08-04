@@ -1,5 +1,6 @@
 use std::env::{current_dir, home_dir};
 use core::config::read_config_prompt;
+use std::io::{stdout, Write};
 //For now it will access the toml file in the config directory
 //Later give it the means to access it from ~/.rusty.toml
 //Activate this only when performing su or cd that way it reduces
@@ -50,7 +51,10 @@ impl Prompt {
         }
 
     }
-
+    pub fn print(&self) {
+        print!("{} ", self.get_user_p());
+        stdout().flush().ok().expect("Failed to put prompt on line");
+    }
 }
 
 #[cfg(test)]
