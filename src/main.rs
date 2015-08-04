@@ -9,6 +9,7 @@ use rusty::core::buffer_in::*;
 use rusty::core::history::*;
 use rusty::core::prompt::Prompt;
 use rusty::core::config::{check_alias,set_env_var};
+use rusty::core::keybinding::*;
 use std::io::{Write,stdout};
 
 fn main() {
@@ -28,8 +29,16 @@ fn main() {
     let mut history = HistoryBuffer::new();
     //Loop to recieve and execute commands
     loop{
-        input_buffer.readline();
+        let key = input_buffer.readline();
         history.store(input_buffer.line.clone());
+
+        match key {
+            Key::Up => {}, //Go up in History
+            Key::Down => {}, //Go down in History
+            Key::Null => {},
+            _ => {},
+        }
+
         let mut command_split: Vec<&str> = input_buffer.output();
 
         match command_split.get(0).unwrap() {
@@ -41,11 +50,19 @@ fn main() {
                 prompt.update_prompt();
             }
 
-            &"cat" => {
-
+            &"clear" => {
+                let output = interpret(command_split.clone());
+                print!("{}", output);
+                print!("{} ", prompt.get_user_p());
+                stdout().flush().ok().expect("Failed to put prompt on line");
+                continue;
             }
 
-            &""  => continue,
+            &""  => {
+                print!("{} ", prompt.get_user_p());
+                stdout().flush().ok().expect("Failed to put prompt on line");
+                continue;
+            }
 
             &"exit" => break,
             _ => {

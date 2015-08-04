@@ -94,7 +94,6 @@ InputBuffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^impl InputBuff
 InputBuffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^pub struct InputBuffer {$/;"	s
 InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub enum InterpretError {$/;"	g
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
-Key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^impl Key {$/;"	i
 Key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^pub enum Key {$/;"	g
 LARGE_INTEGER	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LARGE_INTEGER = c_longlong;$/;"	T
 LONG	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LONG = c_long;$/;"	T
@@ -565,6 +564,7 @@ new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/sr
 new	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn new() -> Self {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn new() -> Self {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new() -> Prompt {$/;"	f
+new_key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^pub fn new_key(input: i32) -> Key {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f
 next_pos	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn next_pos(&self) -> usize {$/;"	f
 nlink_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type nlink_t = u16;$/;"	T
@@ -665,7 +665,7 @@ read_u8	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.2
 read_usize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_usize(&mut self) -> Result<usize, DecodeError> {$/;"	f
 readconfig	/home/michael/Code/Rust/rusty/src/core/config.rs	/^    fn readconfig() {$/;"	f
 readdir_r	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn readdir_r(dirp: *mut DIR, entry: *mut dirent_t,$/;"	f
-readline	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn readline(&mut self) -> i32 {$/;"	f
+readline	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn readline(&mut self) -> Key {$/;"	f
 readlink	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn readlink(path: *const c_char,$/;"	f
 realloc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn realloc(p: *mut c_void, size: size_t) -> *mut c_void;$/;"	f
 realpath	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn realpath(pathname: *const c_char, resolved: *mut c_char)$/;"	f

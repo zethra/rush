@@ -11,13 +11,13 @@ macro_rules! run {run2,16
 pub mod script_macros;script_macros1,0
 pub mod script_macros;script_macros1,0
 
-/home/michael/Code/Rust/rusty/src/lib.rs,178
-pub mod utils;utils9,179
-pub mod utils;utils9,179
-pub mod core;core10,194
-pub mod core;core10,194
-pub mod scripting;scripting11,208
-pub mod scripting;scripting11,208
+/home/michael/Code/Rust/rusty/src/lib.rs,176
+pub mod utils;utils8,163
+pub mod utils;utils8,163
+pub mod core;core9,178
+pub mod core;core9,178
+pub mod scripting;scripting10,192
+pub mod scripting;scripting10,192
 
 /home/michael/Code/Rust/rusty/src/utils/cd.rs,464
 pub fn change_directory(input: Vec<&str>){change_directory6,212
@@ -89,11 +89,11 @@ mod tests{tests148,5187
     fn readconfig() {readconfig152,5229
     fn readconfig() {readconfig152,5229
 
-/home/michael/Code/Rust/rusty/src/core/keybinding.rs,90
+/home/michael/Code/Rust/rusty/src/core/keybinding.rs,148
 pub enum Key {Key1,0
 pub enum Key {Key1,0
-impl Key {Key18,166
-impl Key {Key18,166
+pub fn new_key(input: i32) -> Key {new_key16,265
+pub fn new_key(input: i32) -> Key {new_key16,265
 
 /home/michael/Code/Rust/rusty/src/core/history.rs,362
 pub struct HistoryBuffer {HistoryBuffer2,22
@@ -105,19 +105,19 @@ impl HistoryBuffer {HistoryBuffer6,82
     pub fn store(&mut self, input: String) {store14,244
     pub fn store(&mut self, input: String) {store14,244
 
-/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,564
-   fn get_input() -> libc::c_int;get_input5,58
-   fn get_input() -> libc::c_int;get_input5,58
-pub struct InputBuffer {InputBuffer8,95
-pub struct InputBuffer {InputBuffer8,95
-impl InputBuffer {InputBuffer12,145
-impl InputBuffer {InputBuffer12,145
-    pub fn new() -> Self {new14,165
-    pub fn new() -> Self {new14,165
-    pub fn readline(&mut self) -> i32 {readline23,395
-    pub fn readline(&mut self) -> i32 {readline23,395
-    pub fn output(&mut self) -> Vec<&str> {output47,1116
-    pub fn output(&mut self) -> Vec<&str> {output47,1116
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,566
+   fn get_input() -> libc::c_int;get_input6,83
+   fn get_input() -> libc::c_int;get_input6,83
+pub struct InputBuffer {InputBuffer9,120
+pub struct InputBuffer {InputBuffer9,120
+impl InputBuffer {InputBuffer13,170
+impl InputBuffer {InputBuffer13,170
+    pub fn new() -> Self {new15,190
+    pub fn new() -> Self {new15,190
+    pub fn readline(&mut self) -> Key {readline24,422
+    pub fn readline(&mut self) -> Key {readline24,422
+    pub fn output(&mut self) -> Vec<&str> {output46,1068
+    pub fn output(&mut self) -> Vec<&str> {output46,1068
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,1766
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117

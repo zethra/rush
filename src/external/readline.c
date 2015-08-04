@@ -27,6 +27,12 @@ char getch(void) {
 
 int get_input() {
 	char output = getch();
+
+	//Catch Carriage Returns.
+	if(output == 10)
+		return -5;
+
+	//Handling Arrow Keys
 	if(output == '\033') { //if first value is escape
 		getch(); //skips the [
 		switch(getch()) {
@@ -40,6 +46,8 @@ int get_input() {
 				return -4;
 		}
 	}
+
+	//Count it as the end of a line
 	if(output == '\n')
 		return -5;
 

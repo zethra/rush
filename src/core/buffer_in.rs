@@ -1,5 +1,6 @@
 extern crate libc;
 use std::io::{stdout,Write};
+use core::keybinding::*;
 
 extern {
    fn get_input() -> libc::c_int;
@@ -12,35 +13,46 @@ pub struct InputBuffer {
 impl InputBuffer {
 
     pub fn new() -> Self {
-        let mut buffer = String::new();
+        let mut _buffer = String::new();
         InputBuffer {
-            line: buffer,
+            line: _buffer,
         }
     }
 
     //Rads key strokes into buffer. If a certain key is recieved
     //activates various commands
-    pub fn readline(&mut self) -> i32 {
+    #[allow(unreachable_code)]
+    pub fn readline(&mut self) -> Key {
         let mut line = String::new();
         let mut ch;
         loop {
             ch  = unsafe {get_input()};
-            match ch {
-               -1 => println!("UP"),
-               -2 => println!("DOWN"),
-               -3 => println!("LEFT"),
-               -4 => println!("RIGHT"),
-               -5 => break,
-                _ => {
-                    line.push(ch as u8 as char);
-                    print!("{}", ch as u8 as char);
+            let keypress = new_key(ch);
+            match keypress {
+                Key::Enter => {
+                    println!("");
                     stdout().flush().ok().expect("Could not flush stdout");
+                    self.line = line;
+                    return Key::Null;
+                }
+                Key::Char(c) => {
+                    line.push(c);
+                    print!("{}",c);
+                    stdout().flush().ok().expect("Could not flush stdout");
+                }
+                /* For moving amongst the buffers
+                 Key::Left => {}
+                 Key::Right => {}
+                */
+                _ => {
+                    println!(""); //Remove once all keys are implemented
+                    stdout().flush().ok().expect("Could not flush stdout");
+                    self.line = line;
+                    return keypress;
                 }
             }
         }
-        println!("");
-        self.line = line;
-        ch
+        unreachable!()
     }
 
     //Outputs buffer for usage puts line into history
