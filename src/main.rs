@@ -1,5 +1,6 @@
 #![feature(plugin)]
 #![plugin(clippy)]
+
 #![cfg(not(test))]
 #[macro_use] extern crate rusty;
 use rusty::utils::*;
@@ -29,7 +30,7 @@ fn main() {
     loop{
         input_buffer.readline();
         history.store(input_buffer.line.clone());
-        let mut command_split: Vec<&str> = input_buffer.line.trim().split(' ').collect();
+        let mut command_split: Vec<&str> = input_buffer.output();
 
         match command_split.get(0).unwrap() {
 

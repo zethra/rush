@@ -1,30 +1,56 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+::core::clone::Clone for WIN32_FIND_DATAW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                impl ::core::clone::Clone for WIN32_FIND_DATAW {$/;"	i
+::core::clone::Clone for WSAPROTOCOL_INFO	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                impl ::core::clone::Clone for WSAPROTOCOL_INFO {$/;"	i
+::core::clone::Clone for pthread_attr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                impl ::core::clone::Clone for pthread_attr_t {$/;"	i
+::core::clone::Clone for sockaddr_storage	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                impl ::core::clone::Clone for sockaddr_storage {$/;"	i
+::core::clone::Clone for sockaddr_un	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                impl ::core::clone::Clone for sockaddr_un {$/;"	i
 Array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^pub type Array = Vec<Value>;$/;"	T
-Attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub enum Attr {$/;"	g
+BOOL	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type BOOL = c_int;$/;"	T
+BOOLEAN	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type BOOLEAN = BYTE;$/;"	T
+BYTE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type BYTE = u8;$/;"	T
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^        enum Bar {$/;"	g
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar { a: String }$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar { a: isize }$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar {$/;"	s
 Bar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Bar;$/;"	s
 Baz	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^        struct Baz {$/;"	s
-Color	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    pub type Color = u16;$/;"	T
+CCHAR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type CCHAR = c_char;$/;"	T
+CHAR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type CHAR = c_char;$/;"	T
+CloseHandle	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CloseHandle(hObject: HANDLE) -> BOOL;$/;"	f
+ConnectNamedPipe	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ConnectNamedPipe(hNamedPipe: HANDLE,$/;"	f
+CopyFileW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CopyFileW(lpExistingFileName: LPCWSTR,$/;"	f
+CreateDirectoryW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateDirectoryW(lpPathName: LPCWSTR,$/;"	f
+CreateEventW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateEventW(lpEventAttributes: LPSECURITY_ATTRIBUTES,$/;"	f
+CreateFileMappingW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateFileMappingW(hFile: HANDLE,$/;"	f
+CreateFileW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateFileW(lpFileName: LPCWSTR,$/;"	f
+CreateHardLinkW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateHardLinkW(lpSymlinkFileName: LPCWSTR,$/;"	f
+CreateNamedPipeW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateNamedPipeW($/;"	f
+CreateProcessW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn CreateProcessW(lpApplicationName: LPCWSTR,$/;"	f
+DIR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub enum DIR {}$/;"	g
+DWORD	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type DWORD = c_ulong;$/;"	T
+DWORDLONG	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type DWORDLONG = c_ulonglong;$/;"	T
 Decodable for Range10	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        impl Decodable for Range10 {$/;"	i
 DecodeError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub struct DecodeError {$/;"	s
 DecodeErrorKind	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub enum DecodeErrorKind {$/;"	g
 Decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^impl Decoder {$/;"	i
 Decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub struct Decoder {$/;"	s
+DeleteFileW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn DeleteFileW(lpPathName: LPCWSTR) -> BOOL;$/;"	f
+DisconnectNamedPipe	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn DisconnectNamedPipe(hNamedPipe: HANDLE) -> BOOL;$/;"	f
+DuplicateHandle	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn DuplicateHandle(hSourceProcessHandle: HANDLE,$/;"	f
 E	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        enum E {$/;"	g
 Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^impl Encoder {$/;"	i
 Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^pub struct Encoder {$/;"	s
 Err	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    type Err = Vec<ParserError>;$/;"	T
-Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub enum Error {$/;"	g
 Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    type Error = DecodeError;$/;"	T
 Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^pub enum Error {$/;"	g
 Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    type Error = Error;$/;"	T
 Error for ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl Error for ParserError {$/;"	i
-Flags	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^impl Flags {$/;"	i
-Flags	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^struct Flags {$/;"	s
+FILE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub enum FILE {}$/;"	g
+FindClose	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn FindClose(findFile: HANDLE) -> BOOL;$/;"	f
+FindFirstFileW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn FindFirstFileW(fileName: LPCWSTR, findFileData: LPWIN32_FIND_DATAW)$/;"	f
+FindNextFileW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn FindNextFileW(findFile: HANDLE, findFileData: LPWIN32_FIND_DATAW)$/;"	f
+FlushFileBuffers	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn FlushFileBuffers(hFile: HANDLE) -> BOOL;$/;"	f
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^        struct Foo {$/;"	s
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo { a: (isize, isize, isize, isize) }$/;"	s
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo { a: BTreeMap<String, String> }$/;"	s
@@ -43,12 +69,25 @@ Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/sr
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo {$/;"	s
 Foo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo(isize, String, f64);$/;"	s
 Foo2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Foo2 {$/;"	s
-FormatOp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^enum FormatOp {$/;"	g
-FormatOp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^impl FormatOp {$/;"	i
-FormatState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^enum FormatState {$/;"	g
+FreeEnvironmentStringsW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn FreeEnvironmentStringsW(env_ptr: LPWCH) -> BOOL;$/;"	f
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<io::Error> for InterpretError {$/;"	i
 From for InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub impl From<string::ParseError> for InterpretError {$/;"	i
 FromStr for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl FromStr for Value {$/;"	i
+GROUP	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type GROUP = c_uint;$/;"	T
+GetCurrentDirectoryW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetCurrentDirectoryW(nBufferLength: DWORD,$/;"	f
+GetCurrentProcess	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetCurrentProcess() -> HANDLE;$/;"	f
+GetCurrentProcessId	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetCurrentProcessId() -> DWORD;$/;"	f
+GetEnvironmentStringsW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetEnvironmentStringsW() -> LPWCH;$/;"	f
+GetEnvironmentVariableW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetEnvironmentVariableW(n: LPCWSTR,$/;"	f
+GetExitCodeProcess	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetExitCodeProcess(hProcess: HANDLE,$/;"	f
+GetLastError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetLastError() -> DWORD;$/;"	f
+GetModuleFileNameW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetModuleFileNameW(hModule: HMODULE,$/;"	f
+GetOverlappedResult	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetOverlappedResult(hFile: HANDLE,$/;"	f
+GetSystemInfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetSystemInfo(lpSystemInfo: LPSYSTEM_INFO);$/;"	f
+GetSystemTimeAsFileTime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn GetSystemTimeAsFileTime($/;"	f
+HANDLE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type HANDLE = LPVOID;$/;"	T
+HINSTANCE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type HINSTANCE = HANDLE;$/;"	T
+HMODULE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type HMODULE = HINSTANCE;$/;"	T
 HistoryBuffer	/home/michael/Code/Rust/rusty/src/core/history.rs	/^impl HistoryBuffer {$/;"	i
 HistoryBuffer	/home/michael/Code/Rust/rusty/src/core/history.rs	/^pub struct HistoryBuffer {$/;"	s
 InputBuffer	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^impl InputBuffer {$/;"	i
@@ -57,10 +96,39 @@ InterpretError	/home/michael/Code/Rust/rusty/src/core/error.rs	/^pub enum Interp
 Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Key<'a>(&'a [&'a str]);$/;"	s
 Key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^impl Key {$/;"	i
 Key	/home/michael/Code/Rust/rusty/src/core/keybinding.rs	/^pub enum Key {$/;"	g
-Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    type Output: Write;$/;"	T
-Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    type Output = T;$/;"	T
-Output	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    type Output = T;$/;"	T
-Param	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^pub enum Param {$/;"	g
+LARGE_INTEGER	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LARGE_INTEGER = c_longlong;$/;"	T
+LONG	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LONG = c_long;$/;"	T
+LONG_PTR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LONG_PTR = c_long;$/;"	T
+LONG_PTR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LONG_PTR = i64;$/;"	T
+LPBYTE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPBYTE = *mut BYTE;$/;"	T
+LPCH	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPCH = *mut CHAR;$/;"	T
+LPCSTR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPCSTR = *const CHAR;$/;"	T
+LPCVOID	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPCVOID = *const c_void;$/;"	T
+LPCWSTR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPCWSTR = *const WCHAR;$/;"	T
+LPDWORD	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPDWORD = *mut DWORD;$/;"	T
+LPFILETIME	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPFILETIME = *mut FILETIME;$/;"	T
+LPHANDLE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPHANDLE = *mut HANDLE;$/;"	T
+LPMEMORY_BASIC_INFORMATION	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPMEMORY_BASIC_INFORMATION = *mut MEMORY_BASIC_INFORMATION;$/;"	T
+LPOVERLAPPED	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPOVERLAPPED = *mut OVERLAPPED;$/;"	T
+LPPROCESS_INFORMATION	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPPROCESS_INFORMATION = *mut PROCESS_INFORMATION;$/;"	T
+LPSECURITY_ATTRIBUTES	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPSECURITY_ATTRIBUTES = *mut SECURITY_ATTRIBUTES;$/;"	T
+LPSTARTUPINFO	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPSTARTUPINFO = *mut STARTUPINFO;$/;"	T
+LPSTR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPSTR = *mut CHAR;$/;"	T
+LPSYSTEM_INFO	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPSYSTEM_INFO = *mut SYSTEM_INFO;$/;"	T
+LPVOID	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPVOID = *mut c_void;$/;"	T
+LPWCH	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPWCH = *mut WCHAR;$/;"	T
+LPWIN32_FIND_DATAW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPWIN32_FIND_DATAW = *mut WIN32_FIND_DATAW;$/;"	T
+LPWORD	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPWORD = *mut WORD;$/;"	T
+LPWSAPROTOCOLCHAIN	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPWSAPROTOCOLCHAIN = *mut WSAPROTOCOLCHAIN;$/;"	T
+LPWSAPROTOCOL_INFO	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPWSAPROTOCOL_INFO = *mut WSAPROTOCOL_INFO;$/;"	T
+LPWSTR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LPWSTR = *mut WCHAR;$/;"	T
+LRESULT	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type LRESULT = LONG_PTR;$/;"	T
+MapViewOfFile	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn MapViewOfFile(hFileMappingObject: HANDLE,$/;"	f
+MoveFileExW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn MoveFileExW(lpExistingFileName: LPCWSTR,$/;"	f
+OpenProcess	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn OpenProcess(dwDesiredAccess: DWORD,$/;"	f
+PBOOL	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type PBOOL = *mut BOOL;$/;"	T
+PLARGE_INTEGER	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type PLARGE_INTEGER = *mut c_longlong;$/;"	T
+PLONG	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type PLONG = *mut c_long;$/;"	T
 Parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl<'a> Parser<'a> {$/;"	i
 Parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^pub struct Parser<'a> {$/;"	s
 ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^pub struct ParserError {$/;"	s
@@ -68,35 +136,52 @@ Printer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.2
 Printer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^struct Printer<'a, 'b:'a> {$/;"	s
 Prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^impl Prompt {$/;"	i
 Prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^pub struct Prompt {$/;"	s
+QueryPerformanceCounter	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn QueryPerformanceCounter($/;"	f
+QueryPerformanceFrequency	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn QueryPerformanceFrequency($/;"	f
 Range10	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^        struct Range10(usize);$/;"	s
+ReadFile	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ReadFile(hFile: HANDLE,$/;"	f
+RemoveDirectoryW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn RemoveDirectoryW(lpPathName: LPCWSTR) -> BOOL;$/;"	f
+SIZE_T	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type SIZE_T = size_t;$/;"	T
+SOCKET	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type SOCKET = uintptr_t;$/;"	T
+SetCurrentDirectoryW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn SetCurrentDirectoryW(lpPathName: LPCWSTR) -> BOOL;$/;"	f
+SetEndOfFile	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn SetEndOfFile(hFile: HANDLE) -> BOOL;$/;"	f
+SetEnvironmentVariableW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn SetEnvironmentVariableW(n: LPCWSTR, v: LPCWSTR)$/;"	f
+SetFilePointerEx	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn SetFilePointerEx(hFile: HANDLE,$/;"	f
+SetNamedPipeHandleState	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn SetNamedPipeHandleState(hNamedPipe: HANDLE,$/;"	f
 State	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^enum State {$/;"	g
-States	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^enum States {$/;"	g
-StderrTerminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub type StderrTerminal = Terminal<Output=Stderr> + Send;$/;"	T
-StdoutTerminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub type StdoutTerminal = Terminal<Output=Stdout> + Send;$/;"	T
 Table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^pub type Table = BTreeMap<string::String, Value>;$/;"	T
-TermInfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl TermInfo {$/;"	i
-TermInfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub struct TermInfo {$/;"	s
-Terminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub trait Terminal: Write {$/;"	t
-Terminal for TerminfoTerminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl<T: Write+Send> Terminal for TerminfoTerminal<T> {$/;"	i
-Terminal for WinConsole	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^impl<T: Write+Send> Terminal for WinConsole<T> {$/;"	i
-TerminfoTerminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl<T: Write+Send> TerminfoTerminal<T> {$/;"	i
-TerminfoTerminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub struct TerminfoTerminal<T> {$/;"	s
+TerminateProcess	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn TerminateProcess(hProcess: HANDLE, uExitCode: c_uint)$/;"	f
 TomlTable	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl TomlTable {$/;"	i
 TomlTable	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^struct TomlTable {$/;"	s
+UnmapViewOfFile	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn UnmapViewOfFile(lpBaseAddress: LPCVOID) -> BOOL;$/;"	f
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^impl Value {$/;"	i
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^pub enum Value {$/;"	g
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^enum Value {$/;"	g
 Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl Value {$/;"	i
-Variables	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^impl Variables {$/;"	i
-Variables	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^pub struct Variables {$/;"	s
-WinConsole	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^impl<T: Write+Send> WinConsole<T> {$/;"	i
-WinConsole	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^pub struct WinConsole<T> {$/;"	s
-Write for TerminfoTerminal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl<T: Write> Write for TerminfoTerminal<T> {$/;"	i
-Write for WinConsole	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^impl<T: Write> Write for WinConsole<T> {$/;"	i
+VirtualAlloc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn VirtualAlloc(lpAddress: LPVOID,$/;"	f
+VirtualFree	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn VirtualFree(lpAddress: LPVOID,$/;"	f
+VirtualLock	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn VirtualLock(lpAddress: LPVOID, dwSize: SIZE_T) -> BOOL;$/;"	f
+VirtualProtect	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn VirtualProtect(lpAddress: LPVOID,$/;"	f
+VirtualQuery	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn VirtualQuery(lpAddress: LPCVOID,$/;"	f
+VirtualUnlock	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn VirtualUnlock(lpAddress: LPVOID, dwSize: SIZE_T)$/;"	f
+WCHAR	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type WCHAR = wchar_t;$/;"	T
+WORD	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type WORD = u16;$/;"	T
+WaitForSingleObject	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn WaitForSingleObject(hHandle: HANDLE,$/;"	f
+WaitNamedPipeW	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn WaitNamedPipeW(lpNamedPipeName: LPCWSTR,$/;"	f
+WriteFile	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn WriteFile(hFile: HANDLE,$/;"	f
+_NSGetExecutablePath	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn _NSGetExecutablePath(buf: *mut c_char, bufsize: *mut u32)$/;"	f
+_SC_NPROCESSORS_ONLN	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub static _SC_NPROCESSORS_ONLN : c_int = 1;$/;"	c
+_SC_PAGESIZE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub static _SC_PAGESIZE : c_int = 2;$/;"	c
+_SC_SENDMSG_MAX_SIZE	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub static _SC_SENDMSG_MAX_SIZE : c_int = 0;$/;"	c
+_exit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn _exit(status: c_int) -> !;$/;"	f
+abs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn abs(i: c_int) -> c_int;$/;"	f
+accept	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn accept(socket: SOCKET, address: *mut sockaddr,$/;"	f
+accept	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn accept(socket: c_int, address: *mut sockaddr,$/;"	f
+access	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn access(path: *const c_char, amode: c_int) -> c_int;$/;"	f
 add	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn add(num1: i64, num2: i64) -> i64 {$/;"	f
+alarm	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn alarm(seconds: c_uint) -> c_uint;$/;"	f
 application_decode_error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn application_decode_error() {$/;"	f
-apply	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn apply(&mut self) -> io::Result<()> {$/;"	f
-apply_cap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn apply_cap(&mut self, cmd: &str, params: &[Param]) -> io::Result<bool> {$/;"	f
+arch	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod arch {$/;"	m
 array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn array() {$/;"	f
 array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn array(&mut self, _start: usize) -> Option<Value> {$/;"	f
 as_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_bool(&self) -> Option<bool> {$/;"	f
@@ -106,9 +191,9 @@ as_integer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.
 as_slice	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_slice<'a>(&'a self) -> Option<&'a [Value]> {$/;"	f
 as_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_str<'a>(&'a self) -> Option<&'a str> {$/;"	f
 as_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn as_table<'a>(&'a self) -> Option<&'a Table> {$/;"	f
-attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn attr(&mut self, attr: Attr) -> io::Result<bool>;$/;"	f
-attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn attr(&mut self, attr: Attr) -> io::Result<bool> {$/;"	f
-attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn attr(&mut self, attr: Attr) -> io::Result<bool> {$/;"	f
+atexit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn atexit(cb: extern fn()) -> c_int;$/;"	f
+atof	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn atof(s: *const c_char) -> c_double;$/;"	f
+atoi	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn atoi(s: *const c_char) -> c_int;$/;"	f
 autocomplete	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod autocomplete;$/;"	m
 bad	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    macro_rules! bad {$/;"	d
 bad_enum_chooses_longest_error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn bad_enum_chooses_longest_error() {$/;"	f
@@ -122,43 +207,88 @@ bad_table_redefine	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4
 bad_underscores	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bad_underscores() {$/;"	f
 bad_unicode_codepoint	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bad_unicode_codepoint() {$/;"	f
 bare_key_names	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bare_key_names() {$/;"	f
-bg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn bg(&mut self, color: color::Color) -> io::Result<bool>;$/;"	f
-bg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn bg(&mut self, color: color::Color) -> io::Result<bool> {$/;"	f
-bg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn bg(&mut self, color: color::Color) -> io::Result<bool> {$/;"	f
-bits_to_color	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^fn bits_to_color(bits: u16) -> color::Color {$/;"	f
+bind	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn bind(socket: SOCKET, address: *const sockaddr,$/;"	f
+bind	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn bind(socket: c_int, address: *const sockaddr,$/;"	f
 blank_literal_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn blank_literal_string() {$/;"	f
+blkcnt_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blkcnt_t = i32;$/;"	T
+blkcnt_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blkcnt_t = i64;$/;"	T
+blkcnt_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blkcnt_t = u32;$/;"	T
+blksize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blksize_t = i32;$/;"	T
+blksize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blksize_t = i64;$/;"	T
+blksize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blksize_t = u32;$/;"	T
+blksize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type blksize_t = uint32_t;$/;"	T
 boolean	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn boolean(&mut self, start: usize) -> Option<Value> {$/;"	f
 booleans	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn booleans() {$/;"	f
-boolfnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static boolfnames: &'static[&'static str] = &["auto_left_margin", "auto_right_margin",$/;"	c
-boolnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static boolnames: &'static[&'static str] = &["bw", "am", "xsb", "xhp", "xenl", "eo",$/;"	c
+bsd43	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod bsd43 {$/;"	m
+bsd43	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod bsd43 {$/;"	m
+bsd44	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod bsd44 {$/;"	m
+bsd44	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod bsd44 {}$/;"	m
+bsd44	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod bsd44 {$/;"	m
+bsd44	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod bsd44 {}$/;"	m
+bsd44	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod bsd44 {$/;"	m
 buffer_in	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod buffer_in;$/;"	m
+c95	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod c95 {$/;"	m
+c95	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod c95 {$/;"	m
+c95	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod c95 {$/;"	m
+c99	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod c99 {$/;"	m
+c99	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod c99 {$/;"	m
+c_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_char = i8;$/;"	T
+c_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_char = u8;$/;"	T
+c_double	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_double = f64;$/;"	T
+c_float	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_float = f32;$/;"	T
+c_int	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_int = i32;$/;"	T
+c_long	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_long = i32;$/;"	T
+c_long	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_long = i64;$/;"	T
+c_longlong	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_longlong = i64;$/;"	T
+c_schar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_schar = i8;$/;"	T
+c_short	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_short = i16;$/;"	T
+c_uchar	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_uchar = u8;$/;"	T
+c_uint	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_uint = u32;$/;"	T
+c_ulong	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_ulong = u32;$/;"	T
+c_ulong	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_ulong = u64;$/;"	T
+c_ulonglong	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_ulonglong = u64;$/;"	T
+c_ushort	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type c_ushort = u16;$/;"	T
+c_void	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub enum c_void {$/;"	g
 calc	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod calc;$/;"	m
 calculate	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^pub fn calculate() {$/;"	f
-cap_for_attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^fn cap_for_attr(attr: Attr) -> &'static str {$/;"	f
-carriage_return	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn carriage_return(&mut self) -> io::Result<bool>;$/;"	f
-carriage_return	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn carriage_return(&mut self) -> io::Result<bool> {$/;"	f
-carriage_return	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn carriage_return(&mut self) -> io::Result<bool> {$/;"	f
+calloc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;$/;"	f
 cat	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod cat;$/;"	m
-cause	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn cause(&self) -> Option<&error::Error> {$/;"	f
 cd	/home/michael/Code/Rust/rusty/src/utils/mod.rs	/^pub mod cd;$/;"	m
 change_directory	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^pub fn change_directory(input: Vec<&str>){$/;"	f
+chdir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chdir(dir: *const c_char) -> c_int;$/;"	f
 check_alias	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn check_alias(input: Vec<&str>) -> Option<String> {$/;"	f
-color	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub mod color {$/;"	m
-color_to_bits	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^fn color_to_bits(color: color::Color) -> u16 {$/;"	f
+chmod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chmod(path: *const c_char, mode: c_int) -> c_int;$/;"	f
+chmod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chmod(path: *const c_char, mode: mode_t) -> c_int;$/;"	f
+chown	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chown(path: *const c_char, uid: uid_t,$/;"	f
+clock_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type clock_t = c_ulong;$/;"	T
+clock_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type clock_t = i32;$/;"	T
+clock_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type clock_t = i64;$/;"	T
+clone	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    fn clone(&self) -> WIN32_FIND_DATAW { *self }$/;"	f
+clone	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    fn clone(&self) -> WSAPROTOCOL_INFO { *self }$/;"	f
+clone	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    fn clone(&self) -> pthread_attr_t { *self }$/;"	f
+clone	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    fn clone(&self) -> sockaddr_storage { *self }$/;"	f
+clone	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    fn clone(&self) -> sockaddr_un { *self }$/;"	f
+close	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn close(fd: c_int) -> c_int;$/;"	f
+closedir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn closedir(dirp: *mut DIR) -> c_int;$/;"	f
+closesocket	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn closesocket(socket: SOCKET) -> c_int;$/;"	f
 comment	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn comment(&mut self) -> bool {$/;"	f
-compiled	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub mod compiled;$/;"	m
+commit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn commit(fd: c_int) -> c_int;$/;"	f
+common	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod common {$/;"	m
+common	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod common {$/;"	m
 concat	/home/michael/Code/Rust/rusty/src/utils/cat.rs	/^pub fn concat(){$/;"	f
 config	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod config;$/;"	m
-conout	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^fn conout() -> io::Result<winapi::HANDLE> {$/;"	f
+connect	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn connect(socket: SOCKET, address: *const sockaddr,$/;"	f
+connect	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn connect(socket: c_int, address: *const sockaddr,$/;"	f
+consts	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^pub mod consts {$/;"	m
 consume	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^        fn consume(me: &mut Parser) {$/;"	f
 convert	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/examples/toml2json.rs	/^fn convert(toml: Value) -> Json {$/;"	f
 convert	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn convert(self) -> super::Table {$/;"	f
 convert	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn convert(self) -> super::Value {$/;"	f
 core	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod core;$/;"	m
+creat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn creat(path: *const c_char, mode: c_int) -> c_int;$/;"	f
+creat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn creat(path: *const c_char, mode: mode_t) -> c_int;$/;"	f
 crlf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn crlf() {$/;"	f
-cursor_up	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn cursor_up(&mut self) -> io::Result<bool>;$/;"	f
-cursor_up	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn cursor_up(&mut self) -> io::Result<bool> {$/;"	f
-cursor_up	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn cursor_up(&mut self) -> io::Result<bool> {$/;"	f
+ctype	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod ctype {$/;"	m
 datetime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn datetime(&mut self, start: usize, end_so_far: usize) -> Option<Value> {$/;"	f
 decode	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub fn decode<T: ::rustc_serialize::Decodable>(toml: Value) -> Option<T> {$/;"	f
 decode	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub fn decode<T: ::serde::Deserialize>(toml: Value) -> Option<T> {$/;"	f
@@ -167,17 +297,19 @@ decode	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21
 decode_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub fn decode_str<T: ::rustc_serialize::Decodable>(s: &str) -> Option<T> {$/;"	f
 decode_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^pub fn decode_str<T: ::serde::Deserialize>(s: &str) -> Option<T> {$/;"	f
 decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod decoder;$/;"	m
-delete_line	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn delete_line(&mut self) -> io::Result<bool>;$/;"	f
-delete_line	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn delete_line(&mut self) -> io::Result<bool> {$/;"	f
-delete_line	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn delete_line(&mut self) -> io::Result<bool> {$/;"	f
-description	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn description(&self) -> &str { "failed to create TermInfo" }$/;"	f
 description	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn description(&self) -> &str {$/;"	f
 description	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn description(&self) -> &str { "TOML encoding error" }$/;"	f
 description	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn description(&self) -> &str { "TOML parse error" }$/;"	f
-dim_if_necessary	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn dim_if_necessary(&self, color: color::Color) -> color::Color {$/;"	f
+dev_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type dev_t = i32;$/;"	T
+dev_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type dev_t = u32;$/;"	T
+dev_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type dev_t = u64;$/;"	T
+dirent	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod dirent {$/;"	m
+dirent_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub enum dirent_t {}$/;"	g
 display	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod display;$/;"	m
 div	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn div(num1: i64, num2: i64) -> i64 {$/;"	f
 doit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^    fn doit(s: &str, json: Json) -> Json {$/;"	f
+dup	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn dup(fd: c_int) -> c_int;$/;"	f
+dup2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn dup2(src: c_int, dst: c_int) -> c_int;$/;"	f
 eat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn eat(&mut self, ch: char) -> bool {$/;"	f
 emit_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn emit_bool(&mut self, v: bool) -> Result<(), Error> {$/;"	f
 emit_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn emit_char(&mut self, v: char) -> Result<(), Error> {$/;"	f
@@ -230,7 +362,6 @@ env_parse	/home/michael/Code/Rust/rusty/src/core/config.rs	/^fn env_parse(input:
 err	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn err(&self, kind: DecodeErrorKind) -> DecodeError {$/;"	f
 error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn error(&mut self, err: &str) -> DecodeError {$/;"	f
 error::Error for DecodeError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^impl error::Error for DecodeError {$/;"	i
-error::Error for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl error::Error for Error {$/;"	i
 error::Error for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^impl error::Error for Error {$/;"	i
 escape	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^        fn escape(me: &mut Parser, pos: usize, multiline: bool) -> Option<char> {$/;"	f
 execute	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn execute(){$/;"	f
@@ -238,121 +369,266 @@ execute	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn execute(command: 
 execute	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod execute;$/;"	m
 execute_fail	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn execute_fail(){$/;"	f
 execute_pipe	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {$/;"	f
-expand	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^pub fn expand(cap: &[u8], params: &[Param], vars: &mut Variables)$/;"	f
+execv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn execv(prog: *const c_char,$/;"	f
+execve	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn execve(prog: *const c_char, argv: *mut *const c_char,$/;"	f
+execvp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn execvp(c: *const c_char,$/;"	f
+execvpe	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn execvpe(c: *const c_char, argv: *mut *const c_char,$/;"	f
+exit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn exit(status: c_int) -> !;$/;"	f
 expect	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn expect(&mut self, ch: char) -> bool {$/;"	f
-fg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn fg(&mut self, color: color::Color) -> io::Result<bool>;$/;"	f
-fg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn fg(&mut self, color: color::Color) -> io::Result<bool> {$/;"	f
-fg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn fg(&mut self, color: color::Color) -> io::Result<bool> {$/;"	f
+extra	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod extra {$/;"	m
+extra	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod extra {$/;"	m
+extra	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod extra {$/;"	m
+fchmod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fchmod(fd: c_int, mode: mode_t) -> c_int;$/;"	f
+fclose	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fclose(file: *mut FILE) -> c_int;$/;"	f
+fcntl	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fcntl(fd: c_int, cmd: c_int, ...) -> c_int;$/;"	f
+fcntl	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod fcntl {$/;"	m
+fdatasync	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fdatasync(fd: c_int) -> c_int;$/;"	f
+fdopen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fdopen(fd: c_int, mode: *const c_char) -> *mut FILE;$/;"	f
+feof	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn feof(stream: *mut FILE) -> c_int;$/;"	f
+ferror	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ferror(stream: *mut FILE) -> c_int;$/;"	f
+fflags_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type fflags_t = u32; \/\/ type not declared, but struct stat have u_int32_t$/;"	T
+fflags_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type fflags_t = u32;$/;"	T
+fflush	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fflush(file: *mut FILE) -> c_int;$/;"	f
+fgetc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fgetc(stream: *mut FILE) -> c_int;$/;"	f
+fgetpos	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fgetpos(stream: *mut FILE, ptr: *mut fpos_t) -> c_int;$/;"	f
+fgets	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fgets(buf: *mut c_char, n: c_int, stream: *mut FILE)$/;"	f
+fileno	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fileno(stream: *mut FILE) -> c_int;$/;"	f
 final_pipe	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn final_pipe(command: Vec<&str>, child: Child) -> String {$/;"	f
 finish_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn finish_string(&mut self,$/;"	f
 first_pipe	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn first_pipe(command: Vec<&str>) -> Result<Child> {$/;"	f
 floats	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn floats() {$/;"	f
-flush	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn flush(&mut self) -> io::Result<()> {$/;"	f
-flush	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn flush(&mut self) -> io::Result<()> {$/;"	f
-fmt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {$/;"	f
 fmt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {$/;"	f
 fmt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {$/;"	f
 fmt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {$/;"	f
 fmt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {$/;"	f
 fmt::Display for DecodeError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^impl fmt::Display for DecodeError {$/;"	i
-fmt::Display for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^impl fmt::Display for Error {$/;"	i
 fmt::Display for Error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^impl fmt::Display for Error {$/;"	i
 fmt::Display for Key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl<'a> fmt::Display for Key<'a> {$/;"	i
 fmt::Display for ParserError	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^impl fmt::Display for ParserError {$/;"	i
 fmt::Display for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^impl fmt::Display for Value {$/;"	i
-format	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^fn format(val: Param, op: FormatOp, flags: Flags) -> Result<Vec<u8> ,String> {$/;"	f
+fopen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fopen(filename: *const c_char,$/;"	f
+fork	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fork() -> pid_t;$/;"	f
+fpathconf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fpathconf(filedes: c_int, name: c_int) -> c_long;$/;"	f
+fpos_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub enum fpos_t {}$/;"	g
+fputc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fputc(c: c_int, stream: *mut FILE) -> c_int;$/;"	f
+fputs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fputs(s: *const c_char, stream: *mut FILE)-> c_int;$/;"	f
+fread	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fread(ptr: *mut c_void,$/;"	f
+free	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn free(p: *mut c_void);$/;"	f
+freeifaddrs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn freeifaddrs(ifa: *mut ifaddrs);$/;"	f
+freopen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn freopen(filename: *const c_char, mode: *const c_char,$/;"	f
 from	/home/michael/Code/Rust/rusty/src/core/error.rs	/^    fn from(err: io::Error) -> InterpretError {$/;"	f
 from	/home/michael/Code/Rust/rusty/src/core/error.rs	/^    fn from(err: string::ParseError) -> InterpretError {$/;"	f
-from_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn from_char(c: char) -> FormatOp {$/;"	f
-from_env	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn from_env() -> Result<TermInfo, Error> {$/;"	f
-from_name	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn from_name(name: &str) -> Result<TermInfo, Error> {$/;"	f
-from_path	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn from_path(path: &Path) -> Result<TermInfo, Error> {$/;"	f
 from_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn from_str(s: &str) -> Result<Value, Vec<ParserError>> {$/;"	f
 fruit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fruit() {$/;"	f
+fseek	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fseek(stream: *mut FILE, offset: c_long, whence: c_int)$/;"	f
+fsetpos	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fsetpos(stream: *mut FILE, ptr: *mut fpos_t) -> c_int;$/;"	f
+fstat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fstat(fildes: c_int, buf: *mut stat) -> c_int;$/;"	f
+fsync	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fsync(fd: c_int) -> c_int;$/;"	f
+ftell	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ftell(stream: *mut FILE) -> c_long;$/;"	f
+ftruncate	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ftruncate(fd: c_int, length: off_t) -> c_int;$/;"	f
 fun_with_strings	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fun_with_strings() {$/;"	f
+funcs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^pub mod funcs {$/;"	m
+fwrite	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fwrite(ptr: *const c_void,$/;"	f
 get_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_cwd(&self) -> String {$/;"	f
-get_dbpath_for_term	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/searcher.rs	/^pub fn get_dbpath_for_term(term: &str) -> Option<PathBuf> {$/;"	f
-get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut Self::Output;$/;"	f
-get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut T { &mut self.out }$/;"	f
-get_mut	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn get_mut<'a>(&'a mut self) -> &'a mut T { &mut self.buf }$/;"	f
-get_ref	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn get_ref<'a>(&'a self) -> &'a Self::Output;$/;"	f
-get_ref	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn get_ref<'a>(&'a self) -> &'a T { &self.out }$/;"	f
-get_ref	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn get_ref<'a>(&'a self) -> &'a T { &self.buf }$/;"	f
-get_res	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^        fn get_res(fmt: &str, cap: &str, params: &[Param], vars: &mut Variables) ->$/;"	f
+get_input	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn get_input() -> libc::c_int;$/;"	f
+get_osfhandle	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn get_osfhandle(fd: c_int) -> c_long;$/;"	f
 get_status	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_status(output: Option<Output>) -> bool{$/;"	f
 get_stderr	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stderr(output: Option<Output>) -> String{$/;"	f
 get_stdout	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn get_stdout(output: Option<Output>) -> String{$/;"	f
 get_user_p	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_user_p(&self) -> String {$/;"	f
+getcwd	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getcwd(buf: *mut c_char, size: size_t) -> *mut c_char;$/;"	f
+getdtablesize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn getdtablesize() -> c_int;$/;"	f
+getegid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getegid() -> gid_t;$/;"	f
+getenv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getenv(s: *const c_char) -> *mut c_char;$/;"	f
+geteuid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn geteuid() -> uid_t;$/;"	f
+getgid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getgid() -> gid_t;$/;"	f
+getgroups	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getgroups(ngroups_max: c_int, groups: *mut gid_t)$/;"	f
+getifaddrs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn getifaddrs(ifap: *mut *mut ifaddrs) -> c_int;$/;"	f
+getlogin	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getlogin() -> *mut c_char;$/;"	f
+getopt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getopt(argc: c_int, argv: *mut *const c_char,$/;"	f
+getpeername	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn getpeername(socket: SOCKET, address: *mut sockaddr,$/;"	f
+getpeername	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn getpeername(socket: c_int, address: *mut sockaddr,$/;"	f
+getpgrp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getpgrp() -> pid_t;$/;"	f
+getpid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getpid() -> c_int;$/;"	f
+getpid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getpid() -> pid_t;$/;"	f
+getppid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getppid() -> pid_t;$/;"	f
+getrlimit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getrlimit(resource: c_int, rlim: *mut rlimit) -> c_int;$/;"	f
+getrusage	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getrusage(resource: c_int, usage: *mut rusage) -> c_int;$/;"	f
+getsid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getsid(pid: pid_t) -> pid_t;$/;"	f
+getsockname	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn getsockname(socket: SOCKET, address: *mut sockaddr,$/;"	f
+getsockname	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn getsockname(socket: c_int, address: *mut sockaddr,$/;"	f
+getuid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn getuid() -> uid_t;$/;"	f
+gid_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type gid_t = u32;$/;"	T
+glob	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn glob(pattern: *const c_char,$/;"	f
+glob	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod glob {$/;"	m
+globfree	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn globfree(pglob: *mut glob_t);$/;"	f
 hashmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn hashmap() {$/;"	f
 history	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod history;$/;"	m
 humanize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^                fn humanize(s: &str) -> String {$/;"	f
+if_nametoindex	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn if_nametoindex(ifname: *const c_char) -> c_uint;$/;"	f
+in_addr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type in_addr_t = u32;$/;"	T
+in_port_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type in_port_t = u16;$/;"	T
 inline_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_table(&mut self, _start: usize) -> Option<Value> {$/;"	f
 inline_tables	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn inline_tables() {$/;"	f
 inner_structs_with_options	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn inner_structs_with_options() {$/;"	f
+ino_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ino_t = u16;$/;"	T
+ino_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ino_t = u32;$/;"	T
+ino_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ino_t = u64;$/;"	T
+ino_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ino_t = uint64_t;$/;"	T
 insert	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn insert(&mut self, into: &mut TomlTable, key: String, value: Value,$/;"	f
 insert_array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn insert_array(&mut self, into: &mut TomlTable,$/;"	f
 insert_table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn insert_table(&mut self, into: &mut TomlTable, keys: &[String],$/;"	f
+int16_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type int16_t = i16;$/;"	T
+int32_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type int32_t = i32;$/;"	T
+int64	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type int64 = i64;$/;"	T
+int64_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type int64_t = i64;$/;"	T
+int8_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type int8_t = i8;$/;"	T
 integer	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn integer(&mut self, start: usize, allow_leading_zeros: bool,$/;"	f
 interpret	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^pub fn interpret(command: Vec<&str>) -> String {$/;"	f
-into_inner	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn into_inner(self) -> Self::Output where Self: Sized;$/;"	f
-into_inner	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn into_inner(self) -> T where Self: Sized { self.out }$/;"	f
-into_inner	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn into_inner(self) -> T where Self: Sized { self.buf }$/;"	f
+intmax_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type intmax_t = i64;$/;"	T
+intptr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type intptr_t = i32;$/;"	T
+intptr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type intptr_t = i64;$/;"	T
 invalid_bare_numeral	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn invalid_bare_numeral() {$/;"	f
+ioctl	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn ioctl(d: c_int, request: c_int, ...) -> c_int;$/;"	f
+ioctl	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn ioctl(d: c_int, request: c_ulong, ...) -> c_int;$/;"	f
+ioctlsocket	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ioctlsocket(s: SOCKET, cmd: c_long, argp: *mut c_ulong) -> c_int;$/;"	f
 is_digit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^fn is_digit(c: char) -> bool {$/;"	f
+isalnum	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isalnum(c: c_int) -> c_int;$/;"	f
+isalpha	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isalpha(c: c_int) -> c_int;$/;"	f
+isatty	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isatty(fd: c_int) -> c_int;$/;"	f
+iscntrl	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn iscntrl(c: c_int) -> c_int;$/;"	f
+isdigit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isdigit(c: c_int) -> c_int;$/;"	f
+isgraph	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isgraph(c: c_int) -> c_int;$/;"	f
+islower	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn islower(c: c_int) -> c_int;$/;"	f
+isprint	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isprint(c: c_int) -> c_int;$/;"	f
+ispunct	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ispunct(c: c_int) -> c_int;$/;"	f
+isspace	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isspace(c: c_int) -> c_int;$/;"	f
+issue_14344_workaround	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^pub fn issue_14344_workaround() {} \/\/ FIXME #14344 force linkage to happen correctly$/;"	f
+isupper	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isupper(c: c_int) -> c_int;$/;"	f
+isxdigit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn isxdigit(c: c_int) -> c_int;$/;"	f
+kernel32	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod kernel32 {$/;"	m
 key_name	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn key_name(&mut self) -> Option<String> {$/;"	f
 keybinding	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod keybinding;$/;"	m
 keyval_sep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn keyval_sep(&mut self) -> bool {$/;"	f
+kill	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn kill(pid: pid_t, sig: c_int) -> c_int;$/;"	f
+labs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn labs(i: c_long) -> c_long;$/;"	f
 linecol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn linecol() {$/;"	f
+link	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn link(src: *const c_char, dst: *const c_char) -> c_int;$/;"	f
+listen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn listen(socket: SOCKET, backlog: c_int) -> c_int;$/;"	f
+listen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn listen(socket: c_int, backlog: c_int) -> c_int;$/;"	f
 literal_eats_crlf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn literal_eats_crlf() {$/;"	f
 literal_string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn literal_string(&mut self, start: usize) -> Option<Value> {$/;"	f
 logic	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod logic;$/;"	m
 lookup	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn lookup<'a>(&'a self, path: &'a str) -> Option<&'a Value> {$/;"	f
 lookup_invalid_index	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn lookup_invalid_index() {$/;"	f
 lookup_valid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    fn lookup_valid() {$/;"	f
+lseek	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn lseek(fd: c_int, offset: c_long, origin: c_int)$/;"	f
+lseek	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn lseek(fd: c_int, offset: off_t, whence: c_int)$/;"	f
+lstat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn lstat(path: *const c_char, buf: *mut stat) -> c_int;$/;"	f
+mach_timebase_info_data_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type mach_timebase_info_data_t = mach_timebase_info;$/;"	T
+madvise	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn madvise(addr: *mut c_void, len: size_t, advice: c_int)$/;"	f
 main	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/examples/toml2json.rs	/^fn main() {$/;"	f
+main	/home/michael/Code/Rust/rusty/build.rs	/^fn main() {$/;"	f
 main	/home/michael/Code/Rust/rusty/src/main.rs	/^fn main() {$/;"	f
+malloc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn malloc(size: size_t) -> *mut c_void;$/;"	f
 many_blank	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn many_blank() {$/;"	f
 map	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    macro_rules! map( ($($k:expr => $v:expr),*) => ({$/;"	d
 map	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    macro_rules! map( ($($k:ident, $v:expr),*) => ({$/;"	d
+memchr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn memchr(cx: *const c_void, c: c_int,$/;"	f
+memcmp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn memcmp(cx: *const c_void, ct: *const c_void,$/;"	f
+mincore	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn mincore(addr: *mut c_void, len: size_t, vec: *mut c_uchar)$/;"	f
 mismatch	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn mismatch(&self, expected: &'static str,$/;"	f
 missing_errors	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn missing_errors() {$/;"	f
+mkdir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mkdir(path: *const c_char) -> c_int;$/;"	f
+mkdir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mkdir(path: *const c_char, mode: mode_t) -> c_int;$/;"	f
+mkfifo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mkfifo(path: *const c_char, mode: mode_t) -> c_int;$/;"	f
+mlock	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mlock(addr: *const c_void, len: size_t) -> c_int;$/;"	f
+mlockall	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mlockall(flags: c_int) -> c_int;$/;"	f
+mman	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod mman {$/;"	m
+mmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mmap(addr: *mut c_void,$/;"	f
+mode_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type mode_t = u16;$/;"	T
+mode_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type mode_t = u32;$/;"	T
 modulo	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn modulo(num1: i64, num2: i64) -> i64 {$/;"	f
-msys_terminfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub fn msys_terminfo() -> TermInfo {$/;"	f
+mprotect	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn mprotect(addr: *mut c_void, len: size_t, prot: c_int)$/;"	f
+msvcrt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod msvcrt {$/;"	m
+msync	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn msync(addr: *mut c_void, len: size_t, flags: c_int)$/;"	f
 mult	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn mult(num1: i64, num2: i64) -> i64 {$/;"	f
+munlock	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn munlock(addr: *const c_void, len: size_t) -> c_int;$/;"	f
+munlockall	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn munlockall() -> c_int;$/;"	f
+munmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn munmap(addr: *mut c_void, len: size_t) -> c_int;$/;"	f
+nanosleep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn nanosleep(rqtp: *const timespec,$/;"	f
 nested	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn nested() {$/;"	f
-new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn new(out: T) -> Option<TerminfoTerminal<T>> {$/;"	f
-new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn new() -> Flags {$/;"	f
-new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    pub fn new() -> Variables {$/;"	f
-new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    pub fn new(out: T) -> io::Result<WinConsole<T>> {$/;"	f
+net	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod net {$/;"	m
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    pub fn new(toml: Value) -> Decoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    pub fn new() -> Encoder {$/;"	f
 new	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn new(s: &'a str) -> Parser<'a> {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn new() -> Self {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn new() -> Self {$/;"	f
 new	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn new() -> Prompt {$/;"	f
-new_with_terminfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    pub fn new_with_terminfo(out: T, terminfo: TermInfo) -> TerminfoTerminal<T> {$/;"	f
 newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn newline(&mut self) -> bool {$/;"	f
 next_pos	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn next_pos(&self) -> usize {$/;"	f
+nlink_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type nlink_t = u16;$/;"	T
+nlink_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type nlink_t = u32;$/;"	T
+nlink_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type nlink_t = u64;$/;"	T
+nlink_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type nlink_t = uint32_t;$/;"	T
 number_or_datetime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn number_or_datetime(&mut self, start: usize) -> Option<Value> {$/;"	f
 number_underscores	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn number_underscores() {$/;"	f
-numfnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static numfnames: &'static[&'static str] = &[ "columns", "init_tabs", "lines",$/;"	c
-numnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static numnames: &'static[&'static str] = &[ "cols", "it", "lines", "lm", "xmc", "pb",$/;"	c
+off_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type off_t = i32;$/;"	T
+off_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type off_t = i64;$/;"	T
+open	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    pub fn open(path: *const ::c_char, oflag: ::c_int, ...)$/;"	f
+open	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                    pub fn open(path: *const ::c_char, oflag: ::c_int, mode: ::mode_t)$/;"	f
+open	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn open(path: *const c_char, oflag: c_int, mode: c_int)$/;"	f
+open_osfhandle	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn open_osfhandle(osfhandle: intptr_t,$/;"	f
+open_shim	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            mod open_shim {$/;"	m
+opendir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn opendir(dirname: *const c_char) -> *mut DIR;$/;"	f
+os	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod os {$/;"	m
 output	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn output(&mut self) -> Vec<&str> {$/;"	f
-parm	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub mod parm;$/;"	m
-parse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub fn parse(file: &mut io::Read, longnames: bool) -> Result<TermInfo, String> {$/;"	f
 parse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn parse(&mut self) -> Option<super::Table> {$/;"	f
 parse_enum	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn parse_enum() {$/;"	f
-parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub mod parser {$/;"	m
 parser	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^mod parser;$/;"	m
+pathconf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pathconf(path: *mut c_char, name: c_int) -> c_long;$/;"	f
+pause	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pause() -> c_int;$/;"	f
+pclose	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pclose(stream: *mut FILE) -> c_int;$/;"	f
 peek	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn peek(&self, n: usize) -> Option<(usize, char)> {$/;"	f
+perror	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn perror(s: *const c_char);$/;"	f
+pid_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pid_t = i32;$/;"	T
+pid_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pid_t = u32;$/;"	T
+pipe	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pipe(fds: *mut c_int) -> c_int;$/;"	f
+pipe	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pipe(fds: *mut c_int, psize: c_uint, textmode: c_int)$/;"	f
 piped	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn piped(input: Vec<&str>) -> String {$/;"	f
 pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes() {$/;"	f
 pipes_fail	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^    fn pipes_fail() {$/;"	f
+popen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn popen(command: *const c_char,$/;"	f
+posix01	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod posix01 {$/;"	m
+posix01	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod posix01 {$/;"	m
+posix01	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod posix01 {}$/;"	m
+posix01	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod posix01 {$/;"	m
+posix08	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod posix08 {$/;"	m
+posix08	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod posix08 {}$/;"	m
+posix08	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod posix08 {$/;"	m
+posix08	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod posix08 {}$/;"	m
+posix08	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod posix08 {$/;"	m
+posix88	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub mod posix88 {$/;"	m
+posix88	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod posix88 {$/;"	m
+posix88	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^    pub mod posix88 {$/;"	m
+posix_madvise	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn posix_madvise(addr: *mut c_void,$/;"	f
+pread	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pread(fd: c_int, buf: *mut c_void, count: size_t,$/;"	f
 print	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn print(&mut self, table: &'a TomlTable) -> fmt::Result {$/;"	f
 prompt	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod prompt;$/;"	m
 prompt_init	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    fn prompt_init() {$/;"	f
+pthread_attr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pthread_attr_t = *mut c_void;$/;"	T
+pthread_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pthread_t = *mut c_void;$/;"	T
+pthread_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pthread_t = c_ulong;$/;"	T
+pthread_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pthread_t = uintptr_t;$/;"	T
+ptrdiff_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ptrdiff_t = i32;$/;"	T
+ptrdiff_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ptrdiff_t = i64;$/;"	T
+putenv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn putenv(string: *mut c_char) -> c_int;$/;"	f
+puts	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn puts(s: *const c_char) -> c_int;$/;"	f
+pwrite	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pwrite(fd: c_int, buf: *const c_void, count: size_t,$/;"	f
+rand	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rand() -> c_int;$/;"	f
+read	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn read(fd: c_int, buf: *mut c_void, count: c_uint)$/;"	f
+read	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn read(fd: c_int, buf: *mut c_void, count: size_t)$/;"	f
 read_bool	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_bool(&mut self) -> Result<bool, DecodeError> {$/;"	f
-read_byte	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^fn read_byte(r: &mut io::Read) -> io::Result<u8> {$/;"	f
 read_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_char(&mut self) -> Result<char, DecodeError> {$/;"	f
 read_config_prompt	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn read_config_prompt(input: &Prompt) -> String {$/;"	f
 read_enum	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_enum<T, F>(&mut self, _name: &str, f: F)$/;"	f
@@ -368,12 +644,10 @@ read_i64	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.
 read_i8	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_i8(&mut self) -> Result<i8, DecodeError> {$/;"	f
 read_in_config	/home/michael/Code/Rust/rusty/src/core/config.rs	/^fn read_in_config() -> String{$/;"	f
 read_isize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_isize(&mut self) -> Result<isize, DecodeError> {$/;"	f
-read_le_u16	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^fn read_le_u16(r: &mut io::Read) -> io::Result<u16> {$/;"	f
 read_map	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_map<T, F>(&mut self, f: F)$/;"	f
 read_map_elt_key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_map_elt_key<T, F>(&mut self, idx: usize, f: F)$/;"	f
 read_map_elt_val	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_map_elt_val<T, F>(&mut self, idx: usize, f: F)$/;"	f
 read_nil	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_nil(&mut self) -> Result<(), DecodeError> {$/;"	f
-read_nonneg	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^    macro_rules! read_nonneg {$/;"	d
 read_option	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_option<T, F>(&mut self, mut f: F)$/;"	f
 read_seq	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_seq<T, F>(&mut self, f: F) -> Result<T, DecodeError>$/;"	f
 read_seq_elt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_seq_elt<T, F>(&mut self, idx: usize, f: F)$/;"	f
@@ -390,43 +664,118 @@ read_u64	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.
 read_u8	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_u8(&mut self) -> Result<u8, DecodeError> {$/;"	f
 read_usize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn read_usize(&mut self) -> Result<usize, DecodeError> {$/;"	f
 readconfig	/home/michael/Code/Rust/rusty/src/core/config.rs	/^    fn readconfig() {$/;"	f
-readline	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn readline(&mut self) {$/;"	f
+readdir_r	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn readdir_r(dirp: *mut DIR, entry: *mut dirent_t,$/;"	f
+readline	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn readline(&mut self) -> i32 {$/;"	f
+readlink	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn readlink(path: *const c_char,$/;"	f
+realloc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn realloc(p: *mut c_void, size: size_t) -> *mut c_void;$/;"	f
+realpath	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn realpath(pathname: *const c_char, resolved: *mut c_char)$/;"	f
 recurse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn recurse<'b>(&mut self, mut cur: &'b mut TomlTable, keys: &'b [String],$/;"	f
-reset	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn reset(&mut self) -> io::Result<bool>;$/;"	f
-reset	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn reset(&mut self) -> io::Result<bool> {$/;"	f
-reset	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn reset(&mut self) -> io::Result<bool> {$/;"	f
+recv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn recv(socket: SOCKET, buf: *mut c_void, len: c_int,$/;"	f
+recv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn recv(socket: c_int, buf: *mut c_void, len: size_t,$/;"	f
+recvfrom	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn recvfrom(socket: SOCKET, buf: *mut c_void, len: c_int,$/;"	f
+recvfrom	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn recvfrom(socket: c_int, buf: *mut c_void, len: size_t,$/;"	f
+remove	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn remove(filename: *const c_char) -> c_int;$/;"	f
+rename	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rename(oldname: *const c_char,$/;"	f
+resource	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod resource {$/;"	m
+rewind	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rewind(stream: *mut FILE);$/;"	f
+rewinddir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rewinddir(dirp: *mut DIR);$/;"	f
+rlim_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type rlim_t = i64;$/;"	T
+rlim_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type rlim_t = u64;$/;"	T
+rlimit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub struct rlimit {$/;"	s
+rmdir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rmdir(path: *const c_char) -> c_int;$/;"	f
 round_trip	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn round_trip() {$/;"	f
 run	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/invalid.rs	/^fn run(toml: &str) {$/;"	f
 run	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^fn run(toml: &str, json: &str) {$/;"	f
 run	/home/michael/Code/Rust/rusty/src/scripting/script_macros.rs	/^macro_rules! run {$/;"	d
+rusage	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub struct rusage {$/;"	s
 rustc_serialize::Decoder for Decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^impl rustc_serialize::Decoder for Decoder {$/;"	i
 rustc_serialize::Encodable for Value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^impl rustc_serialize::Encodable for Value {$/;"	i
 rustc_serialize::Encoder for Encoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^impl rustc_serialize::Encoder for Encoder {$/;"	i
+sa_family_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type sa_family_t = u16;$/;"	T
+sa_family_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type sa_family_t = u8;$/;"	T
 same_type	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn same_type(&self, other: &Value) -> bool {$/;"	f
 same_type	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn same_type(&self, other: &Value) -> bool {$/;"	f
 script_macros	/home/michael/Code/Rust/rusty/src/scripting/mod.rs	/^pub mod script_macros;$/;"	m
 scripting	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod scripting;$/;"	m
-searcher	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^pub mod searcher;$/;"	m
+seekdir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn seekdir(dirp: *mut DIR, loc: c_long);$/;"	f
+send	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn send(socket: SOCKET, buf: *const c_void, len: c_int,$/;"	f
+send	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn send(socket: c_int, buf: *const c_void, len: size_t,$/;"	f
+sendto	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn sendto(socket: SOCKET, buf: *const c_void, len: c_int,$/;"	f
+sendto	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn sendto(socket: c_int, buf: *const c_void, len: size_t,$/;"	f
 seq	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn seq<F>(&mut self, f: F) -> Result<(), Error>$/;"	f
 set_env_var	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn set_env_var() {$/;"	f
+setbuf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setbuf(stream: *mut FILE, buf: *mut c_char);$/;"	f
+setenv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setenv(name: *const c_char, val: *const c_char,$/;"	f
+setgid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setgid(gid: gid_t) -> c_int;$/;"	f
+setpgid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setpgid(pid: pid_t, pgid: pid_t) -> c_int;$/;"	f
+setrlimit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setrlimit(resource: c_int, rlim: *const rlimit) -> c_int;$/;"	f
+setsid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setsid() -> pid_t;$/;"	f
+setsockopt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn setsockopt(socket: SOCKET, level: c_int, name: c_int,$/;"	f
+setsockopt	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn setsockopt(socket: c_int, level: c_int, name: c_int,$/;"	f
+setuid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setuid(uid: uid_t) -> c_int;$/;"	f
+setvbuf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn setvbuf(stream: *mut FILE,$/;"	f
+shm_open	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn shm_open(name: *const c_char, oflag: c_int, mode: mode_t)$/;"	f
+shm_unlink	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn shm_unlink(name: *const c_char) -> c_int;$/;"	f
+shutdown	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn shutdown(socket: SOCKET, how: c_int) -> c_int;$/;"	f
+shutdown	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn shutdown(socket: c_int, how: c_int) -> c_int;$/;"	f
+sighandler_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type sighandler_t = size_t;$/;"	T
+signal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn signal(signum: c_int,$/;"	f
+signal	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod signal {$/;"	m
 simple_show	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn simple_show() {$/;"	f
+size_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type size_t = u32;$/;"	T
+size_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type size_t = u64;$/;"	T
+sleep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn sleep(secs: c_uint) -> c_uint;$/;"	f
 smoke	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn smoke() {$/;"	f
 smoke_hyphen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn smoke_hyphen() {$/;"	f
+socket	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn socket(domain: c_int, ty: c_int, protocol: c_int) -> SOCKET;$/;"	f
+socket	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn socket(domain: c_int, ty: c_int, protocol: c_int) -> c_int;$/;"	f
+socklen_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type socklen_t = c_int;$/;"	T
+socklen_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type socklen_t = u32;$/;"	T
 split_pipes	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {$/;"	f
-stderr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub fn stderr() -> Option<Box<StderrTerminal>> {$/;"	f
-stdout	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub fn stdout() -> Option<Box<StdoutTerminal>> {$/;"	f
-store	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^    pub fn store(&mut self, line: String) {$/;"	f
+srand	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn srand(seed: c_uint);$/;"	f
+ssize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ssize_t = c_long;$/;"	T
+ssize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ssize_t = i32;$/;"	T
+ssize_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type ssize_t = i64;$/;"	T
+stat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn stat(path: *const c_char, buf: *mut stat) -> c_int;$/;"	f
+stat_	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod stat_ {$/;"	m
+stdio	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod stdio {$/;"	m
+stdlib	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod stdlib {$/;"	m
 store	/home/michael/Code/Rust/rusty/src/core/history.rs	/^    pub fn store(&mut self, input: String) {$/;"	f
 stray_cr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn stray_cr() {$/;"	f
+strcat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strcat(s: *mut c_char, ct: *const c_char) -> *mut c_char;$/;"	f
+strchr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strchr(cs: *const c_char, c: c_int) -> *mut c_char;$/;"	f
+strcmp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strcmp(cs: *const c_char, ct: *const c_char) -> c_int;$/;"	f
+strcoll	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strcoll(cs: *const c_char, ct: *const c_char) -> c_int;$/;"	f
+strcpy	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strcpy(dst: *mut c_char,$/;"	f
+strcspn	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strcspn(cs: *const c_char, ct: *const c_char) -> size_t;$/;"	f
+strerror	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strerror(n: c_int) -> *mut c_char;$/;"	f
+string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod string {$/;"	m
 string	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn string(&mut self, start: usize) -> Option<Value> {$/;"	f
 string_no_newline	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn string_no_newline() {$/;"	f
-stringfnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static stringfnames: &'static[&'static str] = &[ "back_tab", "bell", "carriage_return",$/;"	c
-stringnames	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^pub static stringnames: &'static[&'static str] = &[ "cbt", "_", "cr", "csr", "tbc", "clear",$/;"	c
+strlen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strlen(cs: *const c_char) -> size_t;$/;"	f
+strncat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strncat(s: *mut c_char, ct: *const c_char,$/;"	f
+strncmp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strncmp(cs: *const c_char, ct: *const c_char,$/;"	f
+strncpy	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strncpy(dst: *mut c_char, src: *const c_char, n: size_t)$/;"	f
+strpbrk	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strpbrk(cs: *const c_char,$/;"	f
+strrchr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strrchr(cs: *const c_char, c: c_int) -> *mut c_char;$/;"	f
+strspn	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strspn(cs: *const c_char, ct: *const c_char) -> size_t;$/;"	f
+strstr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strstr(cs: *const c_char,$/;"	f
+strtod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strtod(s: *const c_char,$/;"	f
+strtok	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strtok(s: *mut c_char, t: *const c_char) -> *mut c_char;$/;"	f
+strtol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strtol(s: *const c_char,$/;"	f
+strtoul	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strtoul(s: *const c_char, endp: *mut *mut c_char,$/;"	f
+strxfrm	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn strxfrm(s: *mut c_char, ct: *const c_char,$/;"	f
 sub	/home/michael/Code/Rust/rusty/src/utils/calc.rs	/^fn sub(num1: i64, num2: i64) -> i64 {$/;"	f
 sub_decoder	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^    fn sub_decoder(&self, toml: Option<Value>, field: &str) -> Decoder {$/;"	f
-supports_attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^    fn supports_attr(&self, attr: Attr) -> bool;$/;"	f
-supports_attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn supports_attr(&self, attr: Attr) -> bool {$/;"	f
-supports_attr	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn supports_attr(&self, attr: Attr) -> bool {$/;"	f
+suseconds_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type suseconds_t = i32;$/;"	T
+suseconds_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type suseconds_t = i64;$/;"	T
+symlink	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn symlink(path1: *const c_char,$/;"	f
+sysconf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn sysconf(name: c_int) -> c_long;$/;"	f
+sysconf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod sysconf {$/;"	m
+sysctl	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn sysctl(name: *mut c_int,$/;"	f
+sysctlbyname	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn sysctlbyname(name: *const c_char,$/;"	f
+sysctlnametomib	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn sysctlnametomib(name: *const c_char,$/;"	f
+system	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn system(s: *const c_char) -> c_int;$/;"	f
 t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^        macro_rules! t {$/;"	d
 table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn table() {$/;"	f
 table	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn table<F>(&mut self, f: F) -> Result<(), Error>$/;"	f
@@ -434,24 +783,12 @@ table_array	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0
 table_key	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/mod.rs	/^    fn table_key<F>(&mut self, f: F) -> Result<(), Error>$/;"	f
 table_names	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn table_names() {$/;"	f
 tables_in_arrays	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn tables_in_arrays() {$/;"	f
-terminfo	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^pub mod terminfo;$/;"	m
-test	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^mod test {$/;"	m
-test	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^mod test {$/;"	m
+tcgetpgrp	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn tcgetpgrp(fd: c_int) -> pid_t;$/;"	f
+telldir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn telldir(dirp: *mut DIR) -> c_long;$/;"	f
 test	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/invalid.rs	/^macro_rules! test( ($name:ident, $toml:expr) => ($/;"	d
 test	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^macro_rules! test( ($name:ident, $toml:expr, $json:expr) => ($/;"	d
-test_basic_setabf	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_basic_setabf() {$/;"	f
 test_change_directory_fail	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^    fn test_change_directory_fail(){$/;"	f
 test_change_directory_ok	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^    fn test_change_directory_ok(){$/;"	f
-test_comparison_ops	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_comparison_ops() {$/;"	f
-test_conditionals	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_conditionals() {$/;"	f
-test_conout	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^fn test_conout() {$/;"	f
-test_format	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_format() {$/;"	f
-test_multiple_int_constants	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_multiple_int_constants() {$/;"	f
-test_op_i	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_op_i() {$/;"	f
-test_param_stack_failure_conditions	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_param_stack_failure_conditions() {$/;"	f
-test_parse	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^    fn test_parse() {$/;"	f
-test_push_bad_param	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn test_push_bad_param() {$/;"	f
-test_veclens	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^    fn test_veclens() {$/;"	f
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^mod tests {$/;"	m
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^mod tests {$/;"	m
 tests	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^mod tests {$/;"	m
@@ -461,16 +798,36 @@ tests	/home/michael/Code/Rust/rusty/src/core/config.rs	/^mod tests{$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/core/execute.rs	/^mod tests{$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^mod tests{$/;"	m
 tests	/home/michael/Code/Rust/rusty/src/utils/cd.rs	/^mod tests {$/;"	m
-to_char	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parm.rs	/^    fn to_char(self) -> char {$/;"	f
+time64_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type time64_t = i64;$/;"	T
+time_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type time_t = c_long;$/;"	T
+time_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type time_t = i32;$/;"	T
+time_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type time_t = i64;$/;"	T
+timezone	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub enum timezone {}$/;"	g
+tmpfile	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn tmpfile() -> *mut FILE;$/;"	f
 to_json	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/tests/valid.rs	/^fn to_json(toml: Value) -> Json {$/;"	f
 to_linecol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    pub fn to_linecol(&self, offset: usize) -> (usize, usize) {$/;"	f
-try	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/parser/compiled.rs	/^    macro_rules! try( ($e:expr) => ($/;"	d
+tolower	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn tolower(c: c_char) -> c_char;$/;"	f
+toupper	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn toupper(c: c_char) -> c_char;$/;"	f
 try	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^macro_rules! try {$/;"	d
+ttyname	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ttyname(fd: c_int) -> *mut c_char;$/;"	f
 tuple	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn tuple() {$/;"	f
 tuple_struct	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn tuple_struct() {$/;"	f
 type_errors	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn type_errors() {$/;"	f
 type_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/lib.rs	/^    pub fn type_str(&self) -> &'static str {$/;"	f
 type_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn type_str(&self) -> &'static str {$/;"	f
+types	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^pub mod types {$/;"	m
+uid_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type uid_t = u32;$/;"	T
+uint16_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type uint16_t = u16;$/;"	T
+uint32_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type uint32_t = u32;$/;"	T
+uint64_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type uint64_t = u64;$/;"	T
+uint8_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub type uint8_t = u8;$/;"	T
+uintmax_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type uintmax_t = u64;$/;"	T
+uintptr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type uintptr_t = u32;$/;"	T
+uintptr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type uintptr_t = u64;$/;"	T
+ungetc	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn ungetc(c: c_int, stream: *mut FILE) -> c_int;$/;"	f
+unistd	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod unistd {$/;"	m
+unlink	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn unlink(c: *const c_char) -> c_int;$/;"	f
+unsetenv	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn unsetenv(name: *const c_char) -> c_int;$/;"	f
 unused_fields	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields() {$/;"	f
 unused_fields2	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields2() {$/;"	f
 unused_fields3	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn unused_fields3() {$/;"	f
@@ -481,11 +838,25 @@ unused_fields7	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/tom
 update_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_cwd(&mut self){$/;"	f
 update_prompt	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn update_prompt(&mut self) {$/;"	f
 updated_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    fn updated_cwd() {$/;"	f
+useconds_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type useconds_t = u32;$/;"	T
+usleep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn usleep(secs: c_uint) -> c_int;$/;"	f
 utils	/home/michael/Code/Rust/rusty/src/lib.rs	/^pub mod utils;$/;"	m
+utime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn utime(file: *const c_char, buf: *const utimbuf) -> c_int;$/;"	f
 value	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn value(&mut self) -> Option<Value> {$/;"	f
 values	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn values(&mut self, into: &mut TomlTable) -> bool {$/;"	f
-win	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/lib.rs	/^mod win;$/;"	m
-write	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/terminfo/mod.rs	/^    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {$/;"	f
-write	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/term-0.2.10/src/win.rs	/^    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {$/;"	f
+wait	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wait(status: *const c_int) -> pid_t;$/;"	f
+waitpid	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn waitpid(pid: pid_t, status: *const c_int, options: c_int)$/;"	f
+wchar_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type wchar_t = i32;$/;"	T
+wchar_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type wchar_t = u16;$/;"	T
+wchar_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type wchar_t = u32;$/;"	T
+wchmod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wchmod(path: *const wchar_t, mode: c_int) -> c_int;$/;"	f
+wcslen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wcslen(buf: *const wchar_t) -> size_t;$/;"	f
+winsock	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod winsock {$/;"	m
+wopen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wopen(path: *const wchar_t, oflag: c_int, mode: c_int)$/;"	f
+write	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn write(fd: c_int, buf: *const c_void, count: size_t)$/;"	f
+write	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn write(fd: c_int, buf: *const c_void,$/;"	f
 write_str	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^fn write_str(f: &mut fmt::Formatter, s: &str) -> fmt::Result {$/;"	f
+wrmdir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wrmdir(path: *const wchar_t) -> c_int;$/;"	f
 ws	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn ws(&mut self) -> bool {$/;"	f
+wstat	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wstat(path: *const wchar_t, buf: *mut stat) -> c_int;$/;"	f
+wutime	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn wutime(file: *const wchar_t, buf: *mut utimbuf) -> c_int;$/;"	f

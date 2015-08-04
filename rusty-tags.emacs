@@ -1,4 +1,8 @@
 
+/home/michael/Code/Rust/rusty/build.rs,44
+fn main() {main3,19
+fn main() {main3,19
+
 /home/michael/Code/Rust/rusty/src/scripting/script_macros.rs,56
 macro_rules! run {run2,16
 macro_rules! run {run2,16
@@ -52,8 +56,8 @@ pub mod cat;cat3,26
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,48
-fn main() {main13,324
-fn main() {main13,324
+fn main() {main14,325
+fn main() {main14,325
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -101,19 +105,19 @@ impl HistoryBuffer {HistoryBuffer6,82
     pub fn store(&mut self, input: String) {store14,244
     pub fn store(&mut self, input: String) {store14,244
 
-/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,568
-pub struct InputBuffer {InputBuffer7,105
-pub struct InputBuffer {InputBuffer7,105
-impl InputBuffer {InputBuffer12,182
-impl InputBuffer {InputBuffer12,182
-    pub fn new() -> Self {new14,202
-    pub fn new() -> Self {new14,202
-    pub fn readline(&mut self) {readline25,508
-    pub fn readline(&mut self) {readline25,508
-    pub fn output(&mut self) -> Vec<&str> {output41,959
-    pub fn output(&mut self) -> Vec<&str> {output41,959
-    pub fn store(&mut self, line: String) {store46,1098
-    pub fn store(&mut self, line: String) {store46,1098
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,564
+   fn get_input() -> libc::c_int;get_input5,58
+   fn get_input() -> libc::c_int;get_input5,58
+pub struct InputBuffer {InputBuffer8,95
+pub struct InputBuffer {InputBuffer8,95
+impl InputBuffer {InputBuffer12,145
+impl InputBuffer {InputBuffer12,145
+    pub fn new() -> Self {new14,165
+    pub fn new() -> Self {new14,165
+    pub fn readline(&mut self) -> i32 {readline23,395
+    pub fn readline(&mut self) -> i32 {readline23,395
+    pub fn output(&mut self) -> Vec<&str> {output47,1116
+    pub fn output(&mut self) -> Vec<&str> {output47,1116
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,1766
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117
@@ -188,5 +192,5 @@ pub mod buffer_in;buffer_in7,106
 pub mod buffer_in;buffer_in7,106
 pub mod history;history8,125
 pub mod history;history8,125
-/home/michael/.rusty-tags/cache/term-0.2.10.emacs,include
+/home/michael/.rusty-tags/cache/libc-0.1.8.emacs,include
 /home/michael/.rusty-tags/cache/toml-0.1.21.emacs,include

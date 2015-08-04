@@ -2,13 +2,18 @@
 name = "rusty"
 version = "0.1.0"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
+build = "build.rs"
 
 [dependencies]
 toml = "*"
 term = "*"
+libc = "*"
 
 [dependencies.clippy]
 git = "https://github.com/manishearth/rust-clippy"
+
+[build-dependencies]
+gcc = "*"
 
 [profile.dev]
 opt-level = 0

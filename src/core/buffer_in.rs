@@ -1,51 +1,52 @@
-#![allow(unused_mut)]
-//use core::autocomplete;
-//use core::keybinding;
-use std::io;
-use std::io::Read;
+extern crate libc;
+use std::io::{stdout,Write};
+
+extern {
+   fn get_input() -> libc::c_int;
+}
 
 pub struct InputBuffer {
     pub line: String,
-    pub hist: Vec<String>,
 }
 
 impl InputBuffer {
 
     pub fn new() -> Self {
         let mut buffer = String::new();
-        let mut vector: Vec<String> = Vec::new();
         InputBuffer {
             line: buffer,
-            hist: vector,
         }
     }
 
     //Rads key strokes into buffer. If a certain key is recieved
     //activates various commands
-    pub fn readline(&mut self) {
-        let mut buffer = String::new();
-        let mut stdin = io::stdin().chars();
-        for c in stdin {
-            if c.is_ok() {
-                let unwrapped = c.unwrap();
-                if unwrapped == '\n' {
-                    break;
+    pub fn readline(&mut self) -> i32 {
+        let mut line = String::new();
+        let mut ch;
+        loop {
+            ch  = unsafe {get_input()};
+            match ch {
+               -1 => println!("UP"),
+               -2 => println!("DOWN"),
+               -3 => println!("LEFT"),
+               -4 => println!("RIGHT"),
+               -5 => break,
+                _ => {
+                    line.push(ch as u8 as char);
+                    print!("{}", ch as u8 as char);
+                    stdout().flush().ok().expect("Could not flush stdout");
                 }
-                buffer.push(unwrapped);
             }
         }
-        self.line = buffer;
+        println!("");
+        self.line = line;
+        ch
     }
 
     //Outputs buffer for usage puts line into history
     pub fn output(&mut self) -> Vec<&str> {
         let out_vec: Vec<&str> = self.line.trim().split(' ').collect();
         out_vec
-    }
-
-    pub fn store(&mut self, line: String) {
-        self.hist.push(line);
-        self.line = String::new();
     }
 
 }
