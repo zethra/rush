@@ -194,6 +194,7 @@ atexit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/
 atof	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn atof(s: *const c_char) -> c_double;$/;"	f
 atoi	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn atoi(s: *const c_char) -> c_int;$/;"	f
 autocomplete	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod autocomplete;$/;"	m
+backspace	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn backspace(input: libc::c_int);$/;"	f
 bad	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    macro_rules! bad {$/;"	d
 bad_enum_chooses_longest_error	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/rustc_serialize.rs	/^    fn bad_enum_chooses_longest_error() {$/;"	f
 bad_floats	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn bad_floats() {$/;"	f
@@ -511,6 +512,7 @@ keybinding	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod keybinding;$/
 keyval_sep	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn keyval_sep(&mut self) -> bool {$/;"	f
 kill	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn kill(pid: pid_t, sig: c_int) -> c_int;$/;"	f
 labs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn labs(i: c_long) -> c_long;$/;"	f
+left	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn left(input: libc::c_int);$/;"	f
 linecol	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn linecol() {$/;"	f
 link	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn link(src: *const c_char, dst: *const c_char) -> c_int;$/;"	f
 listen	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^            pub fn listen(socket: SOCKET, backlog: c_int) -> c_int;$/;"	f
@@ -614,6 +616,7 @@ posix88	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8
 posix_madvise	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn posix_madvise(addr: *mut c_void,$/;"	f
 pread	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn pread(fd: c_int, buf: *mut c_void, count: size_t,$/;"	f
 print	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/display.rs	/^    fn print(&mut self, table: &'a TomlTable) -> fmt::Result {$/;"	f
+print	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn print(&self) {$/;"	f
 prompt	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod prompt;$/;"	m
 prompt_init	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    fn prompt_init() {$/;"	f
 pthread_attr_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type pthread_attr_t = *mut c_void;$/;"	T
@@ -679,6 +682,7 @@ rename	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/
 resource	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod resource {$/;"	m
 rewind	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rewind(stream: *mut FILE);$/;"	f
 rewinddir	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn rewinddir(dirp: *mut DIR);$/;"	f
+right	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn right(input: libc::c_int);$/;"	f
 rlim_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type rlim_t = i64;$/;"	T
 rlim_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type rlim_t = u64;$/;"	T
 rlimit	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub struct rlimit {$/;"	s

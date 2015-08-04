@@ -5,6 +5,8 @@ use core::keybinding::*;
 extern {
    fn get_input() -> libc::c_int;
    fn backspace(input: libc::c_int);
+   fn right(input: libc::c_int);
+   fn left(input: libc::c_int);
 }
 
 pub struct InputBuffer {
@@ -43,10 +45,16 @@ impl InputBuffer {
                     print!("{}",c);
                     stdout().flush().ok().expect("Could not flush stdout");
                 }
-                /* For moving amongst the buffers
-                 Key::Left => {}
-                 Key::Right => {}
-                */
+                Key::Left => {
+                    unsafe{
+                        left(1);
+                    }
+                }
+                Key::Right => {
+                    unsafe{
+                        right(1);
+                    }
+                }
                 Key::Backspace => {
                     line.pop();
                     if !line.is_empty(){

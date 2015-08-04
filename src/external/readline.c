@@ -33,6 +33,17 @@ void backspace(int back) {
 	else if(back == 2)
 		fputs("\033[D ",stdout);
 }
+
+void left(int boolean) {
+	if(boolean == 1)
+		fputs("\033[C",stdout);
+}
+
+void right(int boolean) {
+	if(boolean == 1)
+		fputs("\033[D",stdout);
+}
+
 int get_input() {
 	char output = getch();
 	//Catch Carriage Returns and new lines
@@ -46,13 +57,13 @@ int get_input() {
 	if(output == '\033') { //if first value is escape
 		getch(); //skips the [
 		switch(getch()) {
-			case 'A':
+			case 'A': //Up
 				return -1;
-			case 'B':
+			case 'B': //Down
 				return -2;
-			case 'C':
+			case 'C': //Left
 				return -3;
-			case 'D':
+			case 'D': //Right
 				return -4;
 		}
 	}
