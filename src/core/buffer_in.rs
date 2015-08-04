@@ -1,8 +1,9 @@
-#![allow(unused_mut)]
-//use core::autocomplete;
-//use core::keybinding;
-use std::io;
-use std::io::Read;
+extern crate libc;
+use std::io::{stdout,Write};
+
+extern {
+   fn get_input() -> libc::c_int;
+}
 
 pub struct InputBuffer {
     pub line: String,
@@ -19,19 +20,27 @@ impl InputBuffer {
 
     //Rads key strokes into buffer. If a certain key is recieved
     //activates various commands
-    pub fn readline(&mut self) {
-        let mut buffer = String::new();
-        let mut stdin = io::stdin().chars();
-        for c in stdin {
-            if c.is_ok() {
-                let unwrapped = c.unwrap();
-                match unwrapped {
-                    '\n' => break,
-                      _  => buffer.push(unwrapped),
+    pub fn readline(&mut self) -> i32 {
+        let mut line = String::new();
+        let mut ch;
+        loop {
+            ch  = unsafe {get_input()};
+            match ch {
+               -1 => println!("UP"),
+               -2 => println!("DOWN"),
+               -3 => println!("LEFT"),
+               -4 => println!("RIGHT"),
+               -5 => break,
+                _ => {
+                    line.push(ch as u8 as char);
+                    print!("{}", ch as u8 as char);
+                    stdout().flush().ok().expect("Could not flush stdout");
                 }
             }
         }
-        self.line = buffer;
+        println!("");
+        self.line = line;
+        ch
     }
 
     //Outputs buffer for usage puts line into history

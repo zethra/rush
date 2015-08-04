@@ -2,11 +2,15 @@
 name = "rusty"
 version = "0.0.4"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
+build = "build.rs"
 
 [dependencies]
 toml = "*"
 term = "*"
-#clippy = "*"
+libc = "*"
+
+[build-dependencies]
+gcc = "*"
 
 [profile.dev]
 opt-level = 0
