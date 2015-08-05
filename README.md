@@ -24,6 +24,8 @@ add the features that actually make a shell worth while to use.
 
 - Rust Nightly
 - Cargo
+
+####Optional
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
 
@@ -47,8 +49,18 @@ add the features that actually make a shell worth while to use.
 		- [x] Be able to add to current variable e.g. PATH = "PATH:/home/user/.bin"
 	- [ ] Source config files
 - [ ] Command History
+	- [x] Store Commands in History Buffer
+	- [ ] Save History to file
+	- [ ] Load History upon start
+	- [ ] Access History to run previous commands
 - [ ] Buffered Input
-- [ ] Keyboard Interupts
+	- [ ] Keyboard Interupts
+		- [ ] Implement all keys
+		- [x] Handle Interupts
+	- [x] Take in one char at a time
+	- [x] Buffer inputs
+	- [ ] Terminal Manipulation
+
 ###Planned but not implemented:
 - [ ] Better error handling using try!()
 - [ ] cd - functionality
@@ -68,11 +80,15 @@ add the features that actually make a shell worth while to use.
 - [ ] Reduce need for clone() and work on proper ownership
 - [ ] Format code in a uniform way
 - [ ] Reduce let bindings
+- [ ] Get rid of unsafe or make super safe
+	- [ ] Make sure char conversions work properly
 
-Probably more. Will add as ideas come to mind.
+Note: Terminal Key bindings require unsafe for now in order to work
+properly. Until Rust implements getchar and getch in it's library
+this will not be able to be done.
 
 ###Rust Version
-Currently using 1.2 Nightly due to need of unstable features. Has not been
+Currently using 1.3 Nightly due to need of unstable features. Has not been
 tested with any other version.
 
 ###Config File
@@ -161,6 +177,6 @@ Keybase: [mgattozzi](https://keybase.io/mgattozzi)
 Commits are now signed and the key can be verified at the above link
 
 ###Donations
-If you want to donate to the project you can use my bitcoin address:
+If you want to donate (not required this project will always be free) to the project you can use my bitcoin address:
 1HJm93qp2625SEuq2gFxjzV558c6F4gKCq
 
