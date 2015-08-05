@@ -37,9 +37,16 @@ impl InputBuffer {
 
         //Variables regarding the terminal cursor
         let cursor_pos_min = unsafe {get_cursor_position()};
-        let mut cursor = cursor_pos_min+1;
+        let mut cursor = cursor_pos_min;
         let mut cursor_pos_max = cursor_pos_min;
         loop {
+
+            if cursor == cursor_pos_min {
+                bol = true;
+            } else {
+                bol = false;
+            }
+
             ch  = unsafe {get_input()};
             let keypress = new_key(ch);
             match keypress {
@@ -52,11 +59,12 @@ impl InputBuffer {
                 Key::Char(c) => {
                     bol = false;
                     line.push(c);
+                    cursor += 1;
                     cursor_pos_max += 1;
                     print!("{}",c);
                     stdout().flush().ok().expect("Could not flush stdout");
                 }
-                Key::Left => { //Broken
+                Key::Left => {
                     if cursor > cursor_pos_min {
                         unsafe{
                             left(1);
@@ -64,8 +72,8 @@ impl InputBuffer {
                         cursor -=1;
                     }
                 }
-                Key::Right => { //Broken
-                    if cursor <= cursor_pos_max {
+                Key::Right => {
+                    if cursor < cursor_pos_max {
                         unsafe{
                             right(1);
                         }
@@ -73,7 +81,10 @@ impl InputBuffer {
                     }
                 }
                 Key::Backspace => {
+                    //As it stands this only works if cursor
+                    //is at the end of the line
                     line.pop();
+                    cursor -= 1;
                     cursor_pos_max -= 1;
                     if !line.is_empty(){
                         unsafe{backspace(0);}
