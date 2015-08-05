@@ -44,9 +44,9 @@ int get_input() {
 				return -1;
 			case 'B': //Down
 				return -2;
-			case 'C': //Left
+			case 'C': //Right
 				return -3;
-			case 'D': //Right
+			case 'D': //Left
 				return -4;
 		}
 	}
@@ -66,12 +66,12 @@ void backspace(int back) {
 
 void left(int boolean) {
 	if(boolean == 1)
-		fputs("\033[C",stdout);
+		fputs("\033[D",stdout);
 }
 
 void right(int boolean) {
 	if(boolean == 1)
-		fputs("\033[D",stdout);
+		fputs("\033[C",stdout);
 }
 
 int get_cursor_position(void) {

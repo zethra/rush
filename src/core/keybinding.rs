@@ -17,8 +17,8 @@ pub fn new_key(input: i32) -> Key {
     match input {
         -1 => Key::Up,
         -2 => Key::Down,
-        -3 => Key::Left,
-        -4 => Key::Right,
+        -3 => Key::Right,
+        -4 => Key::Left,
         -5 => Key::Enter,
         -6 => Key::Backspace,
         -7 => Key::Del,
