@@ -25,6 +25,36 @@ char getch(void) {
 	return getch_(0);
 }
 
+int get_input() {
+	char output = getch();
+	//Catch Carriage Returns and new lines
+	if(output == '\r' || output == '\n') {
+		return -5;
+	}
+	else if(output == 127) { //Backspace
+		return -6;
+	} else if(output == '\t') {
+		return -10;
+	}
+	//Handling Arrow Keys
+	if(output == '\033') { //if first value is escape
+		getch(); //skips the [
+		switch(getch()) {
+			case 'A': //Up
+				return -1;
+			case 'B': //Down
+				return -2;
+			case 'C': //Left
+				return -3;
+			case 'D': //Right
+				return -4;
+		}
+	}
+
+	return output;
+}
+
+//Cursor Related Functions
 void backspace(int back) {
 	if(back == 0)
 		fputs("\033[D \033[D",stdout);
@@ -44,29 +74,8 @@ void right(int boolean) {
 		fputs("\033[D",stdout);
 }
 
-int get_input() {
-	char output = getch();
-	//Catch Carriage Returns and new lines
-	if(output == '\r' || output == '\n') {
-		return -5;
-	}
-	else if(output == 127) {
-		return -6;
-	}
-	//Handling Arrow Keys
-	if(output == '\033') { //if first value is escape
-		getch(); //skips the [
-		switch(getch()) {
-			case 'A': //Up
-				return -1;
-			case 'B': //Down
-				return -2;
-			case 'C': //Left
-				return -3;
-			case 'D': //Right
-				return -4;
-		}
-	}
-
-	return output;
+int get_cursor_position(void) {
+	int i = fputs("\0336n",stdout);
+	fputs("\033[D ",stdout);
+	return i;
 }
