@@ -260,6 +260,7 @@ check_alias	/home/michael/Code/Rust/rusty/src/core/config.rs	/^pub fn check_alia
 chmod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chmod(path: *const c_char, mode: c_int) -> c_int;$/;"	f
 chmod	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chmod(path: *const c_char, mode: mode_t) -> c_int;$/;"	f
 chown	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn chown(path: *const c_char, uid: uid_t,$/;"	f
+clear_to_end	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn clear_to_end();$/;"	f
 clock_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type clock_t = c_ulong;$/;"	T
 clock_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type clock_t = i32;$/;"	T
 clock_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub type clock_t = i64;$/;"	T

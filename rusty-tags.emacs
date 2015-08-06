@@ -105,27 +105,29 @@ impl HistoryBuffer {HistoryBuffer6,82
     pub fn store(&mut self, input: String) {store14,244
     pub fn store(&mut self, input: String) {store14,244
 
-/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,994
-   fn get_input() -> libc::c_int;get_input6,83
-   fn get_input() -> libc::c_int;get_input6,83
-   fn backspace(input: libc::c_int);backspace7,117
-   fn backspace(input: libc::c_int);backspace7,117
-   fn right(input: libc::c_int);right8,154
-   fn right(input: libc::c_int);right8,154
-   fn left(input: libc::c_int);left9,187
-   fn left(input: libc::c_int);left9,187
-   fn get_cursor_position() -> libc::c_int;get_cursor_position10,219
-   fn get_cursor_position() -> libc::c_int;get_cursor_position10,219
-pub struct InputBuffer {InputBuffer13,266
-pub struct InputBuffer {InputBuffer13,266
-impl InputBuffer {InputBuffer17,316
-impl InputBuffer {InputBuffer17,316
-    pub fn new() -> Self {new19,336
-    pub fn new() -> Self {new19,336
-    pub fn readline(&mut self) -> Key {readline29,599
-    pub fn readline(&mut self) -> Key {readline29,599
-    pub fn output(&mut self) -> Vec<&str> {output113,3376
-    pub fn output(&mut self) -> Vec<&str> {output113,3376
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,1096
+   fn get_input() -> libc::c_int;get_input7,106
+   fn get_input() -> libc::c_int;get_input7,106
+   fn backspace(input: libc::c_int);backspace8,140
+   fn backspace(input: libc::c_int);backspace8,140
+   fn right(input: libc::c_int);right9,177
+   fn right(input: libc::c_int);right9,177
+   fn left(input: libc::c_int);left10,210
+   fn left(input: libc::c_int);left10,210
+   fn go_back(slice: *const libc::c_char,length: libc::c_int);go_back11,242
+   fn go_back(slice: *const libc::c_char,length: libc::c_int);go_back11,242
+   fn clear_to_end();clear_to_end12,305
+   fn clear_to_end();clear_to_end12,305
+pub struct InputBuffer {InputBuffer15,330
+pub struct InputBuffer {InputBuffer15,330
+impl InputBuffer {InputBuffer19,380
+impl InputBuffer {InputBuffer19,380
+    pub fn new() -> Self {new21,400
+    pub fn new() -> Self {new21,400
+    pub fn readline(&mut self) -> Key {readline31,663
+    pub fn readline(&mut self) -> Key {readline31,663
+    pub fn output(&mut self) -> Vec<&str> {output123,4159
+    pub fn output(&mut self) -> Vec<&str> {output123,4159
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,1766
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117
