@@ -74,10 +74,12 @@ void right(int boolean) {
 }
 
 void go_back(char n[], int length) {
-	for(int i = 0; i < length; i++) {
+	int i = 0;
+	int j = 0;
+	for(i; i < length; i++) {
 		printf("%c",n[i]);
 	}
-	for(int i = 0; i < length; i++) {
+	for(j; i < length; i++) {
 		fputs("\033[D",stdout);
 	}
 }
