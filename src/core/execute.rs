@@ -4,9 +4,10 @@ use std::process::*;
 use std::os::unix::io::{FromRawFd, AsRawFd};
 use std::io::Result;
 
+///Interpret
+///Given an input command, interpret parses and determines what and how
+///to execute it and returns output or error output
 pub fn interpret(command: Vec<&str>) -> String {
-//The function that takes a command and interprets what to do with it
-//Calls the wrapper functions on execute and pipes commands as needed
 
     let mut pipes = false;
     for i in command.clone() {
@@ -27,9 +28,12 @@ pub fn interpret(command: Vec<&str>) -> String {
         }
         return out;
     }
-    unreachable!("I don't know how you did it but dear lord you made it this far".to_owned())
+    unreachable!("I don't know how you did it but dear
+                  lord you made it this far".to_owned())
 }
 
+///Execute
+///Runs commands passed to it and returns the output
 fn execute(command: Vec<&str>) -> Option<Output>{
     let args = command.as_slice();
     let output = if args.len() > 1 {
@@ -42,6 +46,9 @@ fn execute(command: Vec<&str>) -> Option<Output>{
         output
  }
 
+///Get Stdout
+///Returns the standard output of an executed command or returns that the
+///command was invalid
 fn get_stdout(output: Option<Output>) -> String{
     match output.is_some(){
         true => {
@@ -55,6 +62,9 @@ fn get_stdout(output: Option<Output>) -> String{
     }
 }
 
+///Get Stderr
+///Returns standard error output of an executed command or returns that
+///command was invalid
 fn get_stderr(output: Option<Output>) -> String{
     match output.is_some(){
         true => {
@@ -76,6 +86,9 @@ fn get_status(output: Option<Output>) -> bool{
     }
 }
 
+///Split Pipes
+///Given a command with pipes in it, it will split them into separate
+///commands to be executed
 fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     let input_slice = input.as_slice();
     let mut thing: Vec<Vec<&str>> = Vec::new();
@@ -101,6 +114,9 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     thing
 }
 
+///Piped
+///The logic of piping is done here and calls the functions that execute
+///the pipes and returns the result
 fn piped(input: Vec<&str>) -> String {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
@@ -127,6 +143,9 @@ fn piped(input: Vec<&str>) -> String {
     final_pipe(split.remove(0), child)
 }
 
+///First Pipe
+///Always executed if piping and returns the child process to be used
+///for the next pipe.
 fn first_pipe(command: Vec<&str>) -> Result<Child> {
     let args = command.as_slice();
 
@@ -144,6 +163,9 @@ fn first_pipe(command: Vec<&str>) -> Result<Child> {
     output
 }
 
+///Execute Pipe
+///Used if there are more than two commands with piping. Takes a Child process
+///as input for the next pipe and returns a Child process.
 fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
     let args = command.as_slice();
     unsafe{
@@ -168,6 +190,9 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
 
 }
 
+///Final Pipe
+///Always executed when piping processes. Takes a child process as input
+///and returns the output of piping the commands.
 fn final_pipe(command: Vec<&str>, child: Child) -> String {
     let args = command.as_slice();
     unsafe{

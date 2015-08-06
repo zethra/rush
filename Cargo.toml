@@ -3,6 +3,13 @@ name = "rusty"
 version = "0.1.0"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 build = "build.rs"
+doc = false
+
+[lib]
+doc = true
+name = "rush"
+version = "0.1.0"
+path = "src/lib.rs"
 
 [dependencies]
 toml = "*"

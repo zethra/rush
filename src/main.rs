@@ -2,14 +2,14 @@
 #![plugin(clippy)]
 
 #![cfg(not(test))]
-#[macro_use] extern crate rusty;
-use rusty::utils::*;
-use rusty::core::execute::interpret;
-use rusty::core::buffer_in::*;
-use rusty::core::history::*;
-use rusty::core::prompt::Prompt;
-use rusty::core::config::{check_alias,set_env_var};
-use rusty::core::keybinding::*;
+#[macro_use] extern crate rush;
+use rush::utils::*;
+use rush::core::execute::interpret;
+use rush::core::buffer_in::*;
+use rush::core::history::*;
+use rush::core::prompt::Prompt;
+use rush::core::config::{check_alias,set_env_var};
+use rush::core::keybinding::*;
 
 fn main() {
     //Sets environment variables written in config file

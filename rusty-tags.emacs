@@ -56,8 +56,8 @@ pub mod cat;cat3,26
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,48
-fn main() {main14,328
-fn main() {main14,328
+fn main() {main14,320
+fn main() {main14,320
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -129,37 +129,37 @@ impl InputBuffer {InputBuffer19,380
     pub fn output(&mut self) -> Vec<&str> {output123,4159
     pub fn output(&mut self) -> Vec<&str> {output123,4159
 
-/home/michael/Code/Rust/rusty/src/core/execute.rs,1766
-pub fn interpret(command: Vec<&str>) -> String {interpret7,117
-pub fn interpret(command: Vec<&str>) -> String {interpret7,117
-fn execute(command: Vec<&str>) -> Option<Output>{execute33,870
-fn execute(command: Vec<&str>) -> Option<Output>{execute33,870
-fn get_stdout(output: Option<Output>) -> String{get_stdout45,1233
-fn get_stdout(output: Option<Output>) -> String{get_stdout45,1233
-fn get_stderr(output: Option<Output>) -> String{get_stderr58,1663
-fn get_stderr(output: Option<Output>) -> String{get_stderr58,1663
-fn get_status(output: Option<Output>) -> bool{get_status69,1994
-fn get_status(output: Option<Output>) -> bool{get_status69,1994
-fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes79,2213
-fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes79,2213
-fn piped(input: Vec<&str>) -> String {piped104,2919
-fn piped(input: Vec<&str>) -> String {piped104,2919
-fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe130,3705
-fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe130,3705
-fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe147,4170
-fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe147,4170
-fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe171,4961
-fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe171,4961
-mod tests{tests201,5930
-mod tests{tests201,5930
-    fn pipes() {pipes205,5972
-    fn pipes() {pipes205,5972
-    fn pipes_fail() {pipes_fail214,6204
-    fn pipes_fail() {pipes_fail214,6204
-    fn execute(){execute222,6436
-    fn execute(){execute222,6436
-    fn execute_fail(){execute_fail231,6628
-    fn execute_fail(){execute_fail231,6628
+/home/michael/Code/Rust/rusty/src/core/execute.rs,1768
+pub fn interpret(command: Vec<&str>) -> String {interpret10,254
+pub fn interpret(command: Vec<&str>) -> String {interpret10,254
+fn execute(command: Vec<&str>) -> Option<Output>{execute37,949
+fn execute(command: Vec<&str>) -> Option<Output>{execute37,949
+fn get_stdout(output: Option<Output>) -> String{get_stdout52,1423
+fn get_stdout(output: Option<Output>) -> String{get_stdout52,1423
+fn get_stderr(output: Option<Output>) -> String{get_stderr68,1962
+fn get_stderr(output: Option<Output>) -> String{get_stderr68,1962
+fn get_status(output: Option<Output>) -> bool{get_status79,2293
+fn get_status(output: Option<Output>) -> bool{get_status79,2293
+fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes92,2624
+fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {split_pipes92,2624
+fn piped(input: Vec<&str>) -> String {piped120,3448
+fn piped(input: Vec<&str>) -> String {piped120,3448
+fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe149,4340
+fn first_pipe(command: Vec<&str>) -> Result<Child> {first_pipe149,4340
+fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe169,4959
+fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {execute_pipe169,4959
+fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe196,5887
+fn final_pipe(command: Vec<&str>, child: Child) -> String {final_pipe196,5887
+mod tests{tests226,6856
+mod tests{tests226,6856
+    fn pipes() {pipes230,6898
+    fn pipes() {pipes230,6898
+    fn pipes_fail() {pipes_fail239,7130
+    fn pipes_fail() {pipes_fail239,7130
+    fn execute(){execute247,7362
+    fn execute(){execute247,7362
+    fn execute_fail(){execute_fail256,7554
+    fn execute_fail(){execute_fail256,7554
 
 /home/michael/Code/Rust/rusty/src/core/logic.rs,0
 
