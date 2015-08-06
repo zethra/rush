@@ -429,7 +429,6 @@ ftruncate	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1
 fun_with_strings	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/parser.rs	/^    fn fun_with_strings() {$/;"	f
 funcs	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^pub mod funcs {$/;"	m
 fwrite	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn fwrite(ptr: *const c_void,$/;"	f
-get_cursor_position	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn get_cursor_position() -> libc::c_int;$/;"	f
 get_cwd	/home/michael/Code/Rust/rusty/src/core/prompt.rs	/^    pub fn get_cwd(&self) -> String {$/;"	f
 get_input	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn get_input() -> libc::c_int;$/;"	f
 get_osfhandle	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn get_osfhandle(fd: c_int) -> c_long;$/;"	f
@@ -463,6 +462,7 @@ gid_t	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/r
 glob	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn glob(pattern: *const c_char,$/;"	f
 glob	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^        pub mod glob {$/;"	m
 globfree	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/libc-0.1.8/rust/src/liblibc/lib.rs	/^                pub fn globfree(pglob: *mut glob_t);$/;"	f
+go_back	/home/michael/Code/Rust/rusty/src/core/buffer_in.rs	/^   fn go_back(slice: *const libc::c_char,length: libc::c_int);$/;"	f
 hashmap	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/encoder/rustc_serialize.rs	/^    fn hashmap() {$/;"	f
 history	/home/michael/Code/Rust/rusty/src/core/mod.rs	/^pub mod history;$/;"	m
 humanize	/home/michael/.cargo/registry/src/github.com-0a35038f75765ae4/toml-0.1.21/src/decoder/mod.rs	/^                fn humanize(s: &str) -> String {$/;"	f

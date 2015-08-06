@@ -9,6 +9,7 @@ extern {
    fn right(input: libc::c_int);
    fn left(input: libc::c_int);
    fn go_back(slice: *const libc::c_char,length: libc::c_int);
+   fn clear_to_end();
 }
 
 pub struct InputBuffer {
@@ -55,6 +56,18 @@ impl InputBuffer {
                         print!("{}",c);
                         stdout().flush().ok()
                             .expect("Could not flush stdout");
+                    } else if cursor < cursor_pos_max {
+                        line.insert(cursor,c);
+                        cursor_pos_max += 1;
+                        let slice = CString::new(&line[cursor..])
+                                .unwrap();
+                        unsafe{
+                            clear_to_end();
+                            go_back(slice.as_ptr(), slice.as_bytes()
+                                    .len() as i32);
+                            right(1)
+                        }
+                        cursor += 1;
                     }
                 }
                 Key::Left => {

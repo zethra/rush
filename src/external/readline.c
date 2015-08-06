@@ -81,3 +81,7 @@ void go_back(char n[], int length) {
 		fputs("\033[D",stdout);
 	}
 }
+
+void clear_to_end(void){
+	fputs("\033[K",stdout);
+}
