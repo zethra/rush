@@ -56,12 +56,13 @@ int get_input() {
 
 //Cursor Related Functions
 void backspace(int back) {
-	if(back == 0)
-		fputs("\033[D \033[D",stdout);
-	else if(back == 1)
-		fputs("\033[D\033[D  \033[D",stdout);
-	else if(back == 2)
+	if(back == 0) {
+		fputs("\033[D\033[K",stdout);
+	} else if(back == 1) {
+		fputs("\033[D\033[K",stdout);
+	} else if(back == 2) {
 		fputs("\033[D ",stdout);
+	}
 }
 
 void left(int boolean) {
@@ -74,8 +75,11 @@ void right(int boolean) {
 		fputs("\033[C",stdout);
 }
 
-int get_cursor_position(void) {
-	int i = fputs("\0336n",stdout);
-	fputs("\033[D ",stdout);
-	return i;
+void go_back(char n[], int length) {
+	for(int i = 0; i < length; i++) {
+		printf("%c",n[i]);
+	}
+	for(int i = 0; i < length; i++) {
+		fputs("\033[D",stdout);
+	}
 }

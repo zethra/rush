@@ -56,8 +56,8 @@ pub mod cat;cat3,26
 pub mod cat;cat3,26
 
 /home/michael/Code/Rust/rusty/src/main.rs,48
-fn main() {main14,325
-fn main() {main14,325
+fn main() {main14,328
+fn main() {main14,328
 
 /home/michael/Code/Rust/rusty/src/core/autocomplete.rs,0
 
@@ -105,19 +105,27 @@ impl HistoryBuffer {HistoryBuffer6,82
     pub fn store(&mut self, input: String) {store14,244
     pub fn store(&mut self, input: String) {store14,244
 
-/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,566
+/home/michael/Code/Rust/rusty/src/core/buffer_in.rs,994
    fn get_input() -> libc::c_int;get_input6,83
    fn get_input() -> libc::c_int;get_input6,83
-pub struct InputBuffer {InputBuffer9,120
-pub struct InputBuffer {InputBuffer9,120
-impl InputBuffer {InputBuffer13,170
-impl InputBuffer {InputBuffer13,170
-    pub fn new() -> Self {new15,190
-    pub fn new() -> Self {new15,190
-    pub fn readline(&mut self) -> Key {readline24,422
-    pub fn readline(&mut self) -> Key {readline24,422
-    pub fn output(&mut self) -> Vec<&str> {output46,1068
-    pub fn output(&mut self) -> Vec<&str> {output46,1068
+   fn backspace(input: libc::c_int);backspace7,117
+   fn backspace(input: libc::c_int);backspace7,117
+   fn right(input: libc::c_int);right8,154
+   fn right(input: libc::c_int);right8,154
+   fn left(input: libc::c_int);left9,187
+   fn left(input: libc::c_int);left9,187
+   fn get_cursor_position() -> libc::c_int;get_cursor_position10,219
+   fn get_cursor_position() -> libc::c_int;get_cursor_position10,219
+pub struct InputBuffer {InputBuffer13,266
+pub struct InputBuffer {InputBuffer13,266
+impl InputBuffer {InputBuffer17,316
+impl InputBuffer {InputBuffer17,316
+    pub fn new() -> Self {new19,336
+    pub fn new() -> Self {new19,336
+    pub fn readline(&mut self) -> Key {readline29,599
+    pub fn readline(&mut self) -> Key {readline29,599
+    pub fn output(&mut self) -> Vec<&str> {output113,3376
+    pub fn output(&mut self) -> Vec<&str> {output113,3376
 
 /home/michael/Code/Rust/rusty/src/core/execute.rs,1766
 pub fn interpret(command: Vec<&str>) -> String {interpret7,117
@@ -153,27 +161,29 @@ mod tests{tests201,5930
 
 /home/michael/Code/Rust/rusty/src/core/logic.rs,0
 
-/home/michael/Code/Rust/rusty/src/core/prompt.rs,870
-pub struct Prompt {Prompt7,298
-pub struct Prompt {Prompt7,298
-impl Prompt {Prompt14,360
-impl Prompt {Prompt14,360
-    pub fn new() -> Prompt {new16,375
-    pub fn new() -> Prompt {new16,375
-    pub fn update_prompt(&mut self) {update_prompt23,522
-    pub fn update_prompt(&mut self) {update_prompt23,522
-    pub fn get_user_p(&self) -> String {get_user_p27,616
-    pub fn get_user_p(&self) -> String {get_user_p27,616
-    pub fn get_cwd(&self) -> String {get_cwd31,695
-    pub fn get_cwd(&self) -> String {get_cwd31,695
-    pub fn update_cwd(&mut self){update_cwd35,768
-    pub fn update_cwd(&mut self){update_cwd35,768
-mod tests{tests57,1486
-mod tests{tests57,1486
-    fn prompt_init() {prompt_init63,1599
-    fn prompt_init() {prompt_init63,1599
-    fn updated_cwd() {updated_cwd70,1800
-    fn updated_cwd() {updated_cwd70,1800
+/home/michael/Code/Rust/rusty/src/core/prompt.rs,950
+pub struct Prompt {Prompt8,328
+pub struct Prompt {Prompt8,328
+impl Prompt {Prompt15,390
+impl Prompt {Prompt15,390
+    pub fn new() -> Prompt {new17,405
+    pub fn new() -> Prompt {new17,405
+    pub fn update_prompt(&mut self) {update_prompt24,552
+    pub fn update_prompt(&mut self) {update_prompt24,552
+    pub fn get_user_p(&self) -> String {get_user_p28,646
+    pub fn get_user_p(&self) -> String {get_user_p28,646
+    pub fn get_cwd(&self) -> String {get_cwd32,725
+    pub fn get_cwd(&self) -> String {get_cwd32,725
+    pub fn update_cwd(&mut self){update_cwd36,798
+    pub fn update_cwd(&mut self){update_cwd36,798
+    pub fn print(&self) {print54,1499
+    pub fn print(&self) {print54,1499
+mod tests{tests61,1659
+mod tests{tests61,1659
+    fn prompt_init() {prompt_init67,1772
+    fn prompt_init() {prompt_init67,1772
+    fn updated_cwd() {updated_cwd74,1973
+    fn updated_cwd() {updated_cwd74,1973
 
 /home/michael/Code/Rust/rusty/src/core/mod.rs,506
 pub mod execute;execute1,0
