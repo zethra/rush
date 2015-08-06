@@ -48,11 +48,14 @@ impl InputBuffer {
                     return Key::Null;
                 }
                 Key::Char(c) => {
-                    line.push(c);
-                    cursor += 1;
-                    cursor_pos_max += 1;
-                    print!("{}",c);
-                    stdout().flush().ok().expect("Could not flush stdout");
+                    if cursor == cursor_pos_max {
+                        line.push(c);
+                        cursor += 1;
+                        cursor_pos_max += 1;
+                        print!("{}",c);
+                        stdout().flush().ok()
+                            .expect("Could not flush stdout");
+                    }
                 }
                 Key::Left => {
                     if cursor > cursor_pos_min {
@@ -73,7 +76,7 @@ impl InputBuffer {
                 Key::Backspace => {
                     //Need to change c file so that the buffer is reprinted
                     //let mut temp_buffer = String::new();
-                    if cursor > cursor_pos_min + 1 {
+                    if cursor >= cursor_pos_min + 1{
                         if !line.is_empty(){
                             line.remove(cursor - 1);
                             cursor -= 1;
@@ -84,23 +87,13 @@ impl InputBuffer {
                             unsafe{go_back(slice.as_ptr(),
                                            slice.as_bytes().len() as i32);}
                         }
-                    } else if cursor == cursor_pos_min + 1 {
-                        if !line.is_empty(){
-                            line.remove(cursor - 1);
-                            cursor -= 1;
-                            cursor_pos_max -= 1;
-                            unsafe{backspace(1);}
-                            let slice = CString::new(&line[cursor..])
-                                .unwrap();
-                            unsafe{go_back(slice.as_ptr(),
-                                           slice.as_bytes().len() as i32);}
-                        }
                     } else if cursor == cursor_pos_min {
-                        unsafe{backspace(2);}
+                        unsafe{backspace(1);}
                     }
                 },
                 Key::Tab => {
                     //Autocomplete
+                    return Key::Null;
                 }
                 _ => {
                     println!(""); //Remove once all keys are implemented

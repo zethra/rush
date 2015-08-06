@@ -59,8 +59,6 @@ void backspace(int back) {
 	if(back == 0) {
 		fputs("\033[D\033[K",stdout);
 	} else if(back == 1) {
-		fputs("\033[D\033[K",stdout);
-	} else if(back == 2) {
 		fputs("\033[D ",stdout);
 	}
 }
