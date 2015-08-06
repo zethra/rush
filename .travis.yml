@@ -7,6 +7,7 @@ addons:
             - libcurl4-openssl-dev
             - libelf-dev
             - libdw=dev
+            - gcc
 rust:
     - nightly
 
@@ -16,7 +17,7 @@ before_script:
         export PATH=$HOME/.local/bin:$PATH
 script:
     - |
-        cargo build &&
+        travis-cargo build &&
         travis-cargo test &&
         travis-cargo bench
 after_success:
