@@ -5,6 +5,9 @@ use std::env::{set_var,var,home_dir};
 use std::process::Command;
 use core::prompt::Prompt;
 
+///Read in Config
+///Inner function used to pull in a default configuration file for parsing
+///or the customized one if it exists
 fn read_in_config() -> String{
     //Find a way to read from default if this doesn't work. let a = if else?
     let mut home_config = home_dir().unwrap();
@@ -22,7 +25,9 @@ fn read_in_config() -> String{
         .ok().expect("Failed to read in config");
     buffer_string
 }
-
+///Read Config Prompt
+///Used to read the options of the config file and parse
+///the defined options to create a customized prompt
 pub fn read_config_prompt(input: &Prompt) -> String {
     let buffer_string = read_in_config();
 
@@ -63,6 +68,10 @@ pub fn read_config_prompt(input: &Prompt) -> String {
 
     prompt
 }
+
+///Check Alias
+///Checks if there is an alias available before passing
+///on commands for execution
 pub fn check_alias(input: Vec<&str>) -> Option<String> {
     //Checks if alias is in config file and returns the altered
     //version as an Option of the input. If succesfully found
@@ -91,6 +100,8 @@ pub fn check_alias(input: Vec<&str>) -> Option<String> {
     Some(output)
 }
 
+///Set Env Var
+///Sets system environment variables based on the configuration file
 pub fn set_env_var() {
     let config = read_in_config();
     let mut parsed = toml::Parser::new(&config).parse().expect("Config parse unsuccessful");
@@ -106,6 +117,13 @@ pub fn set_env_var() {
     }
 }
 
+///Env Parse
+///Given a value this parses it for expected behavior
+/// #Example
+/// PATH = PATH:~/.bin would tack on whatever is currently
+/// in the PATH variable to ~/.bin
+///
+/// PATH = ~/.bin would just set PATH to ~/.bin
 fn env_parse(input: String) -> String {
     //Take input string and add env variables to itself
     //e.g. PATH:~/.bin concats ~/.bin to PATH and returns it as

@@ -1,3 +1,5 @@
+///Key
+///Enum used for Key bindings on the keyboard
 pub enum Key {
     Up,
     Down,
@@ -13,6 +15,12 @@ pub enum Key {
     Null, // This if for when nothing needs to be returned to signify no action needs to be taken and can't be made with new_key
 }
 
+///New Key
+///Used to create a new key from an integer input.
+///
+///Primarily used by the InputBuffer struct whil recieving input from
+///the Command Line. If needed it's better just use the enum directly
+///rather than this function
 pub fn new_key(input: i32) -> Key {
     match input {
         -1 => Key::Up,

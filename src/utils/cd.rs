@@ -3,6 +3,8 @@ use std::path::{Path,PathBuf};
 use std::env;
 use std::fs::PathExt; //Use of exists() is considered unstable. Might break in the future
 
+///Change Directory
+///Function used to internally change the directory of the shell
 pub fn change_directory(input: Vec<&str>){
     if input.is_empty(){
         env::set_current_dir(Path::new(env::var("HOME").unwrap().as_str()));
@@ -47,7 +49,7 @@ mod tests {
     use std::path::Path;
     use std::env;
     use super::*;
-    
+
     #[test]
     #[should_panic]
     fn test_change_directory_ok(){
@@ -56,7 +58,7 @@ mod tests {
         change_directory(vec);
         let new_dir = env::current_dir().unwrap();
         let new_dir = new_dir.to_str();
-        assert_eq!(dir, new_dir); 
+        assert_eq!(dir, new_dir);
     }
 
     #[test]
@@ -66,7 +68,7 @@ mod tests {
         change_directory(vec);
         let new_dir = env::current_dir().unwrap();
         let new_dir = new_dir.to_str();
-        assert_eq!(dir, new_dir); 
+        assert_eq!(dir, new_dir);
     }
 
 }

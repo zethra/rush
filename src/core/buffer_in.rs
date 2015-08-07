@@ -3,21 +3,34 @@ use std::io::{stdout,Write};
 use std::ffi::CString;
 use core::keybinding::*;
 
+///Functions involved with Manipulating the Terminal
+///or getting input for the buffer
 extern {
-   fn get_input() -> libc::c_int;
-   fn backspace(input: libc::c_int);
-   fn right(input: libc::c_int);
-   fn left(input: libc::c_int);
-   fn go_back(slice: *const libc::c_char,length: libc::c_int);
-   fn clear_to_end();
+    ///Gets a char or key input for the buffer
+    fn get_input() -> libc::c_int;
+    ///Used to move the cursor back one space and depending on cursor
+    ///position clear to end of line
+    fn backspace(input: libc::c_int);
+    ///Moves cursor right by one space
+    fn right(input: libc::c_int);
+    ///Moves cursor left by one space
+    fn left(input: libc::c_int);
+    ///Prints a given char array onto a cleared line and moves the cursor
+    ///back to the spot where it started to print the chars
+    fn go_back(slice: *const libc::c_char,length: libc::c_int);
+    ///Clears the line from the current cursor position to the the end of line
+    fn clear_to_end();
 }
 
+///InputBuffer
+///Buffer used to handle and interpret key strokes for the command line
 pub struct InputBuffer {
     pub line: String,
 }
 
 impl InputBuffer {
-
+    ///New
+    ///Instantiates new buffer for use
     pub fn new() -> Self {
         let mut _buffer = String::new();
         InputBuffer {
@@ -25,8 +38,8 @@ impl InputBuffer {
         }
     }
 
-    //Rads key strokes into buffer. If a certain key is recieved
-    //activates various commands
+    ///Readline
+    ///Reads in key strokes and determines what to do with the terminal and buffers
     #[allow(unreachable_code)]
     pub fn readline(&mut self) -> Key {
 
@@ -119,7 +132,9 @@ impl InputBuffer {
         unreachable!()
     }
 
-    //Outputs buffer for usage puts line into history
+    ///Output
+    ///Outputs buffer into a format used for execution of commands by
+    ///other parts of the codebase
     pub fn output(&mut self) -> Vec<&str> {
         let out_vec: Vec<&str> = self.line.trim().split(' ').collect();
         out_vec
