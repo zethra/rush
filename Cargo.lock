@@ -1,6 +1,6 @@
 [root]
 name = "rusty"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "clippy 0.0.8 (git+https://github.com/manishearth/rust-clippy)",
  "gcc 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",

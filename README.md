@@ -20,6 +20,10 @@ A lot of development has gone on since my last version bump and with it
 I can say the base level functionality is complete. Now I'm starting to
 add the features that actually make a shell worth while to use.
 
+Rusty's library is called Rush (might be separated in the future so
+others can use it without Rusty) and is built to manipulate the terminal
+and execute commands for the user.
+
 ###Requirements for Rusty
 
 - Rust Nightly
@@ -29,12 +33,14 @@ add the features that actually make a shell worth while to use.
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
 
-###The Current Version is 0.1.0 meaning Rusty can and has support for:
+###The Current Version is 0.1.1 meaning Rusty can and has support for:
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
 - [x] Pipes
 - [x] ctags (with the use of [rusty-tags](https://github.com/dan-t/rusty-tags))
+- [x] Left and Right Arrow Key movement
+- [x] Backspace support
 
 ###In Progress
 - [ ] Configuration
@@ -88,7 +94,7 @@ properly. Until Rust implements getchar and getch in it's library
 this will not be able to be done.
 
 ###Rust Version
-Currently using 1.3 Nightly due to need of unstable features. Has not been
+Currently using 1.4 Nightly due to need of unstable features. Has not been
 tested with any other version.
 
 ###Config File
@@ -141,17 +147,6 @@ intended with the command
 cargo test
 ```
 
-To test for memory leaks of the program install valgrind and run
-
-```
-cargo build
-valgrind target/debug/rusty
-```
-
-By not executing programs and just pressing enter a few times you'll loop
-through Rusty's code to test it for memory leaks. Then type exit. If other
-programs are executed they can introduce their errors into the test.
-
 You can run the program with
 
 ```
@@ -167,6 +162,19 @@ cp target/release/rusty /destination/in/PATH
 chsh user /path/to/rusty/executable
 cp /path/to/rusty/config/rusty.toml ~/.rusty.toml
 ```
+
+####Getting Involved
+Clone the repository and open up a pull request for merging a new
+feature that you've implemented.
+
+I also need people just use and abuse the shell. For now it only works
+with VT100 Terminal Code and I don't know if it works on other types of
+shells. Also finding exploits and the like are always welcome.
+
+Open up an issue on Github if you find something wrong with the use of
+the shell or find an exploit or something like that. Since Rusty isn't
+for daily use public disclosure is fine for security flaws and will help
+solicit design feedback regarding those kinds of issues.
 
 ###Contact and verification
 Email: mgattozzi@gmail.com
