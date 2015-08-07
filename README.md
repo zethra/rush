@@ -24,6 +24,11 @@ Rusty's library is called Rush (might be separated in the future so
 others can use it without Rusty) and is built to manipulate the terminal
 and execute commands for the user.
 
+###Documentation
+The docs for rush can be found [here](https://mgattozzi.github.io/Rusty/rush/).
+It's only in the initial stages but will be more fleshed out as time
+goes on.
+
 ###Requirements for Rusty
 
 - Rust Nightly
