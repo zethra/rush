@@ -17,7 +17,8 @@ script:
 - |
   travis-cargo build &&
   travis-cargo test &&
-  travis-cargo bench
+  travis-cargo bench &&
+  travis-cargo doc
 after_success:
 - travis-cargo coveralls --no-sudo
 - travis-cargo --only nightly doc-upload
