@@ -5,6 +5,7 @@
 #![feature(path_relative_from)]
 #![feature(custom_derive)]
 #![plugin(clippy)]
+#![doc(html_root_url = "https://mgattozzi.github.io/rusty/")]
 pub mod utils;
 pub mod core;
 pub mod scripting;
