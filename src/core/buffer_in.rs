@@ -45,7 +45,7 @@ impl InputBuffer {
 
         //Line and charachter buffers
         let mut line = String::new();
-        let mut ch;
+        let mut ch: char;
 
         //Variables regarding the terminal cursor
         let cursor_pos_min = 0;
