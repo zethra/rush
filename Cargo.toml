@@ -11,11 +11,10 @@ path = "src/lib.rs"
 
 [dependencies]
 toml = "*"
-term = "*"
 libc = "*"
 
-[dependencies.clippy]
-git = "https://github.com/manishearth/rust-clippy"
+#[dependencies.clippy]
+#git = "https://github.com/manishearth/rust-clippy"
 
 [build-dependencies]
 gcc = "*"
