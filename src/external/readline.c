@@ -79,7 +79,7 @@ void go_back(char n[], int length) {
 	for(i; i < length; i++) {
 		printf("%c",n[i]);
 	}
-	for(j; i < length; i++) {
+	for(j; j < length; j++) {
 		fputs("\033[D",stdout);
 	}
 }

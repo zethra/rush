@@ -38,14 +38,16 @@ impl InputBuffer {
         }
     }
 
-    ///Readline
-    ///Reads in key strokes and determines what to do with the terminal and buffers
+    ///Reads in key strokes and determines what to do with the terminal
+    ///and buffers
     #[allow(unreachable_code)]
     pub fn readline(&mut self) -> Key {
 
         //Line and charachter buffers
         let mut line = String::new();
-        let mut ch: char;
+        //Eventually converted to a char after interfacing with C based
+        //functions
+        let mut ch: i32;
 
         //Variables regarding the terminal cursor
         let cursor_pos_min = 0;
@@ -100,8 +102,6 @@ impl InputBuffer {
                     }
                 }
                 Key::Backspace => {
-                    //Need to change c file so that the buffer is reprinted
-                    //let mut temp_buffer = String::new();
                     if cursor >= cursor_pos_min + 1{
                         if !line.is_empty(){
                             line.remove(cursor - 1);
