@@ -2,6 +2,7 @@ extern crate libc;
 use std::io::{stdout,Write};
 use std::ffi::CString;
 use core::keybinding::*;
+use core::history::HistoryBuffer;
 
 ///Functions involved with Manipulating the Terminal
 ///or getting input for the buffer
@@ -25,7 +26,7 @@ extern {
 ///InputBuffer
 ///Buffer used to handle and interpret key strokes for the command line
 pub struct InputBuffer {
-    pub line: String,
+    line: String,
 }
 
 impl InputBuffer {
@@ -41,7 +42,7 @@ impl InputBuffer {
     ///Reads in key strokes and determines what to do with the terminal
     ///and buffers
     #[allow(unreachable_code)]
-    pub fn readline(&mut self) -> Key {
+    pub fn readline(&mut self, hist: &mut HistoryBuffer) -> Key {
 
         //Line and charachter buffers
         let mut line = String::new();
@@ -61,6 +62,7 @@ impl InputBuffer {
                     println!("");
                     stdout().flush().ok().expect("Could not flush stdout");
                     self.line = line;
+                    hist.store(self.line.clone());
                     return Key::Null;
                 }
                 Key::Char(c) => {
@@ -116,6 +118,26 @@ impl InputBuffer {
                     } else if cursor == cursor_pos_min {
                         unsafe{backspace(1);}
                     }
+                },
+                Key::Up =>{
+                    //Moves the cursor to the beginning of the line
+                    //and clears it so the history can be put in
+                    while cursor > cursor_pos_min {
+                        unsafe{left(1);}
+                    }
+                    if cursor == cursor_pos_min {
+                        unsafe{clear_to_end()}
+                        let popped = hist.pop();
+                        print!("{}", popped);
+                        stdout().flush().ok()
+                            .expect("Could not flush stdout");
+                        cursor = popped.len();
+                        cursor_pos_max = popped.len();
+                        continue;
+                    }
+                },
+                Key::Down =>{
+                    continue;
                 },
                 Key::Tab => {
                     //Autocomplete
