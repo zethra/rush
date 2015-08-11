@@ -16,20 +16,14 @@ pub fn interpret(command: Vec<&str>) -> String {
            break;
         }
     }
-
+    let output: Option<Output>;
     if pipes { //Pipe or no pipe
-        let output = piped(command);
-        return output;
+        output = piped(command);
     } else { //execute normally
-        let output = execute(command);
-        let out = get_stdout(output.clone());
-        if out.is_empty(){
-            return get_stderr(output.clone());
-        }
-        return out;
+        output = execute(command);
     }
-    unreachable!("I don't know how you did it but dear
-                  lord you made it this far".to_owned())
+
+    get_stdout_or_stderr(output)
 }
 
 ///Execute
@@ -46,14 +40,20 @@ fn execute(command: Vec<&str>) -> Option<Output>{
         output
  }
 
-///Get Stdout
-///Returns the standard output of an executed command or returns that the
-///command was invalid
-fn get_stdout(output: Option<Output>) -> String{
+///Get Stdout or Err
+///Returns the standard output or error of an executed command or returns that
+///the command was invalid
+fn get_stdout_or_stderr(output: Option<Output>) -> String {
     match output.is_some(){
         true => {
-            let temp = output.unwrap();
-            return String::from_utf8(temp.stdout).unwrap();
+            let temp = output.expect("Output has been checked");
+            if temp.stdout.is_empty(){
+                String::from_utf8(temp.stderr)
+                    .expect("Should have translated to string easily")
+            } else {
+                String::from_utf8(temp.stdout)
+                    .expect("Should have translated to string easily")
+            }
         },
         false => "Please input a valid command".to_owned()
             //Used in order to work out for the Option input
@@ -62,25 +62,12 @@ fn get_stdout(output: Option<Output>) -> String{
     }
 }
 
-///Get Stderr
-///Returns standard error output of an executed command or returns that
-///command was invalid
-fn get_stderr(output: Option<Output>) -> String{
-    match output.is_some(){
-        true => {
-            let temp = output.unwrap();
-            return String::from_utf8(temp.stderr).unwrap();
-        },
-        false => "Please input a valid command".to_owned()
-    }
-}
-
 #[allow(dead_code)] //At least until I find a use for it
 fn get_status(output: Option<Output>) -> bool{
     match output.is_some(){
         true => {
-            let temp = output.unwrap();
-            return temp.status.success();
+            let temp = output.expect("Output has been checked");
+            temp.status.success()
         },
         false => false,
     }
@@ -96,14 +83,18 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     for i in input_slice {
         if i.contains('|') {
             let mut splits = i.split('|');
-            temp.push(splits.next().unwrap());
-            if temp.last().unwrap() == &""{
+            temp.push(splits.next()
+                      .expect("Failed to split pipes"));
+            if temp.last()
+                .expect("Called last on an empty vec") == &""{
                 temp.pop();
             }
             thing.push(temp.clone());
             temp.clear();
-            temp.push(splits.next().unwrap());
-            if temp.last().unwrap() == &""{
+            temp.push(splits.next()
+                      .expect("Unwrapped a non existent value"));
+            if temp.last()
+                .expect("Unwrapped an empty list") == &""{
                 temp.pop();
             }
         } else {
@@ -117,27 +108,20 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
 ///Piped
 ///The logic of piping is done here and calls the functions that execute
 ///the pipes and returns the result
-fn piped(input: Vec<&str>) -> String {
+fn piped(input: Vec<&str>) -> Option<Output> {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
 
-    //Error handling done in here rather than the functions they call
-    //Code is unwrapped seeing that if there is no error then it must
-    //be safe function wise
+    //The assumption is that this will always execute properly
+    //but to make sure nothing goes wrong an assert statement
+    //has been added to make sure of this
+    assert!(child_result.is_ok());
+    child = child_result.ok().expect("Failed to unwrap an Result");
 
-    if child_result.is_ok() {
-       child = child_result.ok().unwrap();
-    } else {
-        return child_result.err().unwrap().to_string();
-    }
     while split.len() > 1 {
         child_result = execute_pipe(split.remove(0), child);
-        if child_result.is_ok() {
-            child = child_result.ok().unwrap();
-        } else {
-            return child_result.err().unwrap().to_string();
-        }
+        child = child_result.ok().expect("Failed to unwrap an Result");
     }
 
     final_pipe(split.remove(0), child)
@@ -172,17 +156,20 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
         let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .stdin(Stdio::from_raw_fd(child.stdout
+                                          .expect("No stdout").as_raw_fd()))
                 .spawn()
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .stdin(Stdio::from_raw_fd(child.stdout
+                                          .expect("No stdout").as_raw_fd()))
                 .spawn()
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .stdin(Stdio::from_raw_fd(child.stdout
+                                          .expect("No stdout").as_raw_fd()))
                 .spawn()
         };
         output
@@ -193,31 +180,32 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
-fn final_pipe(command: Vec<&str>, child: Child) -> String {
+fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
     let args = command.as_slice();
     unsafe{
         let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .stdin(Stdio::from_raw_fd(child.stdout
+                                          .expect("No stdout for child
+                                                  process").as_raw_fd()))
                 .output()
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .stdin(Stdio::from_raw_fd(child.stdout
+                                          .expect("No stdout for child
+                                                  process").as_raw_fd()))
                 .output()
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout.unwrap().as_raw_fd()))
+                .stdin(Stdio::from_raw_fd(child.stdout
+                                          .expect("No stdout for child
+                                                  process").as_raw_fd()))
                 .output()
         };
-    //Get rid of ok() and do error handling here
-        if output.is_ok() {
-            get_stdout(output.ok())
-        } else {
-            output.err().unwrap().to_string()
-        }
+        output.ok()
     }
 }
 

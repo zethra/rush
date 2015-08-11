@@ -1,5 +1,5 @@
 #![feature(plugin)]
-//#![plugin(clippy)]
+#![plugin(clippy)]
 
 #![cfg(not(test))]
 #[macro_use] extern crate rush;
@@ -39,26 +39,27 @@ fn main() {
 
         let mut command_split: Vec<&str> = input_buffer.output();
 
-        match command_split.get(0).unwrap() {
+        match command_split.get(0)
+            .expect("Called unwrap on an empty buffer") {
 
             &"cd" => {
                 command_split.remove(0);
                 cd::change_directory(command_split);
                 prompt.update_cwd();
                 prompt.update_prompt();
-            }
+            },
 
             &"clear" => {
                 let output = interpret(command_split.clone());
                 print!("{}", output);
                 prompt.print();
                 continue;
-            }
+            },
 
             &""  => {
                 prompt.print();
                 continue;
-            }
+            },
 
             &"exit" => break,
             _ => {
@@ -71,7 +72,9 @@ fn main() {
                 } else {
                     //Removes alias from the non cloned version like check_alias() does
                     command_split.remove(0);
-                    let alias_unwrapped = alias.unwrap().to_owned();
+                    let alias_unwrapped = alias
+                        .expect("Should have returned and unwrappable value")
+                        .to_owned();
                     let mut vec: Vec<&str> = alias_unwrapped.trim().split(' ').collect();
                     for i in command_split {
                         vec.push(i);

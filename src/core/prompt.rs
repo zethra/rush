@@ -50,20 +50,22 @@ impl Prompt {
     ///Update CWD
     ///Used to update the CWD if using CD
     pub fn update_cwd(&mut self){
-        let buff = current_dir().ok().unwrap();
+        let buff = current_dir().ok().expect("No current directory");
 
         //Makes cwd ~/ if in home directory of user otherwise
         //just the current directory
-        if buff.starts_with(home_dir().unwrap().as_path()){
+        if buff.starts_with(home_dir().expect("No Home directory").as_path()){
         let mut home = "~/".to_owned();
             home.push_str(buff.as_path().relative_from(home_dir()
-                                                   .unwrap()
-                                                   .as_path()
-                                                   )
-                .unwrap().to_str().unwrap());
+                                                .expect("No Home directory")
+                                                .as_path()
+                                                )
+                .expect("Couldn't get relative path")
+                .to_str().expect("Failed to become a str"));
             self.cwd = home;
         } else {
-            self.cwd = buff.as_path().to_str().unwrap().to_owned();
+            self.cwd = buff.as_path()
+                .to_str().expect("Failed to turn path into str").to_owned();
         }
 
     }
