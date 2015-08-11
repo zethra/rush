@@ -78,7 +78,7 @@ fn get_status(output: Option<Output>) -> bool{
 ///commands to be executed
 fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
     let input_slice = input.as_slice();
-    let mut thing: Vec<Vec<&str>> = Vec::new();
+    let mut pipe_commands: Vec<Vec<&str>> = Vec::new();
     let mut temp: Vec<&str> = Vec::new();
     for i in input_slice {
         if i.contains('|') {
@@ -89,7 +89,7 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
                 .expect("Called last on an empty vec") == &""{
                 temp.pop();
             }
-            thing.push(temp.clone());
+            pipe_commands.push(temp.clone());
             temp.clear();
             temp.push(splits.next()
                       .expect("Unwrapped a non existent value"));
@@ -101,8 +101,8 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
             temp.push(i);
         }
     }
-    thing.push(temp);
-    thing
+    pipe_commands.push(temp);
+    pipe_commands
 }
 
 ///Piped
@@ -112,9 +112,8 @@ fn piped(input: Vec<&str>) -> Option<Output> {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
-
     //The assumption is that this will always execute properly
-    //but to make sure nothing goes wrong an assert statement
+    //but to make sure nopipe_commands goes wrong an assert statement
     //has been added to make sure of this
     assert!(child_result.is_ok());
     child = child_result.ok().expect("Failed to unwrap an Result");
