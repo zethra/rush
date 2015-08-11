@@ -56,9 +56,6 @@ fn get_stdout_or_stderr(output: Option<Output>) -> String {
             }
         },
         false => "Please input a valid command".to_owned()
-            //Used in order to work out for the Option input
-            //However with process stderr is used for better
-            //outputs of messages
     }
 }
 
@@ -112,6 +109,7 @@ fn piped(input: Vec<&str>) -> Option<Output> {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
+
     //The assumption is that this will always execute properly
     //but to make sure nopipe_commands goes wrong an assert statement
     //has been added to make sure of this
@@ -120,6 +118,7 @@ fn piped(input: Vec<&str>) -> Option<Output> {
 
     while split.len() > 1 {
         child_result = execute_pipe(split.remove(0), child);
+        assert!(child_result.is_ok());
         child = child_result.ok().expect("Failed to unwrap an Result");
     }
 
@@ -156,19 +155,19 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
-                                          .expect("No stdout").as_raw_fd()))
+                        .expect("No stdout").as_raw_fd()))
                 .spawn()
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
-                                          .expect("No stdout").as_raw_fd()))
+                        .expect("No stdout").as_raw_fd()))
                 .spawn()
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
-                                          .expect("No stdout").as_raw_fd()))
+                        .expect("No stdout").as_raw_fd()))
                 .spawn()
         };
         output
@@ -186,22 +185,22 @@ fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
             Command::new(&args[0]).args(&args[1.. ])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
-                                          .expect("No stdout for child
-                                                  process").as_raw_fd()))
+                        .expect("No stdout for child process")
+                        .as_raw_fd()))
                 .output()
         } else if args.len() == 1{
             Command::new(&args[0])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
-                                          .expect("No stdout for child
-                                                  process").as_raw_fd()))
+                        .expect("No stdout for child process")
+                        .as_raw_fd()))
                 .output()
         } else {
             Command::new("")
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
-                                          .expect("No stdout for child
-                                                  process").as_raw_fd()))
+                        .expect("No stdout for child process")
+                        .as_raw_fd()))
                 .output()
         };
         output.ok()
