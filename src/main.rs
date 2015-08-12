@@ -18,8 +18,6 @@ fn main() {
     //Necessary to update as default prompt is not what we want
     //They were merely initialization values
     let mut prompt = Prompt::new();
-    prompt.update_cwd();
-    prompt.update_prompt();
     prompt.print();
 
     //Set up buffer to read inputs and History Buffer

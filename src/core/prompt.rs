@@ -1,10 +1,7 @@
 use std::env::{current_dir, home_dir};
 use core::config::read_config_prompt;
 use std::io::{stdout, Write};
-//For now it will access the toml file in the config directory
-//Later give it the means to access it from ~/.rusty.toml
-//Activate this only when performing su or cd that way it reduces
-//need to keep getting the prompt
+
 ///Prompt
 ///Struct containing prompt and cwd for use on every new line
 ///in Rusty
@@ -21,10 +18,13 @@ impl Prompt {
     ///that will be overwritten when the configuration is updated
     ///in the main file for execution
     pub fn new() -> Prompt {
-        Prompt {
+        let mut object = Prompt {
             user_p: "michael@flame %".to_owned(),
             cwd: "~/".to_owned(),
-        }
+        };
+        object.update_cwd();
+        object.update_prompt();
+        object
     }
 
     ///Update Prompt
@@ -57,9 +57,9 @@ impl Prompt {
         if buff.starts_with(home_dir().expect("No Home directory").as_path()){
         let mut home = "~/".to_owned();
             home.push_str(buff.as_path().relative_from(home_dir()
-                                                .expect("No Home directory")
-                                                .as_path()
-                                                )
+                                        .expect("No Home directory")
+                                        .as_path()
+                                        )
                 .expect("Couldn't get relative path")
                 .to_str().expect("Failed to become a str"));
             self.cwd = home;
@@ -69,16 +69,19 @@ impl Prompt {
         }
 
     }
+
     ///Print
     ///Outputs the prompt to stdout
     pub fn print(&self) {
         print!("{} ", self.get_user_p());
         stdout().flush().ok().expect("Failed to put prompt on line");
     }
+
 }
 
 #[cfg(test)]
 mod tests{
+
     #[allow(unused_imports)]
     use std::env::{current_dir,home_dir};
     use super::*;
@@ -90,11 +93,13 @@ mod tests{
         assert_eq!(testp.get_cwd(),"~/".to_owned());
     }
 
-    /*#[test]
+    #[test]
     fn updated_cwd() {
         let mut testp = Prompt::new();
         testp.update_cwd();
-        assert_eq!(testp.get_cwd(),current_dir().ok().unwrap().as_path().to_str().unwrap().to_owned());
+        assert_eq!(testp.get_cwd(), current_dir().ok()
+                   .expect("Couldn't get current directory").as_path()
+                   .to_str()
+                   .expect("Failed to go to string").to_owned());
     }
-    */
 }
