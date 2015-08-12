@@ -87,13 +87,6 @@ mod tests{
     use super::*;
 
     #[test]
-    fn prompt_init() {
-        let testp = Prompt::new();
-        assert_eq!(testp.get_user_p(),"michael@flame %".to_owned());
-        assert_eq!(testp.get_cwd(),"~/".to_owned());
-    }
-
-    #[test]
     fn updated_cwd() {
         let mut testp = Prompt::new();
         testp.update_cwd();
