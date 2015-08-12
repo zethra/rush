@@ -15,6 +15,7 @@ before_script:
   export PATH=$HOME/.local/bin:$PATH
 script:
 - |
+  cp config/rusty.toml ~/.rusty.toml
   travis-cargo build &&
   travis-cargo test &&
   travis-cargo bench &&
