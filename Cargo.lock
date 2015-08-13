@@ -2,7 +2,8 @@
 name = "rusty"
 version = "0.1.1"
 dependencies = [
- "gcc 0.3.12 (registry+https://github.com/rust-lang/crates.io-index)",
+ "clippy 0.0.10 (git+https://github.com/manishearth/rust-clippy)",
+ "gcc 0.3.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "toml 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -17,8 +18,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "clippy"
+version = "0.0.10"
+source = "git+https://github.com/manishearth/rust-clippy#0d125a298bbfd19e59ff14cf0e05ee07ae1d80c6"
+
+[[package]]
 name = "gcc"
-version = "0.3.12"
+version = "0.3.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "advapi32-sys 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",

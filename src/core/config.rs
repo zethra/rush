@@ -10,9 +10,11 @@ use core::prompt::Prompt;
 ///or the customized one if it exists
 fn read_in_config() -> String{
     //Find a way to read from default if this doesn't work. let a = if else?
-    let mut home_config = home_dir().unwrap();
+    let mut home_config = home_dir().expect("No Home directory");
     home_config.push(".rusty.toml");
-    let default = File::open(home_config.as_path().to_str().unwrap());
+    let default = File::open(home_config.as_path().to_str()
+                             .expect("Should have a home directory to
+                                     turn into a str"));
     let config = if default.is_err(){
         //Should be changed to location of git repo if compiling on your own machine
         File::open("./config/rusty.toml").ok().expect("No default file")
@@ -31,23 +33,30 @@ fn read_in_config() -> String{
 pub fn read_config_prompt(input: &Prompt) -> String {
     let buffer_string = read_in_config();
 
-    let value: toml::Value = buffer_string.parse().unwrap();
-    let left = value.lookup("prompt.left").unwrap().as_str()
-        .unwrap().split("%");
+    let value: toml::Value = buffer_string.parse()
+        .expect("Should have a config file");
+    let left = value.lookup("prompt.left")
+        .expect("Expected value left in rusty.toml").as_str()
+        .expect("Failed to convert to str").split("%");
     let mut prompt = "".to_owned();
     for i in left {
         if i.len() > 0 {
             match i.char_at(0) {
-                'U' => prompt.push_str(&var("USER").ok().unwrap()),
+                'U' => prompt.push_str(&var("USER").ok()
+                                       .expect("No user env variable")),
                 'H' => prompt.push_str(&String::from_utf8(Command::new("uname")
-                                                          .arg("-n").output()
-                                                          .ok().unwrap().stdout)
-                                       .unwrap().trim()),
+                                        .arg("-n").output()
+                                        .ok()
+                                        .expect("No uname command").stdout)
+                                       .expect("Failed to convert to string")
+                                       .trim()),
                 'L' => prompt.push_str(&input.get_cwd()),
                 'R' => {
                     let uid = String::from_utf8(Command::new("uname").arg("-n")
-                                                .output().ok().unwrap().stdout)
-                        .ok().unwrap();
+                                                .output().ok()
+                                                .expect("No uname command")
+                                                .stdout)
+                        .ok().expect("Failed to convert string");
                     if uid == "0" {
                         prompt.push('#');
                     } else {
@@ -83,11 +92,12 @@ pub fn check_alias(input: Vec<&str>) -> Option<String> {
     }
 
     //Sets the alias to check for
-    let alias_key = input.get(0).unwrap();
+    let alias_key = input.get(0).expect("Unwrapped an empty vector");
 
     //Check the config file for the key
     let config = read_in_config();
-    let mut parsed = toml::Parser::new(&config).parse().unwrap();
+    let mut parsed = toml::Parser::new(&config)
+        .parse().expect("Failed to pars config");
     let alias_table = parsed.remove("alias")
         .expect("Add an [alias] field to your config");
     let alias = alias_table.lookup(alias_key);
@@ -96,7 +106,9 @@ pub fn check_alias(input: Vec<&str>) -> Option<String> {
     if !alias.is_some() {
         return None;
     }
-    let output: String = toml::decode(alias.unwrap().to_owned()).unwrap();
+    let output: String = toml::decode(alias
+                        .expect("Already checked if alias is a none value")
+                        .to_owned()).expect("Failed to decode value");
     Some(output)
 }
 
@@ -111,8 +123,10 @@ pub fn set_env_var() {
     //Grab all the keys, loop through, decode the value, and set the env variables
     let keys: Vec<_> = env_table.as_table().expect("Failed to convert to table").keys().cloned().collect();
     for key in keys {
-        let value_unparsed: String = toml::decode(env_table.lookup(&key).expect("Failed lookup")
-                                                  .to_owned()).unwrap();
+        let value_unparsed: String = toml::decode(env_table.lookup(&key)
+                                                  .expect("Failed lookup")
+                                                  .to_owned())
+            .expect("Failed to decode value");
         set_var(key,env_parse(value_unparsed));
     }
 }
@@ -138,7 +152,7 @@ fn env_parse(input: String) -> String {
         if env_var.is_err() {
             output_vec.push(i.to_owned());
         } else {
-            let env_var = env_var.unwrap();
+            let env_var = env_var.expect("Env variabl does not exist");
             output_vec.push(env_var);
         }
     }
@@ -146,17 +160,19 @@ fn env_parse(input: String) -> String {
     //If it's just a single value it passes it back to set_var
     //in set_env_var
     if output_vec.len() == 1 {
-        return output_vec.pop().unwrap();
+        return output_vec.pop().expect("Called unwrap on an empty vec");
     }
 
     //Otherwise create a concatenated string of the values and returns that
     let mut output: String = String::new();
     for i in 0..output_vec.len() {
         if i > 0 {
-            output.push_str(&format!(":{}",output_vec.get(i).unwrap()));
+            output.push_str(&format!(":{}",output_vec.get(i)
+                                     .expect("Failed to format string")));
             continue;
         }
-        output.push_str(&output_vec.get(i).unwrap());
+        output.push_str(&output_vec.get(i)
+                        .expect("Called get on non existent value"));
     }
     output
 }

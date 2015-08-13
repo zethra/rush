@@ -7,15 +7,17 @@ use std::fs::PathExt; //Use of exists() is considered unstable. Might break in t
 ///Function used to internally change the directory of the shell
 pub fn change_directory(input: Vec<&str>){
     if input.is_empty(){
-        env::set_current_dir(Path::new(env::var("HOME").unwrap().as_str()));
+        env::set_current_dir(Path::new(env::var("HOME")
+                                       .expect("No HOME variable").as_str()));
     } else{
         let mut buffer = PathBuf::new();
         for i in input {
             if i.contains("~") {
                 let i_split = i.split("~").next();
-                buffer.push(Path::new(env::var("HOME").unwrap().as_str()));
+                buffer.push(Path::new(env::var("HOME")
+                                      .expect("No HOME variable").as_str()));
                 if i_split.is_some(){
-                    buffer.push(Path::new(i_split.unwrap()));
+                    buffer.push(Path::new(i_split.expect("Failed to split")));
                 }
             } else {
                 buffer.push(Path::new(i));
@@ -24,25 +26,25 @@ pub fn change_directory(input: Vec<&str>){
         let dir = buffer.as_path();
         if dir.is_relative(){
             let mut temp = PathBuf::new();
-            temp.push(dir.parent().unwrap());
+            temp.push(dir.parent().expect("Failed to get parent"));
             temp.push(dir);
             let path = temp.as_path();
             if path.exists(){
-                env::set_current_dir(temp.as_path()).unwrap();
+                env::set_current_dir(temp.as_path())
+                    .expect("Failed to set current directory");
             } else {
                 println!("Invalid path or input");
             }
         } else {
             if dir.exists(){
-                env::set_current_dir(dir).unwrap();
+                env::set_current_dir(dir)
+                    .expect("Failed to set current directory");
             } else {
                 println!("Invalid path or input");
             }
         }
     }
 }
-
-
 
 #[cfg(test)]
 mod tests {
@@ -56,7 +58,8 @@ mod tests {
         let vec = vec!["/"];
         let dir = Path::new("/tmp").to_str();
         change_directory(vec);
-        let new_dir = env::current_dir().unwrap();
+        let new_dir = env::current_dir()
+            .expect("Failed to get current directory");
         let new_dir = new_dir.to_str();
         assert_eq!(dir, new_dir);
     }
@@ -66,7 +69,8 @@ mod tests {
         let vec = vec!["/"];
         let dir = Path::new("/").to_str();
         change_directory(vec);
-        let new_dir = env::current_dir().unwrap();
+        let new_dir = env::current_dir()
+            .expect("Failed to get current directory");
         let new_dir = new_dir.to_str();
         assert_eq!(dir, new_dir);
     }
