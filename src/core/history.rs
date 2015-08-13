@@ -9,9 +9,8 @@ impl HistoryBuffer {
     ///Instantiate HistoryBuffer with an empty vector
     ///to store input lines
     pub fn new() -> Self {
-        let mut vec: Vec<String> = Vec::new();
         HistoryBuffer {
-            histvec: vec,
+            histvec: Vec::new(),
         }
     }
 
