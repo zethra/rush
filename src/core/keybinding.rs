@@ -13,6 +13,7 @@ pub enum Key {
     Tab,
     Char(char),
     Null, // This if for when nothing needs to be returned to signify no action needs to be taken and can't be made with new_key
+    Esc,
 }
 
 ///New Key
@@ -33,6 +34,7 @@ pub fn new_key(input: i32) -> Key {
         -8 => Key::Home,
         -9 => Key::End,
         -10 => Key::Tab,
+        -11 => Key::Esc,
         _ => Key::Char(input as u8 as char),
     }
 }

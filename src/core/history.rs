@@ -25,7 +25,7 @@ impl HistoryBuffer {
         if !popped_option.is_some() {
             "".to_owned()
         } else {
-            let popped = popped_option.unwrap();
+            let popped = popped_option.expect("Popped a None value");
             self.histvec.insert(0, popped.clone());
             popped
         }

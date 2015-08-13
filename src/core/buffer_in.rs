@@ -42,7 +42,7 @@ impl InputBuffer {
     ///Reads in key strokes and determines what to do with the terminal
     ///and buffers
     #[allow(unreachable_code)]
-    pub fn readline(&mut self, hist: &mut HistoryBuffer) -> Key {
+    pub fn readline(&mut self, hist: &mut HistoryBuffer) {
 
         //Line and charachter buffers
         let mut line = String::new();
@@ -61,9 +61,9 @@ impl InputBuffer {
                 Key::Enter => {
                     println!("");
                     stdout().flush().ok().expect("Could not flush stdout");
-                    self.line = line;
+                    self.line = line.clone();
                     hist.store(self.line.clone());
-                    return Key::Null;
+                    break;
                 }
                 Key::Char(c) => {
                     if cursor == cursor_pos_max {
@@ -141,17 +141,15 @@ impl InputBuffer {
                 },
                 Key::Tab => {
                     //Autocomplete
-                    return Key::Null;
                 }
                 _ => {
                     println!(""); //Remove once all keys are implemented
                     stdout().flush().ok().expect("Could not flush stdout");
-                    self.line = line;
-                    return keypress;
+                    self.line = line.clone();
+                    break;
                 }
             }
         }
-        unreachable!()
     }
 
     ///Output
