@@ -9,7 +9,6 @@ use rush::core::buffer_in::*;
 use rush::core::history::*;
 use rush::core::prompt::Prompt;
 use rush::core::config::{check_alias,set_env_var};
-use rush::core::keybinding::*;
 
 fn main() {
     //Sets environment variables written in config file
@@ -25,15 +24,7 @@ fn main() {
     let mut history = HistoryBuffer::new();
     //Loop to recieve and execute commands
     loop{
-        let key = input_buffer.readline();
-        history.store(input_buffer.line.clone());
-
-        match key {
-            Key::Up => {}, //Go up in History
-            Key::Down => {}, //Go down in History
-            Key::Null => {},
-            _ => {},
-        }
+        input_buffer.readline(&mut history);
 
         let mut command_split: Vec<&str> = input_buffer.output();
 
