@@ -33,9 +33,8 @@ impl InputBuffer {
     ///New
     ///Instantiates new buffer for use
     pub fn new() -> Self {
-        let mut _buffer = String::new();
         InputBuffer {
-            line: _buffer,
+            line: String::new(),
         }
     }
 
