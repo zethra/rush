@@ -3,6 +3,7 @@ use std::path::{Path,PathBuf};
 use std::env;
 use std::fs::PathExt; //Use of exists() is considered unstable. Might break in the future
 
+
 ///Change Directory
 ///Function used to internally change the directory of the shell
 pub fn change_directory(input: Vec<&str>){
