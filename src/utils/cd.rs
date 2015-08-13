@@ -27,7 +27,8 @@ pub fn change_directory(input: Vec<&str>){
         let dir = buffer.as_path();
         if dir.is_relative(){
             let mut temp = PathBuf::new();
-            temp.push(dir.parent().expect("Failed to get parent"));
+            temp.push(env::current_dir().ok()
+                      .expect("Couldn't get current directory"));
             temp.push(dir);
             let path = temp.as_path();
             if path.exists(){
