@@ -23,21 +23,21 @@ pub fn change_directory(input: Vec<&str>){
                 buffer.push(Path::new(i));
             }
         }
-        let dir = buffer.as_path();
-        if dir.is_relative(){
+        if buffer.is_relative() {
             let mut temp = PathBuf::new();
-            temp.push(dir.parent().expect("Failed to get parent"));
-            temp.push(dir);
+            temp.push(env::current_dir().ok()
+                      .expect("No current directory").as_path());
+            temp.push(buffer.as_path());
             let path = temp.as_path();
             if path.exists(){
-                env::set_current_dir(temp.as_path())
+                env::set_current_dir(path)
                     .expect("Failed to set current directory");
             } else {
                 println!("Invalid path or input");
             }
         } else {
-            if dir.exists(){
-                env::set_current_dir(dir)
+            if buffer.exists(){
+                env::set_current_dir(buffer.as_path())
                     .expect("Failed to set current directory");
             } else {
                 println!("Invalid path or input");
