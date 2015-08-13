@@ -9,6 +9,7 @@ use rush::core::buffer_in::*;
 use rush::core::history::*;
 use rush::core::prompt::Prompt;
 use rush::core::config::{check_alias,set_env_var};
+use std::thread;
 
 fn main() {
     //Sets environment variables written in config file
@@ -16,12 +17,27 @@ fn main() {
 
     //Necessary to update as default prompt is not what we want
     //They were merely initialization values
-    let mut prompt = Prompt::new();
-    prompt.print();
+    let prompt_spawn = thread::spawn(move || {
+        let thread_prompt = Prompt::new();
+        thread_prompt.print();
+        thread_prompt
+    });
+
+    let input_spawn = thread::spawn(move || {
+        InputBuffer::new()
+    });
+
+    let history_spawn = thread::spawn(move || {
+        HistoryBuffer::new()
+    });
 
     //Set up buffer to read inputs and History Buffer
-    let mut input_buffer = InputBuffer::new();
-    let mut history = HistoryBuffer::new();
+    let mut input_buffer = input_spawn.join()
+        .ok().expect("No InputBuffer made");
+    let mut history = history_spawn.join()
+        .ok().expect("No HistoryBuffer made");
+    let mut prompt = prompt_spawn.join()
+        .ok().expect("No prompt made");
     //Loop to recieve and execute commands
     loop{
         input_buffer.readline(&mut history);
