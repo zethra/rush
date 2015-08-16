@@ -75,12 +75,14 @@ fn main() {
                         println!("{}",output.trim());
                     }
                 } else {
-                    //Removes alias from the non cloned version like check_alias() does
+                    //Removes alias from the non cloned
+                    //version like check_alias() does
                     command_split.remove(0);
                     let alias_unwrapped = alias
-                        .expect("Should have returned and unwrappable value")
+                        .expect("Should have returned an unwrappable value")
                         .to_owned();
-                    let mut vec: Vec<&str> = alias_unwrapped.trim().split(' ').collect();
+                    let mut vec: Vec<&str> = alias_unwrapped
+                        .trim().split(' ').collect();
                     for i in command_split {
                         vec.push(i);
                     }
@@ -91,11 +93,7 @@ fn main() {
                 }
             }
         }
-        //Things that must always run in order to work.
-        //Input Buffer Clean Up and Update
-
-        //History Clean Up and Update
-
+        //Updates the prompt for the next line
         prompt.print();
     }
 
