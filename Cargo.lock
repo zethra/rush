@@ -2,10 +2,10 @@
 name = "rusty"
 version = "0.1.1"
 dependencies = [
- "clippy 0.0.10 (git+https://github.com/manishearth/rust-clippy)",
+ "clippy 0.0.11 (git+https://github.com/manishearth/rust-clippy)",
  "gcc 0.3.13 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "toml 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
+ "toml 0.1.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -13,14 +13,14 @@ name = "advapi32-sys"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "winapi 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi-build 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "clippy"
-version = "0.0.10"
-source = "git+https://github.com/manishearth/rust-clippy#0d125a298bbfd19e59ff14cf0e05ee07ae1d80c6"
+version = "0.0.11"
+source = "git+https://github.com/manishearth/rust-clippy#65deb956f1f2560ba9fa9148aef5b111bccc02cc"
 
 [[package]]
 name = "gcc"
@@ -28,30 +28,30 @@ version = "0.3.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "advapi32-sys 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "winapi 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.1.8"
+version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "rustc-serialize"
-version = "0.3.15"
+version = "0.3.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "toml"
-version = "0.1.21"
+version = "0.1.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "rustc-serialize 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.16 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "winapi"
-version = "0.2.1"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]

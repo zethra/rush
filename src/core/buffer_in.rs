@@ -155,8 +155,7 @@ impl InputBuffer {
     ///Outputs buffer into a format used for execution of commands by
     ///other parts of the codebase
     pub fn output(&mut self) -> Vec<&str> {
-        let out_vec: Vec<&str> = self.line.trim().split(' ').collect();
-        out_vec
+        self.line.trim().split(' ').collect()
     }
 
 }

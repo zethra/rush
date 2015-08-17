@@ -30,14 +30,13 @@ pub fn interpret(command: Vec<&str>) -> String {
 ///Runs commands passed to it and returns the output
 fn execute(command: Vec<&str>) -> Option<Output>{
     let args = command.as_slice();
-    let output = if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1.. ]).output().ok()
-        } else if args.len() == 1{
-            Command::new(&args[0]).output().ok()
-        } else {
-            Command::new("").output().ok()
-        };
-        output
+    if args.len() > 1 {
+        Command::new(&args[0]).args(&args[1.. ]).output().ok()
+    } else if args.len() == 1{
+        Command::new(&args[0]).output().ok()
+    } else {
+        Command::new("").output().ok()
+    }
  }
 
 ///Get Stdout or Err
@@ -130,19 +129,16 @@ fn piped(input: Vec<&str>) -> Option<Output> {
 ///for the next pipe.
 fn first_pipe(command: Vec<&str>) -> Result<Child> {
     let args = command.as_slice();
-
-    let output = if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1.. ])
-                .stdout(Stdio::piped()).spawn()
-        } else if args.len() == 1{
-            Command::new(&args[0])
-                .stdout(Stdio::piped()).spawn()
-        } else {
-            Command::new("")
-                .stdout(Stdio::piped()).spawn()
-        };
-
-    output
+    if args.len() > 1 {
+        Command::new(&args[0]).args(&args[1.. ])
+            .stdout(Stdio::piped()).spawn()
+    } else if args.len() == 1{
+        Command::new(&args[0])
+            .stdout(Stdio::piped()).spawn()
+    } else {
+        Command::new("")
+            .stdout(Stdio::piped()).spawn()
+    }
 }
 
 ///Execute Pipe

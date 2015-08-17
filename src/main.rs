@@ -44,29 +44,29 @@ fn main() {
 
         let mut command_split: Vec<&str> = input_buffer.output();
 
-        match command_split.get(0)
+        match *command_split.get(0)
             .expect("Called unwrap on an empty buffer") {
 
-            &"cd" => {
+            "cd" => {
                 command_split.remove(0);
                 cd::change_directory(command_split);
                 prompt.update_cwd();
                 prompt.update_prompt();
             },
 
-            &"clear" => {
+            "clear" => {
                 let output = interpret(command_split.clone());
                 print!("{}", output);
                 prompt.print();
                 continue;
             },
 
-            &""  => {
+            ""  => {
                 prompt.print();
                 continue;
             },
 
-            &"exit" => break,
+            "exit" => break,
             _ => {
                 let alias = check_alias(command_split.clone());
                 if !alias.is_some() {
