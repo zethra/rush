@@ -9,6 +9,11 @@ use std::io::Result;
 ///to execute it and returns output or error output
 pub fn interpret(command: Vec<&str>) -> String {
 
+    //Refactoring
+    //Break commands by logic
+    //Run commands by logic precedence by looping through all of them here
+    //output results
+    //Create more functions for dealing with ands etc.
     let mut pipes = false;
     for i in command.clone() {
        if i.contains('|') {
@@ -59,7 +64,6 @@ fn get_stdout_or_stderr(output: Option<Output>) -> String {
     }
 }
 
-#[allow(dead_code)] //At least until I find a use for it
 fn get_status(output: Option<Output>) -> bool{
     match output.is_some(){
         true => {
@@ -207,10 +211,23 @@ fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
     }
 }
 
+//false if it failed true if it didn't
+fn and(command1: Vec<&str>, command2: Vec<&str>) -> bool {
+    let executed1 = execute(command1);
+    let status = get_status(executed1.clone());
+    let output1 = get_stdout_or_stderr(executed1);
+    println!("{}", output1);
+    if status {
+        println!("{}",get_stdout_or_stderr(execute(command2)));
+        return true;
+    }
+    false
+}
 
 #[cfg(test)]
 mod tests{
     use super::*;
+    use super::and;
 
     #[test]
     fn pipes() {
@@ -244,5 +261,23 @@ mod tests{
             .trim().split(' ').collect();
         let result = interpret(vec);
         assert_eq!("Please input a valid command",result);
+    }
+
+    #[test]
+    fn and_test(){
+        //Both pass
+        let command1: Vec<&str> = "date".trim().split(' ').collect();
+        let command2: Vec<&str> = "ls /".trim().split(' ').collect();
+        assert_eq!(true, and(command1,command2));
+
+        //First Fails
+        let command3: Vec<&str> = "date %d".trim().split(' ').collect();
+        let command4: Vec<&str> = "ls /".trim().split(' ').collect();
+        assert_eq!(false, and(command3,command4));
+
+        //Last Fails
+        let command5: Vec<&str> = "date".trim().split(' ').collect();
+        let command6: Vec<&str> = "ls /blah".trim().split(' ').collect();
+        assert_eq!(true, and(command5,command6));
     }
 }
