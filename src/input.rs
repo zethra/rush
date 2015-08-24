@@ -1,8 +1,8 @@
 extern crate libc;
 use std::io::{stdout,Write};
 use std::ffi::CString;
-use core::keybinding::*;
-use core::history::HistoryBuffer;
+use history::HistoryBuffer;
+use keybinding::*;
 
 ///Functions involved with Manipulating the Terminal
 ///or getting input for the buffer

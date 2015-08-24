@@ -1,14 +1,22 @@
 #![allow(unreachable_code)]
+#![allow(dead_code)]
+#![allow(unused_imports)] //for process::logic::*;
 
 use std::process::*;
 use std::os::unix::io::{FromRawFd, AsRawFd};
 use std::io::Result;
+use process::logic::*;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns output or error output
 pub fn interpret(command: Vec<&str>) -> String {
 
+    //Refactoring
+    //Break commands by logic
+    //Run commands by logic precedence by looping through all of them here
+    //output results
+    //Create more functions for dealing with ands etc.
     let mut pipes = false;
     for i in command.clone() {
        if i.contains('|') {
@@ -28,7 +36,7 @@ pub fn interpret(command: Vec<&str>) -> String {
 
 ///Execute
 ///Runs commands passed to it and returns the output
-fn execute(command: Vec<&str>) -> Option<Output>{
+pub fn execute(command: Vec<&str>) -> Option<Output>{
     let args = command.as_slice();
     if args.len() > 1 {
         Command::new(&args[0]).args(&args[1.. ]).output().ok()
@@ -42,7 +50,7 @@ fn execute(command: Vec<&str>) -> Option<Output>{
 ///Get Stdout or Err
 ///Returns the standard output or error of an executed command or returns that
 ///the command was invalid
-fn get_stdout_or_stderr(output: Option<Output>) -> String {
+pub fn get_stdout_or_stderr(output: Option<Output>) -> String {
     match output.is_some(){
         true => {
             let temp = output.expect("Output has been checked");
@@ -58,8 +66,7 @@ fn get_stdout_or_stderr(output: Option<Output>) -> String {
     }
 }
 
-#[allow(dead_code)] //At least until I find a use for it
-fn get_status(output: Option<Output>) -> bool{
+pub fn get_status(output: Option<Output>) -> bool{
     match output.is_some(){
         true => {
             let temp = output.expect("Output has been checked");
@@ -203,7 +210,6 @@ fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
     }
 }
 
-
 #[cfg(test)]
 mod tests{
     use super::*;
@@ -242,3 +248,4 @@ mod tests{
         assert_eq!("Please input a valid command",result);
     }
 }
+
