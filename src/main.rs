@@ -9,7 +9,6 @@ use rush::input::*;
 use rush::history::*;
 use rush::prompt::Prompt;
 use rush::config::{check_alias,set_env_var};
-use rush::keybinding::*;
 use std::thread;
 
 fn main() {
