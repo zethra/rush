@@ -3,7 +3,7 @@ use std::io::{Read,BufReader};
 use std::fs::File;
 use std::env::{set_var,var,home_dir};
 use std::process::Command;
-use core::prompt::Prompt;
+use prompt::Prompt;
 
 ///Read in Config
 ///Inner function used to pull in a default configuration file for parsing

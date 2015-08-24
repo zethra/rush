@@ -1,8 +1,11 @@
 #![allow(unreachable_code)]
+#![allow(dead_code)]
+#![allow(unused_imports)] //for process::logic::*;
 
 use std::process::*;
 use std::os::unix::io::{FromRawFd, AsRawFd};
 use std::io::Result;
+use process::logic::*;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
@@ -33,7 +36,7 @@ pub fn interpret(command: Vec<&str>) -> String {
 
 ///Execute
 ///Runs commands passed to it and returns the output
-fn execute(command: Vec<&str>) -> Option<Output>{
+pub fn execute(command: Vec<&str>) -> Option<Output>{
     let args = command.as_slice();
     let output = if args.len() > 1 {
             Command::new(&args[0]).args(&args[1.. ]).output().ok()
@@ -48,7 +51,7 @@ fn execute(command: Vec<&str>) -> Option<Output>{
 ///Get Stdout or Err
 ///Returns the standard output or error of an executed command or returns that
 ///the command was invalid
-fn get_stdout_or_stderr(output: Option<Output>) -> String {
+pub fn get_stdout_or_stderr(output: Option<Output>) -> String {
     match output.is_some(){
         true => {
             let temp = output.expect("Output has been checked");
@@ -64,7 +67,7 @@ fn get_stdout_or_stderr(output: Option<Output>) -> String {
     }
 }
 
-fn get_status(output: Option<Output>) -> bool{
+pub fn get_status(output: Option<Output>) -> bool{
     match output.is_some(){
         true => {
             let temp = output.expect("Output has been checked");
@@ -211,55 +214,9 @@ fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
     }
 }
 
-//false if it failed true if it didn't
-fn and(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let executed1 = execute(command1);
-    let status = get_status(executed1.clone());
-    let output1 = get_stdout_or_stderr(executed1);
-    println!("{}", output1);
-    if status {
-        println!("{}",get_stdout_or_stderr(execute(command2)));
-        return true;
-    }
-    false
-}
-
-//Or does not output failed command
-//DOES NOT WORK RIGHT for logic
-fn or(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let executed1 = execute(command1);
-    let status = get_status(executed1.clone());
-    if !status { //If the command failed run this
-        println!("{}",get_stdout_or_stderr(execute(command2)));
-        true
-    } else {
-        println!("{}",get_stdout_or_stderr(executed1));
-        false
-    }
-}
-
-fn xor(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let executed1 = execute(command1);
-    let status1 = get_status(executed1.clone());
-    let executed2 =execute(command2);
-    let status2 = get_status(executed2.clone());
-    println!("{}",get_stdout_or_stderr(executed1));
-    println!("{}",get_stdout_or_stderr(executed2));
-    if !status1 && status2 || status1 && !status2 {
-        return true;
-    }
-    false
-}
-
-//Not Implemented
-fn nand(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    false
-}
-
 #[cfg(test)]
 mod tests{
     use super::*;
-    use super::{and,xor};
 
     #[test]
     fn pipes() {
@@ -293,52 +250,6 @@ mod tests{
             .trim().split(' ').collect();
         let result = interpret(vec);
         assert_eq!("Please input a valid command",result);
-    }
-
-    #[test]
-    fn and_test(){
-        //Both pass
-        let command1: Vec<&str> = "date".trim().split(' ').collect();
-        let command2: Vec<&str> = "ls /".trim().split(' ').collect();
-        assert_eq!(true, and(command1,command2));
-
-        //First Fails
-        let command3: Vec<&str> = "date %d".trim().split(' ').collect();
-        let command4: Vec<&str> = "ls /".trim().split(' ').collect();
-        assert_eq!(false, and(command3,command4));
-
-        //Last Fails
-        let command5: Vec<&str> = "date".trim().split(' ').collect();
-        let command6: Vec<&str> = "ls /blah".trim().split(' ').collect();
-        assert_eq!(true, and(command5,command6));
-
-        //Both fail
-        let command7: Vec<&str> = "ls /blah".trim().split(' ').collect();
-        let command8: Vec<&str> = "date %d".trim().split(' ').collect();
-        assert_eq!(false, and(command7,command8));
-    }
-
-    #[test]
-    fn xor_test(){
-        //Both pass
-        let command1: Vec<&str> = "date".trim().split(' ').collect();
-        let command2: Vec<&str> = "ls /".trim().split(' ').collect();
-        assert_eq!(false, xor(command1,command2));
-
-        //First Fails
-        let command3: Vec<&str> = "date %d".trim().split(' ').collect();
-        let command4: Vec<&str> = "ls /".trim().split(' ').collect();
-        assert_eq!(true, xor(command3,command4));
-
-        //Last Fails
-        let command5: Vec<&str> = "date".trim().split(' ').collect();
-        let command6: Vec<&str> = "ls /blah".trim().split(' ').collect();
-        assert_eq!(true, xor(command5,command6));
-
-        //Both fail
-        let command7: Vec<&str> = "ls /blah".trim().split(' ').collect();
-        let command8: Vec<&str> = "date %d".trim().split(' ').collect();
-        assert_eq!(false, xor(command7,command8));
     }
 }
 

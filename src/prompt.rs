@@ -1,5 +1,5 @@
 use std::env::{current_dir, home_dir};
-use core::config::read_config_prompt;
+use config::read_config_prompt;
 use std::io::{stdout, Write};
 
 ///Prompt
