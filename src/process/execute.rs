@@ -232,7 +232,7 @@ mod tests{
     }
 
     #[test]
-    fn execute(){
+    fn execute_test(){
         let vec: Vec<&str> = "ls -al"
             .trim().split(' ').collect();
         let result = interpret(vec);
