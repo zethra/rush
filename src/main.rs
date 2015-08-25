@@ -10,11 +10,9 @@ use rush::history::*;
 use rush::prompt::Prompt;
 use rush::config::{check_alias,set_env_var};
 use std::thread;
-
 fn main() {
     //Sets environment variables written in config file
     set_env_var();
-
     //Necessary to update as default prompt is not what we want
     //They were merely initialization values
     let prompt_spawn = thread::spawn(move || {
