@@ -29,6 +29,13 @@ The docs for rush can be found [here](https://mgattozzi.github.io/Rusty/rush/).
 It's only in the initial stages but will be more fleshed out as time
 goes on.
 
+While much of the process submodule is exposed for now eventually the
+only method that will be able to be called is
+rush::process::execute::interpret
+As this will handle all the logic and everything else required with
+executing commands and can be used to execute quite complex commands
+within a rust program without having to worry about how to implement it.
+
 ###Requirements for Rusty
 
 - Rust Nightly
@@ -38,7 +45,7 @@ goes on.
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
 
-###The Current Version is 0.1.1 meaning Rusty can and has support for:
+###The Current Version is 0.1.2 meaning Rusty can and has support for:
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
@@ -71,6 +78,23 @@ goes on.
 	- [x] Take in one char at a time
 	- [x] Buffer inputs
 	- [ ] Terminal Manipulation
+		- [x] Left and right cursor movement
+		- [x] Backspace
+- [ ] Finish Interpret
+	- [ ] Shell Logic
+		- [x] xor
+		- [x] and
+		- [ ] nand
+		- [ ] not
+		- [x] or
+	- [x] pipes
+	- [ ] Parallel Commands
+	- [x] Single Command Execution
+	- [ ] Execute Commands by logic, precedence, and order
+
+I'm also in the middle of refactoring a lot of the code and splitting it
+into smaller submodules and grouping functions better, so as to make
+rush more viable and make code easier to maintain.
 
 ###Planned but not implemented:
 - [ ] Better error handling using try!()
@@ -81,10 +105,16 @@ goes on.
 - [ ] Better output formatting for completed commands
 - [ ] Scripting language and processor.
 - [ ] Output errors on stderr automagically
-- [ ] Shell logic
 - [ ] Calculator utility for fun. Likely to be on back burner
 - [ ] Makefile to compile and install automatically
 - [ ] Pluggable modules that others write
+
+###Known Issues
+- Pressing escape will mess up everything on the terminal and this has
+  to do with getting the arrow keys. Don't press escape or C-c will be
+  your only escape. Seriously. Your terminal will look like total
+  garbage.
+- Super user does not seem to be working for some reason at this point
 
 ###Code Cleanup Ideas
 - [ ] Docs. So many Docs

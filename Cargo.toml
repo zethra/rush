@@ -1,6 +1,6 @@
 [package]
 name = "rusty"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Michael Gattozzi <mgattozzi@gmail.com>"]
 build = "build.rs"
 
