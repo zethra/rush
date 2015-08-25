@@ -1,42 +1,41 @@
-#![allow(unreachable_code)]
+#![allow(unused_imports)] //for some of the things in this file for now
 #![allow(dead_code)]
 
-use process::execute::{get_stdout_or_stderr, execute, get_status};
+use process::stdproc::{get_stdout_or_stderr, get_status};
+use process::execute::run;
 
 //false if it failed true if it didn't
 fn and(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let executed1 = execute(command1);
-    let status = get_status(executed1.clone());
-    let output1 = get_stdout_or_stderr(executed1);
+    let ran1 = run(command1);
+    let status = get_status(ran1.clone());
+    let output1 = get_stdout_or_stderr(ran1);
     println!("{}", output1);
     if status {
-        println!("{}",get_stdout_or_stderr(execute(command2)));
+        println!("{}",get_stdout_or_stderr(run(command2)));
         return true;
     }
     false
 }
 
-//Or does not output failed command
-//DOES NOT WORK RIGHT for logic
 fn or(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let executed1 = execute(command1);
-    let status = get_status(executed1.clone());
-    if !status { //If the command failed run this
-        println!("{}",get_stdout_or_stderr(execute(command2)));
+    let ran = run(command1);
+    let status = get_status(ran.clone());
+    println!("{}",get_stdout_or_stderr(ran));
+    if status {
         true
     } else {
-        println!("{}",get_stdout_or_stderr(executed1));
+        println!("{}",get_stdout_or_stderr(run(command2)));
         false
     }
 }
 
 fn xor(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let executed1 = execute(command1);
-    let status1 = get_status(executed1.clone());
-    let executed2 =execute(command2);
-    let status2 = get_status(executed2.clone());
-    println!("{}",get_stdout_or_stderr(executed1));
-    println!("{}",get_stdout_or_stderr(executed2));
+    let ran1 = run(command1);
+    let status1 = get_status(ran1.clone());
+    let ran2 =run(command2);
+    let status2 = get_status(ran2.clone());
+    println!("{}",get_stdout_or_stderr(ran1));
+    println!("{}",get_stdout_or_stderr(ran2));
     if !status1 && status2 || status1 && !status2 {
         return true;
     }
@@ -98,4 +97,3 @@ mod tests{
         assert_eq!(false, xor(command7,command8));
     }
 }
-
