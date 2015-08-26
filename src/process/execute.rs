@@ -3,6 +3,7 @@ use std::process::*;
 use process::logic::*;
 use process::stdproc::*;
 use process::pipe::*;
+use process::ops::*;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
