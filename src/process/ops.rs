@@ -21,6 +21,20 @@ pub enum Operation {
     Pipe,
 }
 
+// impl Debug for Operation {
+//     fn debug(&mut self) {
+//         match self {
+//             Parallel => println!("Operation::Parallel"),
+//             And => println!("Operation::And"),
+//             Xor => println!("Operation::Xor"),
+//             Or => println!("Operation::Or"),
+//             Nand => println!("Operation::Nand"),
+//             Not => println!("Operation::Not"),
+//             Pipe => println!("Operation::Pipe"),
+//         }
+//     }
+// }
+
 impl Opqueue {
     pub fn new() -> Self {
         Opqueue {
