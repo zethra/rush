@@ -41,7 +41,11 @@ fn main() {
         input_buffer.readline(&mut history);
 
         let mut command_split: Vec<&str> = input_buffer.output();
-
+        let mut command = String::new();
+        for i in command_split.clone() {
+            command.push_str(i);
+            command.push(' ');
+        }
         match *command_split.get(0)
             .expect("Called unwrap on an empty buffer") {
 
@@ -53,7 +57,7 @@ fn main() {
             },
 
             "clear" => {
-                let output = interpret(command_split.clone());
+                let output = interpret(command);
                 print!("{}", output);
                 prompt.print();
                 continue;
@@ -67,8 +71,8 @@ fn main() {
             "exit" => break,
             _ => {
                 let alias = check_alias(command_split.clone());
-                if !alias.is_some() {
-                    let output = interpret(command_split);
+                if alias.is_none() {
+                    let output = interpret(command);
                     if !output.is_empty() {
                         println!("{}",output.trim());
                     }
@@ -84,7 +88,14 @@ fn main() {
                     for i in command_split {
                         vec.push(i);
                     }
-                    let output =  interpret(vec);
+
+                    //Temporary as this will get resplit in interpret
+                    let mut vec_concat = String::new();
+                    for i in vec {
+                        vec_concat.push_str(i);
+                        vec_concat.push(' ');
+                    }
+                    let output =  interpret(vec_concat);
                     if !output.is_empty() {
                         println!("{}",output.trim());
                     }

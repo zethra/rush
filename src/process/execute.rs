@@ -8,8 +8,9 @@ use process::ops::*;
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns output or error output
-pub fn interpret(command: Vec<&str>) -> String {
-
+pub fn interpret(command: String) -> String {
+    let mut queue = Opqueue::new();
+    let command: Vec<&str> = command.trim().split(' ').collect();
     //Refactoring
     //Break commands by logic
     //Run commands by logic precedence by looping through all of them here
@@ -50,26 +51,8 @@ mod tests{
     use super::*;
 
     #[test]
-    fn pipes() {
-        let vec: Vec<&str> = "ls /|grep bin| sort -r"
-            .trim().split(' ').collect();
-        let result = interpret(vec);
-        assert_eq!("sbin\nbin\n",result);
-     }
-
-    #[test]
-    #[should_panic]
-    fn pipes_fail() {
-        let vec: Vec<&str> = "ls |grep bin| sort -r"
-            .trim().split(' ').collect();
-        let result = interpret(vec);
-        assert_eq!("Please input a valid command",result);
-    }
-
-    #[test]
     fn execute_test(){
-        let vec: Vec<&str> = "ls -al"
-            .trim().split(' ').collect();
+        let vec = "ls -al".to_owned();
         let result = interpret(vec);
         assert!(!result.is_empty());
 
@@ -77,10 +60,10 @@ mod tests{
 
     #[test]
     fn execute_fail(){
-        let vec: Vec<&str> = "blah"
-            .trim().split(' ').collect();
+        let vec = "blah".to_owned();
         let result = interpret(vec);
         assert_eq!("Please input a valid command",result);
     }
+
 }
 

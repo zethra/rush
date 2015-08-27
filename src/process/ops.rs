@@ -10,7 +10,7 @@ pub struct Opqueue {
 }
 
 //Enum to determine which operation should be done
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Debug,PartialEq,Eq)]
 pub enum Operation {
     Parallel,
     And,
@@ -20,20 +20,6 @@ pub enum Operation {
     Not,
     Pipe,
 }
-
-// impl Debug for Operation {
-//     fn debug(&mut self) {
-//         match self {
-//             Parallel => println!("Operation::Parallel"),
-//             And => println!("Operation::And"),
-//             Xor => println!("Operation::Xor"),
-//             Or => println!("Operation::Or"),
-//             Nand => println!("Operation::Nand"),
-//             Not => println!("Operation::Not"),
-//             Pipe => println!("Operation::Pipe"),
-//         }
-//     }
-// }
 
 impl Opqueue {
     pub fn new() -> Self {
@@ -93,17 +79,17 @@ mod tests {
         assert_eq!(queue.commands.len(),2);
 
         //Pop first value
-        assert_eq!(queue.pop(),Some);
+        assert!(queue.pop().is_some());
         assert_eq!(queue.parallel, 1);
         assert_eq!(queue.commands.len(),1);
 
         //Pop second value
-        assert_eq!(queue.pop(),Some);
+        assert!(queue.pop().is_some());
         assert_eq!(queue.parallel, 0);
         assert_eq!(queue.commands.len(),0);
 
         //Check for exhaustion
-        assert_eq!(queue.pop(), None);
+        assert!(queue.pop().is_none());
         assert_eq!(queue.parallel, 0);
         assert_eq!(queue.commands.len(),0);
 

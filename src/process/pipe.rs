@@ -142,8 +142,7 @@ mod tests{
 
     #[test]
     fn pipes() {
-        let vec: Vec<&str> = "ls /|grep bin| sort -r"
-            .trim().split(' ').collect();
+        let vec = "ls /|grep bin| sort -r".to_owned();
         let result = interpret(vec);
         assert_eq!("sbin\nbin\n",result);
      }
@@ -151,8 +150,7 @@ mod tests{
     #[test]
     #[should_panic]
     fn pipes_fail() {
-        let vec: Vec<&str> = "ls |grep bin| sort -r"
-            .trim().split(' ').collect();
+        let vec = "ls |grep bin| sort -r".to_owned();
         let result = interpret(vec);
         assert_eq!("Please input a valid command",result);
     }
