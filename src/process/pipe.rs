@@ -42,15 +42,10 @@ pub fn piped(input: Vec<&str>) -> Option<Output> {
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
 
-    //The assumption is that this will always execute properly
-    //but to make sure nopipe_commands goes wrong an assert statement
-    //has been added to make sure of this
-    assert!(child_result.is_ok());
     child = child_result.ok().expect("Failed to unwrap an Result");
 
     while split.len() > 1 {
         child_result = execute_pipe(split.remove(0), child);
-        assert!(child_result.is_ok());
         child = child_result.ok().expect("Failed to unwrap an Result");
     }
 

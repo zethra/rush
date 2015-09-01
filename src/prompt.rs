@@ -70,11 +70,9 @@ impl Prompt {
 
     }
 
-    ///Print
-    ///Outputs the prompt to stdout
     pub fn print(&self) {
-        print!("{} ", self.get_user_p());
-        stdout().flush().ok().expect("Failed to put prompt on line");
+        print!("{}", self.get_user_p());
+        stdout().flush().ok().expect("Could not flush stdout");
     }
 
 }

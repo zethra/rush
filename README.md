@@ -96,6 +96,10 @@ I'm also in the middle of refactoring a lot of the code and splitting it
 into smaller submodules and grouping functions better, so as to make
 rush more viable and make code easier to maintain.
 
+I also just switched to using copperline for getting input from the
+command line and it's written in Rust meaning it's way safer than what
+I was attempting to do.
+
 ###Planned but not implemented:
 - [ ] Better error handling using try!()
 - [ ] cd - functionality
@@ -110,10 +114,6 @@ rush more viable and make code easier to maintain.
 - [ ] Pluggable modules that others write
 
 ###Known Issues
-- Pressing escape will mess up everything on the terminal and this has
-  to do with getting the arrow keys. Don't press escape or C-c will be
-  your only escape. Seriously. Your terminal will look like total
-  garbage.
 - Super user does not seem to be working for some reason at this point
 
 ###Code Cleanup Ideas
@@ -123,10 +123,6 @@ rush more viable and make code easier to maintain.
 - [ ] Reduce let bindings
 - [ ] Get rid of unsafe or make super safe
 	- [ ] Make sure char conversions work properly
-
-Note: Terminal Key bindings require unsafe for now in order to work
-properly. Until Rust implements getchar and getch in it's library
-this will not be able to be done.
 
 ###Rust Version
 Currently using 1.4 Nightly due to need of unstable features. Has not been

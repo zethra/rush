@@ -1,15 +1,16 @@
 #![feature(plugin)]
-#![plugin(clippy)]
+//#![plugin(clippy)]
 
 #![cfg(not(test))]
 #[macro_use] extern crate rush;
+extern crate copperline;
 use rush::utils::*;
 use rush::process::execute::interpret;
-use rush::input::*;
-use rush::history::*;
 use rush::prompt::Prompt;
 use rush::config::{check_alias,set_env_var};
 use std::thread;
+use copperline::*;
+
 fn main() {
     //Sets environment variables written in config file
     set_env_var();
@@ -22,30 +23,33 @@ fn main() {
     });
 
     let input_spawn = thread::spawn(move || {
-        InputBuffer::new()
-    });
-
-    let history_spawn = thread::spawn(move || {
-        HistoryBuffer::new()
+        Copperline::new()
     });
 
     //Set up buffer to read inputs and History Buffer
     let mut input_buffer = input_spawn.join()
         .ok().expect("No InputBuffer made");
-    let mut history = history_spawn.join()
-        .ok().expect("No HistoryBuffer made");
     let mut prompt = prompt_spawn.join()
         .ok().expect("No prompt made");
     //Loop to recieve and execute commands
     loop{
-        input_buffer.readline(&mut history);
+        let line = input_buffer.read_line(&prompt.get_user_p()).ok();
+        if line.is_none(){
+            continue;
+        }
+        input_buffer.add_history(line.expect("Get a non existent value"));
+        let mut command_split: Vec<&str> = input_buffer.get_history_item(0).expect("No value in buffer").trim().split(' ').collect();
 
-        let mut command_split: Vec<&str> = input_buffer.output();
+        //This is hackish and a stop gap for now. The important part is that
+        //a string is always being passed to interpret. Once interpret has
+        //been finished Main needs to be cleaned up more so that it can
+        //just use strings here
         let mut command = String::new();
         for i in command_split.clone() {
             command.push_str(i);
             command.push(' ');
         }
+
         match *command_split.get(0)
             .expect("Called unwrap on an empty buffer") {
 

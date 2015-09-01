@@ -74,7 +74,7 @@ pub fn read_config_prompt(input: &Prompt) -> String {
             }
         }
     }
-
+    prompt.push(' ');
     prompt
 }
 

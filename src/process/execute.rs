@@ -4,21 +4,26 @@ use process::logic::*;
 use process::stdproc::*;
 use process::pipe::*;
 use process::ops::*;
+use process::pq::*;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns output or error output
 pub fn interpret(command: String) -> String {
-    let mut queue = Opqueue::new();
+    let mut op_queues = Opqueue::new();
+    let mut proc_queue = Procqueue::new();
     let command: Vec<&str> = command.trim().split(' ').collect();
-    //Refactoring
-    //Break commands by logic
-    //Run commands by logic precedence by looping through all of them here
-    //output results
-    //Create more functions for dealing with ands etc.
+
+    //Split order:
+    //Split by parallel +=+
+    //Split by or ||
+    //Split by pipe |
+    //Split by and &&
+    //Split by (To be expanded)
+
     let mut pipes = false;
     for i in command.clone() {
-       if i.contains('|') {
+       if i.contains('|') && !i.contains("||"){
            pipes = true;
            break;
         }
