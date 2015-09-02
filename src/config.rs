@@ -81,11 +81,11 @@ pub fn read_config_prompt(input: &Prompt) -> String {
 ///Check Alias
 ///Checks if there is an alias available before passing
 ///on commands for execution
-pub fn check_alias(input: Vec<&str>) -> Option<String> {
+pub fn check_alias(input: String) -> Option<String> {
     //Checks if alias is in config file and returns the altered
     //version as an Option of the input. If succesfully found
     //it can be unwraped for execution
-
+    let input = input.split_whitespace().collect::<Vec<&str>>();
     //Makes sure there is something to execute
     if input.is_empty() {
         return None;

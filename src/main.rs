@@ -32,82 +32,71 @@ fn main() {
     let mut prompt = prompt_spawn.join()
         .ok().expect("No prompt made");
     //Loop to recieve and execute commands
-    loop{
+    loop {
+
         let line = input_buffer.read_line(&prompt.get_user_p()).ok();
         if line.is_none(){
             continue;
         }
-        input_buffer.add_history(line.expect("Get a non existent value"));
-        let mut command_split: Vec<&str> = input_buffer.get_history_item(0).expect("No value in buffer").trim().split(' ').collect();
+        let command = line.expect("Could not get line");
+        input_buffer.add_history(command.clone());
 
         //This is hackish and a stop gap for now. The important part is that
         //a string is always being passed to interpret. Once interpret has
         //been finished Main needs to be cleaned up more so that it can
         //just use strings here
-        let mut command = String::new();
-        for i in command_split.clone() {
-            command.push_str(i);
-            command.push(' ');
-        }
+        if command.starts_with("cd") {
+            cd::change_directory(command.trim_left_matches("cd").to_owned());
+            prompt.update_cwd();
+            prompt.update_prompt();
 
-        match *command_split.get(0)
-            .expect("Called unwrap on an empty buffer") {
+        } else if command.starts_with("clear") {
+            let output = interpret(command);
+            print!("{}", output);
+            prompt.print();
+            continue;
 
-            "cd" => {
-                command_split.remove(0);
-                cd::change_directory(command_split);
-                prompt.update_cwd();
-                prompt.update_prompt();
-            },
+        } else if command.is_empty() {
+            prompt.print();
+            continue;
 
-            "clear" => {
+        } else if command.starts_with("exit") {
+            break;
+
+        } else {
+            let alias = check_alias(command.clone());
+            if alias.is_none() {
                 let output = interpret(command);
-                print!("{}", output);
-                prompt.print();
-                continue;
-            },
+                if !output.is_empty() {
+                    println!("{}",output.trim());
+                }
 
-            ""  => {
-                prompt.print();
-                continue;
-            },
+            } else {
+                //Removes alias from the non cloned
+                //version like check_alias() does
+                let mut vec = alias
+                    .expect("Should have returned an unwrappable value")
+                    .to_owned();
 
-            "exit" => break,
-            _ => {
-                let alias = check_alias(command_split.clone());
-                if alias.is_none() {
-                    let output = interpret(command);
-                    if !output.is_empty() {
-                        println!("{}",output.trim());
-                    }
-                } else {
-                    //Removes alias from the non cloned
-                    //version like check_alias() does
-                    command_split.remove(0);
-                    let alias_unwrapped = alias
-                        .expect("Should have returned an unwrappable value")
-                        .to_owned();
-                    let mut vec: Vec<&str> = alias_unwrapped
-                        .trim().split(' ').collect();
-                    for i in command_split {
-                        vec.push(i);
-                    }
-
-                    //Temporary as this will get resplit in interpret
-                    let mut vec_concat = String::new();
-                    for i in vec {
-                        vec_concat.push_str(i);
-                        vec_concat.push(' ');
-                    }
-                    let output =  interpret(vec_concat);
-                    if !output.is_empty() {
-                        println!("{}",output.trim());
+                //Removes alias and pushes the rest of the split onto 
+                //the string
+                for (i,j) in command.split_whitespace()
+                    .collect::<Vec<&str>>().iter().enumerate(){
+                    if i != 0 {
+                        vec.push_str(j);
                     }
                 }
+
+                //Temporary as this will get resplit in interpret
+                let output =  interpret(vec);
+                if !output.is_empty() {
+                    println!("{}",output.trim());
+                }
+
             }
+
         }
         //Updates the prompt for the next line
         prompt.print();
     }
-
 }
