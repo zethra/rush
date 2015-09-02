@@ -1,5 +1,5 @@
 #![feature(plugin)]
-//#![plugin(clippy)]
+#![plugin(clippy)]
 
 #![cfg(not(test))]
 #[macro_use] extern crate rush;

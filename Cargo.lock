@@ -1,7 +1,8 @@
 [root]
 name = "rusty"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
+ "clippy 0.0.12 (git+https://github.com/manishearth/rust-clippy)",
  "copperline 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "toml 0.1.22 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -11,6 +12,11 @@ dependencies = [
 name = "bitflags"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "clippy"
+version = "0.0.12"
+source = "git+https://github.com/manishearth/rust-clippy#d3c53e307d08680a100e59e8d8e0a4607d0fab87"
 
 [[package]]
 name = "copperline"

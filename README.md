@@ -19,6 +19,11 @@ environment.
 A lot of development has gone on since my last version bump and with it
 I can say the base level functionality is complete. Now I'm starting to
 add the features that actually make a shell worth while to use.
+Currently Rusty is undergoing a huge refactoring of the code base to
+make it easier to navigate as well as readable. Moving away from the use
+of Vec<&str> and using String as the method of dealing with things upon
+entry has made the code more readable. Though the lower level functions
+in the code still require the use of the Vec<&str> type.
 
 Rusty's library is called Rush (might be separated in the future so
 others can use it without Rusty) and is built to manipulate the terminal
@@ -45,7 +50,7 @@ within a rust program without having to worry about how to implement it.
 - ctags
 - [rusty-tags](https://github.com/dan-t/rusty-tags)
 
-###The Current Version is 0.1.2 meaning Rusty can and has support for:
+###The Current Version is 0.1.3 meaning Rusty can and has support for:
 
 - [x] Execute programs entered into the command line
 - [x] Change Directory
