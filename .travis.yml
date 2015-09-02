@@ -5,8 +5,9 @@ addons:
     packages:
     - libcurl4-openssl-dev
     - libelf-dev
-    - libdw=dev
+    - libdw-dev
     - gcc
+    - elfutils
 rust:
 - nightly
 before_script:

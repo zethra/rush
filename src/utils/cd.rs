@@ -7,7 +7,7 @@ use std::fs::PathExt; //Use of exists() is considered unstable. Might break in t
 ///Change Directory
 ///Function used to internally change the directory of the shell
 pub fn change_directory(input: String){
-    let mut input = input.split_whitespace().collect::<Vec<&str>>();
+    let input = input.split_whitespace().collect::<Vec<&str>>();
     if input.is_empty(){
         env::set_current_dir(Path::new(env::var("HOME")
                                        .expect("No HOME variable").as_str()));
