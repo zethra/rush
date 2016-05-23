@@ -1,3 +1,5 @@
+This project is no longer maintained. Since it was my first project that really taught me rust and because I implemented some good things to know in the future like piping I'm keeping this up. If you want to do something with this you're more than welcome to fork it and extend it. None of the code I wrote is on crates.io so the namespace is free if you choose to use it.
+
 Rusty
 =====
 [![BuildStatus](https://travis-ci.org/mgattozzi/Rusty.svg?branch=master)](https://travis-ci.org/mgattozzi/Rusty)
