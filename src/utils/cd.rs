@@ -1,7 +1,7 @@
 #![allow(unused_must_use)] //supresses warning from use of env::var("Home")
 use std::path::{Path,PathBuf};
 use std::env;
-use std::fs::PathExt; //Use of exists() is considered unstable. Might break in the future
+//use std::fs::PathExt; //Use of exists() is considered unstable. Might break in the future
 
 
 ///Change Directory

@@ -41,7 +41,7 @@ pub fn read_config_prompt(input: &Prompt) -> String {
     let mut prompt = "".to_owned();
     for i in left {
         if i.len() > 0 {
-            match i.char_at(0) {
+            match i.chars().nth(0).expect("Failed to parse string") {
                 'U' => prompt.push_str(&var("USER").ok()
                                        .expect("No user env variable")),
                 'H' => prompt.push_str(&String::from_utf8(Command::new("uname")
@@ -64,13 +64,13 @@ pub fn read_config_prompt(input: &Prompt) -> String {
                     }
 
                 }
-                 _ => prompt.push(i.char_at(0)),
+                 _ => prompt.push(i.chars().nth(0).expect("Failed to parse string")),
             }
         }
         //Add non Prompt special chars to prompt
         if i.len() > 1 {
             for j in 1 .. i.len() {
-                prompt.push(i.char_at(j));
+                prompt.push(i.chars().nth(j).expect("Failed to parse string"));
             }
         }
     }

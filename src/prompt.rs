@@ -6,14 +6,11 @@ use std::io::{stdout, Write};
 ///Struct containing prompt and cwd for use on every new line
 ///in Rusty
 pub struct Prompt {
-
     user_p: String,
     cwd: String,
-
 }
 
 impl Prompt {
-
     ///Instantiates a new Prompt with default values
     ///that will be overwritten when the configuration is updated
     ///in the main file for execution
@@ -49,17 +46,17 @@ impl Prompt {
 
     ///Update CWD
     ///Used to update the CWD if using CD
-    pub fn update_cwd(&mut self){
+    pub fn update_cwd(&mut self) {
         let buff = current_dir().ok().expect("No current directory");
 
         //Makes cwd ~/ if in home directory of user otherwise
         //just the current directory
-        if buff.starts_with(home_dir().expect("No Home directory").as_path()){
-        let mut home = "~/".to_owned();
-            home.push_str(buff.as_path().relative_from(home_dir()
-                                        .expect("No Home directory")
-                                        .as_path()
-                                        )
+        if buff.starts_with(home_dir().expect("No Home directory").as_path()) {
+            let mut home = "~/".to_owned();
+            home.push_str(buff.as_path().strip_prefix(home_dir()
+                .expect("No Home directory")
+                .as_path()
+            )
                 .expect("Couldn't get relative path")
                 .to_str().expect("Failed to become a str"));
             self.cwd = home;
@@ -67,21 +64,18 @@ impl Prompt {
             self.cwd = buff.as_path()
                 .to_str().expect("Failed to turn path into str").to_owned();
         }
-
     }
 
     pub fn print(&self) {
         print!("{}", self.get_user_p());
         stdout().flush().ok().expect("Could not flush stdout");
     }
-
 }
 
 #[cfg(test)]
-mod tests{
-
+mod tests {
     #[allow(unused_imports)]
-    use std::env::{current_dir,home_dir};
+    use std::env::{current_dir, home_dir};
     use super::*;
 
     #[test]
