@@ -10,7 +10,7 @@ pub struct Opqueue {
 }
 
 //Enum to determine which operation should be done
-#[derive(Debug,PartialEq,Eq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Operation {
     Parallel,
     And,
@@ -31,8 +31,8 @@ impl Opqueue {
 
     //Use this to push new queues onto the stack
     pub fn push(&mut self, par_vec: Vec<Operation>) {
-       self.commands.push(par_vec);
-       self.parallel += 1;
+        self.commands.push(par_vec);
+        self.parallel += 1;
     }
 
     //Used to pop off queues from the stack if they're available
@@ -42,7 +42,6 @@ impl Opqueue {
         }
         self.commands.pop()
     }
-
 }
 
 #[cfg(test)]
@@ -92,7 +91,5 @@ mod tests {
         assert!(queue.pop().is_none());
         assert_eq!(queue.parallel, 0);
         assert_eq!(queue.commands.len(),0);
-
     }
-
 }

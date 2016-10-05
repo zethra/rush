@@ -23,15 +23,17 @@ pub fn interpret(command: String) -> String {
 
     let mut pipes = false;
     for i in command.clone() {
-       if i.contains('|') && !i.contains("||"){
-           pipes = true;
-           break;
+        if i.contains('|') && !i.contains("||") {
+            pipes = true;
+            break;
         }
     }
     let output: Option<Output>;
-    if pipes { //Pipe or no pipe
+    if pipes {
+        //Pipe or no pipe
         output = piped(command);
-    } else { //execute normally
+    } else {
+        //execute normally
         output = run(command);
     }
 
@@ -40,35 +42,33 @@ pub fn interpret(command: String) -> String {
 
 ///Run
 ///Runs commands passed to it and returns the output
-pub fn run(command: Vec<&str>) -> Option<Output>{
+pub fn run(command: Vec<&str>) -> Option<Output> {
     let args = command.as_slice();
     if args.len() > 1 {
-        Command::new(&args[0]).args(&args[1.. ]).output().ok()
-    } else if args.len() == 1{
+        Command::new(&args[0]).args(&args[1..]).output().ok()
+    } else if args.len() == 1 {
         Command::new(&args[0]).output().ok()
     } else {
         Command::new("").output().ok()
     }
- }
+}
 
 #[cfg(test)]
-mod tests{
+mod tests {
     use super::*;
 
     #[test]
-    fn execute_test(){
+    fn execute_test() {
         let vec = "ls -al".to_owned();
         let result = interpret(vec);
         assert!(!result.is_empty());
-
     }
 
     #[test]
-    fn execute_fail(){
+    fn execute_fail() {
         let vec = "blah".to_owned();
         let result = interpret(vec);
         assert_eq!("Please input a valid command",result);
     }
-
 }
 

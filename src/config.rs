@@ -1,32 +1,34 @@
 extern crate toml;
-use std::io::{Read,BufReader};
+
+use std::io::{Read, BufReader};
 use std::fs::File;
-use std::env::{set_var,var,home_dir};
+use std::env::{set_var, var, home_dir};
 use std::process::Command;
 use prompt::Prompt;
 
 ///Read in Config
 ///Inner function used to pull in a default configuration file for parsing
 ///or the customized one if it exists
-fn read_in_config() -> String{
+fn read_in_config() -> String {
     //Find a way to read from default if this doesn't work. let a = if else?
     let mut home_config = home_dir().expect("No Home directory");
     home_config.push(".rusty.toml");
     let default = File::open(home_config.as_path().to_str()
-                             .expect("Should have a home directory to
+        .expect("Should have a home directory to
                                      turn into a str"));
-    let config = if default.is_err(){
+    let config = if default.is_err() {
         //Should be changed to location of git repo if compiling on your own machine
         File::open("./config/rusty.toml").ok().expect("No default file")
-        } else {
-            default.ok().expect("No files to open for config")
-        };
+    } else {
+        default.ok().expect("No files to open for config")
+    };
     let mut reader = BufReader::new(&config);
     let mut buffer_string = String::new();
     reader.read_to_string(&mut buffer_string)
         .ok().expect("Failed to read in config");
     buffer_string
 }
+
 ///Read Config Prompt
 ///Used to read the options of the config file and parse
 ///the defined options to create a customized prompt
@@ -43,33 +45,32 @@ pub fn read_config_prompt(input: &Prompt) -> String {
         if i.len() > 0 {
             match i.chars().nth(0).expect("Failed to parse string") {
                 'U' => prompt.push_str(&var("USER").ok()
-                                       .expect("No user env variable")),
+                    .expect("No user env variable")),
                 'H' => prompt.push_str(&String::from_utf8(Command::new("uname")
-                                        .arg("-n").output()
-                                        .ok()
-                                        .expect("No uname command").stdout)
-                                       .expect("Failed to convert to string")
-                                       .trim()),
+                    .arg("-n").output()
+                    .ok()
+                    .expect("No uname command").stdout)
+                    .expect("Failed to convert to string")
+                    .trim()),
                 'L' => prompt.push_str(&input.get_cwd()),
                 'R' => {
                     let uid = String::from_utf8(Command::new("uname").arg("-n")
-                                                .output().ok()
-                                                .expect("No uname command")
-                                                .stdout)
+                        .output().ok()
+                        .expect("No uname command")
+                        .stdout)
                         .ok().expect("Failed to convert string");
                     if uid == "0" {
                         prompt.push('#');
                     } else {
                         prompt.push('%');
                     }
-
                 }
-                 _ => prompt.push(i.chars().nth(0).expect("Failed to parse string")),
+                _ => prompt.push(i.chars().nth(0).expect("Failed to parse string")),
             }
         }
         //Add non Prompt special chars to prompt
         if i.len() > 1 {
-            for j in 1 .. i.len() {
+            for j in 1..i.len() {
                 prompt.push(i.chars().nth(j).expect("Failed to parse string"));
             }
         }
@@ -107,8 +108,8 @@ pub fn check_alias(input: String) -> Option<String> {
         return None;
     }
     let output: String = toml::decode(alias
-                        .expect("Already checked if alias is a none value")
-                        .to_owned()).expect("Failed to decode value");
+        .expect("Already checked if alias is a none value")
+        .to_owned()).expect("Failed to decode value");
     Some(output)
 }
 
@@ -124,10 +125,10 @@ pub fn set_env_var() {
     let keys: Vec<_> = env_table.as_table().expect("Failed to convert to table").keys().cloned().collect();
     for key in keys {
         let value_unparsed: String = toml::decode(env_table.lookup(&key)
-                                                  .expect("Failed lookup")
-                                                  .to_owned())
+            .expect("Failed lookup")
+            .to_owned())
             .expect("Failed to decode value");
-        set_var(key,env_parse(value_unparsed));
+        set_var(key, env_parse(value_unparsed));
     }
 }
 
@@ -167,12 +168,12 @@ fn env_parse(input: String) -> String {
     let mut output: String = String::new();
     for i in 0..output_vec.len() {
         if i > 0 {
-            output.push_str(&format!(":{}",output_vec.get(i)
-                                     .expect("Failed to format string")));
+            output.push_str(&format!(":{}", output_vec.get(i)
+                .expect("Failed to format string")));
             continue;
         }
         output.push_str(&output_vec.get(i)
-                        .expect("Called get on non existent value"));
+            .expect("Called get on non existent value"));
     }
     output
 }

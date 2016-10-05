@@ -1,12 +1,13 @@
 use std::process::Output;
+
 ///Get Stdout or Err
 ///Returns the standard output or error of an executed command or returns that
 ///the command was invalid
 pub fn get_stdout_or_stderr(output: Option<Output>) -> String {
-    match output.is_some(){
+    match output.is_some() {
         true => {
             let temp = output.expect("Output has been checked");
-            if temp.stdout.is_empty(){
+            if temp.stdout.is_empty() {
                 String::from_utf8(temp.stderr)
                     .expect("Should have translated to string easily")
             } else {
@@ -18,8 +19,8 @@ pub fn get_stdout_or_stderr(output: Option<Output>) -> String {
     }
 }
 
-pub fn get_status(output: Option<Output>) -> bool{
-    match output.is_some(){
+pub fn get_status(output: Option<Output>) -> bool {
+    match output.is_some() {
         true => {
             let temp = output.expect("Output has been checked");
             temp.status.success()

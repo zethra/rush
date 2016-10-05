@@ -11,7 +11,7 @@ fn and(command1: Vec<&str>, command2: Vec<&str>) -> bool {
     let output1 = get_stdout_or_stderr(ran1);
     println!("{}", output1);
     if status {
-        println!("{}",get_stdout_or_stderr(run(command2)));
+        println!("{}", get_stdout_or_stderr(run(command2)));
         return true;
     }
     false
@@ -20,11 +20,11 @@ fn and(command1: Vec<&str>, command2: Vec<&str>) -> bool {
 fn or(command1: Vec<&str>, command2: Vec<&str>) -> bool {
     let ran = run(command1);
     let status = get_status(ran.clone());
-    println!("{}",get_stdout_or_stderr(ran));
+    println!("{}", get_stdout_or_stderr(ran));
     if status {
         true
     } else {
-        println!("{}",get_stdout_or_stderr(run(command2)));
+        println!("{}", get_stdout_or_stderr(run(command2)));
         false
     }
 }
@@ -32,10 +32,10 @@ fn or(command1: Vec<&str>, command2: Vec<&str>) -> bool {
 fn xor(command1: Vec<&str>, command2: Vec<&str>) -> bool {
     let ran1 = run(command1);
     let status1 = get_status(ran1.clone());
-    let ran2 =run(command2);
+    let ran2 = run(command2);
     let status2 = get_status(ran2.clone());
-    println!("{}",get_stdout_or_stderr(ran1));
-    println!("{}",get_stdout_or_stderr(ran2));
+    println!("{}", get_stdout_or_stderr(ran1));
+    println!("{}", get_stdout_or_stderr(ran2));
     if !status1 && status2 || status1 && !status2 {
         return true;
     }
@@ -48,11 +48,11 @@ fn xor(command1: Vec<&str>, command2: Vec<&str>) -> bool {
 // }
 
 #[cfg(test)]
-mod tests{
-    use super::{and,xor};
+mod tests {
+    use super::{and, xor};
 
     #[test]
-    fn and_test(){
+    fn and_test() {
         //Both pass
         let command1: Vec<&str> = "date".trim().split(' ').collect();
         let command2: Vec<&str> = "ls /".trim().split(' ').collect();
@@ -75,7 +75,7 @@ mod tests{
     }
 
     #[test]
-    fn xor_test(){
+    fn xor_test() {
         //Both pass
         let command1: Vec<&str> = "date".trim().split(' ').collect();
         let command2: Vec<&str> = "ls /".trim().split(' ').collect();

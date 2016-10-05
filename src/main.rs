@@ -2,12 +2,14 @@
 #![plugin(clippy)]
 
 #![cfg(not(test))]
+
 #[macro_use] extern crate rush;
 extern crate copperline;
+
 use rush::utils::*;
 use rush::process::execute::interpret;
 use rush::prompt::Prompt;
-use rush::config::{check_alias,set_env_var};
+use rush::config::{check_alias, set_env_var};
 use std::thread;
 use copperline::*;
 
@@ -33,9 +35,8 @@ fn main() {
         .ok().expect("No prompt made");
     //Loop to recieve and execute commands
     loop {
-
         let line = input_buffer.read_line(&prompt.get_user_p(), Encoding::Utf8).ok();
-        if line.is_none(){
+        if line.is_none() {
             continue;
         }
         let command = line.expect("Could not get line");
@@ -49,28 +50,23 @@ fn main() {
             cd::change_directory(command.trim_left_matches("cd").to_owned());
             prompt.update_cwd();
             prompt.update_prompt();
-
         } else if command.starts_with("clear") {
             let output = interpret(command);
             print!("{}", output);
             prompt.print();
             continue;
-
         } else if command.is_empty() {
             prompt.print();
             continue;
-
         } else if command.starts_with("exit") {
             break;
-
         } else {
             let alias = check_alias(command.clone());
             if alias.is_none() {
                 let output = interpret(command);
                 if !output.is_empty() {
-                    println!("{}",output.trim());
+                    println!("{}", output.trim());
                 }
-
             } else {
                 //Removes alias from the non cloned
                 //version like check_alias() does
@@ -80,21 +76,19 @@ fn main() {
 
                 //Removes alias and pushes the rest of the split onto 
                 //the string
-                for (i,j) in command.split_whitespace()
-                    .collect::<Vec<&str>>().iter().enumerate(){
+                for (i, j) in command.split_whitespace()
+                    .collect::<Vec<&str>>().iter().enumerate() {
                     if i != 0 {
                         vec.push_str(j);
                     }
                 }
 
                 //Temporary as this will get resplit in interpret
-                let output =  interpret(vec);
+                let output = interpret(vec);
                 if !output.is_empty() {
-                    println!("{}",output.trim());
+                    println!("{}", output.trim());
                 }
-
             }
-
         }
         //Updates the prompt for the next line
         prompt.print();
