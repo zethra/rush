@@ -14,8 +14,8 @@ pub fn change_directory(input: String) {
     } else {
         let mut buffer = PathBuf::new();
         for i in input {
-            if i.contains("~") {
-                let i_split = i.split("~").next();
+            if i.contains('~') {
+                let i_split = i.split('~').next();
                 buffer.push(Path::new(env::var("HOME")
                     .expect("No HOME variable").as_str()));
                 if i_split.is_some() {
@@ -28,8 +28,7 @@ pub fn change_directory(input: String) {
         let dir = buffer.as_path();
         if dir.is_relative() {
             let mut temp = PathBuf::new();
-            temp.push(env::current_dir().ok()
-                .expect("Couldn't get current directory"));
+            temp.push(env::current_dir().expect("Couldn't get current directory"));
             temp.push(dir);
             let path = temp.as_path();
             if path.exists() {
@@ -38,44 +37,43 @@ pub fn change_directory(input: String) {
             } else {
                 println!("Invalid path or input");
             }
+        } else if dir.exists() {
+            env::set_current_dir(dir)
+                .expect("Failed to set current directory");
         } else {
-            if dir.exists() {
-                env::set_current_dir(dir)
-                    .expect("Failed to set current directory");
-            } else {
-                println!("Invalid path or input");
-            }
+            println!("Invalid path or input");
         }
     }
 }
 
-#[cfg(test)]
+
+# [cfg(test)]
 mod tests {
-    use std::path::Path;
-    use std::env;
-    use super::*;
+use std::path::Path;
+use std::env;
+use super::*;
 
-    #[test]
-    #[should_panic]
-    fn test_change_directory_ok() {
-        let vec = "/".to_owned();
-        let dir = Path::new("/tmp").to_str().to_owned();
-        change_directory(vec);
-        let new_dir = env::current_dir()
-            .expect("Failed to get current directory");
-        let new_dir = new_dir.to_str();
-        assert_eq!(dir, new_dir);
-    }
+# [test]
+# [should_panic]
+fn test_change_directory_ok() {
+let vec = "/".to_owned();
+let dir = Path::new("/tmp").to_str().to_owned();
+change_directory(vec);
+let new_dir = env::current_dir()
+.expect("Failed to get current directory");
+let new_dir = new_dir.to_str();
+assert_eq ! (dir, new_dir);
+}
 
-    #[test]
-    fn test_change_directory_fail() {
-        let vec = "/".to_owned();
-        let dir = Path::new("/").to_str().to_owned();
-        change_directory(vec);
-        let new_dir = env::current_dir()
-            .expect("Failed to get current directory");
-        let new_dir = new_dir.to_str().to_owned();
-        assert_eq!(dir, new_dir);
-    }
+# [test]
+fn test_change_directory_fail() {
+let vec = "/".to_owned();
+let dir = Path::new("/").to_str().to_owned();
+change_directory(vec);
+let new_dir = env::current_dir()
+.expect("Failed to get current directory");
+let new_dir = new_dir.to_str().to_owned();
+assert_eq! (dir, new_dir);
+}
 }
 

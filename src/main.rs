@@ -29,10 +29,8 @@ fn main() {
     });
 
     //Set up buffer to read inputs and History Buffer
-    let mut input_buffer = input_spawn.join()
-        .ok().expect("No InputBuffer made");
-    let mut prompt = prompt_spawn.join()
-        .ok().expect("No prompt made");
+    let mut input_buffer = input_spawn.join().expect("No InputBuffer made");
+    let mut prompt = prompt_spawn.join().expect("No prompt made");
     //Loop to recieve and execute commands
     loop {
         let line = input_buffer.read_line(&prompt.get_user_p(), Encoding::Utf8).ok();

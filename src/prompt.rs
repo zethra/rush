@@ -5,6 +5,7 @@ use std::io::{stdout, Write};
 ///Prompt
 ///Struct containing prompt and cwd for use on every new line
 ///in Rusty
+#[derive(Default)]
 pub struct Prompt {
     user_p: String,
     cwd: String,
@@ -29,7 +30,7 @@ impl Prompt {
     ///Only needs to be called if using cd or su at this point
     ///in time
     pub fn update_prompt(&mut self) {
-        self.user_p = read_config_prompt(&self);
+        self.user_p = read_config_prompt(self);
     }
 
     ///Get User P
@@ -47,7 +48,7 @@ impl Prompt {
     ///Update CWD
     ///Used to update the CWD if using CD
     pub fn update_cwd(&mut self) {
-        let buff = current_dir().ok().expect("No current directory");
+        let buff = current_dir().expect("No current directory");
 
         //Makes cwd ~/ if in home directory of user otherwise
         //just the current directory
@@ -68,7 +69,7 @@ impl Prompt {
 
     pub fn print(&self) {
         print!("{}", self.get_user_p());
-        stdout().flush().ok().expect("Could not flush stdout");
+        stdout().flush().expect("Could not flush stdout");
     }
 }
 

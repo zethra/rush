@@ -18,14 +18,14 @@ fn read_in_config() -> String {
                                      turn into a str"));
     let config = if default.is_err() {
         //Should be changed to location of git repo if compiling on your own machine
-        File::open("./config/rusty.toml").ok().expect("No default file")
+        File::open("./config/rusty.toml").expect("No default file")
     } else {
-        default.ok().expect("No files to open for config")
+        default.expect("No files to open for config")
     };
     let mut reader = BufReader::new(&config);
     let mut buffer_string = String::new();
     reader.read_to_string(&mut buffer_string)
-        .ok().expect("Failed to read in config");
+        .expect("Failed to read in config");
     buffer_string
 }
 
@@ -39,26 +39,25 @@ pub fn read_config_prompt(input: &Prompt) -> String {
         .expect("Should have a config file");
     let left = value.lookup("prompt.left")
         .expect("Expected value left in rusty.toml").as_str()
-        .expect("Failed to convert to str").split("%");
+        .expect("Failed to convert to str").split('%');
     let mut prompt = "".to_owned();
     for i in left {
-        if i.len() > 0 {
+        if !i.is_empty() {
             match i.chars().nth(0).expect("Failed to parse string") {
-                'U' => prompt.push_str(&var("USER").ok()
+                'U' => prompt.push_str(&var("USER")
                     .expect("No user env variable")),
-                'H' => prompt.push_str(&String::from_utf8(Command::new("uname")
+                'H' => prompt.push_str(String::from_utf8(Command::new("uname")
                     .arg("-n").output()
-                    .ok()
                     .expect("No uname command").stdout)
                     .expect("Failed to convert to string")
                     .trim()),
                 'L' => prompt.push_str(&input.get_cwd()),
                 'R' => {
                     let uid = String::from_utf8(Command::new("uname").arg("-n")
-                        .output().ok()
+                        .output()
                         .expect("No uname command")
                         .stdout)
-                        .ok().expect("Failed to convert string");
+                        .expect("Failed to convert string");
                     if uid == "0" {
                         prompt.push('#');
                     } else {
@@ -172,7 +171,7 @@ fn env_parse(input: String) -> String {
                 .expect("Failed to format string")));
             continue;
         }
-        output.push_str(&output_vec.get(i)
+        output.push_str(output_vec.get(i)
             .expect("Called get on non existent value"));
     }
     output

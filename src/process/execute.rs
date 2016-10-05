@@ -28,14 +28,13 @@ pub fn interpret(command: String) -> String {
             break;
         }
     }
-    let output: Option<Output>;
-    if pipes {
+    let output = if pipes {
         //Pipe or no pipe
-        output = piped(command);
+        piped(command)
     } else {
         //execute normally
-        output = run(command);
-    }
+        run(command)
+    };
 
     get_stdout_or_stderr(output)
 }

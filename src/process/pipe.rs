@@ -42,11 +42,11 @@ pub fn piped(input: Vec<&str>) -> Option<Output> {
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
 
-    child = child_result.ok().expect("Failed to unwrap an Result");
+    child = child_result.expect("Failed to unwrap an Result");
 
     while split.len() > 1 {
         child_result = execute_pipe(split.remove(0), child);
-        child = child_result.ok().expect("Failed to unwrap an Result");
+        child = child_result.expect("Failed to unwrap an Result");
     }
 
     final_pipe(split.remove(0), child)
@@ -75,7 +75,7 @@ fn first_pipe(command: Vec<&str>) -> Result<Child> {
 fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
     let args = command.as_slice();
     unsafe {
-        let output = if args.len() > 1 {
+        if args.len() > 1 {
             Command::new(&args[0]).args(&args[1..])
                 .stdout(Stdio::piped())
                 .stdin(Stdio::from_raw_fd(child.stdout
@@ -93,8 +93,7 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
                 .stdin(Stdio::from_raw_fd(child.stdout
                     .expect("No stdout").as_raw_fd()))
                 .spawn()
-        };
-        output
+        }
     }
 }
 

@@ -3,7 +3,7 @@
 //are in parallel. The Queue keeps a record of how many commands need to be
 //run in parallel and keeps track of them with multiple vectors
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Opqueue {
     pub commands: Vec<Vec<Operation>>,
     pub parallel: u8,
