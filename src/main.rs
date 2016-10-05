@@ -34,7 +34,7 @@ fn main() {
     //Loop to recieve and execute commands
     loop {
 
-        let line = input_buffer.read_line(&prompt.get_user_p()).ok();
+        let line = input_buffer.read_line(&prompt.get_user_p(), Encoding::Utf8).ok();
         if line.is_none(){
             continue;
         }
