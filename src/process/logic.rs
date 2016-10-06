@@ -6,36 +6,25 @@ use process::execute::run;
 
 //false if it failed true if it didn't
 fn and(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let ran1 = run(command1);
-    let status = get_status(ran1.clone());
-    let output1 = get_stdout_or_stderr(ran1);
-    println!("{}", output1);
-    if status {
-        println!("{}", get_stdout_or_stderr(run(command2)));
+    if run(command1) {
+        run(command2);
         return true;
     }
     false
 }
 
 fn or(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let ran = run(command1);
-    let status = get_status(ran.clone());
-    println!("{}", get_stdout_or_stderr(ran));
-    if status {
+    if run(command1) {
         true
     } else {
-        println!("{}", get_stdout_or_stderr(run(command2)));
+        run(command2);
         false
     }
 }
 
 fn xor(command1: Vec<&str>, command2: Vec<&str>) -> bool {
-    let ran1 = run(command1);
-    let status1 = get_status(ran1.clone());
-    let ran2 = run(command2);
-    let status2 = get_status(ran2.clone());
-    println!("{}", get_stdout_or_stderr(ran1));
-    println!("{}", get_stdout_or_stderr(ran2));
+    let status1 = run(command1);
+    let status2 = run(command2);
     if !status1 && status2 || status1 && !status2 {
         return true;
     }

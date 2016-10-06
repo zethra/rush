@@ -9,7 +9,7 @@ use process::pq::*;
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns output or error output
-pub fn interpret(command: String) -> String {
+pub fn interpret(command: String) -> bool {
     let mut op_queues = Opqueue::new();
     let mut proc_queue = Procqueue::new();
     let command: Vec<&str> = command.trim().split(' ').collect();
@@ -28,27 +28,44 @@ pub fn interpret(command: String) -> String {
             break;
         }
     }
-    let output = if pipes {
+    if pipes {
         //Pipe or no pipe
         piped(command)
     } else {
         //execute normally
         run(command)
-    };
-
-    get_stdout_or_stderr(output)
+    }
 }
 
 ///Run
 ///Runs commands passed to it and returns the output
-pub fn run(command: Vec<&str>) -> Option<Output> {
+pub fn run(command: Vec<&str>) -> bool {
     let args = command.as_slice();
     if args.len() > 1 {
-        Command::new(&args[0]).args(&args[1..]).output().ok()
+        let mut cmd = Command::new(&args[0])
+            .args(&args[1..])
+            .stdout(Stdio::inherit())
+            .stderr(Stdio::inherit())
+            .spawn()
+            .expect("Command failed to start");
+        let status = cmd.wait().expect("failed to wait for child");;
+        status.success()
     } else if args.len() == 1 {
-        Command::new(&args[0]).output().ok()
+        let mut cmd = Command::new(&args[0])
+            .stdout(Stdio::inherit())
+            .stderr(Stdio::inherit())
+            .spawn()
+            .expect("Command failed to start");
+        let status = cmd.wait().expect("failed to wait for child");
+        status.success()
     } else {
-        Command::new("").output().ok()
+        let mut cmd = Command::new("")
+            .stdout(Stdio::inherit())
+            .stderr(Stdio::inherit())
+            .spawn()
+            .expect("Command failed to start");
+        let status = cmd.wait().expect("failed to wait for child");
+        status.success()
     }
 }
 

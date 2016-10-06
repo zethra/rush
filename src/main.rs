@@ -66,10 +66,7 @@ fn main() {
                 } else {
                     let alias = check_alias(command.clone());
                     if alias.is_none() {
-                        let output = interpret(command);
-                        if !output.is_empty() {
-                            println!("{}", output.trim());
-                        }
+                        interpret(command);
                     } else {
                         //Removes alias from the non cloned
                         //version like check_alias() does
@@ -87,10 +84,7 @@ fn main() {
                         }
 
                         //Temporary as this will get resplit in interpret
-                        let output = interpret(vec);
-                        if !output.is_empty() {
-                            println!("{}", output.trim());
-                        }
+                        interpret(vec);
                     }
                 }
                 //Updates the prompt for the next line
@@ -100,8 +94,8 @@ fn main() {
                 print!("^C");
             },
             Err(ReadlineError::Eof) => {
-                println!("CTRL-D");
-                break
+//                println!("CTRL-D");
+//                break
             },
             Err(err) => {
                 println!("Error: {:?}", err);

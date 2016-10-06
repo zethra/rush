@@ -40,7 +40,7 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
 ///Piped
 ///The logic of piping is done here and calls the functions that execute
 ///the pipes and returns the result
-pub fn piped(input: Vec<&str>) -> Option<Output> {
+pub fn piped(input: Vec<&str>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -131,62 +131,86 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
 #[cfg(unix)]
-fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
+fn final_pipe(command: Vec<&str>, child: Child) -> bool {
     let args = command.as_slice();
     unsafe {
-        let output = if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1..])
-                .stdout(Stdio::piped())
+        if args.len() > 1 {
+            let mut cmd = Command::new(&args[0])
+                .args(&args[1..])
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_fd(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_fd()))
-                .output()
+                .spawn()
+                .expect("Command failed to start");
+            let status = cmd.wait().expect("failed to wait for child");;
+            status.success()
         } else if args.len() == 1 {
-            Command::new(&args[0])
-                .stdout(Stdio::piped())
+            let mut cmd = Command::new(&args[0])
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_fd(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_fd()))
-                .output()
+                .spawn()
+                .expect("Command failed to start");
+            let status = cmd.wait().expect("failed to wait for child");
+            status.success()
         } else {
-            Command::new("")
-                .stdout(Stdio::piped())
+            let mut cmd = Command::new("")
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_fd(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_fd()))
-                .output()
-        };
-        output.ok()
+                .spawn()
+                .expect("Command failed to start");
+            let status = cmd.wait().expect("failed to wait for child");
+            status.success()
+        }
     }
 }
 
 #[cfg(windows)]
-fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
+fn final_pipe(command: Vec<&str>, child: Child) -> bool {
     let args = command.as_slice();
     unsafe {
-        let output = if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1..])
-                .stdout(Stdio::piped())
+        if args.len() > 1 {
+            let mut cmd = Command::new(&args[0])
+                .args(&args[1..])
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_handle(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_handle()))
-                .output()
+                .spawn()
+                .expect("Command failed to start");
+            let status = cmd.wait().expect("failed to wait for child");;
+            status.success()
         } else if args.len() == 1 {
-            Command::new(&args[0])
-                .stdout(Stdio::piped())
+            let mut cmd = Command::new(&args[0])
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_handle(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_handle()))
-                .output()
+                .spawn()
+                .expect("Command failed to start");
+            let status = cmd.wait().expect("failed to wait for child");
+            status.success()
         } else {
-            Command::new("")
-                .stdout(Stdio::piped())
+            let mut cmd = Command::new("")
+                .stdout(Stdio::inherit())
+                .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_handle(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_handle()))
-                .output()
-        };
-        output.ok()
+                .spawn()
+                .expect("Command failed to start");
+            let status = cmd.wait().expect("failed to wait for child");
+            status.success()
+        }
     }
 }
 
