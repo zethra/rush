@@ -9,9 +9,9 @@ name = "rush"
 path = "src/lib.rs"
 
 [dependencies]
-toml = "*"
-libc = "*"
-clippy = "*"
+toml = "0.2.1"
+libc = "0.2.16"
+clippy = "0.0.94"
 rustyline = "1.0.0"
 
 [profile.dev]
