@@ -1,4 +1,4 @@
-use std::process::{Stdio, Command, Child, Output};
+use std::process::{Stdio, Command, Child};
 #[cfg(unix)]
 use std::os::unix::io::{FromRawFd, AsRawFd};
 #[cfg(windows)]
