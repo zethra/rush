@@ -1,5 +1,8 @@
 use std::process::{Stdio, Command, Child, Output};
+#[cfg(unix)]
 use std::os::unix::io::{FromRawFd, AsRawFd};
+#[cfg(windows)]
+use std::os::windows::io::{FromRawHandle, AsRawHandle };
 use std::io::Result;
 
 ///Split Pipes
@@ -72,6 +75,7 @@ fn first_pipe(command: Vec<&str>) -> Result<Child> {
 ///Execute Pipe
 ///Used if there are more than two commands with piping. Takes a Child process
 ///as input for the next pipe and returns a Child process.
+#[cfg(unix)]
 fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
     let args = command.as_slice();
     unsafe {
@@ -97,9 +101,36 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
     }
 }
 
+#[cfg(windows)]
+fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
+    let args = command.as_slice();
+    unsafe {
+        if args.len() > 1 {
+            Command::new(&args[0]).args(&args[1..])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout").as_raw_handle()))
+                .spawn()
+        } else if args.len() == 1 {
+            Command::new(&args[0])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout").as_raw_handle()))
+                .spawn()
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout").as_raw_handle()))
+                .spawn()
+        }
+    }
+}
+
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
+#[cfg(unix)]
 fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
     let args = command.as_slice();
     unsafe {
@@ -123,6 +154,36 @@ fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
                 .stdin(Stdio::from_raw_fd(child.stdout
                     .expect("No stdout for child process")
                     .as_raw_fd()))
+                .output()
+        };
+        output.ok()
+    }
+}
+
+#[cfg(windows)]
+fn final_pipe(command: Vec<&str>, child: Child) -> Option<Output> {
+    let args = command.as_slice();
+    unsafe {
+        let output = if args.len() > 1 {
+            Command::new(&args[0]).args(&args[1..])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_handle()))
+                .output()
+        } else if args.len() == 1 {
+            Command::new(&args[0])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_handle()))
+                .output()
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_handle()))
                 .output()
         };
         output.ok()
