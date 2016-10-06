@@ -3,9 +3,9 @@
 A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 
 ###TODO
-- [ ] File redirection
+- [x] File redirection
+- [ ] Stdout and Stderr redirect
 - [ ] Tab Completion
-- [ ] Environment variables
 - [ ] Bash script support
 - [ ] Script based config
 
