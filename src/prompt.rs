@@ -4,7 +4,7 @@ use std::io::{stdout, Write};
 
 ///Prompt
 ///Struct containing prompt and cwd for use on every new line
-///in Rusty
+///in Rush
 #[derive(Default)]
 pub struct Prompt {
     user_p: String,
@@ -43,6 +43,11 @@ impl Prompt {
     ///Returns the CWD for use in prompts
     pub fn get_cwd(&self) -> String {
         self.cwd.to_owned()
+    }
+
+    pub fn get_cwn_abs(&self) -> String {
+        let buff = current_dir().expect("No current directory");
+        buff.to_str().expect("Failed to become a str").to_owned()
     }
 
     ///Update CWD

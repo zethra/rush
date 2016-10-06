@@ -59,6 +59,10 @@ fn main() {
                     continue;
                 } else if command.starts_with("exit") {
                     break;
+                } else if command.starts_with("pwd") {
+                    println!("{}", prompt.get_cwn_abs());
+                    prompt.print();
+                    continue;
                 } else {
                     let alias = check_alias(command.clone());
                     if alias.is_none() {
