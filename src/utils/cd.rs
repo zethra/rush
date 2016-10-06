@@ -16,8 +16,12 @@ pub fn change_directory(input: String) {
         for i in input {
             if i.contains('~') {
                 let i_split = i.split('~').next();
+                #[cfg(unix)]
                 buffer.push(Path::new(env::var("HOME")
                     .expect("No HOME variable").as_str()));
+                #[cfg(windows)]
+                buffer.push(Path::new(env::var("USERPROFILE")
+                    .expect("No USERPROFILE variable").as_str()));
                 if i_split.is_some() {
                     buffer.push(Path::new(i_split.expect("Failed to split")));
                 }

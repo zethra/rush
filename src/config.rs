@@ -12,13 +12,13 @@ use prompt::Prompt;
 fn read_in_config() -> String {
     //Find a way to read from default if this doesn't work. let a = if else?
     let mut home_config = home_dir().expect("No Home directory");
-    home_config.push(".rusty.toml");
+    home_config.push(".rush.toml");
     let default = File::open(home_config.as_path().to_str()
         .expect("Should have a home directory to
                                      turn into a str"));
     let config = if default.is_err() {
         //Should be changed to location of git repo if compiling on your own machine
-        File::open("./config/rusty.toml").expect("No default file")
+        File::open("./config/rush.toml").expect("No default file")
     } else {
         default.expect("No files to open for config")
     };
@@ -32,13 +32,14 @@ fn read_in_config() -> String {
 ///Read Config Prompt
 ///Used to read the options of the config file and parse
 ///the defined options to create a customized prompt
+#[cfg(unix)]
 pub fn read_config_prompt(input: &Prompt) -> String {
     let buffer_string = read_in_config();
 
     let value: toml::Value = buffer_string.parse()
         .expect("Should have a config file");
     let left = value.lookup("prompt.left")
-        .expect("Expected value left in rusty.toml").as_str()
+        .expect("Expected value left in rush.toml").as_str()
         .expect("Failed to convert to str").split('%');
     let mut prompt = "".to_owned();
     for i in left {
@@ -52,18 +53,40 @@ pub fn read_config_prompt(input: &Prompt) -> String {
                     .expect("Failed to convert to string")
                     .trim()),
                 'L' => prompt.push_str(&input.get_cwd()),
-                'R' => {
-                    let uid = String::from_utf8(Command::new("uname").arg("-n")
-                        .output()
-                        .expect("No uname command")
-                        .stdout)
-                        .expect("Failed to convert string");
-                    if uid == "0" {
-                        prompt.push('#');
-                    } else {
-                        prompt.push('%');
-                    }
-                }
+                'R' => prompt.push('$'),
+                _ => prompt.push(i.chars().nth(0).expect("Failed to parse string")),
+            }
+        }
+        //Add non Prompt special chars to prompt
+        if i.len() > 1 {
+            for j in 1..i.len() {
+                prompt.push(i.chars().nth(j).expect("Failed to parse string"));
+            }
+        }
+    }
+    prompt.push(' ');
+    prompt
+}
+
+#[cfg(windows)]
+pub fn read_config_prompt(input: &Prompt) -> String {
+    let buffer_string = read_in_config();
+
+    let value: toml::Value = buffer_string.parse()
+        .expect("Should have a config file");
+    let left = value.lookup("prompt.left")
+        .expect("Expected value left in rush.toml").as_str()
+        .expect("Failed to convert to str").split('%');
+    let mut prompt = "".to_owned();
+    for i in left {
+        if !i.is_empty() {
+            match i.chars().nth(0).expect("Failed to parse string") {
+                'U' => prompt.push_str(&var("USERNAME")
+                    .expect("No user env variable")),
+                'H' => prompt.push_str(&var("USERDOMAIN")
+                    .expect("No user env variable")),
+                'L' => prompt.push_str(&input.get_cwd()),
+                'R' => prompt.push('$'),
                 _ => prompt.push(i.chars().nth(0).expect("Failed to parse string")),
             }
         }
