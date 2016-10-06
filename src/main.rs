@@ -13,10 +13,15 @@ use rush::config::{check_alias, set_env_var};
 use std::thread;
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
+use std::env::home_dir;
 
 fn main() {
     //Sets environment variables written in config file
     set_env_var();
+
+    let mut home_config = home_dir().expect("No Home directory");
+    home_config.push(".rush_history");
+    let history = home_config.as_path().to_str().expect("Should have a home directory to turn into a str");
     //Necessary to update as default prompt is not what we want
     //They were merely initialization values
     let prompt_spawn = thread::spawn(move || {
@@ -27,9 +32,9 @@ fn main() {
 
     //Set up buffer to read inputs and History Buffer
     let mut input_buffer = Editor::<()>::new();
-    //    if let Err(_) = rl.load_history("history.txt") {
-    //        println!("No previous history.");
-    //    }
+    if let Err(_) = input_buffer.load_history(history) {
+        println!("No previous history.");
+    }
     let mut prompt = prompt_spawn.join().expect("No prompt made");
     //Loop to recieve and execute commands
     loop {
@@ -94,8 +99,8 @@ fn main() {
                 print!("^C");
             },
             Err(ReadlineError::Eof) => {
-//                println!("CTRL-D");
-//                break
+                //                println!("CTRL-D");
+                //                break
             },
             Err(err) => {
                 println!("Error: {:?}", err);
@@ -103,5 +108,5 @@ fn main() {
             }
         }
     }
-    //    input_buffer.save_history("history.txt").unwrap();
+    input_buffer.save_history(history).unwrap();
 }
