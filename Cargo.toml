@@ -11,11 +11,8 @@ path = "src/lib.rs"
 [dependencies]
 toml = "*"
 libc = "*"
-copperline = "*"
 clippy = "*"
-
-#[dependencies.clippy]
-#git = "https://github.com/manishearth/rust-clippy"
+rustyline = "1.0.0"
 
 [profile.dev]
 opt-level = 0
