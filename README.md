@@ -2,15 +2,33 @@
 
 A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 
-###TODO
+###Features
+- [x] Single command execution
+- [x] Perciststant history
+- [x] Pipes
 - [x] File redirection
+
+###TODO
+- [ ] Quote parsing
+- [ ] Automatic config generation
+- [ ] Logical Operators
 - [ ] Stdout and Stderr redirect
 - [ ] Tab Completion
+- [ ] Command colorization
+- [ ] Command based environment variables
+- [ ] Command based aliases
 - [ ] Bash script support
 - [ ] Script based config
+- [ ] Basic math
 
 ###Rust Version
 Currently using 1.14 Nightly. Has not been tested with any other version.
+
+
+###Install
+- Clone this repo 
+- Build using cargo
+- Copy config/rust.toml to ~/.rush.toml
 
 ###Config File
 Rusty uses [toml](https://github.com/toml-lang/toml) to customize it's use.
@@ -32,7 +50,7 @@ They can be arranged in any order you desire. Any extra characters in the field
 will just be put in the prompt.
 Following the above example for my computer the prompt would look like:
 ```
-michael@flame ~/ %
+zethra@linux-box ~/ $
 ```
 
 ####Aliases
@@ -53,3 +71,6 @@ Below is an example of how it would look in your file in order to use them:
 EDITOR = "vim"
 
 ```
+
+###Contributing
+If you'd like to contribute to the project please sumbit a pull request.  Help is very appreciated.
