@@ -19,7 +19,6 @@ A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 - [ ] Command based aliases
 - [ ] Bash script support
 - [ ] Script based config
-- [ ] Basic math
 
 ###Rust Version
 Currently using 1.14 Nightly. Has not been tested with any other version.
