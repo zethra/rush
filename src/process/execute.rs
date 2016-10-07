@@ -16,7 +16,9 @@ use std::path::Path;
 pub fn interpret(command: String) -> bool {
     let mut op_queues = Opqueue::new();
     let mut proc_queue = Procqueue::new();
-    let command: Vec<&str> = command.trim().split(' ').collect();
+//    let command: Vec<&str> = command.trim().split(' ').collect();
+//    let command = command.trim().to_string();
+    let command: Vec<&str> = parse_args(&command);
 
     //Split order:
     //Split by parallel +=+
@@ -44,6 +46,31 @@ pub fn interpret(command: String) -> bool {
         //execute normally
         run(command)
     }
+}
+
+pub fn parse_args<'a>(command: &'a String) -> Vec<&'a str> {
+    let mut args: Vec<&str> = Vec::new();
+    let mut start_index = 0;
+    let mut in_quotes = false;
+    for (i, c) in command.chars().enumerate() {
+        if c == ' ' && !in_quotes && start_index < i {
+            args.push(&command[start_index..i]);
+            start_index = i + 1;
+        } else if c == '"' && !in_quotes {
+            in_quotes = true;
+            start_index = i+1;
+        } else if c == '"' && in_quotes && start_index < i {
+            args.push(&command[start_index..i]);
+            start_index = i + 1;
+            in_quotes = false;
+        } else if c == ' ' && !in_quotes && start_index == i {
+            start_index = i + 1;
+        }
+    }
+    if start_index < command.len() {
+        args.push(&command[start_index..command.len()]);
+    }
+    args
 }
 
 ///Run
