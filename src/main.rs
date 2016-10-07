@@ -44,8 +44,9 @@ fn main() {
                 if line.is_empty() {
                     continue;
                 }
+                let command = line.trim().to_string();
                 input_buffer.add_history_entry(&line);
-                let command = line;
+
                 //This is hackish and a stop gap for now. The important part is that
                 //a string is always being passed to interpret. Once interpret has
                 //been finished Main needs to be cleaned up more so that it can
