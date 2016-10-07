@@ -7,9 +7,9 @@ A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 - [x] Perciststant history
 - [x] Pipes
 - [x] File redirection
+- [x] Quote parsing
 
 ###TODO
-- [ ] Quote parsing
 - [ ] Automatic config generation
 - [ ] Logical Operators
 - [ ] Stdout and Stderr redirect
