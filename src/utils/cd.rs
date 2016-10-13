@@ -51,33 +51,36 @@ pub fn change_directory(input: String) {
 }
 
 
-# [cfg(test)]
+#[cfg(test)]
 mod tests {
-use std::path::Path;
-use std::env;
-use super::*;
+    use std::path::Path;
+    use std::env;
+    use super::*;
 
-# [test]
-# [should_panic]
-fn test_change_directory_ok() {
-let vec = "/".to_owned();
-let dir = Path::new("/tmp").to_str().to_owned();
-change_directory(vec);
-let new_dir = env::current_dir()
-.expect("Failed to get current directory");
-let new_dir = new_dir.to_str();
-assert_eq ! (dir, new_dir);
-}
+    #[test]
+    #[should_panic]
+    fn test_change_directory_ok() {
+        let vec = "/".to_owned();
+        let dir = Path::new("/tmp").to_str().to_owned();
+        change_directory(vec);
+        let new_dir = env::current_dir()
+            .expect("Failed to get current directory");
+        let new_dir = new_dir.to_str();
+        assert_eq!(dir, new_dir);
+    }
 
-# [test]
-fn test_change_directory_fail() {
-let vec = "/".to_owned();
-let dir = Path::new("/").to_str().to_owned();
-change_directory(vec);
-let new_dir = env::current_dir()
-.expect("Failed to get current directory");
-let new_dir = new_dir.to_str().to_owned();
-assert_eq! (dir, new_dir);
-}
+    #[test]
+    fn test_change_directory_fail() {
+        #[cfg(unix)]
+        let vec = "/".to_owned();
+        #[cfg(windows)]
+        let vec = "C:\\\\".to_owned();
+        let dir = Path::new("/").to_str().to_owned();
+        change_directory(vec);
+        let new_dir = env::current_dir()
+            .expect("Failed to get current directory");
+        let new_dir = new_dir.to_str().to_owned();
+        assert_eq!(dir, new_dir);
+    }
 }
 
