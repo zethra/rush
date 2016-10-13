@@ -83,14 +83,4 @@ mod tests {
     #[allow(unused_imports)]
     use std::env::{current_dir, home_dir};
     use super::*;
-
-    #[test]
-    fn updated_cwd() {
-        let mut testp = Prompt::new();
-        testp.update_cwd();
-        assert_eq!(testp.get_cwd(), current_dir().ok()
-                   .expect("Couldn't get current directory").as_path()
-                   .to_str()
-                   .expect("Failed to go to string").to_owned());
-    }
 }

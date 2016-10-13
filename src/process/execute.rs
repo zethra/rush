@@ -16,8 +16,8 @@ use std::path::Path;
 pub fn interpret(command: String) -> bool {
     let mut op_queues = Opqueue::new();
     let mut proc_queue = Procqueue::new();
-//    let command: Vec<&str> = command.trim().split(' ').collect();
-//    let command = command.trim().to_string();
+    //    let command: Vec<&str> = command.trim().split(' ').collect();
+    //    let command = command.trim().to_string();
     let command: Vec<&str> = parse_args(&command);
 
     //Split order:
@@ -58,7 +58,7 @@ pub fn parse_args<'a>(command: &'a String) -> Vec<&'a str> {
             start_index = i + 1;
         } else if c == '"' && !in_quotes {
             in_quotes = true;
-            start_index = i+1;
+            start_index = i + 1;
         } else if c == '"' && in_quotes && start_index < i {
             args.push(&command[start_index..i]);
             start_index = i + 1;
@@ -78,31 +78,69 @@ pub fn parse_args<'a>(command: &'a String) -> Vec<&'a str> {
 pub fn run(command: Vec<&str>) -> bool {
     let args = command.as_slice();
     if args.len() > 1 {
-        let mut cmd = Command::new(&args[0])
+        match Command::new(&args[0])
             .args(&args[1..])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-            .spawn()
-            .expect("Command failed to start");
-        let status = cmd.wait().expect("failed to wait for child");
-        ;
-        status.success()
+            .spawn() {
+            Ok(mut cmd) => {
+                match cmd.wait() {
+                    Ok(status) => {
+                        status.success()
+                    },
+                    Err(_) => {
+                        println!("failed to wait for child");
+                        false
+                    },
+                }
+            },
+            Err(_) => {
+                println!("Failed to execute");
+                false
+            },
+        }
     } else if args.len() == 1 {
-        let mut cmd = Command::new(&args[0])
+        match Command::new(&args[0])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-            .spawn()
-            .expect("Command failed to start");
-        let status = cmd.wait().expect("failed to wait for child");
-        status.success()
+            .spawn() {
+            Ok(mut cmd) => {
+                match cmd.wait() {
+                    Ok(status) => {
+                        status.success()
+                    },
+                    Err(_) => {
+                        println!("failed to wait for child");
+                        false
+                    },
+                }
+            },
+            Err(_) => {
+                println!("Failed to execute");
+                false
+            },
+        }
     } else {
-        let mut cmd = Command::new("")
+        match Command::new("")
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-            .spawn()
-            .expect("Command failed to start");
-        let status = cmd.wait().expect("failed to wait for child");
-        status.success()
+            .spawn() {
+            Ok(mut cmd) => {
+                match cmd.wait() {
+                    Ok(status) => {
+                        status.success()
+                    },
+                    Err(_) => {
+                        println!("failed to wait for child");
+                        false
+                    },
+                }
+            },
+            Err(_) => {
+                println!("Failed to execute");
+                false
+            },
+        }
     }
 }
 
@@ -152,18 +190,5 @@ pub fn redirect(command: Vec<&str>) -> bool {
 mod tests {
     use super::*;
 
-    #[test]
-    fn execute_test() {
-        let vec = "ls -al".to_owned();
-        let result = interpret(vec);
-        assert!(!result.is_empty());
-    }
-
-    #[test]
-    fn execute_fail() {
-        let vec = "blah".to_owned();
-        let result = interpret(vec);
-        assert_eq!("Please input a valid command",result);
-    }
 }
 

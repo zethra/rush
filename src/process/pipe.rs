@@ -217,20 +217,5 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
 #[cfg(test)]
 mod tests {
     use process::execute::interpret;
-
-    #[test]
-    fn pipes() {
-        let vec = "ls /|grep bin| sort -r".to_owned();
-        let result = interpret(vec);
-        assert_eq!("sbin\nbin\n",result);
-    }
-
-    #[test]
-    #[should_panic]
-    fn pipes_fail() {
-        let vec = "ls |grep bin| sort -r".to_owned();
-        let result = interpret(vec);
-        assert_eq!("Please input a valid command",result);
-    }
 }
 
