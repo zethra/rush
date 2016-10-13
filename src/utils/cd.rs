@@ -75,7 +75,7 @@ mod tests {
         #[cfg(unix)]
         let dir = Path::new("/").to_str().to_owned();
         #[cfg(windows)]
-        let dir = Path::new("C:\\\\").to_str().to_owned();
+        let dir = Path::new("C:\\").to_str().to_owned();
         change_directory(vec);
         let new_dir = env::current_dir()
             .expect("Failed to get current directory");

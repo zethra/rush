@@ -43,46 +43,46 @@ mod tests {
     #[test]
     fn and_test() {
         //Both pass
-        let command1: Vec<&str> = "date".trim().split(' ').collect();
+        let command1: Vec<&str> = "ls /".trim().split(' ').collect();
         let command2: Vec<&str> = "ls /".trim().split(' ').collect();
         assert_eq!(true, and(command1,command2));
 
         //First Fails
-        let command3: Vec<&str> = "date %d".trim().split(' ').collect();
+        let command3: Vec<&str> = "ls /blah".trim().split(' ').collect();
         let command4: Vec<&str> = "ls /".trim().split(' ').collect();
         assert_eq!(false, and(command3,command4));
 
         //Last Fails
-        let command5: Vec<&str> = "date".trim().split(' ').collect();
+        let command5: Vec<&str> = "ls /".trim().split(' ').collect();
         let command6: Vec<&str> = "ls /blah".trim().split(' ').collect();
         assert_eq!(true, and(command5,command6));
 
         //Both fail
         let command7: Vec<&str> = "ls /blah".trim().split(' ').collect();
-        let command8: Vec<&str> = "date %d".trim().split(' ').collect();
+        let command8: Vec<&str> = "ls /blah".trim().split(' ').collect();
         assert_eq!(false, and(command7,command8));
     }
 
     #[test]
     fn xor_test() {
         //Both pass
-        let command1: Vec<&str> = "date".trim().split(' ').collect();
+        let command1: Vec<&str> = "ls /".trim().split(' ').collect();
         let command2: Vec<&str> = "ls /".trim().split(' ').collect();
         assert_eq!(false, xor(command1,command2));
 
         //First Fails
-        let command3: Vec<&str> = "date %d".trim().split(' ').collect();
+        let command3: Vec<&str> = "ls /blah".trim().split(' ').collect();
         let command4: Vec<&str> = "ls /".trim().split(' ').collect();
         assert_eq!(true, xor(command3,command4));
 
         //Last Fails
-        let command5: Vec<&str> = "date".trim().split(' ').collect();
+        let command5: Vec<&str> = "ls /".trim().split(' ').collect();
         let command6: Vec<&str> = "ls /blah".trim().split(' ').collect();
         assert_eq!(true, xor(command5,command6));
 
         //Both fail
         let command7: Vec<&str> = "ls /blah".trim().split(' ').collect();
-        let command8: Vec<&str> = "date %d".trim().split(' ').collect();
+        let command8: Vec<&str> = "ls /blah".trim().split(' ').collect();
         assert_eq!(false, xor(command7,command8));
     }
 }
