@@ -84,15 +84,13 @@ pub fn interpret(command: String) -> bool {
         }
     }
 
-    //TODO add piped redirect
-
-    if pipes {
-        //Pipe or no pipe
+    if pipes && redirects {
+        piped_redirect(args)
+    } else if pipes {
         piped(args)
     } else if redirects {
         redirect(args)
     } else {
-        //execute normally
         run(args)
     }
 }
@@ -180,11 +178,18 @@ pub fn redirect(command: Vec<&str>) -> bool {
     }
     let args = args.as_slice();
     let output = if args.len() > 1 {
-        Command::new(&args[0]).args(&args[1..]).output().ok()
+        Command::new(&args[0])
+            .args(&args[1..])
+            .output()
+            .ok()
     } else if args.len() == 1 {
-        Command::new(&args[0]).output().ok()
+        Command::new(&args[0])
+            .output()
+            .ok()
     } else {
-        Command::new("").output().ok()
+        Command::new("")
+            .output()
+            .ok()
     };
     let str_out = if output.is_some() {
         let temp = output.expect("Output has been checked");

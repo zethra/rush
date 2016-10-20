@@ -2,8 +2,12 @@ use std::process::{Stdio, Command, Child};
 #[cfg(unix)]
 use std::os::unix::io::{FromRawFd, AsRawFd};
 #[cfg(windows)]
-use std::os::windows::io::{FromRawHandle, AsRawHandle };
+use std::os::windows::io::{FromRawHandle, AsRawHandle};
 use std::io::Result;
+use std::error::Error;
+use std::fs::File;
+use std::io::prelude::*;
+use std::path::Path;
 
 ///Split Pipes
 ///Given a command with pipes in it, it will split them into separate
@@ -53,6 +57,21 @@ pub fn piped(input: Vec<&str>) -> bool {
     }
 
     final_pipe(split.remove(0), child)
+}
+
+pub fn piped_redirect(input: Vec<&str>) -> bool {
+    let mut split = split_pipes(input);
+    let mut child_result = first_pipe(split.remove(0));
+    let mut child: Child;
+
+    child = child_result.expect("Failed to unwrap an Result");
+
+    while split.len() > 1 {
+        child_result = execute_pipe(split.remove(0), child);
+        child = child_result.expect("Failed to unwrap an Result");
+    }
+
+    final_piped_redirect(split.remove(0), child)
 }
 
 ///First Pipe
@@ -212,6 +231,136 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
             status.success()
         }
     }
+}
+
+
+
+#[cfg(unix)]
+fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
+    let mut args = command;
+    let mut file_path = "".to_owned();
+    for i in 0..args.len() {
+        if args[i].contains('>') {
+            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
+            args.truncate(i);
+            break;
+        }
+    }
+    let args = args.as_slice();
+    unsafe {
+        let output = if args.len() > 1 {
+            Command::new(&args[0])
+                .args(&args[1.. ])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_fd()))
+                .output()
+                .ok()
+        } else if args.len() == 1 {
+            Command::new(&args[0])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_fd()))
+                .output()
+                .ok()
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_fd(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_fd()))
+                .output()
+                .ok()
+        };
+        let str_out = if output.is_some() {
+            let temp = output.expect("Output has been checked");
+            if temp.stdout.is_empty() {
+                String::from_utf8(temp.stderr)
+                    .expect("Should have translated to string easily")
+            } else {
+                String::from_utf8(temp.stdout)
+                    .expect("Should have translated to string easily")
+            }
+        } else {
+            "".to_owned()
+        };
+        let path = Path::new(&file_path);
+        let display = path.display();
+        let mut file = match File::create(&path) {
+            Err(why) => panic!("couldn't open {}: {}", display, why.description()),
+            Ok(file) => file,
+        };
+        if let Err(why) = file.write_all(str_out.as_bytes()) {
+            panic!("couldn't write to {}: {}", display, why.description());
+        }
+    }
+    true
+}
+
+#[cfg(windows)]
+fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
+    let mut args = command;
+    let mut file_path = "".to_owned();
+    for i in 0..args.len() {
+        if args[i].contains('>') {
+            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
+            args.truncate(i);
+            break;
+        }
+    }
+    let args = args.as_slice();
+    unsafe {
+        let output = if args.len() > 1 {
+            Command::new(&args[0])
+                .args(&args[1.. ])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_handle()))
+                .output()
+                .ok()
+        } else if args.len() == 1 {
+            Command::new(&args[0])
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_handle()))
+                .output()
+                .ok()
+        } else {
+            Command::new("")
+                .stdout(Stdio::piped())
+                .stdin(Stdio::from_raw_handle(child.stdout
+                    .expect("No stdout for child process")
+                    .as_raw_handle()))
+                .output()
+                .ok()
+        };
+        let str_out = if output.is_some() {
+            let temp = output.expect("Output has been checked");
+            if temp.stdout.is_empty() {
+                String::from_utf8(temp.stderr)
+                    .expect("Should have translated to string easily")
+            } else {
+                String::from_utf8(temp.stdout)
+                    .expect("Should have translated to string easily")
+            }
+        } else {
+            "".to_owned()
+        };
+        let path = Path::new(&file_path);
+        let display = path.display();
+        let mut file = match File::create(&path) {
+            Err(why) => panic!("couldn't open {}: {}", display, why.description()),
+            Ok(file) => file,
+        };
+        if let Err(why) = file.write_all(str_out.as_bytes()) {
+            panic!("couldn't write to {}: {}", display, why.description());
+        }
+    }
+    true
 }
 
 #[cfg(test)]
