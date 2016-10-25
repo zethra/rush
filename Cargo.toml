@@ -13,6 +13,7 @@ toml = "0.2.1"
 libc = "0.2.16"
 #clippy = "0.0.94"
 rustyline = "1.0.0"
+posix = "0.0.2"
 
 [profile.dev]
 opt-level = 0

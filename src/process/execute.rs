@@ -1,4 +1,7 @@
 #![allow(unused_imports)] //Here until interpret is complete
+extern crate libc;
+extern crate posix;
+
 use std::process::*;
 use process::logic::*;
 use process::stdproc::*;
@@ -9,6 +12,8 @@ use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
+#[cfg(unix)]
+use std::os::unix::process::CommandExt;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
@@ -99,11 +104,21 @@ pub fn interpret(command: String) -> bool {
 ///Runs commands passed to it and returns the output
 pub fn run(command: Vec<&str>) -> bool {
     let args = command.as_slice();
+    let spid = unsafe {
+        libc::getpid()
+    };
     if args.len() > 1 {
         match Command::new(&args[0])
             .args(&args[1..])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
+            .before_exec(|| {
+                unsafe {
+                    let pid = libc::getpid();
+                    libc::setpgid(pid, pid);
+                }
+                Result::Ok(())
+            })
             .spawn() {
             Ok(mut cmd) => {
                 match cmd.wait() {
@@ -125,9 +140,17 @@ pub fn run(command: Vec<&str>) -> bool {
         match Command::new(&args[0])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
+            .before_exec(|| {
+                unsafe {
+                    let pid = libc::getpid();
+                    libc::setpgid(pid, pid);
+                    posix::unistd::tcsetpgrp(spid, pid);
+                }
+                Result::Ok(())
+            })
             .spawn() {
-            Ok(mut cmd) => {
-                match cmd.wait() {
+            Ok(mut child) => {
+                match child.wait() {
                     Ok(status) => {
                         status.success()
                     },
@@ -146,6 +169,13 @@ pub fn run(command: Vec<&str>) -> bool {
         match Command::new("")
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
+            .before_exec(|| {
+                unsafe {
+                    let pid = libc::getpid();
+                    libc::setpgid(pid, pid);
+                }
+                Result::Ok(())
+            })
             .spawn() {
             Ok(mut cmd) => {
                 match cmd.wait() {
