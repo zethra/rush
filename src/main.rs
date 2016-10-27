@@ -10,7 +10,6 @@ use rush::utils::*;
 use rush::process::execute::interpret;
 use rush::prompt::Prompt;
 use rush::config::{check_alias, set_env_var};
-use std::thread;
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
 use std::env::home_dir;
