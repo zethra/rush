@@ -10,7 +10,6 @@ use rush::utils::*;
 use rush::process::execute::interpret;
 use rush::prompt::Prompt;
 use rush::config::{check_alias, set_env_var};
-use std::thread;
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
 use std::env::home_dir;
@@ -22,22 +21,16 @@ fn main() {
     let mut home_config = home_dir().expect("No Home directory");
     home_config.push(".rush_history");
     let history = home_config.as_path().to_str().expect("Should have a home directory to turn into a str");
-    //Necessary to update as default prompt is not what we want
-    //They were merely initialization values
-    let prompt_spawn = thread::spawn(move || {
-        let thread_prompt = Prompt::new();
-        thread_prompt.print();
-        thread_prompt
-    });
 
     //Set up buffer to read inputs and History Buffer
     let mut input_buffer = Editor::<()>::new();
     if let Err(_) = input_buffer.load_history(history) {
         println!("No previous history.");
     }
-    let mut prompt = prompt_spawn.join().expect("No prompt made");
+    let mut prompt = Prompt::new();
     //Loop to recieve and execute commands
     loop {
+        prompt.print();
         let line = input_buffer.readline(&prompt.get_user_p());
         match line {
             Ok(line) => {
@@ -58,16 +51,13 @@ fn main() {
                 } else if command.starts_with("clear") {
                     let output = interpret(command);
                     print!("{}", output);
-                    prompt.print();
                     continue;
                 } else if command.is_empty() {
-                    prompt.print();
                     continue;
                 } else if command.starts_with("exit") {
                     break;
                 } else if command.starts_with("pwd") {
                     println!("{}", prompt.get_cwn_abs());
-                    prompt.print();
                     continue;
                 } else {
                     let alias = check_alias(command.clone());
@@ -93,8 +83,6 @@ fn main() {
                         interpret(vec);
                     }
                 }
-                //Updates the prompt for the next line
-                prompt.print();
             },
             Err(ReadlineError::Interrupted) => {
                 print!("^C");
