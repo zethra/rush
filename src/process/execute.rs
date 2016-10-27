@@ -12,7 +12,7 @@ use std::path::Path;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
-///to execute it and returns output or error output
+///to execute it and returns whether it was successful
 pub fn interpret(command: String) -> bool {
 //    let mut op_queues = Opqueue::new();
 //    let mut proc_queue = Procqueue::new();
@@ -96,7 +96,7 @@ pub fn interpret(command: String) -> bool {
 }
 
 ///Run
-///Runs commands passed to it and returns the output
+///Runs commands passed to it and returns whether it was successful
 pub fn run(command: Vec<&str>) -> bool {
     let args = command.as_slice();
     if args.len() > 1 {
@@ -143,26 +143,7 @@ pub fn run(command: Vec<&str>) -> bool {
             },
         }
     } else {
-        match Command::new("")
-            .stdout(Stdio::inherit())
-            .stderr(Stdio::inherit())
-            .spawn() {
-            Ok(mut cmd) => {
-                match cmd.wait() {
-                    Ok(status) => {
-                        status.success()
-                    },
-                    Err(_) => {
-                        println!("failed to wait for child");
-                        false
-                    },
-                }
-            },
-            Err(_) => {
-                println!("Failed to execute");
-                false
-            },
-        }
+        true
     }
 }
 
