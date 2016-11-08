@@ -10,10 +10,10 @@ path = "src/lib.rs"
 
 [dependencies]
 toml = "0.2.1"
-libc = "0.2.16"
+libc = { git = "https://github.com/zethra/libc.git" }
 #clippy = "0.0.94"
 rustyline = "1.0.0"
-posix = "0.0.2"
+nix = "0.7.0"
 
 [profile.dev]
 opt-level = 0

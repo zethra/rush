@@ -1,6 +1,6 @@
 #![allow(unused_imports)] //Here until interpret is complete
 extern crate libc;
-extern crate posix;
+extern crate nix;
 
 use std::process::*;
 use process::logic::*;
@@ -11,6 +11,7 @@ use process::pq::*;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
+use std::io::ErrorKind;
 use std::path::Path;
 #[cfg(unix)]
 use std::os::unix::process::CommandExt;
@@ -19,8 +20,8 @@ use std::os::unix::process::CommandExt;
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns output or error output
 pub fn interpret(command: String) -> bool {
-//    let mut op_queues = Opqueue::new();
-//    let mut proc_queue = Procqueue::new();
+    //    let mut op_queues = Opqueue::new();
+    //    let mut proc_queue = Procqueue::new();
 
     let mut parsed_command = "".to_string();
     let mut escape = false;
@@ -104,9 +105,7 @@ pub fn interpret(command: String) -> bool {
 ///Runs commands passed to it and returns the output
 pub fn run(command: Vec<&str>) -> bool {
     let args = command.as_slice();
-    let spid = unsafe {
-        libc::getpid()
-    };
+    let spid = nix::unistd::getpid();
     if args.len() > 1 {
         match Command::new(&args[0])
             .args(&args[1..])
@@ -140,12 +139,20 @@ pub fn run(command: Vec<&str>) -> bool {
         match Command::new(&args[0])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-            .before_exec(|| {
+            .before_exec(move || {
+                let pid = nix::unistd::getpid();
+                nix::unistd::setpgid(pid, pid);
                 unsafe {
-                    let pid = libc::getpid();
-                    libc::setpgid(pid, pid);
-                    posix::unistd::tcsetpgrp(spid, pid);
+                    let stdin_PGID = libc::tcgetpgrp(libc::STDIN_FILENO);
+                    libc::tcsetpgrp(libc::STDIN_FILENO, stdin_PGID);
+//                    libc::signal (libc::SIGINT, libc::SIG_DFL);
+//                    libc::signal (libc::SIGQUIT, libc::SIG_DFL);
+//                    libc::signal (libc::SIGTSTP, libc::SIG_DFL);
+//                    libc::signal (libc::SIGTTIN, libc::SIG_DFL);
+//                    libc::signal (libc::SIGTTOU, libc::SIG_DFL);
+//                    libc::signal (libc::SIGCHLD, libc::SIG_DFL);
                 }
+//                nix::unistd::dup2();
                 Result::Ok(())
             })
             .spawn() {
