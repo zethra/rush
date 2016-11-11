@@ -14,8 +14,8 @@ use std::path::Path;
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns whether it was successful
 pub fn interpret(command: String) -> bool {
-//    let mut op_queues = Opqueue::new();
-//    let mut proc_queue = Procqueue::new();
+    let mut op_queues = Opqueue::new();
+    let mut proc_queue = Procqueue::new();
 
     let mut parsed_command = "".to_string();
     let mut escape = false;
@@ -110,14 +110,14 @@ pub fn run(command: Vec<&str>) -> bool {
                     Ok(status) => {
                         status.success()
                     },
-                    Err(_) => {
-                        println!("failed to wait for child");
+                    Err(e) => {
+                        println!("{}", e);
                         false
                     },
                 }
             },
-            Err(_) => {
-                println!("Failed to execute");
+            Err(e) => {
+                println!("{}", e);
                 false
             },
         }
@@ -131,14 +131,14 @@ pub fn run(command: Vec<&str>) -> bool {
                     Ok(status) => {
                         status.success()
                     },
-                    Err(_) => {
-                        println!("failed to wait for child");
+                    Err(e) => {
+                        println!("{}", e);
                         false
                     },
                 }
             },
-            Err(_) => {
-                println!("Failed to execute");
+            Err(e) => {
+                println!("{}", e);
                 false
             },
         }
@@ -173,13 +173,29 @@ pub fn redirect(command: Vec<&str>) -> bool {
             .ok()
     };
     let str_out = if output.is_some() {
-        let temp = output.expect("Output has been checked");
+        let temp = match output {
+            Ok(val) => val,
+            Err(e) => {
+                println!("{}", e);
+                return false;
+            }
+        };
         if temp.stdout.is_empty() {
-            String::from_utf8(temp.stderr)
-                .expect("Should have translated to string easily")
+            match String::from_utf8(temp.stderr) {
+                Ok(val) => val,
+                Err(e) => {
+                    println!("{}", e);
+                    return false;
+                }
+            }
         } else {
-            String::from_utf8(temp.stdout)
-                .expect("Should have translated to string easily")
+            match String::from_utf8(temp.stdout) {
+                Ok(val) => val,
+                Err(e) => {
+                    println!("{}", e);
+                    return false;
+                }
+            }
         }
     } else {
         "".to_owned()
@@ -187,11 +203,15 @@ pub fn redirect(command: Vec<&str>) -> bool {
     let path = Path::new(&file_path);
     let display = path.display();
     let mut file = match File::create(&path) {
-        Err(why) => panic!("couldn't open {}: {}", display, why.description()),
         Ok(file) => file,
+        Err(e) => {
+            println!("Couldn't open {}: {}", display, e.description());
+            return false;
+        },
     };
     if let Err(why) = file.write_all(str_out.as_bytes()) {
-        panic!("couldn't write to {}: {}", display, why.description());
+        println!("Couldn't write to {}: {}", display, why.description());
+        return 0;
     }
     true
 }
