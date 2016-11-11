@@ -491,7 +491,7 @@ fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
                 return false;
             },
         };
-        if let Err(why) = file.write_all(str_out.as_bytes()) {
+        if let Err(e) = file.write_all(str_out.as_bytes()) {
             println!("Couldn't write to {}: {}", display, e.description());
             return false;
         }
