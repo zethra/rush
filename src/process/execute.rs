@@ -174,11 +174,8 @@ pub fn redirect(command: Vec<&str>) -> bool {
     };
     let str_out = if output.is_some() {
         let temp = match output {
-            Ok(val) => val,
-            Err(e) => {
-                println!("{}", e);
-                return false;
-            }
+            Some(val) => val,
+            None => return true,
         };
         if temp.stdout.is_empty() {
             match String::from_utf8(temp.stderr) {
@@ -211,7 +208,7 @@ pub fn redirect(command: Vec<&str>) -> bool {
     };
     if let Err(why) = file.write_all(str_out.as_bytes()) {
         println!("Couldn't write to {}: {}", display, why.description());
-        return 0;
+        return false;
     }
     true
 }

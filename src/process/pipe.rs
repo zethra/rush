@@ -377,11 +377,9 @@ fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
         };
         let str_out = if output.is_some() {
             let temp = match output {
-                Ok(val) => val,
-                Err(e) => {
-                    println!("{}", e);
-                    return false;
-                }
+                Some(val) => val,
+                None => return true,
+
             };
             if temp.stdout.is_empty() {
                 match String::from_utf8(temp.stderr) {
@@ -461,11 +459,8 @@ fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
         };
         let str_out = if output.is_some() {
             let temp = match output {
-                Ok(val) => val,
-                Err(e) => {
-                    println!("{}", e);
-                    return false;
-                }
+                Some(val) => val,
+                None => return true
             };
             if temp.stdout.is_empty() {
                 match String::from_utf8(temp.stderr) {
