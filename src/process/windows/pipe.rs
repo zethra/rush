@@ -1,9 +1,9 @@
+extern crate libc;
+extern crate nix;
+
 use std::process::{Stdio, Command, Child};
-#[cfg(unix)]
-use std::os::unix::io::{FromRawFd, AsRawFd};
-#[cfg(windows)]
 use std::os::windows::io::{FromRawHandle, AsRawHandle};
-use std::io::Result;
+use std::io;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
@@ -77,7 +77,7 @@ pub fn piped_redirect(input: Vec<&str>) -> bool {
 ///First Pipe
 ///Always executed if piping and returns the child process to be used
 ///for the next pipe.
-fn first_pipe(command: Vec<&str>) -> Result<Child> {
+fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
     let args = command.as_slice();
     if args.len() > 1 {
         Command::new(&args[0]).args(&args[1..])
@@ -94,34 +94,7 @@ fn first_pipe(command: Vec<&str>) -> Result<Child> {
 ///Execute Pipe
 ///Used if there are more than two commands with piping. Takes a Child process
 ///as input for the next pipe and returns a Child process.
-#[cfg(unix)]
-fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
-    let args = command.as_slice();
-    unsafe {
-        if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1..])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout").as_raw_fd()))
-                .spawn()
-        } else if args.len() == 1 {
-            Command::new(&args[0])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout").as_raw_fd()))
-                .spawn()
-        } else {
-            Command::new("")
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout").as_raw_fd()))
-                .spawn()
-        }
-    }
-}
-
-#[cfg(windows)]
-fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
+fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
     let args = command.as_slice();
     unsafe {
         if args.len() > 1 {
@@ -149,54 +122,11 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> Result<Child> {
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
-#[cfg(unix)]
 fn final_pipe(command: Vec<&str>, child: Child) -> bool {
     let args = command.as_slice();
     unsafe {
         if args.len() > 1 {
-            let mut cmd = Command::new(&args[0])
-                .args(&args[1..])
-                .stdout(Stdio::inherit())
-                .stderr(Stdio::inherit())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .spawn()
-                .expect("Command failed to start");
-            let status = cmd.wait().expect("failed to wait for child");;
-            status.success()
-        } else if args.len() == 1 {
-            let mut cmd = Command::new(&args[0])
-                .stdout(Stdio::inherit())
-                .stderr(Stdio::inherit())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .spawn()
-                .expect("Command failed to start");
-            let status = cmd.wait().expect("failed to wait for child");
-            status.success()
-        } else {
-            let mut cmd = Command::new("")
-                .stdout(Stdio::inherit())
-                .stderr(Stdio::inherit())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .spawn()
-                .expect("Command failed to start");
-            let status = cmd.wait().expect("failed to wait for child");
-            status.success()
-        }
-    }
-}
-
-#[cfg(windows)]
-fn final_pipe(command: Vec<&str>, child: Child) -> bool {
-    let args = command.as_slice();
-    unsafe {
-        if args.len() > 1 {
-            let mut cmd = Command::new(&args[0])
+            let mut child = Command::new(&args[0])
                 .args(&args[1..])
                 .stdout(Stdio::inherit())
                 .stderr(Stdio::inherit())
@@ -205,10 +135,10 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
                     .as_raw_handle()))
                 .spawn()
                 .expect("Command failed to start");
-            let status = cmd.wait().expect("failed to wait for child");;
+            let status = child.wait().expect("failed to wait for child");;
             status.success()
         } else if args.len() == 1 {
-            let mut cmd = Command::new(&args[0])
+            let mut child = Command::new(&args[0])
                 .stdout(Stdio::inherit())
                 .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_handle(child.stdout
@@ -216,10 +146,10 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
                     .as_raw_handle()))
                 .spawn()
                 .expect("Command failed to start");
-            let status = cmd.wait().expect("failed to wait for child");
+            let status = child.wait().expect("failed to wait for child");
             status.success()
         } else {
-            let mut cmd = Command::new("")
+            let mut child = Command::new("")
                 .stdout(Stdio::inherit())
                 .stderr(Stdio::inherit())
                 .stdin(Stdio::from_raw_handle(child.stdout
@@ -227,79 +157,12 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
                     .as_raw_handle()))
                 .spawn()
                 .expect("Command failed to start");
-            let status = cmd.wait().expect("failed to wait for child");
+            let status = child.wait().expect("failed to wait for child");
             status.success()
         }
     }
 }
 
-
-
-#[cfg(unix)]
-fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
-    let mut args = command;
-    let mut file_path = "".to_owned();
-    for i in 0..args.len() {
-        if args[i].contains('>') {
-            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
-            args.truncate(i);
-            break;
-        }
-    }
-    let args = args.as_slice();
-    unsafe {
-        let output = if args.len() > 1 {
-            Command::new(&args[0])
-                .args(&args[1.. ])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .output()
-                .ok()
-        } else if args.len() == 1 {
-            Command::new(&args[0])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .output()
-                .ok()
-        } else {
-            Command::new("")
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .output()
-                .ok()
-        };
-        let str_out = if output.is_some() {
-            let temp = output.expect("Output has been checked");
-            if temp.stdout.is_empty() {
-                String::from_utf8(temp.stderr)
-                    .expect("Should have translated to string easily")
-            } else {
-                String::from_utf8(temp.stdout)
-                    .expect("Should have translated to string easily")
-            }
-        } else {
-            "".to_owned()
-        };
-        let path = Path::new(&file_path);
-        let display = path.display();
-        let mut file = match File::create(&path) {
-            Err(why) => panic!("couldn't open {}: {}", display, why.description()),
-            Ok(file) => file,
-        };
-        if let Err(why) = file.write_all(str_out.as_bytes()) {
-            panic!("couldn't write to {}: {}", display, why.description());
-        }
-    }
-    true
-}
-
-#[cfg(windows)]
 fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
