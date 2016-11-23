@@ -5,6 +5,8 @@
 
 #[macro_use] extern crate rush;
 extern crate rustyline;
+extern crate libc;
+extern crate nix;
 
 use rush::utils::*;
 use rush::process::execute::interpret;
@@ -14,8 +16,50 @@ use std::thread;
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
 use std::env::home_dir;
+use std::process;
+
+use libc::sighandler_t;
+use libc::{c_int, c_void, SIGINT};
+use libc::signal;
+
+extern fn handler(sig: c_int) {
+    unsafe {
+        signal(sig, libc::SIG_IGN);
+        signal(SIGINT, get_handler());
+    }
+}
+
+fn get_handler() -> sighandler_t {
+    handler as extern fn(c_int) as *mut c_void as sighandler_t
+}
 
 fn main() {
+
+    unsafe {
+        while libc::tcgetpgrp(0) != libc::getpgrp() {
+            println!("Killed {}", libc::getpgrp());
+            libc::kill(libc::getpgrp(), libc::SIGTTIN);
+        }
+    }
+
+    unsafe {
+        libc::signal(libc::SIGINT, libc::SIG_IGN);
+        libc::signal(libc::SIGQUIT, libc::SIG_IGN);
+        libc::signal(libc::SIGTSTP, libc::SIG_IGN);
+        libc::signal(libc::SIGTTIN, libc::SIG_IGN);
+        libc::signal(libc::SIGTTOU, libc::SIG_IGN);
+    }
+
+    let pid = nix::unistd::getpid();
+    match nix::unistd::setpgid(pid, pid) {
+        Ok(_) => println!("s"),
+        Err(_) => println!("e"),
+    };
+    match nix::unistd::tcsetpgrp(0, pid) {
+        Ok(_) => println!("s"),
+        Err(_) => println!("e"),
+    }
+
     //Sets environment variables written in config file
     set_env_var();
 
