@@ -105,20 +105,18 @@ pub fn interpret(command: String) -> bool {
 ///Runs commands passed to it and returns the output
 pub fn run(command: Vec<&str>) -> bool {
     let args = command.as_slice();
-    let spid = nix::unistd::getpid();
-//    println!("{}", spid);
     if args.len() > 1 {
         match Command::new(&args[0])
             .args(&args[1..])
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-//            .before_exec(|| {
-//                unsafe {
-//                    let pid = libc::getpid();
-//                    libc::setpgid(pid, pid);
-//                }
-//                Result::Ok(())
-//            })
+            //            .before_exec(|| {
+            //                unsafe {
+            //                    let pid = libc::getpid();
+            //                    libc::setpgid(pid, pid);
+            //                }
+            //                Result::Ok(())
+            //            })
             .spawn() {
             Ok(mut cmd) => {
                 match cmd.wait() {
@@ -142,22 +140,19 @@ pub fn run(command: Vec<&str>) -> bool {
             .stderr(Stdio::inherit())
             .before_exec(move || {
                 let pid = nix::unistd::getpid();
-                println!("{}", pid);
                 nix::unistd::setpgid(pid, pid);
                 unsafe {
-                    libc::signal (libc::SIGINT, libc::SIG_DFL);
-                    libc::signal (libc::SIGQUIT, libc::SIG_DFL);
-                    libc::signal (libc::SIGTSTP, libc::SIG_DFL);
-                    libc::signal (libc::SIGTTIN, libc::SIG_DFL);
-                    libc::signal (libc::SIGTTOU, libc::SIG_DFL);
-//                    libc::signal (libc::SIGCHLD, libc::SIG_DFL);
+                    libc::signal(libc::SIGINT, libc::SIG_DFL);
+                    libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                    libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                    libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                    libc::signal(libc::SIGTTOU, libc::SIG_DFL);
                 }
                 Result::Ok(())
             })
             .spawn() {
             Ok(mut child) => {
                 let child_pgid = child.id() as i32;
-                let stdin_pgid = nix::unistd::tcgetgrp(libc::STDIN_FILENO).unwrap();
                 nix::unistd::tcsetpgrp(0, child_pgid);
                 match child.wait() {
                     Ok(status) => {
@@ -180,13 +175,6 @@ pub fn run(command: Vec<&str>) -> bool {
         match Command::new("")
             .stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
-//            .before_exec(|| {
-//                unsafe {
-//                    let pid = libc::getpid();
-//                    libc::setpgid(pid, pid);
-//                }
-//                Result::Ok(())
-//            })
             .spawn() {
             Ok(mut cmd) => {
                 match cmd.wait() {

@@ -18,28 +18,10 @@ use rustyline::Editor;
 use std::env::home_dir;
 use std::process;
 
-use libc::sighandler_t;
-use libc::{c_int, c_void, SIGINT};
-use libc::signal;
-
-extern fn handler(sig: c_int) {
-    unsafe {
-        signal(sig, libc::SIG_IGN);
-        signal(SIGINT, get_handler());
-    }
-}
-
-fn get_handler() -> sighandler_t {
-    handler as extern fn(c_int) as *mut c_void as sighandler_t
-}
-
 fn main() {
 
-    unsafe {
-        while libc::tcgetpgrp(0) != libc::getpgrp() {
-            println!("Killed {}", libc::getpgrp());
-            libc::kill(libc::getpgrp(), libc::SIGTTIN);
-        }
+    while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
+        nix::sys::signal::kill(nix::unistd::getpgrp(), nix::sys::signal::Signal::SIGTTIN);
     }
 
     unsafe {
@@ -52,12 +34,14 @@ fn main() {
 
     let pid = nix::unistd::getpid();
     match nix::unistd::setpgid(pid, pid) {
-        Ok(_) => println!("s"),
-        Err(_) => println!("e"),
+        Ok(_) => {},
+        Err(_) => {
+            println!("Couldn't set pgid")
+        },
     };
     match nix::unistd::tcsetpgrp(0, pid) {
-        Ok(_) => println!("s"),
-        Err(_) => println!("e"),
+        Ok(_) => {},
+        Err(_) => println!("Couldn't set process to foreground"),
     }
 
     //Sets environment variables written in config file
