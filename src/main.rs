@@ -1,10 +1,13 @@
 #![feature(plugin)]
 //#![plugin(clippy)]
+#![allow(unused_must_use)]
 
 #![cfg(not(test))]
 
 #[macro_use] extern crate rush;
 extern crate rustyline;
+extern crate libc;
+extern crate nix;
 
 use rush::utils::*;
 use rush::process::execute::interpret;
@@ -15,6 +18,30 @@ use rustyline::Editor;
 use std::env::home_dir;
 
 fn main() {
+    #[cfg(unix)] {
+        while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
+            nix::sys::signal::kill(nix::unistd::getpgrp(), nix::sys::signal::Signal::SIGTTIN);
+        }
+        unsafe {
+            libc::signal(libc::SIGINT, libc::SIG_IGN);
+            libc::signal(libc::SIGQUIT, libc::SIG_IGN);
+            libc::signal(libc::SIGTSTP, libc::SIG_IGN);
+            libc::signal(libc::SIGTTIN, libc::SIG_IGN);
+            libc::signal(libc::SIGTTOU, libc::SIG_IGN);
+        }
+        let pid = nix::unistd::getpid();
+        match nix::unistd::setpgid(pid, pid) {
+            Ok(_) => {},
+            Err(_) => {
+                println!("Couldn't set pgid")
+            },
+        };
+        match nix::unistd::tcsetpgrp(0, pid) {
+            Ok(_) => {},
+            Err(_) => println!("Couldn't set process to foreground"),
+        }
+    }
+
     //Sets environment variables written in config file
     set_env_var();
 

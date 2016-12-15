@@ -1,21 +1,27 @@
 #![allow(unused_imports)] //Here until interpret is complete
+extern crate libc;
+extern crate nix;
+
 use std::process::*;
 use process::logic::*;
 use process::stdproc::*;
-use process::pipe::*;
 use process::ops::*;
 use process::pq::*;
-use std::error::Error;
-use std::fs::File;
-use std::io::prelude::*;
-use std::path::Path;
+#[cfg(unix)]
+use process::unix::execute::*;
+#[cfg(unix)]
+use process::unix::pipe::*;
+#[cfg(windows)]
+use process::windows::execute::*;
+#[cfg(windows)]
+use process::windows::pipe::*;
 
 ///Interpret
 ///Given an input command, interpret parses and determines what and how
-///to execute it and returns whether it was successful
+///to execute it and returns output or error output
 pub fn interpret(command: String) -> bool {
-    let mut op_queues = Opqueue::new();
-    let mut proc_queue = Procqueue::new();
+    //    let mut op_queues = Opqueue::new();
+    //    let mut proc_queue = Procqueue::new();
 
     let mut parsed_command = "".to_string();
     let mut escape = false;
@@ -95,123 +101,6 @@ pub fn interpret(command: String) -> bool {
     }
 }
 
-///Run
-///Runs commands passed to it and returns whether it was successful
-pub fn run(command: Vec<&str>) -> bool {
-    let args = command.as_slice();
-    if args.len() > 1 {
-        match Command::new(&args[0])
-            .args(&args[1..])
-            .stdout(Stdio::inherit())
-            .stderr(Stdio::inherit())
-            .spawn() {
-            Ok(mut cmd) => {
-                match cmd.wait() {
-                    Ok(status) => {
-                        status.success()
-                    },
-                    Err(e) => {
-                        println!("{}", e);
-                        false
-                    },
-                }
-            },
-            Err(e) => {
-                println!("{}", e);
-                false
-            },
-        }
-    } else if args.len() == 1 {
-        match Command::new(&args[0])
-            .stdout(Stdio::inherit())
-            .stderr(Stdio::inherit())
-            .spawn() {
-            Ok(mut cmd) => {
-                match cmd.wait() {
-                    Ok(status) => {
-                        status.success()
-                    },
-                    Err(e) => {
-                        println!("{}", e);
-                        false
-                    },
-                }
-            },
-            Err(e) => {
-                println!("{}", e);
-                false
-            },
-        }
-    } else {
-        true
-    }
-}
-
-pub fn redirect(command: Vec<&str>) -> bool {
-    let mut args = command;
-    let mut file_path = "".to_owned();
-    for i in 0..args.len() {
-        if args[i].contains('>') {
-            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
-            args.truncate(i);
-            break;
-        }
-    }
-    let args = args.as_slice();
-    let output = if args.len() > 1 {
-        Command::new(&args[0])
-            .args(&args[1..])
-            .output()
-            .ok()
-    } else if args.len() == 1 {
-        Command::new(&args[0])
-            .output()
-            .ok()
-    } else {
-        Command::new("")
-            .output()
-            .ok()
-    };
-    let str_out = if output.is_some() {
-        let temp = match output {
-            Some(val) => val,
-            None => return true,
-        };
-        if temp.stdout.is_empty() {
-            match String::from_utf8(temp.stderr) {
-                Ok(val) => val,
-                Err(e) => {
-                    println!("{}", e);
-                    return false;
-                }
-            }
-        } else {
-            match String::from_utf8(temp.stdout) {
-                Ok(val) => val,
-                Err(e) => {
-                    println!("{}", e);
-                    return false;
-                }
-            }
-        }
-    } else {
-        "".to_owned()
-    };
-    let path = Path::new(&file_path);
-    let display = path.display();
-    let mut file = match File::create(&path) {
-        Ok(file) => file,
-        Err(e) => {
-            println!("Couldn't open {}: {}", display, e.description());
-            return false;
-        },
-    };
-    if let Err(why) = file.write_all(str_out.as_bytes()) {
-        println!("Couldn't write to {}: {}", display, why.description());
-        return false;
-    }
-    true
-}
 
 #[cfg(test)]
 mod tests {
