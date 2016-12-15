@@ -6,14 +6,16 @@
 
 A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 
-###Features
+### Features
 - [x] Single command execution
-- [x] Perciststant history
+- [x] Proper job control on Linux
+- [x] Persistent history
 - [x] Pipes
 - [x] File redirection
 - [x] Quote parsing
 
-###TODO
+### TODO
+- [ ] Proper job control on Windows
 - [ ] Automatic config generation
 - [ ] Logical Operators
 - [ ] Stdout and Stderr redirect
@@ -24,20 +26,17 @@ A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 - [ ] Bash script support
 - [ ] Script based config
 
-###Rust Version
-Currently using 1.14 Nightly. Has not been tested with any other version.
-
-
-###Install
+### Usage
+- Requires nightly version of Rust
 - Clone this repo 
 - Build using cargo
 - Copy config/rust.toml to ~/.rush.toml
 
-###Config File
+### Config File
 Rusty uses [toml](https://github.com/toml-lang/toml) to customize it's use.
 Here are some of the configuration options:
 
-####Prompts
+#### Prompts
 ```
 [prompt]
 left = "%U@%H %L %R"
@@ -56,7 +55,7 @@ Following the above example for my computer the prompt would look like:
 zethra@linux-box ~/ $
 ```
 
-####Aliases
+#### Aliases
 The [alias] is required in the config file but anything underneath is optional.
 Below is an example of how it would look in your file in order to use them:
 ```
@@ -66,7 +65,7 @@ gc = "git commit"
 ls = "ls -al"
 ```
 
-####Enivronment Variables
+#### Enivronment Variables
 The [env_var] is required in the config file but anything underneath is optional.
 Below is an example of how it would look in your file in order to use them:
 ```
@@ -75,5 +74,5 @@ EDITOR = "vim"
 
 ```
 
-###Contributing
-If you'd like to contribute to the project please sumbit a pull request.  Help is very appreciated.
+### Contributing
+If you'd like to contribute to the project please submit a pull request.  Help is very appreciated.
