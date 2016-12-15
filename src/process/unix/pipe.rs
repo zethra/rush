@@ -1,3 +1,4 @@
+#![allow(unused_must_use)]
 extern crate libc;
 extern crate nix;
 
@@ -80,55 +81,25 @@ pub fn piped_redirect(input: Vec<&str>) -> bool {
 ///for the next pipe.
 fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
     let args = command.as_slice();
+    // TODO Handle args having length 0
+    let mut cmd = Command::new(&args[0]);
     if args.len() > 1 {
-        Command::new(&args[0]).args(&args[1..])
-            .stdout(Stdio::piped())
-            .before_exec(move || {
-                let pid = nix::unistd::getpid();
-                nix::unistd::setpgid(pid, pid);
-                unsafe {
-                    libc::signal(libc::SIGINT, libc::SIG_DFL);
-                    libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                    libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                    libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                    libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                }
-                Result::Ok(())
-            })
-            .spawn()
-    } else if args.len() == 1 {
-        Command::new(&args[0])
-            .stdout(Stdio::piped())
-            .before_exec(move || {
-                let pid = nix::unistd::getpid();
-                nix::unistd::setpgid(pid, pid);
-                unsafe {
-                    libc::signal(libc::SIGINT, libc::SIG_DFL);
-                    libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                    libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                    libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                    libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                }
-                Result::Ok(())
-            })
-            .spawn()
-    } else {
-        Command::new("")
-            .stdout(Stdio::piped())
-            .before_exec(move || {
-                let pid = nix::unistd::getpid();
-                nix::unistd::setpgid(pid, pid);
-                unsafe {
-                    libc::signal(libc::SIGINT, libc::SIG_DFL);
-                    libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                    libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                    libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                    libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                }
-                Result::Ok(())
-            })
-            .spawn()
+        cmd.args(&args[1..]);
     }
+    cmd.stdout(Stdio::piped())
+        .before_exec(move || {
+            let pid = nix::unistd::getpid();
+            nix::unistd::setpgid(pid, pid);
+            unsafe {
+                libc::signal(libc::SIGINT, libc::SIG_DFL);
+                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+            }
+            Result::Ok(())
+        })
+        .spawn()
 }
 
 ///Execute Pipe
@@ -136,62 +107,26 @@ fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
 ///as input for the next pipe and returns a Child process.
 fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
     let args = command.as_slice();
+    // TODO Handle args having length 0
+    let mut cmd = Command::new(&args[0]);
+    if args.len() > 1 {
+        cmd.args(&args[1..]);
+    }
     unsafe {
-        if args.len() > 1 {
-            Command::new(&args[0]).args(&args[1..])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout").as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .spawn()
-        } else if args.len() == 1 {
-            Command::new(&args[0])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout").as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .spawn()
-        } else {
-            Command::new("")
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout").as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .spawn()
-        }
+        cmd.stdout(Stdio::piped())
+            .stdin(Stdio::from_raw_fd(child.stdout
+                .expect("No stdout").as_raw_fd()))
+            .before_exec(move || {
+                let pid = nix::unistd::getpid();
+                nix::unistd::setpgid(pid, pid);
+                libc::signal(libc::SIGINT, libc::SIG_DFL);
+                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                Result::Ok(())
+            })
+            .spawn()
     }
 }
 
@@ -200,128 +135,50 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
 ///and returns the output of piping the commands.
 fn final_pipe(command: Vec<&str>, child: Child) -> bool {
     let args = command.as_slice();
+    if args.len() <= 0 {
+        return true
+    }
+    let mut cmd = Command::new(&args[0]);
+    if args.len() > 1 {
+        cmd.args(&args[1..]);
+    }
     unsafe {
-        if args.len() > 1 {
-            match Command::new(&args[0])
-                .args(&args[1..])
-                .stdout(Stdio::inherit())
-                .stderr(Stdio::inherit())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .spawn() {
-                Ok(mut child) => {
-                    let child_pgid = child.id() as i32;
-                    nix::unistd::tcsetpgrp(0, child_pgid);
-                    match child.wait() {
-                        Ok(status) => {
-                            nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                            status.success()
-                        },
-                        Err(_) => {
-                            nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                            println!("failed to wait for child");
-                            false
-                        },
-                    }
-                },
-                Err(_) => {
-                    println!("Failed to execute");
-                    false
-                },
-            }
-        } else if args.len() == 1 {
-            match Command::new(&args[0])
-                .stdout(Stdio::inherit())
-                .stderr(Stdio::inherit())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .spawn() {
-                Ok(mut child) => {
-                    let child_pgid = child.id() as i32;
-                    nix::unistd::tcsetpgrp(0, child_pgid);
-                    match child.wait() {
-                        Ok(status) => {
-                            nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                            status.success()
-                        },
-                        Err(_) => {
-                            nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                            println!("failed to wait for child");
-                            false
-                        },
-                    }
-                },
-                Err(_) => {
-                    println!("Failed to execute");
-                    false
-                },
-            }
-        } else {
-            match Command::new("")
-                .stdout(Stdio::inherit())
-                .stderr(Stdio::inherit())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .spawn() {
-                Ok(mut child) => {
-                    let child_pgid = child.id() as i32;
-                    nix::unistd::tcsetpgrp(0, child_pgid);
-                    match child.wait() {
-                        Ok(status) => {
-                            nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                            status.success()
-                        },
-                        Err(_) => {
-                            nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                            println!("failed to wait for child");
-                            false
-                        },
-                    }
-                },
-                Err(_) => {
-                    println!("Failed to execute");
-                    false
-                },
-            }
+        match cmd.args(&args[1..])
+            .stdout(Stdio::inherit())
+            .stderr(Stdio::inherit())
+            .stdin(Stdio::from_raw_fd(child.stdout
+                .expect("No stdout for child process")
+                .as_raw_fd()))
+            .before_exec(move || {
+                let pid = nix::unistd::getpid();
+                nix::unistd::setpgid(pid, pid);
+                libc::signal(libc::SIGINT, libc::SIG_DFL);
+                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                Result::Ok(())
+            })
+            .spawn() {
+            Ok(mut child) => {
+                let child_pgid = child.id() as i32;
+                nix::unistd::tcsetpgrp(0, child_pgid);
+                match child.wait() {
+                    Ok(status) => {
+                        nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
+                        status.success()
+                    },
+                    Err(_) => {
+                        nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
+                        println!("failed to wait for child");
+                        false
+                    },
+                }
+            },
+            Err(_) => {
+                println!("Failed to execute");
+                false
+            },
         }
     }
 }
@@ -337,90 +194,52 @@ fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
         }
     }
     let args = args.as_slice();
-    unsafe {
-        let output = if args.len() > 1 {
-            Command::new(&args[0])
-                .args(&args[1.. ])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .output()
-                .ok()
-        } else if args.len() == 1 {
-            Command::new(&args[0])
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .output()
-                .ok()
+    if args.len() <= 0 {
+        return true
+    }
+    let mut cmd = Command::new(&args[0]);
+    if args.len() > 1 {
+        cmd.args(&args[1..]);
+    }
+    let output = unsafe {
+        cmd.args(&args[1..])
+            .stdout(Stdio::piped())
+            .stdin(Stdio::from_raw_fd(child.stdout
+                .expect("No stdout for child process")
+                .as_raw_fd()))
+            .before_exec(move || {
+                let pid = nix::unistd::getpid();
+                nix::unistd::setpgid(pid, pid);
+                libc::signal(libc::SIGINT, libc::SIG_DFL);
+                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                Result::Ok(())
+            })
+            .output()
+            .ok()
+    };
+    let str_out = if output.is_some() {
+        let temp = output.expect("Output has been checked");
+        if temp.stdout.is_empty() {
+            String::from_utf8(temp.stderr)
+                .expect("Should have translated to string easily")
         } else {
-            Command::new("")
-                .stdout(Stdio::piped())
-                .stdin(Stdio::from_raw_fd(child.stdout
-                    .expect("No stdout for child process")
-                    .as_raw_fd()))
-                .before_exec(move || {
-                    let pid = nix::unistd::getpid();
-                    nix::unistd::setpgid(pid, pid);
-                    unsafe {
-                        libc::signal(libc::SIGINT, libc::SIG_DFL);
-                        libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                        libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                        libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                    }
-                    Result::Ok(())
-                })
-                .output()
-                .ok()
-        };
-        let str_out = if output.is_some() {
-            let temp = output.expect("Output has been checked");
-            if temp.stdout.is_empty() {
-                String::from_utf8(temp.stderr)
-                    .expect("Should have translated to string easily")
-            } else {
-                String::from_utf8(temp.stdout)
-                    .expect("Should have translated to string easily")
-            }
-        } else {
-            "".to_owned()
-        };
-        let path = Path::new(&file_path);
-        let display = path.display();
-        let mut file = match File::create(&path) {
-            Err(why) => panic!("couldn't open {}: {}", display, why.description()),
-            Ok(file) => file,
-        };
-        if let Err(why) = file.write_all(str_out.as_bytes()) {
-            panic!("couldn't write to {}: {}", display, why.description());
+            String::from_utf8(temp.stdout)
+                .expect("Should have translated to string easily")
         }
+    } else {
+        "".to_owned()
+    };
+    let path = Path::new(&file_path);
+    let display = path.display();
+    let mut file = match File::create(&path) {
+        Err(why) => panic!("couldn't open {}: {}", display, why.description()),
+        Ok(file) => file,
+    };
+    if let Err(why) = file.write_all(str_out.as_bytes()) {
+        panic!("couldn't write to {}: {}", display, why.description());
     }
     true
 }
