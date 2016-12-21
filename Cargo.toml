@@ -13,7 +13,7 @@ toml = "0.2.1"
 libc = { git = "https://github.com/zethra/libc.git" }
 #clippy = "0.0.94"
 rustyline = "1.0.0"
-nix = { git = "https://github.com/zethra/nix.git" }
+nix = { git = "https://github.com/nix-rust/nix.git" }
 
 [profile.dev]
 opt-level = 0
