@@ -42,6 +42,7 @@ pub fn run(command: Vec<&str>) -> bool {
                 libc::signal(libc::SIGTSTP, libc::SIG_DFL);
                 libc::signal(libc::SIGTTIN, libc::SIG_DFL);
                 libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
             }
             Result::Ok(())
         })
@@ -52,6 +53,7 @@ pub fn run(command: Vec<&str>) -> bool {
                 Ok(_) => {},
                 Err(_) => return false,
             }
+
             match child.wait() {
                 Ok(status) => {
                     match nix::unistd::tcsetpgrp(0, nix::unistd::getpid()) {
@@ -104,6 +106,7 @@ pub fn redirect(command: Vec<&str>) -> bool {
             libc::signal(libc::SIGTSTP, libc::SIG_DFL);
             libc::signal(libc::SIGTTIN, libc::SIG_DFL);
             libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+            libc::prctl(1, libc::SIGHUP);
         }
         Result::Ok(())
     })

@@ -96,6 +96,7 @@ fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
                 libc::signal(libc::SIGTSTP, libc::SIG_DFL);
                 libc::signal(libc::SIGTTIN, libc::SIG_DFL);
                 libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
             }
             Result::Ok(())
         })
@@ -124,6 +125,7 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
                 libc::signal(libc::SIGTSTP, libc::SIG_DFL);
                 libc::signal(libc::SIGTTIN, libc::SIG_DFL);
                 libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
                 Result::Ok(())
             })
             .spawn()
@@ -157,6 +159,7 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
                 libc::signal(libc::SIGTSTP, libc::SIG_DFL);
                 libc::signal(libc::SIGTTIN, libc::SIG_DFL);
                 libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
                 Result::Ok(())
             })
             .spawn() {
@@ -215,6 +218,7 @@ fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
                 libc::signal(libc::SIGTSTP, libc::SIG_DFL);
                 libc::signal(libc::SIGTTIN, libc::SIG_DFL);
                 libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
                 Result::Ok(())
             })
             .output()
