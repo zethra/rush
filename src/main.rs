@@ -17,11 +17,6 @@ use rustyline::error::ReadlineError;
 use rustyline::Editor;
 use std::env::home_dir;
 
-//#[cfg(unix)]
-//extern fn handle_sigint(_:i32) {
-//    println!("Interrupted!");
-//}
-
 fn main() {
     #[cfg(unix)] {
         while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
@@ -46,15 +41,6 @@ fn main() {
             Ok(_) => {},
             Err(_) => println!("Couldn't set process to foreground"),
         }
-//        let handle_sigint_fn = nix::sys::signal::SigHandler::Handler(handle_sigint);
-//        let sig_action = nix::sys::signal::SigAction::new(handle_sigint_fn,
-//                                                          nix::sys::signal::SaFlags::empty(),
-//                                                          nix::sys::signal::SigSet::empty());
-//        unsafe {
-//            nix::sys::signal::sigaction(nix::sys::signal::SIGINT, &sig_action);
-//            nix::sys::signal::sigaction(nix::sys::signal::SIGKILL, &sig_action);
-//
-//        }
     }
 
     //Sets environment variables written in config file
@@ -70,7 +56,6 @@ fn main() {
         println!("No previous history.");
     }
     let mut prompt = Prompt::new();
-//    let mut forground_process: Option<Child> = None;
 
     //Loop to recieve and execute commands
     loop {
