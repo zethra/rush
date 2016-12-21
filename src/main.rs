@@ -32,11 +32,13 @@ fn main() {
         let pid = nix::unistd::getpid();
         match nix::unistd::setpgid(pid, pid) {
             Ok(_) => {},
-            Err(_) => {
-                println!("Couldn't set pgid")
-            },
+            Err(_) => println!("Couldn't set pgid"),
         };
-        nix::unistd::setsid();
+        // Doesn't seem necessary
+//        match nix::unistd::setsid() {
+//            Ok(_) => {},
+//            Err(_) => println!("Couldn't set sid"),
+//        }
         match nix::unistd::tcsetpgrp(0, pid) {
             Ok(_) => {},
             Err(_) => println!("Couldn't set process to foreground"),
