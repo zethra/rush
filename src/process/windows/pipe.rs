@@ -1,6 +1,3 @@
-extern crate libc;
-extern crate nix;
-
 use std::process::{Stdio, Command, Child};
 use std::os::windows::io::{FromRawHandle, AsRawHandle};
 use std::io;
@@ -12,7 +9,7 @@ use std::path::Path;
 ///Split Pipes
 ///Given a command with pipes in it, it will split them into separate
 ///commands to be executed
-fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
+fn split_pipes(input: Vec<String>) -> Vec<Vec<String>> {
     let input_slice = input.as_slice();
     let mut pipe_commands: Vec<Vec<&str>> = Vec::new();
     let mut temp: Vec<&str> = Vec::new();
@@ -44,7 +41,7 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
 ///Piped
 ///The logic of piping is done here and calls the functions that execute
 ///the pipes and returns the result
-pub fn piped(input: Vec<&str>) -> bool {
+pub fn piped(input: Vec<String>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -59,7 +56,7 @@ pub fn piped(input: Vec<&str>) -> bool {
     final_pipe(split.remove(0), child)
 }
 
-pub fn piped_redirect(input: Vec<&str>) -> bool {
+pub fn piped_redirect(input: Vec<String>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -74,10 +71,20 @@ pub fn piped_redirect(input: Vec<&str>) -> bool {
     final_piped_redirect(split.remove(0), child)
 }
 
+pub fn piped_detached(command: Vec<String>) -> bool {
+    println!("Not implemented on this platform yet");
+    false
+}
+
+pub fn piped_redirect_out_detached(command: Vec<String>) -> bool {
+    println!("Not implemented on this platform yet");
+    false
+}
+
 ///First Pipe
 ///Always executed if piping and returns the child process to be used
 ///for the next pipe.
-fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
+fn first_pipe(command: Vec<String>) -> io::Result<Child> {
     let args = command.as_slice();
     if args.len() > 1 {
         Command::new(&args[0]).args(&args[1..])
@@ -94,7 +101,7 @@ fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
 ///Execute Pipe
 ///Used if there are more than two commands with piping. Takes a Child process
 ///as input for the next pipe and returns a Child process.
-fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
+fn execute_pipe(command: Vec<String>, child: Child) -> io::Result<Child> {
     let args = command.as_slice();
     unsafe {
         if args.len() > 1 {
@@ -122,7 +129,7 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
-fn final_pipe(command: Vec<&str>, child: Child) -> bool {
+fn final_pipe(command: Vec<String>, child: Child) -> bool {
     let args = command.as_slice();
     unsafe {
         if args.len() > 1 {
@@ -163,7 +170,7 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
     }
 }
 
-fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
+fn final_piped_redirect(command: Vec<String>, child: Child) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
     for i in 0..args.len() {

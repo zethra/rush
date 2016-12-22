@@ -9,7 +9,7 @@ extern crate rustyline;
 extern crate libc;
 extern crate nix;
 
-use rush::utils::*;
+use rush::builtins::*;
 use rush::process::execute::interpret;
 use rush::prompt::Prompt;
 use rush::config::{check_alias, set_env_var};

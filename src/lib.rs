@@ -4,7 +4,7 @@
 #![feature(process_exec)]
 //#![plugin(clippy)]
 #![doc(html_root_url = "https://mgattozzi.github.io/rusty/")]
-pub mod utils;
+pub mod builtins;
 pub mod scripting;
 pub mod process;
 pub mod autocomplete;

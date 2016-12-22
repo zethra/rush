@@ -1,5 +1,3 @@
-#![allow(unused_imports)] //Here until interpret is complete
-
 use std::process::*;
 use process::stdproc::*;
 use process::windows::pipe::*;
@@ -12,7 +10,7 @@ use std::path::Path;
 
 ///Run
 ///Runs commands passed to it and returns the output
-pub fn run(command: Vec<&str>) -> bool {
+pub fn run(command: Vec<String>) -> bool {
     let args = command.as_slice();
     if args.len() > 1 {
         match Command::new(&args[0])
@@ -81,7 +79,7 @@ pub fn run(command: Vec<&str>) -> bool {
     }
 }
 
-pub fn redirect(command: Vec<&str>) -> bool {
+pub fn redirect(command: Vec<String>) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
     for i in 0..args.len() {
@@ -128,6 +126,16 @@ pub fn redirect(command: Vec<&str>) -> bool {
         panic!("couldn't write to {}: {}", display, why.description());
     }
     true
+}
+
+pub fn run_detached(command: Vec<String>) -> bool {
+    println!("Not implemented on this platform yet");
+    false
+}
+
+pub fn redirect_out_detached(command: Vec<String>) -> bool {
+    println!("Not implemented on this platform yet");
+    false
 }
 
 #[cfg(test)]

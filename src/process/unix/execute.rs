@@ -1,16 +1,11 @@
-#![allow(unused_imports)] //Here until interpret is complete
 #![allow(unused_must_use)]
 extern crate libc;
 extern crate nix;
 
 use std::process::*;
-use process::stdproc::*;
-use process::unix::pipe::*;
-use process::ops::*;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
-use std::io::ErrorKind;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
 use std::thread;
