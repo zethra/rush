@@ -77,8 +77,6 @@ fn main() {
                 //just use strings here
                 if command.starts_with("cd") {
                     cd::change_directory(command.trim_left_matches("cd").to_owned());
-                    prompt.update_cwd();
-                    prompt.update_prompt();
                 } else if command.starts_with("clear") {
                     let output = interpret(command);
                     print!("{}", output);
@@ -87,9 +85,6 @@ fn main() {
                     continue;
                 } else if command.starts_with("exit") {
                     break;
-                } else if command.starts_with("pwd") {
-                    println!("{}", prompt.get_cwn_abs());
-                    continue;
                 } else {
                     let alias = check_alias(command.clone());
                     if alias.is_none() {

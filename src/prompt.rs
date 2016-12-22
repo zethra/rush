@@ -72,7 +72,9 @@ impl Prompt {
         }
     }
 
-    pub fn print(&self) {
+    pub fn print(&mut self) {
+        self.update_cwd();
+        self.update_prompt();
         print!("{}", self.get_user_p());
         stdout().flush().expect("Could not flush stdout");
     }
