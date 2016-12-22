@@ -5,7 +5,6 @@ extern crate nix;
 use std::process::*;
 use process::stdproc::*;
 use process::ops::*;
-use process::pq::*;
 #[cfg(unix)]
 use process::unix::execute::*;
 #[cfg(unix)]

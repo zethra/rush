@@ -4,7 +4,6 @@ use std::process::*;
 use process::stdproc::*;
 use process::windows::pipe::*;
 use process::ops::*;
-use process::pq::*;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
