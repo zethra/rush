@@ -100,7 +100,7 @@ pub fn run_detached(command: Vec<&str>) -> bool {
     }
 }
 
-pub fn redirect(command: Vec<&str>) -> bool {
+pub fn redirect_out(command: Vec<String>) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
     for i in 0..args.len() {

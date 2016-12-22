@@ -14,7 +14,8 @@ pub enum Operation {
     And,
     Or,
     Pipe { val: Vec<String> },
-    Redirect,
+    RedirectOut { val: Vec<String> },
+    PipeRedirectOut { val: Vec<String> },
     Command { val: Vec<String> },
 }
 

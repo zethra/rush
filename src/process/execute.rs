@@ -54,16 +54,22 @@ pub fn interpret(command: String) -> bool {
     let mut start_index = 0;
     let mut in_quotes = false;
     let mut next_piped = false;
+    let mut next_redirect_out = false;
     for (i, c) in parsed_command.chars().enumerate() {
         if c == ' ' && !in_quotes && start_index < i {
             match parsed_command[start_index..i].as_ref() {
                 "&&" => {
-                    if next_piped {
+                    if next_piped && next_redirect_out {
+                        commands.push(Operation::PipeRedirectOut { val: args });
+                    } else if next_piped {
                         commands.push(Operation::Pipe { val: args });
+                    } else if next_redirect_out {
+                        commands.push(Operation::RedirectOut { val: args });
                     } else {
                         commands.push(Operation::Command { val: args });
                     }
                     next_piped = false;
+                    next_redirect_out = false;
                     commands.push(Operation::And);
                     args = Vec::new();
                 },
@@ -80,6 +86,10 @@ pub fn interpret(command: String) -> bool {
                 "|" => {
                     next_piped = true;
                     args.push("|".to_string());
+                },
+                ">" => {
+                    next_redirect_out = true;
+                    args.push(">".to_string());
                 },
                 "&" => {
                     op_queue.push(commands);
@@ -103,8 +113,12 @@ pub fn interpret(command: String) -> bool {
         args.push(parsed_command[start_index..parsed_command.len()].to_string());
     }
     if args.len() > 0 {
-        if next_piped {
+        if next_piped && next_redirect_out {
+            commands.push(Operation::PipeRedirectOut { val: args });
+        } else if next_piped {
             commands.push(Operation::Pipe { val: args });
+        } else if next_redirect_out {
+            commands.push(Operation::RedirectOut { val: args });
         } else {
             commands.push(Operation::Command { val: args });
         }
@@ -131,13 +145,18 @@ pub fn interpret(command: String) -> bool {
                                         &Operation::Pipe { ref val } => {
                                             last_return = piped(val.clone());
                                         },
+                                        &Operation::RedirectOut { ref val } => {
+                                            last_return = redirect_out(val.clone());
+                                        },
+                                        &Operation::PipeRedirectOut { ref val } => {
+                                            last_return = piped_redirect_out(val.clone());
+                                        },
                                         _ => println!("Parse Error 1"),
                                     }
                                 } else {
                                     match arg {
                                         &Operation::And => next_op = Operation::And,
                                         &Operation::Or => next_op = Operation::Or,
-                                        &Operation::Redirect => next_op = Operation::Redirect,
                                         &Operation::Pipe { ref val } => {
                                             match next_op {
                                                 Operation::And => {
@@ -170,6 +189,40 @@ pub fn interpret(command: String) -> bool {
                                                     }
                                                 },
                                                 _ => println!("Parse Error 3"),
+                                            }
+                                        },
+                                        &Operation::RedirectOut { ref val } => {
+                                            match next_op {
+                                                Operation::And => {
+                                                    if last_return {
+                                                        last_return = redirect_out(val.clone());
+                                                    } else {
+                                                        last_return = false;
+                                                    }
+                                                },
+                                                Operation::Or => {
+                                                    if last_return == false {
+                                                        last_return = redirect_out(val.clone());
+                                                    }
+                                                },
+                                                _ => println!("Parse Error 4"),
+                                            }
+                                        },
+                                        &Operation::PipeRedirectOut { ref val } => {
+                                            match next_op {
+                                                Operation::And => {
+                                                    if last_return {
+                                                        last_return = redirect_out(val.clone());
+                                                    } else {
+                                                        last_return = false;
+                                                    }
+                                                },
+                                                Operation::Or => {
+                                                    if last_return == false {
+                                                        last_return = redirect_out(val.clone());
+                                                    }
+                                                },
+                                                _ => println!("Parse Error 5"),
                                             }
                                         }
                                     }

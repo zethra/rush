@@ -61,7 +61,7 @@ pub fn piped(input: Vec<String>) -> bool {
     final_pipe(split.remove(0), child)
 }
 
-pub fn piped_redirect(input: Vec<String>) -> bool {
+pub fn piped_redirect_out(input: Vec<String>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -73,7 +73,7 @@ pub fn piped_redirect(input: Vec<String>) -> bool {
         child = child_result.expect("Failed to unwrap an Result");
     }
 
-    final_piped_redirect(split.remove(0), child)
+    final_piped_redirect_out(split.remove(0), child)
 }
 
 ///First Pipe
@@ -186,7 +186,7 @@ fn final_pipe(command: Vec<String>, child: Child) -> bool {
     }
 }
 
-fn final_piped_redirect(command: Vec<String>, child: Child) -> bool {
+fn final_piped_redirect_out(command: Vec<String>, child: Child) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
     for i in 0..args.len() {
