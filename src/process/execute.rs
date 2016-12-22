@@ -201,7 +201,7 @@ pub fn interpret(command: String) -> bool {
         }
     }
     op_queue.push(commands);
-//    println!("{:?}", op_queue);
+    println!("{:?}", op_queue);
 
     loop {
         match op_queue.pop() {
@@ -238,13 +238,13 @@ pub fn interpret(command: String) -> bool {
                                         last_return = run_detached(val.clone());
                                     },
                                     &Operation::Pipe { ref val } => {
-                                        last_return = piped(val.clone());
+                                        last_return = piped_detached(val.clone());
                                     },
                                     &Operation::RedirectOut { ref val } => {
-                                        last_return = redirect_out(val.clone());
+                                        last_return = redirect_out_detached(val.clone());
                                     },
                                     &Operation::PipeRedirectOut { ref val } => {
-                                        last_return = piped_redirect_out(val.clone());
+                                        last_return = piped_redirect_out_detached(val.clone());
                                     },
                                     _ => println!("Parse Error 6"),
                                 }

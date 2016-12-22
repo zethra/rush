@@ -173,12 +173,71 @@ pub fn redirect_out(command: Vec<String>) -> bool {
     let path = Path::new(&file_path);
     let display = path.display();
     let mut file = match File::create(&path) {
-        Err(why) => panic!("couldn't open {}: {}", display, why.description()),
+        Err(why) => panic!("Couldn't open {}: {}", display, why.description()),
         Ok(file) => file,
     };
     if let Err(why) = file.write_all(str_out.as_bytes()) {
-        panic!("couldn't write to {}: {}", display, why.description());
+        panic!("Couldn't write to {}: {}", display, why.description());
     }
+    true
+}
+
+pub fn redirect_out_detached(command: Vec<String>) -> bool {
+    thread::spawn(move || {
+        let mut args = command;
+        let mut file_path = "".to_owned();
+        for i in 0..args.len() {
+            if args[i].contains('>') {
+                file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
+                args.truncate(i);
+                break;
+            }
+        }
+        let args = args.as_slice();
+        if args.len() <= 0 {
+            return;
+        }
+        let mut cmd = Command::new(&args[0]);
+        if args.len() > 1 {
+            cmd.args(&args[1..]);
+        }
+        let output = cmd.before_exec(move || {
+            let pid = nix::unistd::getpid();
+            nix::unistd::setpgid(pid, pid);
+            unsafe {
+                libc::signal(libc::SIGINT, libc::SIG_DFL);
+                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
+            }
+            Result::Ok(())
+        })
+            .output()
+            .ok();
+        let str_out = if output.is_some() {
+            let temp = output.expect("Output has been checked");
+            if temp.stdout.is_empty() {
+                String::from_utf8(temp.stderr)
+                    .expect("Should have translated to string easily")
+            } else {
+                String::from_utf8(temp.stdout)
+                    .expect("Should have translated to string easily")
+            }
+        } else {
+            "".to_owned()
+        };
+        let path = Path::new(&file_path);
+        let display = path.display();
+        let mut file = match File::create(&path) {
+            Err(why) => panic!("Couldn't open {}: {}", display, why.description()),
+            Ok(file) => file,
+        };
+        if let Err(why) = file.write_all(str_out.as_bytes()) {
+            panic!("Couldn't write to {}: {}", display, why.description());
+        }
+    });
     true
 }
 
