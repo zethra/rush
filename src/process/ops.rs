@@ -9,8 +9,9 @@ pub struct Opqueue {
 }
 
 //Enum to determine which operation should be done
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum Operation {
+    Detached,
     And,
     Or,
     Pipe { val: Vec<String> },
