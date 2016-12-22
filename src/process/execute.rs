@@ -3,7 +3,6 @@ extern crate libc;
 extern crate nix;
 
 use std::process::*;
-use process::stdproc::*;
 use process::ops::*;
 #[cfg(unix)]
 use process::unix::execute::*;
@@ -331,11 +330,5 @@ pub fn interpret(command: String) -> bool {
         }
     }
     true
-}
-
-
-#[cfg(test)]
-mod tests {
-    use super::*;
 }
 

@@ -1,5 +1,4 @@
 use std::process::*;
-use process::stdproc::*;
 use process::windows::pipe::*;
 use process::ops::*;
 use std::error::Error;
@@ -79,7 +78,7 @@ pub fn run(command: Vec<String>) -> bool {
     }
 }
 
-pub fn redirect(command: Vec<String>) -> bool {
+pub fn redirect_out(command: Vec<String>) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
     for i in 0..args.len() {
@@ -136,10 +135,5 @@ pub fn run_detached(command: Vec<String>) -> bool {
 pub fn redirect_out_detached(command: Vec<String>) -> bool {
     println!("Not implemented on this platform yet");
     false
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
 }
 

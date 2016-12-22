@@ -406,8 +406,3 @@ fn final_piped_redirect_out_detached(command: Vec<String>, child: Child) -> bool
     true
 }
 
-#[cfg(test)]
-mod tests {
-    use process::execute::interpret;
-}
-

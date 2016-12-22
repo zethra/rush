@@ -234,8 +234,3 @@ pub fn redirect_out_detached(command: Vec<String>) -> bool {
     });
     true
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-}

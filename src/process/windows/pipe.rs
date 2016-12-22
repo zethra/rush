@@ -11,8 +11,8 @@ use std::path::Path;
 ///commands to be executed
 fn split_pipes(input: Vec<String>) -> Vec<Vec<String>> {
     let input_slice = input.as_slice();
-    let mut pipe_commands: Vec<Vec<&str>> = Vec::new();
-    let mut temp: Vec<&str> = Vec::new();
+    let mut pipe_commands: Vec<Vec<String>> = Vec::new();
+    let mut temp: Vec<String> = Vec::new();
     for i in input_slice {
         if i.contains('|') {
             let mut splits = i.split('|');
@@ -56,7 +56,7 @@ pub fn piped(input: Vec<String>) -> bool {
     final_pipe(split.remove(0), child)
 }
 
-pub fn piped_redirect(input: Vec<String>) -> bool {
+pub fn piped_redirect_out(input: Vec<String>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -231,10 +231,5 @@ fn final_piped_redirect(command: Vec<String>, child: Child) -> bool {
         }
     }
     true
-}
-
-#[cfg(test)]
-mod tests {
-    use process::execute::interpret;
 }
 
