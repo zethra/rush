@@ -17,7 +17,7 @@ fn split_pipes(input: Vec<String>) -> Vec<Vec<String>> {
         if i.contains('|') {
             let mut splits = i.split('|');
             temp.push(splits.next()
-                .expect("Failed to split pipes"));
+                .expect("Failed to split pipes").to_string());
             if temp.last()
                 .expect("Called last on an empty vec") == &"" {
                 temp.pop();
@@ -25,13 +25,13 @@ fn split_pipes(input: Vec<String>) -> Vec<Vec<String>> {
             pipe_commands.push(temp.clone());
             temp.clear();
             temp.push(splits.next()
-                .expect("Unwrapped a non existent value"));
+                .expect("Unwrapped a non existent value").to_string());
             if temp.last()
                 .expect("Unwrapped an empty list") == &"" {
                 temp.pop();
             }
         } else {
-            temp.push(i);
+            temp.push(i.to_string());
         }
     }
     pipe_commands.push(temp);
@@ -71,12 +71,12 @@ pub fn piped_redirect_out(input: Vec<String>) -> bool {
     final_piped_redirect(split.remove(0), child)
 }
 
-pub fn piped_detached(command: Vec<String>) -> bool {
+pub fn piped_detached(_: Vec<String>) -> bool {
     println!("Not implemented on this platform yet");
     false
 }
 
-pub fn piped_redirect_out_detached(command: Vec<String>) -> bool {
+pub fn piped_redirect_out_detached(_: Vec<String>) -> bool {
     println!("Not implemented on this platform yet");
     false
 }

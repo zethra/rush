@@ -1,5 +1,6 @@
 #![feature(plugin)]
 //#![plugin(clippy)]
+#![feature(stmt_expr_attributes)]
 #![allow(unused_must_use)]
 
 #![cfg(not(test))]

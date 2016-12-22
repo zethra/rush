@@ -1,10 +1,7 @@
 use std::process::*;
-use process::windows::pipe::*;
-use process::ops::*;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
-use std::io::ErrorKind;
 use std::path::Path;
 
 ///Run
@@ -127,12 +124,12 @@ pub fn redirect_out(command: Vec<String>) -> bool {
     true
 }
 
-pub fn run_detached(command: Vec<String>) -> bool {
+pub fn run_detached(_: Vec<String>) -> bool {
     println!("Not implemented on this platform yet");
     false
 }
 
-pub fn redirect_out_detached(command: Vec<String>) -> bool {
+pub fn redirect_out_detached(_: Vec<String>) -> bool {
     println!("Not implemented on this platform yet");
     false
 }
