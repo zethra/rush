@@ -3,7 +3,6 @@ extern crate libc;
 extern crate nix;
 
 use std::process::*;
-use process::logic::*;
 use process::stdproc::*;
 use process::ops::*;
 use process::pq::*;
@@ -20,7 +19,7 @@ use process::windows::pipe::*;
 ///Given an input command, interpret parses and determines what and how
 ///to execute it and returns output or error output
 pub fn interpret(command: String) -> bool {
-    //    let mut op_queues = Opqueue::new();
+    let mut op_queue = Opqueue::new();
     //    let mut proc_queue = Procqueue::new();
 
     let mut parsed_command = "".to_string();
@@ -50,18 +49,50 @@ pub fn interpret(command: String) -> bool {
         }
     }
 
-    let mut args: Vec<&str> = Vec::new();
+    let mut commands: Vec<Operation> = Vec::new();
+    let mut args: Vec<String> = Vec::new();
     let mut start_index = 0;
     let mut in_quotes = false;
+    let mut next_piped = false;
     for (i, c) in parsed_command.chars().enumerate() {
         if c == ' ' && !in_quotes && start_index < i {
-            args.push(&parsed_command[start_index..i]);
+            match parsed_command[start_index..i].as_ref() {
+                "&&" => {
+                    if next_piped {
+                        commands.push(Operation::Pipe { val: args });
+                    } else {
+                        commands.push(Operation::Command { val: args });
+                    }
+                    next_piped = false;
+                    commands.push(Operation::And);
+                    args = Vec::new();
+                },
+                "||" => {
+                    if next_piped {
+                        commands.push(Operation::Pipe { val: args });
+                    } else {
+                        commands.push(Operation::Command { val: args });
+                    }
+                    next_piped = false;
+                    commands.push(Operation::Or);
+                    args = Vec::new();
+                },
+                "|" => {
+                    next_piped = true;
+                    args.push("|".to_string());
+                },
+                "&" => {
+                    op_queue.push(commands);
+                    commands = Vec::new();
+                },
+                _ => args.push(parsed_command[start_index..i].to_string())
+            }
             start_index = i + 1;
         } else if c == '\u{1E}' && !in_quotes && !escape {
             in_quotes = true;
             start_index = i + 1;
         } else if c == '\u{1E}' && in_quotes && !escape && start_index < i {
-            args.push(&parsed_command[start_index..i]);
+            args.push(parsed_command[start_index..i].to_string());
             start_index = i + 1;
             in_quotes = false;
         } else if c == ' ' && !in_quotes && start_index == i {
@@ -69,36 +100,90 @@ pub fn interpret(command: String) -> bool {
         }
     }
     if start_index < parsed_command.len() {
-        args.push(&parsed_command[start_index..parsed_command.len()]);
+        args.push(parsed_command[start_index..parsed_command.len()].to_string());
     }
-
-    //Split order:
-    //Split by parallel +=+
-    //Split by or ||
-    //Split by pipe |
-    //Split by and &&
-    //Split by (To be expanded)
-
-    let mut redirects = false;
-    let mut pipes = false;
-    for i in args.clone() {
-        if i.contains('>') {
-            redirects = true;
-        }
-        if i.contains('|') && !i.contains("||") {
-            pipes = true;
+    if args.len() > 0 {
+        if next_piped {
+            commands.push(Operation::Pipe { val: args });
+        } else {
+            commands.push(Operation::Command { val: args });
         }
     }
+    op_queue.push(commands);
 
-    if pipes && redirects {
-        piped_redirect(args)
-    } else if pipes {
-        piped(args)
-    } else if redirects {
-        redirect(args)
-    } else {
-        run(args)
+    println!("{:?}", op_queue);
+
+    loop {
+        match op_queue.pop() {
+            Some(args) => {
+                if op_queue.is_empty() {
+                    let mut iter = args.iter().enumerate();
+                    let mut last_return = true;
+                    let mut next_op: Operation = Operation::And;
+                    loop {
+                        match iter.next() {
+                            Some((i, arg)) => {
+                                if i == 0 {
+                                    match arg {
+                                        &Operation::Command { ref val } => {
+                                            last_return = run(val.clone());
+                                        },
+                                        &Operation::Pipe { ref val } => {
+                                            last_return = piped(val.clone());
+                                        },
+                                        _ => println!("Parse Error 1"),
+                                    }
+                                } else {
+                                    match arg {
+                                        &Operation::And => next_op = Operation::And,
+                                        &Operation::Or => next_op = Operation::Or,
+                                        &Operation::Redirect => next_op = Operation::Redirect,
+                                        &Operation::Pipe { ref val } => {
+                                            match next_op {
+                                                Operation::And => {
+                                                    if last_return {
+                                                        last_return = piped(val.clone());
+                                                    } else {
+                                                        last_return = false;
+                                                    }
+                                                },
+                                                Operation::Or => {
+                                                    if last_return == false {
+                                                        last_return = piped(val.clone());
+                                                    }
+                                                },
+                                                _ => println!("Parse Error 2"),
+                                            }
+                                        },
+                                        &Operation::Command { ref val } => {
+                                            match next_op {
+                                                Operation::And => {
+                                                    if last_return {
+                                                        last_return = run(val.clone());
+                                                    } else {
+                                                        last_return = false;
+                                                    }
+                                                },
+                                                Operation::Or => {
+                                                    if last_return == false {
+                                                        last_return = run(val.clone());
+                                                    }
+                                                },
+                                                _ => println!("Parse Error 3"),
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            None => break,
+                        }
+                    }
+                }
+            },
+            None => break,
+        }
     }
+    true
 }
 
 

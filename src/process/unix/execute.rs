@@ -4,7 +4,6 @@ extern crate libc;
 extern crate nix;
 
 use std::process::*;
-use process::logic::*;
 use process::stdproc::*;
 use process::unix::pipe::*;
 use process::ops::*;
@@ -22,7 +21,7 @@ use std::os::unix::process::CommandExt;
 
 ///Run
 ///Runs commands passed to it and returns the output
-pub fn run(command: Vec<&str>) -> bool {
+pub fn run(command: Vec<String>) -> bool {
     let args = command.as_slice();
     if args.len() <= 0 {
         return true
@@ -49,24 +48,14 @@ pub fn run(command: Vec<&str>) -> bool {
         .spawn() {
         Ok(mut child) => {
             let child_pgid = child.id() as i32;
-            match nix::unistd::tcsetpgrp(0, child_pgid) {
-                Ok(_) => {},
-                Err(_) => return false,
-            }
-
+            if nix::unistd::tcsetpgrp(0, child_pgid).is_err() { return false; }
             match child.wait() {
                 Ok(status) => {
-                    match nix::unistd::tcsetpgrp(0, nix::unistd::getpid()) {
-                        Ok(_) => {},
-                        Err(_) => return false,
-                    }
+                    if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() { return false; }
                     status.success()
                 },
                 Err(_) => {
-                    match nix::unistd::tcsetpgrp(0, nix::unistd::getpid()) {
-                        Ok(_) => {},
-                        Err(_) => return false,
-                    }
+                    if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() { return false; }
                     println!("failed to wait for child");
                     false
                 },
@@ -76,6 +65,38 @@ pub fn run(command: Vec<&str>) -> bool {
             println!("Failed to execute");
             false
         },
+    }
+}
+
+
+pub fn run_detached(command: Vec<&str>) -> bool {
+    let args = command.as_slice();
+    if args.len() <= 0 {
+        return true
+    }
+    let mut cmd = Command::new(&args[0]);
+    if args.len() > 1 {
+        cmd.args(&args[1..]);
+    }
+    if cmd.stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .before_exec(move || {
+            let pid = nix::unistd::getpid();
+            nix::unistd::setpgid(pid, pid);
+            unsafe {
+                libc::signal(libc::SIGINT, libc::SIG_DFL);
+                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
+                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
+                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
+                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
+                libc::prctl(1, libc::SIGHUP);
+            }
+            Result::Ok(())
+        }).spawn().is_err() {
+        println!("Failed to execute");
+        false
+    } else {
+        true
     }
 }
 

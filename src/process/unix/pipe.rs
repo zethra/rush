@@ -14,15 +14,15 @@ use std::os::unix::process::CommandExt;
 ///Split Pipes
 ///Given a command with pipes in it, it will split them into separate
 ///commands to be executed
-fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
+fn split_pipes(input: Vec<String>) -> Vec<Vec<String>> {
     let input_slice = input.as_slice();
-    let mut pipe_commands: Vec<Vec<&str>> = Vec::new();
-    let mut temp: Vec<&str> = Vec::new();
+    let mut pipe_commands: Vec<Vec<String>> = Vec::new();
+    let mut temp: Vec<String> = Vec::new();
     for i in input_slice {
         if i.contains('|') {
             let mut splits = i.split('|');
             temp.push(splits.next()
-                .expect("Failed to split pipes"));
+                .expect("Failed to split pipes").to_string());
             if temp.last()
                 .expect("Called last on an empty vec") == &"" {
                 temp.pop();
@@ -30,13 +30,13 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
             pipe_commands.push(temp.clone());
             temp.clear();
             temp.push(splits.next()
-                .expect("Unwrapped a non existent value"));
+                .expect("Unwrapped a non existent value").to_string());
             if temp.last()
                 .expect("Unwrapped an empty list") == &"" {
                 temp.pop();
             }
         } else {
-            temp.push(i);
+            temp.push(i.to_string());
         }
     }
     pipe_commands.push(temp);
@@ -46,7 +46,7 @@ fn split_pipes(input: Vec<&str>) -> Vec<Vec<&str>> {
 ///Piped
 ///The logic of piping is done here and calls the functions that execute
 ///the pipes and returns the result
-pub fn piped(input: Vec<&str>) -> bool {
+pub fn piped(input: Vec<String>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -61,7 +61,7 @@ pub fn piped(input: Vec<&str>) -> bool {
     final_pipe(split.remove(0), child)
 }
 
-pub fn piped_redirect(input: Vec<&str>) -> bool {
+pub fn piped_redirect(input: Vec<String>) -> bool {
     let mut split = split_pipes(input);
     let mut child_result = first_pipe(split.remove(0));
     let mut child: Child;
@@ -79,7 +79,7 @@ pub fn piped_redirect(input: Vec<&str>) -> bool {
 ///First Pipe
 ///Always executed if piping and returns the child process to be used
 ///for the next pipe.
-fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
+fn first_pipe(command: Vec<String>) -> io::Result<Child> {
     let args = command.as_slice();
     // TODO Handle args having length 0
     let mut cmd = Command::new(&args[0]);
@@ -106,7 +106,7 @@ fn first_pipe(command: Vec<&str>) -> io::Result<Child> {
 ///Execute Pipe
 ///Used if there are more than two commands with piping. Takes a Child process
 ///as input for the next pipe and returns a Child process.
-fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
+fn execute_pipe(command: Vec<String>, child: Child) -> io::Result<Child> {
     let args = command.as_slice();
     // TODO Handle args having length 0
     let mut cmd = Command::new(&args[0]);
@@ -135,7 +135,7 @@ fn execute_pipe(command: Vec<&str>, child: Child) -> io::Result<Child> {
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
-fn final_pipe(command: Vec<&str>, child: Child) -> bool {
+fn final_pipe(command: Vec<String>, child: Child) -> bool {
     let args = command.as_slice();
     if args.len() <= 0 {
         return true
@@ -186,7 +186,7 @@ fn final_pipe(command: Vec<&str>, child: Child) -> bool {
     }
 }
 
-fn final_piped_redirect(command: Vec<&str>, child: Child) -> bool {
+fn final_piped_redirect(command: Vec<String>, child: Child) -> bool {
     let mut args = command;
     let mut file_path = "".to_owned();
     for i in 0..args.len() {
