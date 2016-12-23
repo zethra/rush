@@ -199,7 +199,7 @@ pub fn interpret(command: String) -> bool {
         }
     }
     op_queue.push(commands);
-    println!("{:?}", op_queue);
+//    println!("{:?}", op_queue);
 
     loop {
         match op_queue.pop() {
