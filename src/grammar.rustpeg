@@ -1,7 +1,9 @@
 use std::str::FromStr;
 
 
-pub script = spaceNL* statementList?
+pub script -> Option<(Statement, Vec<(String, Statement)>, Option<String>)>
+    = spaceNL* sl:statementList?
+    { sl }
 
 pub statementList -> (Statement, Vec<(String, Statement)>, Option<String>)
     = head:statement
@@ -34,7 +36,12 @@ pub command -> Command
     space*
     pipe:(pipe)?
     space*
-    { Command{ name: name.to_string(), post: post.iter().map(|s| s.to_string()).collect(), pipe: pipe } }
+    redirect:redirect?
+    space*
+    { Command{ name: name.to_string(), 
+               post: post.iter().map(|s| s.to_string()).collect(), 
+               pipe: pipe,
+               redirect:redirect } }
 
 argument -> String = v:commandName {v}
 
@@ -79,20 +86,21 @@ controlOperator -> String
     = space* op:$(('&' / ';' / '\n'))
     { op.to_string() }
 
-redirect
-    = moveFd / duplicateFd / redirectFd
+redirect -> Redirect
+    = rd:(moveFd / duplicateFd / redirectFd)
+    { rd }
 
-moveFd -> (Option<i32>, String, i32)
+moveFd -> Redirect
     = fd:fd? op:$(('<&' / '>&')) dest:fd '-'
-    { (fd, op.to_string(), dest) }
+    { Redirect::MoveFd(fd, op.to_string(), dest) }
 
-duplicateFd -> (Option<i32>, String, i32)
+duplicateFd -> Redirect
     = src:fd? op:$(('<&' / '>&')) space* dest:fd
-    { (src, op.to_string(), dest) }
+    { Redirect::DuplicateFd(src, op.to_string(), dest) }
 
-redirectFd -> (Option<i32>, String, String)
+redirectFd -> Redirect
     = fd:fd? op:redirectionOperator space* filename:argument
-    { (fd, op, filename) }
+    { Redirect::Fd(fd, op, filename) }
 
 fd -> i32
     = digits:$([0-9]+) { i32::from_str(digits).unwrap() }

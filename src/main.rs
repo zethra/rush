@@ -16,7 +16,7 @@ use rush::process::execute::*;
 use rush::prompt::Prompt;
 use rush::config::{check_alias, set_env_var};
 use rush::parser;
-use rush::parser::{Statement, Command};
+use rush::parser::{Statement, Command, Redirect};
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
 use std::env::home_dir;
@@ -78,7 +78,14 @@ fn main() {
                 if command.starts_with("exit") {
                     break;
                 }
-                let parse_tree = parser::statementList(&command).unwrap();
+                let parse_tree = match parser::script(&command) {
+                    Ok(p) => p,
+                    Err(e) => { println!("{:?}", e); continue; },
+                };
+                if parse_tree.is_none() {
+                    continue;
+                }
+                let parse_tree = parse_tree.unwrap();
                 println!("{:?}", parse_tree);
                 let mut current = parse_tree.0.statement;
                 if current.pipe.is_some() {
@@ -94,6 +101,18 @@ fn main() {
                             final_pipe(&next.name, &next.post, child);
                             break;
                         }
+                    }
+                } else if current.redirect.is_some() {
+                    let redirect = current.redirect.unwrap();
+                    match redirect {
+                        Redirect::Fd(fd, op, file_name) => {
+                            match op.as_str() {
+                                ">" => redirect_out(&current.name, &current.post, &file_name),
+                                _ => {println!("That redirect operation is not yet supported"); false},
+                            };
+                        },
+                        Redirect::DuplicateFd(_, _, _) => {},
+                        Redirect::MoveFd(_, _, _) => {},
                     }
                 } else {
                     run(&current.name, &current.post);

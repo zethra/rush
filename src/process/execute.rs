@@ -17,6 +17,10 @@ pub fn run(command: &String, args: &Vec<String>) -> bool {
     execute::run(command, args)
 }
 
+pub fn redirect_out(command: &String, args: &Vec<String>, file_path: &String) -> bool {
+    execute::redirect_out(command, args, file_path)
+}
+
 pub fn first_pipe(command: &String, args: &Vec<String>) -> io::Result<Child> {
     pipe::first_pipe(command, args)
 }

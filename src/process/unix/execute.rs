@@ -116,23 +116,10 @@ pub fn run_detached(command: Vec<String>) -> bool {
     true
 }
 
-pub fn redirect_out(command: Vec<String>) -> bool {
-    let mut args = command;
-    let mut file_path = "".to_owned();
-    for i in 0..args.len() {
-        if args[i].contains('>') {
-            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
-            args.truncate(i);
-            break;
-        }
-    }
-    let args = args.as_slice();
-    if args.len() <= 0 {
-        return false
-    }
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+pub fn redirect_out(command: &String, args: &Vec<String>, file_path: &String) -> bool {
+    let mut cmd = Command::new(command);
+    if args.len() > 0 {
+        cmd.args(&args);
     }
     let output = cmd.before_exec(move || {
         let pid = nix::unistd::getpid();
