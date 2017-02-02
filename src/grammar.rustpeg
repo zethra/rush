@@ -1,0 +1,110 @@
+use std::str::FromStr;
+
+
+pub script = spaceNL* statementList?
+
+pub statementList -> (Statement, Vec<(String, Statement)>, Option<String>)
+    = head:statement
+    tail:(opStatement)*
+    space* last:controlOperator? spaceNL*
+    { (head, tail, last) }
+
+opStatement -> (String, Statement)
+    = op:$(controlOperator) spaceNL* statement:statement
+    { (op.to_string(), statement) }
+
+pub statement -> Statement
+    = statement:command 
+    chain:chainedStatement?
+    { Statement{ statement: statement, next: chain}}
+
+chainedStatement -> (String, Box<Statement>)
+     = space*
+     operator:$(('&&' / '||')) 
+     spaceNL* statement:statement
+     { println!("chain"); (operator.to_string(), Box::new(statement))}
+
+subshell = "(" space* statementList space* ")"
+
+condition = script
+
+pub command -> Command
+    = name:$(commandName)
+    post:(space+ $(argument))*
+    space*
+    pipe:(pipe)?
+    space*
+    { Command{ name: name.to_string(), post: post.iter().map(|s| s.to_string()).collect(), pipe: pipe } }
+
+argument -> String = v:commandName {v}
+
+commandName -> String
+    = !redirect
+    v:concatenation {v}
+
+concatenation -> String
+    = con:$((bareword
+    / singleQuote
+    / doubleQuote)+)
+    { con.to_string() }
+
+spaceNL = space / "\n" / comment
+
+space = [ \t]+
+
+comment = '#' [^\n]* ("\n" / EOF)
+
+barewordMeta = [$"';&<>\n()\[*?|` ]
+
+barewordChar -> String
+    = '\\' chr:$(barewordMeta) { chr.to_string() }
+    / !barewordMeta chr:$(.) { chr.to_string() }
+
+bareword -> String
+    = !'#' bc:$(barewordChar+)
+    { bc.to_string() }
+
+singleQuote = "'" [^']* "'"
+
+doubleQuote = '"' (doubleQuoteChar+)* '"'
+
+doubleQuoteChar -> String
+    = '\\' chr:$(doubleQuoteMeta) { chr.to_string() }
+    / '\\\\' { "\\".to_string() }
+    / !doubleQuoteMeta chr:$(.) { chr.to_string() }
+
+doubleQuoteMeta = '"' / '$' / '`'
+
+controlOperator -> String
+    = space* op:$(('&' / ';' / '\n'))
+    { op.to_string() }
+
+redirect
+    = moveFd / duplicateFd / redirectFd
+
+moveFd -> (Option<i32>, String, i32)
+    = fd:fd? op:$(('<&' / '>&')) dest:fd '-'
+    { (fd, op.to_string(), dest) }
+
+duplicateFd -> (Option<i32>, String, i32)
+    = src:fd? op:$(('<&' / '>&')) space* dest:fd
+    { (src, op.to_string(), dest) }
+
+redirectFd -> (Option<i32>, String, String)
+    = fd:fd? op:redirectionOperator space* filename:argument
+    { (fd, op, filename) }
+
+fd -> i32
+    = digits:$([0-9]+) { i32::from_str(digits).unwrap() }
+
+redirectionOperator -> String
+    = op:$('>|' / '>>' / '&>>' / '&>' / '<' / '>')
+    { op.to_string() }
+
+pipe -> Box<Command>
+    = "|" spaceNL* command:command
+    { Box::new(command) }
+
+EOF = !.
+
+pub test = command

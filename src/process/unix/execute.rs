@@ -16,14 +16,11 @@ use std::thread;
 
 ///Run
 ///Runs commands passed to it and returns the output
-pub fn run(command: Vec<String>) -> bool {
-    let args = command.as_slice();
-    if args.len() <= 0 {
-        return true
-    }
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+pub fn run(command: &String, args: &Vec<String>) -> bool {
+    let mut cmd = Command::new(command);
+    let args = args.as_slice();
+    if args.len() > 0 {
+        cmd.args(&args);
     }
     match cmd
         .stdout(Stdio::inherit())

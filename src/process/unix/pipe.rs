@@ -12,120 +12,15 @@ use std::path::Path;
 use std::os::unix::process::CommandExt;
 use std::thread;
 
-///Split Pipes
-///Given a command with pipes in it, it will split them into separate
-///commands to be executed
-fn split_pipes(input: Vec<String>) -> Vec<Vec<String>> {
-    let input_slice = input.as_slice();
-    let mut pipe_commands: Vec<Vec<String>> = Vec::new();
-    let mut temp: Vec<String> = Vec::new();
-    for i in input_slice {
-        if i.contains('|') {
-            let mut splits = i.split('|');
-            temp.push(splits.next()
-                .expect("Failed to split pipes").to_string());
-            if temp.last()
-                .expect("Called last on an empty vec") == &"" {
-                temp.pop();
-            }
-            pipe_commands.push(temp.clone());
-            temp.clear();
-            temp.push(splits.next()
-                .expect("Unwrapped a non existent value").to_string());
-            if temp.last()
-                .expect("Unwrapped an empty list") == &"" {
-                temp.pop();
-            }
-        } else {
-            temp.push(i.to_string());
-        }
-    }
-    pipe_commands.push(temp);
-    pipe_commands
-}
-
-///Piped
-///The logic of piping is done here and calls the functions that execute
-///the pipes and returns the result
-pub fn piped(input: Vec<String>) -> bool {
-    let mut split = split_pipes(input);
-    let mut child_result = first_pipe(split.remove(0));
-    let mut child: Child;
-
-    child = child_result.expect("Failed to unwrap an Result");
-
-    while split.len() > 1 {
-        child_result = execute_pipe(split.remove(0), child);
-        child = child_result.expect("Failed to unwrap an Result");
-    }
-
-    final_pipe(split.remove(0), child)
-}
-
-pub fn piped_detached(input: Vec<String>) -> bool {
-    thread::spawn(move || {
-        let mut split = split_pipes(input);
-        let mut child_result = first_pipe(split.remove(0));
-        let mut child: Child;
-
-        child = child_result.expect("Failed to unwrap an Result");
-        let child_pgid = child.id() as i32;
-        println!("{}", child_pgid);
-
-        while split.len() > 1 {
-            child_result = execute_pipe(split.remove(0), child);
-            child = child_result.expect("Failed to unwrap an Result");
-        }
-
-        final_pipe_detached(split.remove(0), child);
-    });
-    true
-}
-
-pub fn piped_redirect_out(input: Vec<String>) -> bool {
-    let mut split = split_pipes(input);
-    let mut child_result = first_pipe(split.remove(0));
-    let mut child: Child;
-
-    child = child_result.expect("Failed to unwrap an Result");
-
-    while split.len() > 1 {
-        child_result = execute_pipe(split.remove(0), child);
-        child = child_result.expect("Failed to unwrap an Result");
-    }
-
-    final_piped_redirect_out(split.remove(0), child)
-}
-
-pub fn piped_redirect_out_detached(input: Vec<String>) -> bool {
-    thread::spawn(move || {
-        let mut split = split_pipes(input);
-        let mut child_result = first_pipe(split.remove(0));
-        let mut child: Child;
-
-        child = child_result.expect("Failed to unwrap an Result");
-        let child_pgid = child.id() as i32;
-        println!("{}", child_pgid);
-
-        while split.len() > 1 {
-            child_result = execute_pipe(split.remove(0), child);
-            child = child_result.expect("Failed to unwrap an Result");
-        }
-
-        final_piped_redirect_out_detached(split.remove(0), child);
-    });
-    true
-}
-
 ///First Pipe
 ///Always executed if piping and returns the child process to be used
 ///for the next pipe.
-fn first_pipe(command: Vec<String>) -> io::Result<Child> {
-    let args = command.as_slice();
+pub fn first_pipe(command: &String, args: &Vec<String>) -> io::Result<Child> {
+    let args = args.as_slice();
     // TODO Handle args having length 0
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+    let mut cmd = Command::new(command);
+    if args.len() > 0 {
+        cmd.args(&args);
     }
     cmd.stdout(Stdio::piped())
         .before_exec(move || {
@@ -147,12 +42,12 @@ fn first_pipe(command: Vec<String>) -> io::Result<Child> {
 ///Execute Pipe
 ///Used if there are more than two commands with piping. Takes a Child process
 ///as input for the next pipe and returns a Child process.
-fn execute_pipe(command: Vec<String>, child: Child) -> io::Result<Child> {
-    let args = command.as_slice();
+pub fn execute_pipe(command: &String, args: &Vec<String>, child: Child) -> io::Result<Child> {
+    let args = args.as_slice();
     // TODO Handle args having length 0
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+    let mut cmd = Command::new(command);
+    if args.len() > 0 {
+        cmd.args(&args);
     }
     unsafe {
         cmd.stdout(Stdio::piped())
@@ -176,18 +71,14 @@ fn execute_pipe(command: Vec<String>, child: Child) -> io::Result<Child> {
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
-fn final_pipe(command: Vec<String>, child: Child) -> bool {
-    let args = command.as_slice();
-    if args.len() <= 0 {
-        return true
-    }
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+pub fn final_pipe(command: &String, args: &Vec<String>, child: Child) -> bool {
+    let args = args.as_slice();
+    let mut cmd = Command::new(command);
+    if args.len() > 0 {
+        cmd.args(&args);
     }
     unsafe {
-        match cmd.args(&args[1..])
-            .stdout(Stdio::inherit())
+        match cmd.stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
             .stdin(Stdio::from_raw_fd(child.stdout
                 .expect("No stdout for child process")

@@ -2,6 +2,7 @@
 name = "rush"
 version = "0.0.2"
 authors = ["Ben Goldberg <jediben97@gmail.com>"]
+build = "build.rs"
 
 [lib]
 doc = true
@@ -14,6 +15,9 @@ libc = { git = "https://github.com/rust-lang/libc.git" }
 #clippy = "0.0.94"
 rustyline = "1.0.0"
 nix = { git = "https://github.com/nix-rust/nix.git" }
+
+[build-dependencies]
+peg = "0.5"
 
 [profile.dev]
 opt-level = 0
