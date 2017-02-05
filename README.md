@@ -31,7 +31,7 @@ After taking a short break from working on rush I decieded to rewrite the parser
 - [ ] Script based config
 
 ### Usage
-- Requires nightly version of Rust
+- Requires rust nightly-2017-01-06
 - Clone this repo 
 - Build using cargo
 - Copy config/rust.toml to ~/.rush.toml
