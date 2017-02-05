@@ -6,17 +6,21 @@
 
 A fork of [Rusty](https://github.com/mgattozzi/Rusty)
 
+###News
+After taking a short break from working on rush I decieded to rewrite the parser using a peg parser.
+
+
 ### Features
 - [x] Single command execution
-- [x] Proper job control on Linux
 - [x] Persistent history
 - [x] Pipes
 - [x] File redirection
 - [x] Quote parsing
+- [x] Evironment variables
 
 ### TODO
-- [ ] Proper job control on Windows
-- [ ] Automatic config generation
+- [ ] Windows and Mac support
+- [ ] Script based config (like every other shell)
 - [ ] Logical Operators
 - [ ] Stdout and Stderr redirect
 - [ ] Tab Completion
