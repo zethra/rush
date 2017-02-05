@@ -11,7 +11,7 @@ extern crate rustyline;
 extern crate libc;
 extern crate nix;
 
-use rush::builtins::*;
+use rush::builtins;
 use rush::process::execute::*;
 use rush::prompt::Prompt;
 use rush::config::{check_alias, set_env_var};
@@ -20,8 +20,10 @@ use rush::parser::{Statement, Command, Redirect};
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
 use std::env::home_dir;
+use std::process;
 
 fn main() {
+    let mut exit_status = 0;
     #[cfg(unix)]    {
         while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
             nix::sys::signal::kill(nix::unistd::getpgrp(), nix::sys::signal::Signal::SIGTTIN);
@@ -52,6 +54,8 @@ fn main() {
     // Sets environment variables written in config file
     set_env_var();
 
+    let builtins = builtins::get_builtins();
+
     let mut home_config = home_dir().expect("No Home directory");
     home_config.push(".rush_history");
     let history =
@@ -75,9 +79,6 @@ fn main() {
                 }
                 let command = line.to_string();
                 input_buffer.add_history_entry(&line);
-                if command.starts_with("exit") {
-                    break;
-                }
                 let parse_tree = match parser::script(&command) {
                     Ok(p) => p,
                     Err(e) => { println!("{:?}", e); continue; },
@@ -88,6 +89,22 @@ fn main() {
                 let parse_tree = parse_tree.unwrap();
                 println!("{:?}", parse_tree);
                 let mut current = parse_tree.0.statement;
+                if current.name == "exit".to_string() {
+                    if current.post.len() > 0 {
+                        exit_status = match current.post[0].parse::<i32>() {
+                            Ok(e) => e,
+                            Err(_) => { println!("exit requires numberic value"); 0 }
+                        }
+                    }
+                    break;
+                }
+                if builtins.contains_key(&current.name) {
+                    match builtins.get(&current.name) {
+                        Some(f) => f(&current.post),
+                        None =>  { println!("Builtin Error"); false }
+                    };
+                    continue;
+                }
                 if current.pipe.is_some() {
                     let child_result = first_pipe(&current.name, &current.post);
                     let mut child = child_result.expect("Failed to unwrap an Result");
@@ -123,8 +140,8 @@ fn main() {
                 print!("^C");
             }
             Err(ReadlineError::Eof) => {
-                //                println!("CTRL-D");
-                //                break
+                println!("exit");
+                break;
             }
             Err(err) => {
                 println!("Error: {:?}", err);
@@ -133,4 +150,5 @@ fn main() {
         }
     }
     input_buffer.save_history(history).unwrap();
+    process::exit(exit_status);
 }
