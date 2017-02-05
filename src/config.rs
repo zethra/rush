@@ -148,7 +148,7 @@ fn env_parse(input: String) -> String {
         if env_var.is_err() {
             output_vec.push(i.to_owned());
         } else {
-            let env_var = env_var.expect("Env variabl does not exist");
+            let env_var = env_var.expect("Env variable does not exist");
             output_vec.push(env_var);
         }
     }
