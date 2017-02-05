@@ -134,13 +134,3 @@ fn main() {
     }
     input_buffer.save_history(history).unwrap();
 }
-
-// fn count_pipes(statement: &Command, counter: i32) -> i32{
-//     if statement.pipe.is_some() {
-//         counter = counter + 1;
-//         let next = statement.pipe.unwrap();
-//         count_pipes(next, counter)
-//     } else {
-//         counter
-//     }
-// }
