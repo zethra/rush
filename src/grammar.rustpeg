@@ -31,8 +31,8 @@ subshell = "(" space* statementList space* ")"
 condition = script
 
 pub command -> Command
-    = name:$(commandName)
-    post:(space+ $(argument))*
+    = name:commandName
+    post:argwspace*
     space*
     pipe:(pipe)?
     space*
@@ -45,15 +45,25 @@ pub command -> Command
 
 argument -> String = v:commandName {v}
 
+argwspace -> String
+    = space+
+    v:commandName {v}
+
 commandName -> String
     = !redirect
     v:concatenation {v}
 
 concatenation -> String
-    = con:$((bareword
+    = con:((bareword
     / singleQuote
     / doubleQuote)+)
-    { con.to_string() }
+    { 
+        let mut s = "".to_string();
+        for w in con {
+            s += &w
+        }
+        s
+    }
 
 spaceNL = space / "\n" / comment
 
@@ -71,9 +81,13 @@ bareword -> String
     = !'#' bc:$(barewordChar+)
     { bc.to_string() }
 
-singleQuote = "'" [^']* "'"
+singleQuote -> String
+    = "'" s:$([^']*) "'"
+    { s.to_string() }
 
-doubleQuote = '"' (doubleQuoteChar+)* '"'
+doubleQuote -> String
+    = '"' s:$((doubleQuoteChar+)*) '"'
+    { s.to_string() }
 
 doubleQuoteChar -> String
     = '\\' chr:$(doubleQuoteMeta) { chr.to_string() }
@@ -99,7 +113,7 @@ duplicateFd -> Redirect
     { Redirect::DuplicateFd(src, op.to_string(), dest) }
 
 redirectFd -> Redirect
-    = fd:fd? op:redirectionOperator space* filename:argument
+    = fd:fd? op:redirectionOperator filename:argument
     { Redirect::Fd(fd, op, filename) }
 
 fd -> i32
