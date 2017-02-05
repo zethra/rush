@@ -61,9 +61,9 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_change_directory_ok() {
-        let vec = "/".to_owned();
+        let vec = vec!["/".to_owned()];
         let dir = Path::new("/tmp").to_str().to_owned();
-        change_directory(vec);
+        change_directory(&vec);
         let new_dir = env::current_dir()
             .expect("Failed to get current directory");
         let new_dir = new_dir.to_str();
@@ -72,12 +72,12 @@ mod tests {
 
     #[test]
     fn test_change_directory_fail() {
-        let vec = "/".to_owned();
+        let vec = vec!["/".to_owned()];
         #[cfg(unix)]
         let dir = Path::new("/").to_str().to_owned();
         #[cfg(windows)]
         let dir = Path::new("C:\\").to_str().to_owned();
-        change_directory(vec);
+        change_directory(&vec);
         let new_dir = env::current_dir()
             .expect("Failed to get current directory");
         let new_dir = new_dir.to_str().to_owned();
