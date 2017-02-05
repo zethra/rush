@@ -1,11 +1,11 @@
 use std::str::FromStr;
-
+use std::env;
 
 pub script -> Option<(Statement, Vec<(String, Statement)>, Option<String>)>
     = spaceNL* sl:statementList?
     { sl }
 
-pub statementList -> (Statement, Vec<(String, Statement)>, Option<String>)
+statementList -> (Statement, Vec<(String, Statement)>, Option<String>)
     = head:statement
     tail:(opStatement)*
     space* last:controlOperator? spaceNL*
@@ -15,7 +15,7 @@ opStatement -> (String, Statement)
     = op:$(controlOperator) spaceNL* statement:statement
     { (op.to_string(), statement) }
 
-pub statement -> Statement
+statement -> Statement
     = statement:command 
     chain:chainedStatement?
     { Statement{ statement: statement, next: chain}}
@@ -31,17 +31,16 @@ subshell = "(" space* statementList space* ")"
 condition = script
 
 pub command -> Command
-    = name:commandName
-    post:argwspace*
-    space*
-    pipe:(pipe)?
-    space*
-    redirect:redirect?
-    space*
+    = pre:variableAssignment* space*
+    name:commandName
+    post:argwspace* space*
+    pipe:(pipe)? space*
+    redirect:redirect? space*
     { Command{ name: name.to_string(), 
-               post: post.iter().map(|s| s.to_string()).collect(), 
+               args: post.iter().map(|s| s.to_string()).collect(), 
                pipe: pipe,
-               redirect:redirect } }
+               redirect:redirect,
+               vars: pre } }
 
 argument -> String = v:commandName {v}
 
@@ -49,19 +48,34 @@ argwspace -> String
     = space+
     v:commandName {v}
 
+variableAssignment -> (String, Option<String>)
+    = name:writableVariableName '=' value:argument?
+    { (name, value) }
+
+writableVariableName -> String
+    = s:$([a-zA-Z0-9_]+)
+    { s.to_string() }
+
+readableVariableName -> String
+    = s:$(writableVariableName / '?')
+    { s.to_string() }
+
+environmentVariable -> String
+    = s:$('$' readableVariableName)
+    { s.to_string() }
+
 commandName -> String
     = !redirect
     v:concatenation {v}
 
 concatenation -> String
     = con:((bareword
+    / environmentVariable
     / singleQuote
     / doubleQuote)+)
     { 
         let mut s = "".to_string();
-        for w in con {
-            s += &w
-        }
+        for w in con { s += &w }
         s
     }
 

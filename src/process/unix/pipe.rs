@@ -15,7 +15,7 @@ use std::thread;
 ///First Pipe
 ///Always executed if piping and returns the child process to be used
 ///for the next pipe.
-pub fn first_pipe(command: &String, args: &Vec<String>) -> io::Result<Child> {
+pub fn first_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>) -> io::Result<Child> {
     let args = args.as_slice();
     // TODO Handle args having length 0
     let mut cmd = Command::new(command);
@@ -42,7 +42,7 @@ pub fn first_pipe(command: &String, args: &Vec<String>) -> io::Result<Child> {
 ///Execute Pipe
 ///Used if there are more than two commands with piping. Takes a Child process
 ///as input for the next pipe and returns a Child process.
-pub fn execute_pipe(command: &String, args: &Vec<String>, child: Child) -> io::Result<Child> {
+pub fn execute_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child) -> io::Result<Child> {
     let args = args.as_slice();
     // TODO Handle args having length 0
     let mut cmd = Command::new(command);
@@ -71,7 +71,7 @@ pub fn execute_pipe(command: &String, args: &Vec<String>, child: Child) -> io::R
 ///Final Pipe
 ///Always executed when piping processes. Takes a child process as input
 ///and returns the output of piping the commands.
-pub fn final_pipe(command: &String, args: &Vec<String>, child: Child) -> bool {
+pub fn final_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child) -> bool {
     let args = args.as_slice();
     let mut cmd = Command::new(command);
     if args.len() > 0 {

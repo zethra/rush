@@ -8,9 +8,10 @@ pub enum StackItem {
 #[derive(Debug)]
 pub struct Command {
     pub name: String,
-    pub post: Vec<String>,
+    pub args: Vec<String>,
     pub pipe: Option<Box<Command>>,
     pub redirect: Option<Redirect>,
+    pub vars: Vec<(String, Option<String>)>,
 }
 
 #[derive(Debug)]
