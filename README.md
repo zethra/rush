@@ -4,8 +4,6 @@
 
 **Warning:** Rush is still in development and is not feature complete or stable.
 
-A fork of [Rusty](https://github.com/mgattozzi/Rusty)
-
 ###News
 After taking a short break from working on rush I decieded to rewrite the parser using a peg parser.
 
@@ -19,16 +17,11 @@ After taking a short break from working on rush I decieded to rewrite the parser
 - [x] Evironment variables
 
 ### TODO
-- [ ] Windows and Mac support
 - [ ] Script based config (like every other shell)
-- [ ] Logical Operators
-- [ ] Stdout and Stderr redirect
+- [ ] Full POSIX support
+- [ ] Windows and Mac support
 - [ ] Tab Completion
 - [ ] Command colorization
-- [ ] Command based environment variables
-- [ ] Command based aliases
-- [ ] Bash script support
-- [ ] Script based config
 
 ### Usage
 - Requires rust nightly-2017-01-06
@@ -77,6 +70,10 @@ Below is an example of how it would look in your file in order to use them:
 EDITOR = "vim"
 
 ```
+
+### Inspiration
+Rush was orininally a fork of [Rusty](https://github.com/mgattozzi/Rusty) although I've changed a lot since then.
+My peg grammar was largly taken from [js-shell-parse](https://github.com/grncdr/js-shell-parse).
 
 ### Contributing
 If you'd like to contribute to the project please submit a pull request.  Help is very appreciated.
