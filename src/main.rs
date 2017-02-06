@@ -41,11 +41,6 @@ fn main() {
             Ok(_) => {}
             Err(_) => println!("Couldn't set pgid"),
         };
-        // Doesn't seem necessary
-        //        match nix::unistd::setsid() {
-        //            Ok(_) => {},
-        //            Err(_) => println!("Couldn't set sid"),
-        //        }
         match nix::unistd::tcsetpgrp(0, pid) {
             Ok(_) => {}
             Err(_) => println!("Couldn't set process to foreground"),

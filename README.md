@@ -68,7 +68,6 @@ Below is an example of how it would look in your file in order to use them:
 ```
 [env_var]
 EDITOR = "vim"
-
 ```
 
 ### Inspiration
