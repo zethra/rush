@@ -2,7 +2,6 @@ extern crate libc;
 extern crate nix;
 
 use std::process::*;
-use process::ops::*;
 use std::io;
 #[cfg(unix)]
 use process::unix::execute;

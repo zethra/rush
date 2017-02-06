@@ -4,7 +4,7 @@ mod cd;
 mod bools;
 mod export;
 
-type Builtin = fn(&Vec<String>) -> bool;
+pub type Builtin = fn(&Vec<String>) -> bool;
 
 pub fn get_builtins() -> HashMap<String, Builtin> {
     let mut builtins = HashMap::new();
