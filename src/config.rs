@@ -7,6 +7,7 @@ use std::env::{set_var, var, home_dir};
 use std::process::Command;
 use prompt::Prompt;
 
+
 ///Read in Config
 ///Inner function used to pull in a default configuration file for parsing
 ///or the customized one if it exists

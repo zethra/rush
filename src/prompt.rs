@@ -17,7 +17,7 @@ impl Prompt {
     ///in the main file for execution
     pub fn new() -> Prompt {
         let mut object = Prompt {
-            user_p: "michael@flame %".to_owned(),
+            user_p: "user@localhost %".to_owned(),
             cwd: "~/".to_owned(),
         };
         object.update_cwd();

@@ -1,0 +1,1 @@
+export PS1="%U@%H %L %R"

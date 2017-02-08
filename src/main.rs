@@ -24,6 +24,8 @@ use std::env::home_dir;
 use std::process;
 use std::env;
 use std::collections::HashMap;
+use std::io::{BufReader, BufRead};
+use std::fs::File;
 
 
 enum ReturnValue {
@@ -157,10 +159,55 @@ fn main() {
         }
     }
 
-    // Sets environment variables written in config file
-    set_env_var();
-
     let builtins = builtins::get_builtins();
+
+    let mut home_config = home_dir().expect("No Home directory");
+    home_config.push(".rushrc");
+    let f = match File::open(&home_config) {
+        Ok(f) => f,
+        Err(_) => {
+            println!("Couldn't open file .rushrc");
+            return;
+        }
+    };
+    let file = BufReader::new(&f);
+    for line in file.lines() {
+        let l = line.unwrap();
+        match interpet_line(l, &builtins) {
+            ReturnValue::True => {}
+            ReturnValue::False => {}
+            ReturnValue::Exit(v) => {
+                exit_status = v;
+                break;
+            }
+        }
+    }
+
+    let mut cmd_args = env::args().skip(1);
+    let file_name = cmd_args.next();
+    if file_name.is_some() {
+        let file_name = file_name.unwrap();
+        let f = match File::open(&file_name) {
+            Ok(f) => f,
+            Err(_) => {
+                println!("Couldn't open file {}", file_name);
+                return;
+            }
+        };
+        let file = BufReader::new(&f);
+        for line in file.lines() {
+            let l = line.unwrap();
+            match interpet_line(l, &builtins) {
+                ReturnValue::True => {}
+                ReturnValue::False => {}
+                ReturnValue::Exit(v) => {
+                    exit_status = v;
+                    break;
+                }
+            }
+        }
+        return;
+    }
 
     let mut home_config = home_dir().expect("No Home directory");
     home_config.push(".rush_history");
