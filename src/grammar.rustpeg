@@ -1,5 +1,4 @@
 use std::str::FromStr;
-use std::env;
 
 pub script -> Option<(Statement, Vec<(String, Statement)>, Option<String>)>
     = spaceNL* sl:statementList?
@@ -93,7 +92,17 @@ barewordChar -> String
 
 bareword -> String
     = !'#' bc:$(barewordChar+)
-    { bc.to_string() }
+    { 
+        let mut s = "".to_string();
+        for c in bc.chars() {
+            if c == '~' {
+                s += get_home_dir().as_str();
+            } else {
+                s.push(c);
+            }
+        }
+        s
+     }
 
 singleQuote -> String
     = "'" s:$([^']*) "'"
