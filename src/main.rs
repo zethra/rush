@@ -1,5 +1,3 @@
-#![feature(plugin)]
-//#![plugin(clippy)]
 #![feature(stmt_expr_attributes)]
 #![allow(unused_must_use)]
 
@@ -13,18 +11,13 @@ extern crate nix;
 
 use rush::builtins;
 use rush::prompt::Prompt;
-use rush::config::{check_alias, set_env_var};
-use rush::parser;
-use rush::parser::{Statement, Command, Redirect};
-use rush::builtins::Builtin;
-use rush::process::execute::{run, first_pipe, execute_pipe, final_pipe, redirect_out};
 use rush::interpeter::*;
 use rustyline::error::ReadlineError;
 use rustyline::Editor;
+use rustyline::completion::FilenameCompleter;
 use std::env::home_dir;
 use std::process;
 use std::env;
-use std::collections::HashMap;
 use std::io::{BufReader, BufRead};
 use std::fs::File;
 
@@ -109,7 +102,8 @@ fn main() {
         home_config.as_path().to_str().expect("Should have a home directory to turn into a str");
 
     // Set up buffer to read inputs and History Buffer
-    let mut input_buffer = Editor::<()>::new();
+    let mut input_buffer = Editor::<FilenameCompleter>::new();
+    input_buffer.set_completer(Some(FilenameCompleter::new()));
     if let Err(_) = input_buffer.load_history(history) {
         println!("No previous history.");
     }
