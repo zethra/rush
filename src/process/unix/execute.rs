@@ -20,7 +20,7 @@ pub fn run(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<Stri
     let mut cmd = Command::new(command);
     let args = args.as_slice();
     if args.len() > 0 {
-        cmd.args(&args);
+        cmd.args(args.iter());
     }
     for var in vars {
         match &var.1 {
@@ -125,7 +125,13 @@ pub fn run_detached(command: Vec<String>) -> bool {
 pub fn redirect_out(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, file_path: &String) -> bool {
     let mut cmd = Command::new(command);
     if args.len() > 0 {
-        cmd.args(&args);
+        cmd.args(args.iter());
+    }
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
     let output = cmd.before_exec(move || {
         let pid = nix::unistd::getpid();

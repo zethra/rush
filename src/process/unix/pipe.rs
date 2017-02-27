@@ -1,4 +1,5 @@
 #![allow(unused_must_use)]
+#![allow(dead_code)]
 extern crate libc;
 extern crate nix;
 
@@ -10,7 +11,6 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
-use std::thread;
 
 ///First Pipe
 ///Always executed if piping and returns the child process to be used
@@ -20,7 +20,13 @@ pub fn first_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Opti
     // TODO Handle args having length 0
     let mut cmd = Command::new(command);
     if args.len() > 0 {
-        cmd.args(&args);
+        cmd.args(args.iter());
+    }
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
     cmd.stdout(Stdio::piped())
         .before_exec(move || {
@@ -47,7 +53,13 @@ pub fn execute_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Op
     // TODO Handle args having length 0
     let mut cmd = Command::new(command);
     if args.len() > 0 {
-        cmd.args(&args);
+        cmd.args(args.iter());
+    }
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
     unsafe {
         cmd.stdout(Stdio::piped())
@@ -75,7 +87,13 @@ pub fn final_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Opti
     let args = args.as_slice();
     let mut cmd = Command::new(command);
     if args.len() > 0 {
-        cmd.args(&args);
+        cmd.args(args.iter());
+    }
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
     unsafe {
         match cmd.stdout(Stdio::inherit())

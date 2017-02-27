@@ -1,16 +1,10 @@
-use builtins;
-use prompt::Prompt;
-use config::{check_alias, set_env_var};
+#![allow(unused_variables)]
 use parser;
-use parser::{Statement, Command, Redirect};
+use parser::{Command, Redirect};
 use builtins::Builtin;
 use process::execute::{run, first_pipe, execute_pipe, final_pipe, redirect_out};
-use std::env::home_dir;
-use std::process;
 use std::env;
 use std::collections::HashMap;
-use std::io::{BufReader, BufRead};
-use std::fs::File;
 
 pub enum ReturnValue {
     True,
