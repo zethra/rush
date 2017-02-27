@@ -68,10 +68,11 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> Retur
         };
         return ReturnValue::True;
     }
-    exec_command(&current)
+    exec_command(current)
 }
 
-fn exec_command(current: &Command) -> ReturnValue {
+fn exec_command(current: Command) -> ReturnValue {
+    let mut current = current;
     if current.pipe.is_some() {
         let child_result = first_pipe(&current.name, &current.args, &current.vars);
         let mut child = child_result.expect("Failed to unwrap an Result");
