@@ -1,9 +1,5 @@
-#![feature(stmt_expr_attributes)]
 #![allow(unused_must_use)]
 
-#![cfg(not(test))]
-
-#[macro_use]
 extern crate rush;
 extern crate rustyline;
 extern crate libc;
@@ -13,7 +9,7 @@ use rush::builtins;
 use rush::prompt::Prompt;
 use rush::interpeter::*;
 use rustyline::error::ReadlineError;
-use rustyline::Editor;
+use rustyline::{Config, CompletionType, Editor};
 use rustyline::completion::FilenameCompleter;
 use std::env::home_dir;
 use std::process;
@@ -93,7 +89,7 @@ fn main() {
                 }
             }
         }
-        return;
+        process::exit(exit_status);
     }
 
     let mut home_config = home_dir().expect("No Home directory");
@@ -102,7 +98,8 @@ fn main() {
         home_config.as_path().to_str().expect("Should have a home directory to turn into a str");
 
     // Set up buffer to read inputs and History Buffer
-    let mut input_buffer = Editor::<FilenameCompleter>::new();
+    let input_config = Config::builder().completion_type(CompletionType::List).build();
+    let mut input_buffer = Editor::with_config(input_config);
     input_buffer.set_completer(Some(FilenameCompleter::new()));
     if let Err(_) = input_buffer.load_history(history) {
         println!("No previous history.");
@@ -115,7 +112,7 @@ fn main() {
         let line = input_buffer.readline(&prompt.get_user_p());
         match line {
             Ok(line) => {
-                input_buffer.add_history_entry(&line);
+                input_buffer.add_history_entry(line.as_ref());
                 match interpet_line(line, &builtins) {
                     ReturnValue::True => {}
                     ReturnValue::False => {}
