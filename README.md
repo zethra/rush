@@ -24,7 +24,7 @@ After taking a short break from working on rush I decieded to rewrite the parser
 - [ ] Command colorization
 
 ### Usage
-- Requires rust nightly-2017-01-06
+- Built on rust nightly-2017-02-21
 - Clone this repo 
 - Build using cargo
 - Copy config/rust.toml to ~/.rush.toml
