@@ -136,7 +136,7 @@ duplicateFd -> Redirect
     { Redirect::DuplicateFd(src, op.to_string(), dest) }
 
 redirectFd -> Redirect
-    = fd:fd? op:redirectionOperator filename:argument
+    = fd:fd? op:redirectionOperator space* filename:argument
     { Redirect::Fd(fd, op, filename) }
 
 fd -> i32
