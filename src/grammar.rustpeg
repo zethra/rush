@@ -23,7 +23,7 @@ chainedStatement -> (String, Box<Statement>)
      = space*
      operator:$(('&&' / '||')) 
      spaceNL* statement:statement
-     { println!("chain"); (operator.to_string(), Box::new(statement))}
+     { (operator.to_string(), Box::new(statement)) }
 
 subshell = "(" space* statementList space* ")"
 

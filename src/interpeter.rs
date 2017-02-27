@@ -43,7 +43,7 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> Retur
         return ReturnValue::True;
     }
     let parse_tree = parse_tree.unwrap();
-    // println!("{:?}", parse_tree);
+    //println!("{:?}", parse_tree);
     let mut current = parse_tree.0.statement;
     replace_vars(&mut current);
     if current.name == "exit".to_string() {
@@ -68,6 +68,10 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> Retur
         };
         return ReturnValue::True;
     }
+    exec_command(&current)
+}
+
+fn exec_command(current: &Command) -> ReturnValue {
     if current.pipe.is_some() {
         let child_result = first_pipe(&current.name, &current.args, &current.vars);
         let mut child = child_result.expect("Failed to unwrap an Result");
