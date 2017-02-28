@@ -23,11 +23,32 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> bool 
     if parse_tree.is_none() {
         return true;
     }
-    let parse_tree = parse_tree.unwrap();
-    println!("{:?}", parse_tree);
-    let mut current = parse_tree.0.statement;
-    replace_vars(&mut current);
-    exec_command(current, builtins)
+    let (statment, mut list, end_op) = parse_tree.unwrap();
+    println!("{:?} {:?} {:?}", statment, list, end_op);
+    let mut current = statment.command;
+    replace_vars(&mut current);    
+    if list.len() == 0 {
+        exec_command(current, builtins)
+    } else {
+        exec_command(current, builtins);
+        let mut ret_val = true;
+        while let Some((op, statment)) = list.pop() {
+            match op.as_ref() {
+                ";" => {
+                    let mut current = statment.command;
+                    replace_vars(&mut current);
+                    ret_val = exec_command(current, builtins);
+                }
+                "&" => {
+                    println!("Not implemented yet");
+                }
+                _ => {
+                    println!("Invaild end line operator");
+                }
+            }
+        }
+        ret_val
+    }
 }
 
 fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {

@@ -13,7 +13,7 @@ pub fn get_home_dir() -> String {
 #[derive(Debug)]
 pub enum StackItem {
     Statement {
-        statement: Command,
+        command: Command,
         next: Option<(String, Box<Statement>)>,
     },
 }
@@ -29,7 +29,7 @@ pub struct Command {
 
 #[derive(Debug)]
 pub struct Statement {
-    pub statement: Command,
+    pub command: Command,
     pub next: Option<(String, Box<Statement>)>,
 }
 

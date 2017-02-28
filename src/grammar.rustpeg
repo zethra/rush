@@ -15,9 +15,9 @@ opStatement -> (String, Statement)
     { (op.to_string(), statement) }
 
 statement -> Statement
-    = statement:command 
+    = command:command 
     chain:chainedStatement?
-    { Statement{ statement: statement, next: chain}}
+    { Statement{ command: command, next: chain}}
 
 chainedStatement -> (String, Box<Statement>)
      = space*
