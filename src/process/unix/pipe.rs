@@ -121,15 +121,15 @@ pub fn final_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Opti
                         nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
                         status.success()
                     },
-                    Err(_) => {
+                    Err(e) => {
                         nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
-                        println!("failed to wait for child");
+                        println!("{}", e);
                         false
                     },
                 }
             },
-            Err(_) => {
-                println!("Failed to execute");
+            Err(e) => {
+                println!("{}", e);
                 false
             },
         }
@@ -178,13 +178,13 @@ fn final_pipe_detached(command: Vec<String>, child: Child) -> bool {
                             }
                         }
                     },
-                    Err(_) => {
-                        println!("+ {} Failed to wait for child", child_pgid);
+                    Err(e) => {
+                        println!("+ {} {}", child_pgid, e);
                     },
                 }
             },
-            Err(_) => {
-                println!("Failed to execute");
+            Err(e) => {
+                println!("{}", e);
             },
         }
     }

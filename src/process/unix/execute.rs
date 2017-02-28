@@ -53,15 +53,15 @@ pub fn run(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<Stri
                     if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() { return false; }
                     status.success()
                 },
-                Err(_) => {
+                Err(e) => {
                     if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() { return false; }
-                    println!("Failed to wait for child");
+                    println!("{}", e);
                     false
                 },
             }
         },
-        Err(_) => {
-            println!("Failed to execute");
+        Err(e) => {
+            println!("{}", e);
             false
         },
     }
@@ -109,13 +109,13 @@ pub fn run_detached(command: Vec<String>) -> bool {
                             }
                         }
                     },
-                    Err(_) => {
-                        println!("+ {} Failed to wait for child", child_pgid);
+                    Err(e) => {
+                        println!("+ {} {}", child_pgid, e);
                     },
                 }
             },
-            Err(_) => {
-                println!("Failed to execute");
+            Err(e) => {
+                println!("{}", e);
             },
         }
     });
