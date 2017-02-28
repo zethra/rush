@@ -19,7 +19,6 @@ use std::fs::File;
 
 
 fn main() {
-    let mut exit_status = 0;
     #[cfg(unix)]    {
         while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
             nix::sys::signal::kill(nix::unistd::getpgrp(), nix::sys::signal::Signal::SIGTTIN);
@@ -56,14 +55,7 @@ fn main() {
     let file = BufReader::new(&f);
     for line in file.lines() {
         let l = line.unwrap();
-        match interpet_line(l, &builtins) {
-            ReturnValue::True => {}
-            ReturnValue::False => {}
-            ReturnValue::Exit(v) => {
-                exit_status = v;
-                break;
-            }
-        }
+        interpet_line(l, &builtins);
     }
 
     let mut cmd_args = env::args().skip(1);
@@ -80,16 +72,8 @@ fn main() {
         let file = BufReader::new(&f);
         for line in file.lines() {
             let l = line.unwrap();
-            match interpet_line(l, &builtins) {
-                ReturnValue::True => {}
-                ReturnValue::False => {}
-                ReturnValue::Exit(v) => {
-                    exit_status = v;
-                    break;
-                }
-            }
+            interpet_line(l, &builtins);
         }
-        process::exit(exit_status);
     }
 
     let mut home_config = home_dir().expect("No Home directory");
@@ -113,14 +97,7 @@ fn main() {
         match line {
             Ok(line) => {
                 input_buffer.add_history_entry(line.as_ref());
-                match interpet_line(line, &builtins) {
-                    ReturnValue::True => {}
-                    ReturnValue::False => {}
-                    ReturnValue::Exit(v) => {
-                        exit_status = v;
-                        break;
-                    }
-                }
+                interpet_line(line, &builtins);
             }
             Err(ReadlineError::Interrupted) => {
                 print!("^C");
@@ -132,11 +109,9 @@ fn main() {
             }
             Err(err) => {
                 println!("Error: {:?}", err);
-                exit_status = 1;
-                break;
+                process::exit(1);
             }
         }
     }
     input_buffer.save_history(history).unwrap();
-    process::exit(exit_status);
 }

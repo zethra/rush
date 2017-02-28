@@ -7,29 +7,9 @@ use process::execute::{run, first_pipe, execute_pipe, final_pipe, redirect_out,
 use std::env;
 use std::collections::HashMap;
 
-pub enum ReturnValue {
-    True,
-    False,
-    Exit(i32),
-}
-
-trait ToReturnVal {
-    fn to_return_val(self) -> ReturnValue;
-}
-
-impl ToReturnVal for bool {
-    fn to_return_val(self) -> ReturnValue {
-        if self {
-            ReturnValue::True
-        } else {
-            ReturnValue::False
-        }
-    }
-}
-
-pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> ReturnValue {
+pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> bool {
     if line.is_empty() {
-        return ReturnValue::True;
+        return true;
     }
     let command = line.to_string();
 
@@ -37,43 +17,31 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> Retur
         Ok(p) => p,
         Err(e) => {
             println!("{:?}", e);
-            return ReturnValue::False;
+            return false;
         }
     };
     if parse_tree.is_none() {
-        return ReturnValue::True;
+        return true;
     }
     let parse_tree = parse_tree.unwrap();
-    // println!("{:?}", parse_tree);
+    println!("{:?}", parse_tree);
     let mut current = parse_tree.0.statement;
     replace_vars(&mut current);
-    if current.name == "exit".to_string() {
-        if current.args.len() > 0 {
-            match current.args[0].parse::<i32>() {
-                Ok(e) => return ReturnValue::Exit(e),
-                Err(_) => {
-                    println!("exit requires numberic value");
-                    return ReturnValue::Exit(0);
-                }
-            }
-        }
-        return ReturnValue::Exit(0);
-    }
+    exec_command(current, builtins)
+}
+
+fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {
+    let mut current = current;
     if builtins.contains_key(&current.name) {
         match builtins.get(&current.name) {
             Some(f) => f(&current.args),
             None => {
                 println!("Builtin Error");
-                return ReturnValue::False;
+                return false;
             }
         };
-        return ReturnValue::True;
+        return true;
     }
-    exec_command(current)
-}
-
-fn exec_command(current: Command) -> ReturnValue {
-    let mut current = current;
     if current.pipe.is_some() {
         let child_result = first_pipe(&current.name, &current.args, &current.vars);
         let mut child = child_result.expect("Failed to unwrap an Result");
@@ -86,8 +54,7 @@ fn exec_command(current: Command) -> ReturnValue {
                 current = *next;
             } else {
                 if next.redirect.is_some() {
-                    let redirect = next.redirect.unwrap();
-                    match redirect {
+                    match next.redirect.unwrap() {
                         Redirect::Fd(fd, op, file_name) => {
                             match op.as_str() {
                                 ">" => {
@@ -95,54 +62,51 @@ fn exec_command(current: Command) -> ReturnValue {
                                                                     &current.args,
                                                                     &current.vars,
                                                                     child,
-                                                                    &file_name)
-                                        .to_return_val();
+                                                                    &file_name);
                                 }
                                 _ => {
                                     println!("That redirect operation is not yet supported");
-                                    return ReturnValue::False;
+                                    return false;
                                 }
                             };
                         }
                         Redirect::DuplicateFd(_, _, _) => {
-                            return ReturnValue::False;
+                            return false;
                         }
                         Redirect::MoveFd(_, _, _) => {
-                            return ReturnValue::False;
+                            return false;
                         }
                     }
                 } else {
-                    return final_pipe(&next.name, &next.args, &current.vars, child).to_return_val();
+                    return final_pipe(&next.name, &next.args, &current.vars, child);
                 }
             }
         }
     } else if current.redirect.is_some() {
-        let redirect = current.redirect.unwrap();
-        match redirect {
+        match current.redirect.unwrap() {
             Redirect::Fd(fd, op, file_name) => {
                 match op.as_str() {
                     ">" => {
                         return redirect_out(&current.name,
                                             &current.args,
                                             &current.vars,
-                                            &file_name)
-                            .to_return_val();
+                                            &file_name);
                     }
                     _ => {
                         println!("That redirect operation is not yet supported");
-                        return ReturnValue::False;
+                        return false;
                     }
                 };
             }
             Redirect::DuplicateFd(_, _, _) => {
-                return ReturnValue::False;
+                return false;
             }
             Redirect::MoveFd(_, _, _) => {
-                return ReturnValue::False;
+                return false;
             }
         }
     } else {
-        return run(&current.name, &current.args, &current.vars).to_return_val();
+        return run(&current.name, &current.args, &current.vars);
     }
 }
 

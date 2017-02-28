@@ -15,17 +15,7 @@ pub fn source(args: &Vec<String>) -> bool {
     let builtins = get_builtins();
     for line in file.lines() {
         let l = line.unwrap();
-        match interpet_line(l, &builtins) {
-            ReturnValue::True => {}
-            ReturnValue::False => {}
-            ReturnValue::Exit(v) => {
-                if v == 0 {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+        interpet_line(l, &builtins);
     };
     true
 }
