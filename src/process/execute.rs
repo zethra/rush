@@ -31,3 +31,7 @@ pub fn execute_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Op
 pub fn final_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child) -> bool {
     pipe::final_pipe(command, args, vars, child)
 }
+
+pub fn final_piped_redirect_out(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child, file_path: &String) -> bool {
+    pipe::final_piped_redirect_out(command, args, vars, child, file_path)
+}

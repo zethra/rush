@@ -2,7 +2,8 @@
 use parser;
 use parser::{Command, Redirect};
 use builtins::Builtin;
-use process::execute::{run, first_pipe, execute_pipe, final_pipe, redirect_out};
+use process::execute::{run, first_pipe, execute_pipe, final_pipe, redirect_out,
+                       final_piped_redirect_out};
 use std::env;
 use std::collections::HashMap;
 
@@ -43,7 +44,7 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> Retur
         return ReturnValue::True;
     }
     let parse_tree = parse_tree.unwrap();
-    //println!("{:?}", parse_tree);
+    // println!("{:?}", parse_tree);
     let mut current = parse_tree.0.statement;
     replace_vars(&mut current);
     if current.name == "exit".to_string() {
@@ -84,7 +85,35 @@ fn exec_command(current: Command) -> ReturnValue {
                 child = child_result.expect("Failed to unwrap an Result");
                 current = *next;
             } else {
-                return final_pipe(&next.name, &next.args, &current.vars, child).to_return_val();
+                if next.redirect.is_some() {
+                    let redirect = next.redirect.unwrap();
+                    match redirect {
+                        Redirect::Fd(fd, op, file_name) => {
+                            match op.as_str() {
+                                ">" => {
+                                    return final_piped_redirect_out(&current.name,
+                                                                    &current.args,
+                                                                    &current.vars,
+                                                                    child,
+                                                                    &file_name)
+                                        .to_return_val();
+                                }
+                                _ => {
+                                    println!("That redirect operation is not yet supported");
+                                    return ReturnValue::False;
+                                }
+                            };
+                        }
+                        Redirect::DuplicateFd(_, _, _) => {
+                            return ReturnValue::False;
+                        }
+                        Redirect::MoveFd(_, _, _) => {
+                            return ReturnValue::False;
+                        }
+                    }
+                } else {
+                    return final_pipe(&next.name, &next.args, &current.vars, child).to_return_val();
+                }
             }
         }
     } else if current.redirect.is_some() {

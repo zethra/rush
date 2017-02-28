@@ -191,27 +191,20 @@ fn final_pipe_detached(command: Vec<String>, child: Child) -> bool {
     true
 }
 
-fn final_piped_redirect_out(command: Vec<String>, child: Child) -> bool {
-    let mut args = command;
-    let mut file_path = "".to_owned();
-    for i in 0..args.len() {
-        if args[i].contains('>') {
-            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
-            args.truncate(i);
-            break;
-        }
-    }
+pub fn final_piped_redirect_out(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child, file_path: &String) -> bool {
     let args = args.as_slice();
-    if args.len() <= 0 {
-        return true
+    let mut cmd = Command::new(command);
+    if args.len() > 0 {
+        cmd.args(args.iter());
     }
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
     let output = unsafe {
-        cmd.args(&args[1..])
-            .stdout(Stdio::piped())
+        cmd.stdout(Stdio::piped())
             .stdin(Stdio::from_raw_fd(child.stdout
                 .expect("No stdout for child process")
                 .as_raw_fd()))
