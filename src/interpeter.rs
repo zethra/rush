@@ -2,8 +2,7 @@
 use parser;
 use parser::{Command, Redirect};
 use builtins::Builtin;
-use process::execute::{run, first_pipe, execute_pipe, final_pipe, redirect_out,
-                       final_piped_redirect_out};
+use process::execute::*;
 use std::env;
 use std::collections::HashMap;
 
@@ -24,34 +23,25 @@ pub fn interpet_line(line: String, builtins: &HashMap<String, Builtin>) -> bool 
         return true;
     }
     let (statment, mut list, end_op) = parse_tree.unwrap();
-    println!("{:?} {:?} {:?}", statment, list, end_op);
+    // println!("{:?} | {:?} | {:?}", statment, list, end_op);
     let mut current = statment.command;
-    replace_vars(&mut current);    
+    replace_vars(&mut current);
     if list.len() == 0 {
-        exec_command(current, builtins)
+        exec_command(current, end_op, &builtins)
     } else {
-        exec_command(current, builtins);
-        let mut ret_val = true;
         while let Some((op, statment)) = list.pop() {
-            match op.as_ref() {
-                ";" => {
-                    let mut current = statment.command;
-                    replace_vars(&mut current);
-                    ret_val = exec_command(current, builtins);
-                }
-                "&" => {
-                    println!("Not implemented yet");
-                }
-                _ => {
-                    println!("Invaild end line operator");
-                }
-            }
+            replace_vars(&mut current);
+            exec_command(current, Some(op), &builtins);
+            current = statment.command;
         }
-        ret_val
+        exec_command(current, end_op, &builtins)
     }
 }
 
-fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {
+fn exec_command(current: Command,
+                end_op: Option<String>,
+                builtins: &HashMap<String, Builtin>)
+                -> bool {
     let mut current = current;
     if builtins.contains_key(&current.name) {
         match builtins.get(&current.name) {
@@ -74,16 +64,25 @@ fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {
                 child = child_result.expect("Failed to unwrap an Result");
                 current = *next;
             } else {
-                if next.redirect.is_some() {
-                    match next.redirect.unwrap() {
+                current = *next;
+                if current.redirect.is_some() {
+                    match current.redirect.unwrap() {
                         Redirect::Fd(fd, op, file_name) => {
                             match op.as_str() {
                                 ">" => {
-                                    return final_piped_redirect_out(&current.name,
-                                                                    &current.args,
-                                                                    &current.vars,
-                                                                    child,
-                                                                    &file_name);
+                                    if end_op.is_some() && end_op.unwrap() == "&" {
+                                        return final_piped_redirect_out_detached(&current.name,
+                                                                                 &current.args,
+                                                                                 &current.vars,
+                                                                                 &file_name,
+                                                                                 child);
+                                    } else {
+                                        return final_piped_redirect_out(&current.name,
+                                                                        &current.args,
+                                                                        &current.vars,
+                                                                        &file_name,
+                                                                        child);
+                                    }
                                 }
                                 _ => {
                                     println!("That redirect operation is not yet supported");
@@ -99,7 +98,11 @@ fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {
                         }
                     }
                 } else {
-                    return final_pipe(&next.name, &next.args, &current.vars, child);
+                    if end_op.is_some() && end_op.unwrap() == "&" {
+                        return final_pipe_detached(&current.name, &current.args, &current.vars, child);
+                    } else {
+                        return final_pipe(&current.name, &current.args, &current.vars, child);
+                    }
                 }
             }
         }
@@ -108,10 +111,17 @@ fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {
             Redirect::Fd(fd, op, file_name) => {
                 match op.as_str() {
                     ">" => {
-                        return redirect_out(&current.name,
-                                            &current.args,
-                                            &current.vars,
-                                            &file_name);
+                        if end_op.is_some() && end_op.unwrap() == "&" {
+                            return redirect_out_detached(&current.name,
+                                                         &current.args,
+                                                         &current.vars,
+                                                         &file_name);
+                        } else {
+                            return redirect_out(&current.name,
+                                                &current.args,
+                                                &current.vars,
+                                                &file_name);
+                        }
                     }
                     _ => {
                         println!("That redirect operation is not yet supported");
@@ -127,7 +137,11 @@ fn exec_command(current: Command, builtins: &HashMap<String, Builtin>) -> bool {
             }
         }
     } else {
-        return run(&current.name, &current.args, &current.vars);
+        if end_op.is_some() && end_op.unwrap() == "&" {
+            return run_detached(&current.name, &current.args, &current.vars);
+        } else {
+            return run(&current.name, &current.args, &current.vars);
+        }
     }
 }
 

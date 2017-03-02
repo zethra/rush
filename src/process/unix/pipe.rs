@@ -11,11 +11,15 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
+use std::thread;
 
-///First Pipe
-///Always executed if piping and returns the child process to be used
-///for the next pipe.
-pub fn first_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>) -> io::Result<Child> {
+/// First Pipe
+/// Always executed if piping and returns the child process to be used
+/// for the next pipe.
+pub fn first_pipe(command: &String,
+                  args: &Vec<String>,
+                  vars: &Vec<(String, Option<String>)>)
+                  -> io::Result<Child> {
     let args = args.as_slice();
     // TODO Handle args having length 0
     let mut cmd = Command::new(command);
@@ -45,10 +49,14 @@ pub fn first_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Opti
         .spawn()
 }
 
-///Execute Pipe
-///Used if there are more than two commands with piping. Takes a Child process
-///as input for the next pipe and returns a Child process.
-pub fn execute_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child) -> io::Result<Child> {
+/// Execute Pipe
+/// Used if there are more than two commands with piping. Takes a Child process
+/// as input for the next pipe and returns a Child process.
+pub fn execute_pipe(command: &String,
+                    args: &Vec<String>,
+                    vars: &Vec<(String, Option<String>)>,
+                    child: Child)
+                    -> io::Result<Child> {
     let args = args.as_slice();
     // TODO Handle args having length 0
     let mut cmd = Command::new(command);
@@ -64,7 +72,8 @@ pub fn execute_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Op
     unsafe {
         cmd.stdout(Stdio::piped())
             .stdin(Stdio::from_raw_fd(child.stdout
-                .expect("No stdout").as_raw_fd()))
+                .expect("No stdout")
+                .as_raw_fd()))
             .before_exec(move || {
                 let pid = nix::unistd::getpid();
                 nix::unistd::setpgid(pid, pid);
@@ -80,10 +89,14 @@ pub fn execute_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Op
     }
 }
 
-///Final Pipe
-///Always executed when piping processes. Takes a child process as input
-///and returns the output of piping the commands.
-pub fn final_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child) -> bool {
+/// Final Pipe
+/// Always executed when piping processes. Takes a child process as input
+/// and returns the whether the command exited successfully.
+pub fn final_pipe(command: &String,
+                  args: &Vec<String>,
+                  vars: &Vec<(String, Option<String>)>,
+                  child: Child)
+                  -> bool {
     let args = args.as_slice();
     let mut cmd = Command::new(command);
     if args.len() > 0 {
@@ -120,34 +133,42 @@ pub fn final_pipe(command: &String, args: &Vec<String>, vars: &Vec<(String, Opti
                     Ok(status) => {
                         nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
                         status.success()
-                    },
+                    }
                     Err(e) => {
                         nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
                         println!("{}", e);
                         false
-                    },
+                    }
                 }
-            },
+            }
             Err(e) => {
                 println!("{}", e);
                 false
-            },
+            }
         }
     }
 }
 
-fn final_pipe_detached(command: Vec<String>, child: Child) -> bool {
-    let args = command.as_slice();
-    if args.len() <= 0 {
-        return true
+// Final Pipe Deteched
+// Like Final Pipe but runs the command deteched from the console.
+pub fn final_pipe_detached(command: &String,
+                           args: &Vec<String>,
+                           vars: &Vec<(String, Option<String>)>,
+                           child: Child)
+                           -> bool {
+    let mut cmd = Command::new(command);
+    let args = args.as_slice();
+    if args.len() > 0 {
+        cmd.args(args.iter());
     }
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
     unsafe {
-        match cmd.args(&args[1..])
-            .stdout(Stdio::inherit())
+        match cmd.stdout(Stdio::inherit())
             .stderr(Stdio::inherit())
             .stdin(Stdio::from_raw_fd(child.stdout
                 .expect("No stdout for child process")
@@ -167,32 +188,49 @@ fn final_pipe_detached(command: Vec<String>, child: Child) -> bool {
             Ok(mut child) => {
                 let child_pgid = child.id() as i32;
                 println!("{}", child_pgid);
-                match child.wait() {
-                    Ok(status) => {
-                        if status.success() {
-                            println!("+ {} done", child_pgid);
-                        } else {
-                            match status.code() {
-                                Some(c) => println!("+ {} exit {}", child_pgid, c),
-                                None => println!("+ {} error", child_pgid),
+                thread::spawn(move || {
+                    match child.wait() {
+                        Ok(status) => {
+                            if status.success() {
+                                println!("+ {} done", child_pgid);
+                            } else {
+                                match status.code() {
+                                    Some(c) => println!("+ {} exit {}", child_pgid, c),
+                                    None => println!("+ {} error", child_pgid),
+                                }
                             }
+                            status.success()
                         }
-                    },
-                    Err(e) => {
-                        println!("+ {} {}", child_pgid, e);
-                    },
-                }
-            },
+                        Err(e) => {
+                            println!("+ {} {}", child_pgid, e);
+                            false
+                        }
+                    }
+                });
+                true
+            }
             Err(e) => {
                 println!("{}", e);
-            },
+                false
+            }
         }
     }
-    true
 }
 
-pub fn final_piped_redirect_out(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<String>)>, child: Child, file_path: &String) -> bool {
-    let args = args.as_slice();
+// Final Pipe Redirect Out
+// Like Final Pipe but redirects commands stdout to a file.
+pub fn final_piped_redirect_out(command: &String,
+                                args: &Vec<String>,
+                                vars: &Vec<(String, Option<String>)>,
+                                file_path: &String,
+                                child: Child)
+                                -> bool {
+    let path = Path::new(&file_path);
+    let display = path.display();
+    let mut file = match File::create(&path) {
+        Err(why) => panic!("Couldn't open {}: {}", display, why.description()),
+        Ok(file) => file,
+    };
     let mut cmd = Command::new(command);
     if args.len() > 0 {
         cmd.args(args.iter());
@@ -203,8 +241,9 @@ pub fn final_piped_redirect_out(command: &String, args: &Vec<String>, vars: &Vec
             &None => cmd.env(&var.0, ""),
         };
     }
-    let output = unsafe {
-        cmd.stdout(Stdio::piped())
+    unsafe {
+        match cmd.stdout(Stdio::piped())
+            .stderr(Stdio::piped())
             .stdin(Stdio::from_raw_fd(child.stdout
                 .expect("No stdout for child process")
                 .as_raw_fd()))
@@ -219,54 +258,72 @@ pub fn final_piped_redirect_out(command: &String, args: &Vec<String>, vars: &Vec
                 libc::prctl(1, libc::SIGHUP);
                 Result::Ok(())
             })
-            .output()
-            .ok()
-    };
-    let str_out = if output.is_some() {
-        let temp = output.expect("Output has been checked");
-        if temp.stdout.is_empty() {
-            String::from_utf8(temp.stderr)
-                .expect("Should have translated to string easily")
-        } else {
-            String::from_utf8(temp.stdout)
-                .expect("Should have translated to string easily")
+            .spawn() {
+            Ok(child) => {
+                let child_pgid = child.id() as i32;
+                if nix::unistd::tcsetpgrp(0, child_pgid).is_err() {
+                    return false;
+                }
+                match child.wait_with_output() {
+                    Ok(output) => {
+                        if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() {
+                            return false;
+                        }
+                        if let Err(e) = file.write_all(output.stdout.as_slice()) {
+                            println!("Couldn't write to {}: {}", display, e.description());
+                            return false;
+                        }
+                        return output.status.success();
+                    }
+                    Err(e) => {
+                        if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() {
+                            return false;
+                        }
+                        println!("{}", e);
+                        false
+                    }
+                }
+            }
+            Err(e) => {
+                println!("{}", e);
+                false
+            }
         }
-    } else {
-        "".to_owned()
-    };
-    let path = Path::new(&file_path);
-    let display = path.display();
-    let mut file = match File::create(&path) {
-        Err(why) => panic!("couldn't open {}: {}", display, why.description()),
-        Ok(file) => file,
-    };
-    if let Err(why) = file.write_all(str_out.as_bytes()) {
-        panic!("couldn't write to {}: {}", display, why.description());
     }
-    true
 }
 
-fn final_piped_redirect_out_detached(command: Vec<String>, child: Child) -> bool {
-    let mut args = command;
-    let mut file_path = "".to_owned();
-    for i in 0..args.len() {
-        if args[i].contains('>') {
-            file_path.push_str(&args[i + 1..args.len()].to_vec().join(""));
-            args.truncate(i);
-            break;
+// Final Pipe Redirect Out Deteched
+// Like Final Pipe but runs the command deteched from the console
+// and redirects commands stdout to a file.
+pub fn final_piped_redirect_out_detached(command: &String,
+                                         args: &Vec<String>,
+                                         vars: &Vec<(String, Option<String>)>,
+                                         file_path: &String,
+                                         child: Child)
+                                         -> bool {
+    let path = Path::new(&file_path);
+    let display = path.display();
+    match File::create(&path) {
+        Ok(_) => {}
+        Err(e) => {
+            println!("Couldn't open {}: {}", display, e.description());
+            return false;
         }
     }
-    let args = args.as_slice();
-    if args.len() <= 0 {
-        return true;
+    let file_path = file_path.clone();
+    let mut cmd = Command::new(command);
+    if args.len() > 0 {
+        cmd.args(args.iter());
     }
-    let mut cmd = Command::new(&args[0]);
-    if args.len() > 1 {
-        cmd.args(&args[1..]);
+    for var in vars {
+        match &var.1 {
+            &Some(ref v) => cmd.env(&var.0, &v),
+            &None => cmd.env(&var.0, ""),
+        };
     }
-    let output = unsafe {
-        cmd.args(&args[1..])
-            .stdout(Stdio::piped())
+    unsafe {
+        match cmd.stdout(Stdio::piped())
+            .stderr(Stdio::piped())
             .stdin(Stdio::from_raw_fd(child.stdout
                 .expect("No stdout for child process")
                 .as_raw_fd()))
@@ -281,30 +338,51 @@ fn final_piped_redirect_out_detached(command: Vec<String>, child: Child) -> bool
                 libc::prctl(1, libc::SIGHUP);
                 Result::Ok(())
             })
-            .output()
-            .ok()
-    };
-    let str_out = if output.is_some() {
-        let temp = output.expect("Output has been checked");
-        if temp.stdout.is_empty() {
-            String::from_utf8(temp.stderr)
-                .expect("Should have translated to string easily")
-        } else {
-            String::from_utf8(temp.stdout)
-                .expect("Should have translated to string easily")
+            .spawn() {
+            Ok(child) => {
+                let child_pgid = child.id() as i32;
+                println!("{}", child_pgid);
+                thread::spawn(move || {
+                    match child.wait_with_output() {
+                        Ok(output) => {
+                            let path = Path::new(&file_path);
+                            let display = path.display();
+                            let mut file = match File::create(&path) {
+                                Ok(file) => file,
+                                Err(e) => {
+                                    println!("Couldn't open {}: {}", display, e.description());
+                                    return false;
+                                }
+                            };
+                            if let Err(e) = file.write_all(output.stdout.as_slice()) {
+                                println!("+ {} Couldn't write to {}: {}",
+                                         child_pgid,
+                                         display,
+                                         e.description());
+                                return false;
+                            }
+                            if output.status.success() {
+                                println!("+ {} done", child_pgid);
+                            } else {
+                                match output.status.code() {
+                                    Some(c) => println!("+ {} exit {}", child_pgid, c),
+                                    None => println!("+ {} error", child_pgid),
+                                }
+                            }
+                            output.status.success()
+                        }
+                        Err(e) => {
+                            println!("{}", e);
+                            false
+                        }
+                    }
+                });
+                true
+            }
+            Err(e) => {
+                println!("{}", e);
+                false
+            }
         }
-    } else {
-        "".to_owned()
-    };
-    let path = Path::new(&file_path);
-    let display = path.display();
-    let mut file = match File::create(&path) {
-        Err(why) => panic!("couldn't open {}: {}", display, why.description()),
-        Ok(file) => file,
-    };
-    if let Err(why) = file.write_all(str_out.as_bytes()) {
-        panic!("couldn't write to {}: {}", display, why.description());
     }
-    true
 }
-
