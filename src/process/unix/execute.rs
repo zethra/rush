@@ -9,6 +9,7 @@ use std::io::prelude::*;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
 use std::thread;
+use std::env;
 
 /// Run
 /// Runs commands passed to it and returns whether the command exited successfully.
@@ -104,23 +105,21 @@ pub fn run_detached(command: &String,
         Ok(mut child) => {
             let child_pgid = child.id() as i32;
             println!("{}", child_pgid);
-            thread::spawn(move || {
-                match child.wait() {
-                    Ok(status) => {
-                        if status.success() {
-                            println!("+ {} done", child_pgid);
-                        } else {
-                            match status.code() {
-                                Some(c) => println!("+ {} exit {}", child_pgid, c),
-                                None => println!("+ {} error", child_pgid),
-                            }
+            thread::spawn(move || match child.wait() {
+                Ok(status) => {
+                    if status.success() {
+                        println!("+ {} done", child_pgid);
+                    } else {
+                        match status.code() {
+                            Some(c) => println!("+ {} exit {}", child_pgid, c),
+                            None => println!("+ {} error", child_pgid),
                         }
-                        status.success()
                     }
-                    Err(e) => {
-                        println!("+ {} {}", child_pgid, e);
-                        false
-                    }
+                    status.success()
+                }
+                Err(e) => {
+                    println!("+ {} {}", child_pgid, e);
+                    false
                 }
             });
             true
@@ -139,6 +138,7 @@ pub fn redirect_out(command: &String,
                     vars: &Vec<(String, Option<String>)>,
                     file_path: &String)
                     -> bool {
+    println!("{:?}", env::current_dir());
     let path = Path::new(&file_path);
     let display = path.display();
     let mut file = match File::create(&path) {
@@ -251,39 +251,37 @@ pub fn redirect_out_detached(command: &String,
         Ok(child) => {
             let child_pgid = child.id() as i32;
             println!("{}", child_pgid);
-            thread::spawn(move || {
-                match child.wait_with_output() {
-                    Ok(output) => {
-                        let path = Path::new(&file_path);
-                        let display = path.display();
-                        let mut file = match File::create(&path) {
-                            Ok(file) => file,
-                            Err(e) => {
-                                println!("Couldn't open {}: {}", display, e.description());
-                                return false;
-                            }
-                        };
-                        if let Err(e) = file.write_all(output.stdout.as_slice()) {
-                            println!("+ {} Couldn't write to {}: {}",
-                                     child_pgid,
-                                     display,
-                                     e.description());
+            thread::spawn(move || match child.wait_with_output() {
+                Ok(output) => {
+                    let path = Path::new(&file_path);
+                    let display = path.display();
+                    let mut file = match File::create(&path) {
+                        Ok(file) => file,
+                        Err(e) => {
+                            println!("Couldn't open {}: {}", display, e.description());
                             return false;
                         }
-                        if output.status.success() {
-                            println!("+ {} done", child_pgid);
-                        } else {
-                            match output.status.code() {
-                                Some(c) => println!("+ {} exit {}", child_pgid, c),
-                                None => println!("+ {} error", child_pgid),
-                            }
+                    };
+                    if let Err(e) = file.write_all(output.stdout.as_slice()) {
+                        println!("+ {} Couldn't write to {}: {}",
+                                 child_pgid,
+                                 display,
+                                 e.description());
+                        return false;
+                    }
+                    if output.status.success() {
+                        println!("+ {} done", child_pgid);
+                    } else {
+                        match output.status.code() {
+                            Some(c) => println!("+ {} exit {}", child_pgid, c),
+                            None => println!("+ {} error", child_pgid),
                         }
-                        output.status.success()
                     }
-                    Err(e) => {
-                        println!("{}", e);
-                        false
-                    }
+                    output.status.success()
+                }
+                Err(e) => {
+                    println!("{}", e);
+                    false
                 }
             });
             true
@@ -293,4 +291,39 @@ pub fn redirect_out_detached(command: &String,
             false
         }
     }
+}
+
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn run_true() {
+        assert!(run(&"true".to_string(), &Vec::new(), &Vec::new()));
+    }
+
+    #[test]
+    #[should_panic]
+    fn run_false() {
+        assert!(run(&"false".to_string(), &Vec::new(), &Vec::new()));
+    }
+
+    #[test]
+    #[should_panic]
+    fn run_not_found() {
+        assert!(run(&"asdf".to_string(), &Vec::new(), &Vec::new()));
+    }
+
+    #[test]
+    fn redirect_out_hello() {
+        let val = redirect_out(&"echo".to_string(), &vec!["Hello".to_string()], &Vec::new(), &"/tmp/x".to_string());
+        let mut f = File::open("/tmp/x").unwrap();
+        let mut s = String::new();
+        f.read_to_string(&mut s).unwrap();
+        assert_eq!(s, "Hello\n");
+        assert!(val);
+    }
+
+    
 }
