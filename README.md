@@ -12,22 +12,26 @@ After taking a short break from working on rush I decieded to rewrite the parser
 - [x] Single command execution
 - [x] Persistent history
 - [x] Pipes
-- [x] File redirection
 - [x] Quote parsing
 - [x] Evironment variables
+- [x] Script based config
+- [x] File name completion
 
-### TODO
-- [ ] Script based config (like every other shell)
+### Panned Features
+- [ ] File redirection (partly done)
+- [ ] Job control commands (fg, bg, etc.)
 - [ ] Full POSIX support
-- [ ] Windows and Mac support
-- [ ] Tab Completion
+- [ ] Full command completion
 - [ ] Command colorization
+
+### Posible Features
+- [ ] Windows and Mac support
 
 ### Usage
 - Built on rust nightly-2017-02-21
 - Clone this repo 
 - Build using cargo
-- Copy config/rust.toml to ~/.rush.toml
+- Copy config/rushrc.sh to ~/.rushrc
 
 ### Config File
 Rusty uses [toml](https://github.com/toml-lang/toml) to customize it's use.
