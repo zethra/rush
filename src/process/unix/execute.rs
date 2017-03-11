@@ -323,7 +323,5 @@ mod test {
         f.read_to_string(&mut s).unwrap();
         assert_eq!(s, "Hello\n");
         assert!(val);
-    }
-
-    
+    }   
 }

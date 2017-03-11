@@ -39,3 +39,26 @@ pub enum Redirect {
     DuplicateFd(Option<i32>, String, i32),
     MoveFd(Option<i32>, String, i32),
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn ls() {
+        let out = script(&"ls".to_string());
+        let out = match out {
+            Ok(out) => out,
+            Err(_) => { assert!(false); return }
+        };
+        let (statement, statemnt_list, end_op) = match out {
+            Some(out) => out,
+            Nne => { assert!(false); return }
+        };
+        assert_eq!(statement.command.name, "ls".to_string());
+        assert_eq!(statement.command.args, Vec::<String>::new());
+        assert_eq!(statement.command.pipe.is_none(), true);
+        assert_eq!(statement.command.redirect.is_none(), true);
+        assert_eq!(statement.command.vars, Vec::new());
+    }
+}
