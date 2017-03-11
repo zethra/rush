@@ -16,6 +16,8 @@ use std::process;
 use std::env;
 use std::io::{BufReader, BufRead};
 use std::fs::File;
+use nix::sys::signal::{SigAction, SigHandler, SaFlags, SigSet, sigaction};
+use nix::sys::signal;
 
 
 fn main() {
@@ -23,12 +25,14 @@ fn main() {
         while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
             nix::sys::signal::kill(nix::unistd::getpgrp(), nix::sys::signal::Signal::SIGTTIN);
         }
+        let ign = SigAction::new(SigHandler::SigIgn, SaFlags::empty(), SigSet::empty());
         unsafe {
-            libc::signal(libc::SIGINT, libc::SIG_IGN);
-            libc::signal(libc::SIGQUIT, libc::SIG_IGN);
-            libc::signal(libc::SIGTSTP, libc::SIG_IGN);
-            libc::signal(libc::SIGTTIN, libc::SIG_IGN);
-            libc::signal(libc::SIGTTOU, libc::SIG_IGN);
+            sigaction(signal::SIGINT, &ign).unwrap();
+            sigaction(signal::SIGQUIT, &ign).unwrap();
+            sigaction(signal::SIGTSTP, &ign).unwrap();
+            sigaction(signal::SIGTTIN, &ign).unwrap();
+            sigaction(signal::SIGTTOU, &ign).unwrap();
+            sigaction(signal::SIGTSTP, &ign).unwrap();
         }
         let pid = nix::unistd::getpid();
         match nix::unistd::setpgid(pid, pid) {
