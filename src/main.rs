@@ -16,8 +16,8 @@ use std::process;
 use std::env;
 use std::io::{BufReader, BufRead};
 use std::fs::File;
-use nix::sys::signal::{SigAction, SigHandler, SaFlags, SigSet, sigaction};
 use nix::sys::signal;
+use nix::sys::signal::{SigAction, SigHandler, SaFlags, SigSet, sigaction};
 
 
 fn main() {
@@ -25,14 +25,14 @@ fn main() {
         while nix::unistd::tcgetpgrp(0).unwrap() != nix::unistd::getpgrp() {
             nix::sys::signal::kill(nix::unistd::getpgrp(), nix::sys::signal::Signal::SIGTTIN);
         }
-        let ign = SigAction::new(SigHandler::SigIgn, SaFlags::empty(), SigSet::empty());
+        let hdl = SigAction::new(SigHandler::SigIgn, SaFlags::empty(), SigSet::empty());
         unsafe {
-            sigaction(signal::SIGINT, &ign).unwrap();
-            sigaction(signal::SIGQUIT, &ign).unwrap();
-            sigaction(signal::SIGTSTP, &ign).unwrap();
-            sigaction(signal::SIGTTIN, &ign).unwrap();
-            sigaction(signal::SIGTTOU, &ign).unwrap();
-            sigaction(signal::SIGTSTP, &ign).unwrap();
+            sigaction(signal::SIGINT, &hdl).unwrap();
+            sigaction(signal::SIGQUIT, &hdl).unwrap();
+            sigaction(signal::SIGTSTP, &hdl).unwrap();
+            sigaction(signal::SIGTTIN, &hdl).unwrap();
+            sigaction(signal::SIGTTOU, &hdl).unwrap();
+            sigaction(signal::SIGTSTP, &hdl).unwrap();
         }
         let pid = nix::unistd::getpid();
         match nix::unistd::setpgid(pid, pid) {

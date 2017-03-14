@@ -9,6 +9,8 @@ use std::io::prelude::*;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
 use std::thread;
+use self::nix::sys::signal;
+use self::nix::sys::signal::{SigAction, SigHandler, SaFlags, SigSet, sigaction};
 
 /// Run
 /// Runs commands passed to it and returns whether the command exited successfully.
@@ -29,13 +31,15 @@ pub fn run(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<Stri
         .before_exec(move || {
             let pid = nix::unistd::getpid();
             nix::unistd::setpgid(pid, pid);
+            let hdl = SigAction::new(SigHandler::SigDfl, SaFlags::empty(), SigSet::empty());
             unsafe {
-                libc::signal(libc::SIGINT, libc::SIG_DFL);
-                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                libc::prctl(1, libc::SIGHUP);
+                sigaction(signal::SIGINT, &hdl).unwrap();
+                sigaction(signal::SIGQUIT, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                sigaction(signal::SIGTTIN, &hdl).unwrap();
+                sigaction(signal::SIGTTOU, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                libc::prctl(libc::PR_SET_PDEATHSIG, libc::SIGHUP);
             }
             Result::Ok(())
         })
@@ -90,13 +94,15 @@ pub fn run_detached(command: &String,
         .before_exec(move || {
             let pid = nix::unistd::getpid();
             nix::unistd::setpgid(pid, pid);
+            let hdl = SigAction::new(SigHandler::SigDfl, SaFlags::empty(), SigSet::empty());
             unsafe {
-                libc::signal(libc::SIGINT, libc::SIG_DFL);
-                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                libc::prctl(1, libc::SIGHUP);
+                sigaction(signal::SIGINT, &hdl).unwrap();
+                sigaction(signal::SIGQUIT, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                sigaction(signal::SIGTTIN, &hdl).unwrap();
+                sigaction(signal::SIGTTOU, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                libc::prctl(libc::PR_SET_PDEATHSIG, libc::SIGHUP);
             }
             Result::Ok(())
         })
@@ -104,23 +110,21 @@ pub fn run_detached(command: &String,
         Ok(mut child) => {
             let child_pgid = child.id() as i32;
             println!("{}", child_pgid);
-            thread::spawn(move || {
-                match child.wait() {
-                    Ok(status) => {
-                        if status.success() {
-                            println!("+ {} done", child_pgid);
-                        } else {
-                            match status.code() {
-                                Some(c) => println!("+ {} exit {}", child_pgid, c),
-                                None => println!("+ {} error", child_pgid),
-                            }
+            thread::spawn(move || match child.wait() {
+                Ok(status) => {
+                    if status.success() {
+                        println!("+ {} done", child_pgid);
+                    } else {
+                        match status.code() {
+                            Some(c) => println!("+ {} exit {}", child_pgid, c),
+                            None => println!("+ {} error", child_pgid),
                         }
-                        status.success()
                     }
-                    Err(e) => {
-                        println!("+ {} {}", child_pgid, e);
-                        false
-                    }
+                    status.success()
+                }
+                Err(e) => {
+                    println!("+ {} {}", child_pgid, e);
+                    false
                 }
             });
             true
@@ -161,13 +165,15 @@ pub fn redirect_out(command: &String,
         .before_exec(move || {
             let pid = nix::unistd::getpid();
             nix::unistd::setpgid(pid, pid);
+            let hdl = SigAction::new(SigHandler::SigDfl, SaFlags::empty(), SigSet::empty());
             unsafe {
-                libc::signal(libc::SIGINT, libc::SIG_DFL);
-                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                libc::prctl(1, libc::SIGHUP);
+                sigaction(signal::SIGINT, &hdl).unwrap();
+                sigaction(signal::SIGQUIT, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                sigaction(signal::SIGTTIN, &hdl).unwrap();
+                sigaction(signal::SIGTTOU, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                libc::prctl(libc::PR_SET_PDEATHSIG, libc::SIGHUP);
             }
             Result::Ok(())
         })
@@ -237,13 +243,15 @@ pub fn redirect_out_detached(command: &String,
         .before_exec(move || {
             let pid = nix::unistd::getpid();
             nix::unistd::setpgid(pid, pid);
+            let hdl = SigAction::new(SigHandler::SigDfl, SaFlags::empty(), SigSet::empty());
             unsafe {
-                libc::signal(libc::SIGINT, libc::SIG_DFL);
-                libc::signal(libc::SIGQUIT, libc::SIG_DFL);
-                libc::signal(libc::SIGTSTP, libc::SIG_DFL);
-                libc::signal(libc::SIGTTIN, libc::SIG_DFL);
-                libc::signal(libc::SIGTTOU, libc::SIG_DFL);
-                libc::prctl(1, libc::SIGHUP);
+                sigaction(signal::SIGINT, &hdl).unwrap();
+                sigaction(signal::SIGQUIT, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                sigaction(signal::SIGTTIN, &hdl).unwrap();
+                sigaction(signal::SIGTTOU, &hdl).unwrap();
+                sigaction(signal::SIGTSTP, &hdl).unwrap();
+                libc::prctl(libc::PR_SET_PDEATHSIG, libc::SIGHUP);
             }
             Result::Ok(())
         })
@@ -251,39 +259,37 @@ pub fn redirect_out_detached(command: &String,
         Ok(child) => {
             let child_pgid = child.id() as i32;
             println!("{}", child_pgid);
-            thread::spawn(move || {
-                match child.wait_with_output() {
-                    Ok(output) => {
-                        let path = Path::new(&file_path);
-                        let display = path.display();
-                        let mut file = match File::create(&path) {
-                            Ok(file) => file,
-                            Err(e) => {
-                                println!("Couldn't open {}: {}", display, e.description());
-                                return false;
-                            }
-                        };
-                        if let Err(e) = file.write_all(output.stdout.as_slice()) {
-                            println!("+ {} Couldn't write to {}: {}",
-                                     child_pgid,
-                                     display,
-                                     e.description());
+            thread::spawn(move || match child.wait_with_output() {
+                Ok(output) => {
+                    let path = Path::new(&file_path);
+                    let display = path.display();
+                    let mut file = match File::create(&path) {
+                        Ok(file) => file,
+                        Err(e) => {
+                            println!("Couldn't open {}: {}", display, e.description());
                             return false;
                         }
-                        if output.status.success() {
-                            println!("+ {} done", child_pgid);
-                        } else {
-                            match output.status.code() {
-                                Some(c) => println!("+ {} exit {}", child_pgid, c),
-                                None => println!("+ {} error", child_pgid),
-                            }
+                    };
+                    if let Err(e) = file.write_all(output.stdout.as_slice()) {
+                        println!("+ {} Couldn't write to {}: {}",
+                                 child_pgid,
+                                 display,
+                                 e.description());
+                        return false;
+                    }
+                    if output.status.success() {
+                        println!("+ {} done", child_pgid);
+                    } else {
+                        match output.status.code() {
+                            Some(c) => println!("+ {} exit {}", child_pgid, c),
+                            None => println!("+ {} error", child_pgid),
                         }
-                        output.status.success()
                     }
-                    Err(e) => {
-                        println!("{}", e);
-                        false
-                    }
+                    output.status.success()
+                }
+                Err(e) => {
+                    println!("{}", e);
+                    false
                 }
             });
             true
