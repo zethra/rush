@@ -141,7 +141,8 @@ pub fn run_detached(command: &String,
 pub fn redirect_out(command: &String,
                     args: &Vec<String>,
                     vars: &Vec<(String, Option<String>)>,
-                    file_path: &String)
+                    file_path: &String,
+                    fd: &i32)
                     -> bool {
     let path = Path::new(&file_path);
     let display = path.display();
@@ -159,10 +160,21 @@ pub fn redirect_out(command: &String,
             &None => cmd.env(&var.0, ""),
         };
     }
-
-    match cmd.stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .before_exec(move || {
+    match *fd {
+        1 => {
+            cmd.stdout(Stdio::piped());
+            cmd.stderr(Stdio::inherit());
+        }
+        2 => {
+            cmd.stdout(Stdio::inherit());
+            cmd.stderr(Stdio::piped());
+        }
+        _ => {
+            println!("Unknown file desctiptor for redirect");
+            return false;
+        }
+    }
+    match cmd.before_exec(move || {
             let pid = nix::unistd::getpid();
             nix::unistd::setpgid(pid, pid);
             let hdl = SigAction::new(SigHandler::SigDfl, SaFlags::empty(), SigSet::empty());
@@ -188,9 +200,23 @@ pub fn redirect_out(command: &String,
                     if nix::unistd::tcsetpgrp(0, nix::unistd::getpid()).is_err() {
                         return false;
                     }
-                    if let Err(e) = file.write_all(output.stdout.as_slice()) {
-                        println!("Couldn't write to {}: {}", display, e.description());
-                        return false;
+                    match *fd {
+                        1 => {
+                            if let Err(e) = file.write_all(output.stdout.as_slice()) {
+                                println!("Couldn't write to {}: {}", display, e.description());
+                                return false;
+                            }
+                        }
+                        2 => {
+                            if let Err(e) = file.write_all(output.stderr.as_slice()) {
+                                println!("Couldn't write to {}: {}", display, e.description());
+                                return false;
+                            }
+                        }
+                        _ => {
+                            println!("Unknown file desctiptor for redirect");
+                            return false;
+                        }
                     }
                     return output.status.success();
                 }
@@ -216,8 +242,10 @@ pub fn redirect_out(command: &String,
 pub fn redirect_out_detached(command: &String,
                              args: &Vec<String>,
                              vars: &Vec<(String, Option<String>)>,
-                             file_path: &String)
+                             file_path: &String,
+                             fd: &i32)
                              -> bool {
+    let fd = fd.clone();
     let path = Path::new(&file_path);
     let display = path.display();
     match File::create(&path) {
@@ -238,9 +266,21 @@ pub fn redirect_out_detached(command: &String,
             &None => cmd.env(&var.0, ""),
         };
     }
-    match cmd.stdout(Stdio::piped())
-        .stderr(Stdio::piped())
-        .before_exec(move || {
+    match fd {
+        1 => {
+            cmd.stdout(Stdio::piped());
+            cmd.stderr(Stdio::inherit());
+        }
+        2 => {
+            cmd.stdout(Stdio::inherit());
+            cmd.stderr(Stdio::piped());
+        }
+        _ => {
+            println!("Unknown file desctiptor for redirect");
+            return false;
+        }
+    }
+    match cmd.before_exec(move || {
             let pid = nix::unistd::getpid();
             nix::unistd::setpgid(pid, pid);
             let hdl = SigAction::new(SigHandler::SigDfl, SaFlags::empty(), SigSet::empty());
@@ -270,12 +310,26 @@ pub fn redirect_out_detached(command: &String,
                             return false;
                         }
                     };
-                    if let Err(e) = file.write_all(output.stdout.as_slice()) {
-                        println!("+ {} Couldn't write to {}: {}",
-                                 child_pgid,
-                                 display,
-                                 e.description());
-                        return false;
+                    match fd {
+                        1 => {
+                            if let Err(e) = file.write_all(output.stdout.as_slice()) {
+                                println!("+ {} error", child_pgid);
+                                println!("Couldn't write to {}: {}", display, e.description());
+                                return false;
+                            }
+                        }
+                        2 => {
+                            if let Err(e) = file.write_all(output.stderr.as_slice()) {
+                                println!("+ {} error", child_pgid);
+                                println!("Couldn't write to {}: {}", display, e.description());
+                                return false;
+                            }
+                        }
+                        _ => {
+                            println!("+ {} error", child_pgid);
+                            println!("Unknown file desctiptor for redirect");
+                            return false;
+                        }
                     }
                     if output.status.success() {
                         println!("+ {} done", child_pgid);

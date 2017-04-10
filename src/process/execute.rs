@@ -26,17 +26,19 @@ pub fn run_detached(command: &String,
 pub fn redirect_out(command: &String,
                     args: &Vec<String>,
                     vars: &Vec<(String, Option<String>)>,
-                    file_path: &String)
+                    file_path: &String,
+                    fd: &i32)
                     -> bool {
-    execute::redirect_out(command, args, vars, file_path)
+    execute::redirect_out(command, args, vars, file_path, fd)
 }
 
 pub fn redirect_out_detached(command: &String,
                              args: &Vec<String>,
                              vars: &Vec<(String, Option<String>)>,
-                             file_path: &String)
+                             file_path: &String,
+                             fd: &i32)
                              -> bool {
-    execute::redirect_out_detached(command, args, vars, file_path)
+    execute::redirect_out_detached(command, args, vars, file_path, fd)
 }
 
 pub fn first_pipe(command: &String,

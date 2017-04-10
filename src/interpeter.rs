@@ -111,16 +111,22 @@ fn exec_command(current: Command,
             Redirect::Fd(fd, op, file_name) => {
                 match op.as_str() {
                     ">" => {
+                        let fd = match fd {
+                            Some(fd) => fd,
+                            None => 1,
+                        };
                         if end_op.is_some() && end_op.unwrap() == "&" {
                             return redirect_out_detached(&current.name,
                                                          &current.args,
                                                          &current.vars,
-                                                         &file_name);
+                                                         &file_name,
+                                                         &fd);
                         } else {
                             return redirect_out(&current.name,
                                                 &current.args,
                                                 &current.vars,
-                                                &file_name);
+                                                &file_name,
+                                                &fd);
                         }
                     }
                     _ => {
