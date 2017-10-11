@@ -4,7 +4,7 @@
 
 **Warning:** Rush is still in development and is not feature complete or stable.
 
-###News
+### News
 After taking a short break from working on rush I decieded to rewrite the parser using a peg parser.
 
 
@@ -17,7 +17,7 @@ After taking a short break from working on rush I decieded to rewrite the parser
 - [x] Script based config
 - [x] File name completion
 
-### Panned Features
+### Planned Features
 - [ ] File redirection (partly done)
 - [ ] Job control commands (fg, bg, etc.)
 - [ ] Full POSIX support
