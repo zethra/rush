@@ -12,6 +12,7 @@ use std::io::prelude::*;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
 use std::thread;
+use self::nix::unistd::Pid;
 use self::nix::sys::signal;
 use self::nix::sys::signal::{SigAction, SigHandler, SaFlags, SigSet, sigaction};
 
@@ -136,7 +137,7 @@ pub fn final_pipe(command: &String,
             .spawn() {
             Ok(mut child) => {
                 let child_pgid = child.id() as i32;
-                nix::unistd::tcsetpgrp(0, child_pgid);
+                nix::unistd::tcsetpgrp(0, Pid::from_raw(child_pgid));
                 match child.wait() {
                     Ok(status) => {
                         nix::unistd::tcsetpgrp(0, nix::unistd::getpid());
@@ -269,7 +270,7 @@ pub fn final_piped_redirect_out(command: &String,
             .spawn() {
             Ok(child) => {
                 let child_pgid = child.id() as i32;
-                if nix::unistd::tcsetpgrp(0, child_pgid).is_err() {
+                if nix::unistd::tcsetpgrp(0, Pid::from_raw(child_pgid)).is_err() {
                     return false;
                 }
                 match child.wait_with_output() {

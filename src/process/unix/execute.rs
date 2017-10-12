@@ -9,6 +9,7 @@ use std::io::prelude::*;
 use std::path::Path;
 use std::os::unix::process::CommandExt;
 use std::thread;
+use self::nix::unistd::Pid;
 use self::nix::sys::signal;
 use self::nix::sys::signal::{SigAction, SigHandler, SaFlags, SigSet, sigaction};
 
@@ -46,7 +47,7 @@ pub fn run(command: &String, args: &Vec<String>, vars: &Vec<(String, Option<Stri
         .spawn() {
         Ok(mut child) => {
             let child_pgid = child.id() as i32;
-            if nix::unistd::tcsetpgrp(0, child_pgid).is_err() {
+            if nix::unistd::tcsetpgrp(0, Pid::from_raw(child_pgid)).is_err() {
                 return false;
             }
             match child.wait() {
@@ -192,7 +193,7 @@ pub fn redirect_out(command: &String,
         .spawn() {
         Ok(child) => {
             let child_pgid = child.id() as i32;
-            if nix::unistd::tcsetpgrp(0, child_pgid).is_err() {
+            if nix::unistd::tcsetpgrp(0, Pid::from_raw(child_pgid)).is_err() {
                 return false;
             }
             match child.wait_with_output() {
