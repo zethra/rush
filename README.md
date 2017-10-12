@@ -5,7 +5,7 @@
 **Warning:** Rush is still in development and is not feature complete or stable.
 
 ### News
-After taking a short break from working on rush I decieded to rewrite the parser using a peg parser.
+Rush is not under active development.  I may continue work on it at some point but there aren't enough hours in the day.
 
 
 ### Features
