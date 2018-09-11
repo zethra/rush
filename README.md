@@ -1,6 +1,5 @@
 # Rush - The Rust Shell
 [![Build Status](https://travis-ci.org/zethra/rush.svg?branch=master)](https://travis-ci.org/zethra/rush)
-[![Build status](https://ci.appveyor.com/api/projects/status/rfg5y8nbskuj1w42/branch/master?svg=true)](https://ci.appveyor.com/project/zethra/rush/branch/master)
 
 **Warning:** Rush is still in development and is not feature complete or stable.
 
