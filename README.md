@@ -1,7 +1,7 @@
 # Rush - The Rust Shell
 [![Build Status](https://travis-ci.org/zethra/rush.svg?branch=master)](https://travis-ci.org/zethra/rush)
 
-**Warning:** Rush is still in development and is not feature complete or stable.
+**This project is no longer maintained**
 
 ### News
 Rush is not under active development.  I may continue work on it at some point but there aren't enough hours in the day.
